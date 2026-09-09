@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Adaptive icon background — dark navy/violet sampled from the
+         AppIcon-1024 night-sky background, matches the iOS icon's ground. -->
+    <color name="ic_launcher_background">#1B1030</color>
+</resources>
