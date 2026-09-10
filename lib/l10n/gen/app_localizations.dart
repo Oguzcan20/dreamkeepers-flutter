@@ -1142,6 +1142,138 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{name}, {rarity}, Lv {level}, in storage'**
   String invItemSemanticStored(String name, String rarity, int level);
+
+  /// No description provided for @summonNew.
+  ///
+  /// In en, this message translates to:
+  /// **'New!'**
+  String get summonNew;
+
+  /// No description provided for @summonDuplicate.
+  ///
+  /// In en, this message translates to:
+  /// **'Duplicate'**
+  String get summonDuplicate;
+
+  /// No description provided for @summonEquipSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{slot} · Lv {level}'**
+  String summonEquipSubtitle(String slot, int level);
+
+  /// No description provided for @summonMultiTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Summon x{count}'**
+  String summonMultiTitle(int count);
+
+  /// No description provided for @summonMultiBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Spend {cost} Gems for {count} pulls?'**
+  String summonMultiBody(int cost, int count);
+
+  /// No description provided for @summonAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Summon'**
+  String get summonAction;
+
+  /// No description provided for @summonNotEnoughGemsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Not Enough Gems'**
+  String get summonNotEnoughGemsTitle;
+
+  /// No description provided for @summonNotEnoughGemsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This costs {cost} Gems. You have {have}.'**
+  String summonNotEnoughGemsBody(int cost, int have);
+
+  /// No description provided for @summonGetGems.
+  ///
+  /// In en, this message translates to:
+  /// **'Get Gems'**
+  String get summonGetGems;
+
+  /// No description provided for @summonModeDreamkeeper.
+  ///
+  /// In en, this message translates to:
+  /// **'Dreamkeeper'**
+  String get summonModeDreamkeeper;
+
+  /// No description provided for @summonModeEquipment.
+  ///
+  /// In en, this message translates to:
+  /// **'Equipment'**
+  String get summonModeEquipment;
+
+  /// No description provided for @summonBlurbDreamkeeper.
+  ///
+  /// In en, this message translates to:
+  /// **'Summon a Dreamkeeper from the shrine\'s deep waters.'**
+  String get summonBlurbDreamkeeper;
+
+  /// No description provided for @summonBlurbEquipment.
+  ///
+  /// In en, this message translates to:
+  /// **'Summon a piece of Equipment forged for your current stage.'**
+  String get summonBlurbEquipment;
+
+  /// No description provided for @summonSingleButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Summon ({cost} Gems)'**
+  String summonSingleButton(int cost);
+
+  /// No description provided for @summonMultiButton.
+  ///
+  /// In en, this message translates to:
+  /// **'x{count} ({cost} Gems)'**
+  String summonMultiButton(int count, int cost);
+
+  /// No description provided for @summonInsufficientHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Not enough Gems for a pull ({needed} needed). You have {have}.'**
+  String summonInsufficientHint(int needed, int have);
+
+  /// No description provided for @summonOddsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Odds'**
+  String get summonOddsTitle;
+
+  /// No description provided for @summonEpicPity.
+  ///
+  /// In en, this message translates to:
+  /// **'Epic+ pity'**
+  String get summonEpicPity;
+
+  /// No description provided for @summonLegendaryPity.
+  ///
+  /// In en, this message translates to:
+  /// **'Legendary+ pity'**
+  String get summonLegendaryPity;
+
+  /// No description provided for @summonTapToOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to open'**
+  String get summonTapToOpen;
+
+  /// No description provided for @summonResultsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Summon Results'**
+  String get summonResultsTitle;
+
+  /// No description provided for @summonTapToRevealAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to reveal all'**
+  String get summonTapToRevealAll;
 }
 
 class _AppLocalizationsDelegate

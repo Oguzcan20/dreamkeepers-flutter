@@ -651,4 +651,86 @@ class AppLocalizationsEn extends AppLocalizations {
   String invItemSemanticStored(String name, String rarity, int level) {
     return '$name, $rarity, Lv $level, in storage';
   }
+
+  @override
+  String get summonNew => 'New!';
+
+  @override
+  String get summonDuplicate => 'Duplicate';
+
+  @override
+  String summonEquipSubtitle(String slot, int level) {
+    return '$slot · Lv $level';
+  }
+
+  @override
+  String summonMultiTitle(int count) {
+    return 'Summon x$count';
+  }
+
+  @override
+  String summonMultiBody(int cost, int count) {
+    return 'Spend $cost Gems for $count pulls?';
+  }
+
+  @override
+  String get summonAction => 'Summon';
+
+  @override
+  String get summonNotEnoughGemsTitle => 'Not Enough Gems';
+
+  @override
+  String summonNotEnoughGemsBody(int cost, int have) {
+    return 'This costs $cost Gems. You have $have.';
+  }
+
+  @override
+  String get summonGetGems => 'Get Gems';
+
+  @override
+  String get summonModeDreamkeeper => 'Dreamkeeper';
+
+  @override
+  String get summonModeEquipment => 'Equipment';
+
+  @override
+  String get summonBlurbDreamkeeper =>
+      'Summon a Dreamkeeper from the shrine\'s deep waters.';
+
+  @override
+  String get summonBlurbEquipment =>
+      'Summon a piece of Equipment forged for your current stage.';
+
+  @override
+  String summonSingleButton(int cost) {
+    return 'Summon ($cost Gems)';
+  }
+
+  @override
+  String summonMultiButton(int count, int cost) {
+    return 'x$count ($cost Gems)';
+  }
+
+  @override
+  String summonInsufficientHint(int needed, int have) {
+    return 'Not enough Gems for a pull ($needed needed). You have $have.';
+  }
+
+  @override
+  String get summonOddsTitle => 'Odds';
+
+  @override
+  String get summonEpicPity => 'Epic+ pity';
+
+  @override
+  String get summonLegendaryPity => 'Legendary+ pity';
+
+  @override
+  String get summonTapToOpen => 'Tap to open';
+
+  @override
+  String get summonResultsTitle => 'Summon Results';
+
+  @override
+  String get summonTapToRevealAll => 'Tap to reveal all';
 }

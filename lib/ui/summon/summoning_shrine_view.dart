@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import '../../l10n/l10n.dart';
 import '../../models/equipment.dart';
 import '../../models/rarity.dart';
 import '../../platform/platform_service.dart';
@@ -58,20 +59,20 @@ class _PullDisplay {
 
   const _PullDisplay({required this.name, required this.rarity, required this.subtitle, required this.symbol, this.artAssetName});
 
-  factory _PullDisplay.fromSummon(SummonResult result) => _PullDisplay(
+  factory _PullDisplay.fromSummon(SummonResult result, AppLocalizations l) => _PullDisplay(
         name: result.definition.name,
         rarity: result.definition.rarity,
-        subtitle: result.isNew ? 'New!' : 'Duplicate',
+        subtitle: result.isNew ? l.summonNew : l.summonDuplicate,
         symbol: result.definition.symbol,
         artAssetName: dk_theme.DreamkeeperArt.hasArt(result.definition.name)
             ? dk_theme.DreamkeeperArt.assetName(result.definition.name)
             : null,
       );
 
-  factory _PullDisplay.fromEquipment(EquipmentItem item) => _PullDisplay(
+  factory _PullDisplay.fromEquipment(EquipmentItem item, AppLocalizations l) => _PullDisplay(
         name: item.name,
         rarity: item.rarity,
-        subtitle: '${item.slot.displayName} · Lv ${item.level}',
+        subtitle: l.summonEquipSubtitle(item.slot.displayName, item.level),
         symbol: item.slot.symbol,
         artAssetName: dk_theme.ItemArt.hasArt(item.name) ? dk_theme.ItemArt.assetName(item.name) : null,
       );
@@ -113,6 +114,7 @@ class _SummoningShrineViewState extends State<SummoningShrineView> {
       _mode == _SummonMode.dreamkeeper ? SummonSystem.multiPullTotalCount : EquipmentSummonSystem.multiPullTotalCount;
 
   void _tapSingle() {
+    final l = AppLocalizations.of(context);
     _gameState.playHaptic(HapticStyle.light);
     if (!_canAffordSingle) {
       _showInsufficientGemsDialog(_singleCost);
@@ -125,14 +127,14 @@ class _SummoningShrineViewState extends State<SummoningShrineView> {
         _showInsufficientGemsDialog(_singleCost);
         return;
       }
-      display = _PullDisplay.fromSummon(result);
+      display = _PullDisplay.fromSummon(result, l);
     } else {
       final item = _gameState.performEquipmentSummon();
       if (item == null) {
         _showInsufficientGemsDialog(_singleCost);
         return;
       }
-      display = _PullDisplay.fromEquipment(item);
+      display = _PullDisplay.fromEquipment(item, l);
     }
     _gameState.playHaptic(HapticStyle.success);
     _gameState.playSound(SoundEffect.summon);
@@ -149,6 +151,7 @@ class _SummoningShrineViewState extends State<SummoningShrineView> {
   }
 
   Future<void> _tapMulti() async {
+    final l = AppLocalizations.of(context);
     _gameState.playHaptic(HapticStyle.light);
     if (!_canAffordMulti) {
       _showInsufficientGemsDialog(_multiCost);
@@ -159,11 +162,11 @@ class _SummoningShrineViewState extends State<SummoningShrineView> {
       builder: (dialogContext) => Theme(
         data: ThemeData.dark(),
         child: AlertDialog(
-          title: Text('Summon x$_multiCount'),
-          content: Text('Spend $_multiCost Gems for $_multiCount pulls?'),
+          title: Text(l.summonMultiTitle(_multiCount)),
+          content: Text(l.summonMultiBody(_multiCost, _multiCount)),
           actions: [
-            TextButton(onPressed: () => Navigator.of(dialogContext).pop(false), child: const Text('Cancel')),
-            TextButton(onPressed: () => Navigator.of(dialogContext).pop(true), child: const Text('Summon')),
+            TextButton(onPressed: () => Navigator.of(dialogContext).pop(false), child: Text(l.commonCancel)),
+            TextButton(onPressed: () => Navigator.of(dialogContext).pop(true), child: Text(l.summonAction)),
           ],
         ),
       ),
@@ -177,14 +180,14 @@ class _SummoningShrineViewState extends State<SummoningShrineView> {
         _showInsufficientGemsDialog(_multiCost);
         return;
       }
-      displays = results.map(_PullDisplay.fromSummon).toList();
+      displays = results.map((r) => _PullDisplay.fromSummon(r, l)).toList();
     } else {
       final items = _gameState.performEquipmentMultiSummon();
       if (items == null) {
         _showInsufficientGemsDialog(_multiCost);
         return;
       }
-      displays = items.map(_PullDisplay.fromEquipment).toList();
+      displays = items.map((i) => _PullDisplay.fromEquipment(i, l)).toList();
     }
     _gameState.playHaptic(HapticStyle.success);
     _gameState.playSound(SoundEffect.summon);
@@ -225,22 +228,23 @@ class _SummoningShrineViewState extends State<SummoningShrineView> {
   }
 
   Future<void> _showInsufficientGemsDialog(int cost) async {
+    final l = AppLocalizations.of(context);
     await showDialog<void>(
       context: context,
       builder: (dialogContext) => Theme(
         data: ThemeData.dark(),
         child: AlertDialog(
-          title: const Text('Not Enough Gems'),
-          content: Text('This costs $cost Gems. You have ${_gameState.save.dreamGems}.'),
+          title: Text(l.summonNotEnoughGemsTitle),
+          content: Text(l.summonNotEnoughGemsBody(cost, _gameState.save.dreamGems)),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.of(dialogContext).pop();
                 widget.onNavigate(const ShopRoute());
               },
-              child: const Text('Get Gems'),
+              child: Text(l.summonGetGems),
             ),
-            TextButton(onPressed: () => Navigator.of(dialogContext).pop(), child: const Text('OK')),
+            TextButton(onPressed: () => Navigator.of(dialogContext).pop(), child: Text(l.commonOk)),
           ],
         ),
       ),
@@ -249,6 +253,7 @@ class _SummoningShrineViewState extends State<SummoningShrineView> {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     return Stack(
       children: [
         const dk_theme.AmbientBackground(topTint: dk_theme.Theme.gold, bottomTint: dk_theme.Theme.violet),
@@ -260,18 +265,18 @@ class _SummoningShrineViewState extends State<SummoningShrineView> {
               duration: const Duration(milliseconds: 500),
               child: Column(
                 children: [
-                  _header(),
+                  _header(l),
                   Expanded(
                     child: SingleChildScrollView(
                       padding: const EdgeInsets.fromLTRB(20, 14, 20, 40),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          _modePicker(),
+                          _modePicker(l),
                           const SizedBox(height: 16),
-                          _pullCard(),
+                          _pullCard(l),
                           const SizedBox(height: 16),
-                          _oddsCard(),
+                          _oddsCard(l),
                         ],
                       ),
                     ),
@@ -292,7 +297,7 @@ class _SummoningShrineViewState extends State<SummoningShrineView> {
               onTapBeforeDone: _singleChestOpened ? null : _openSingleChest,
               child: _singleChestOpened
                   ? _ResultCard(display: _singleReveal!, large: true)
-                  : _ChestReveal(rarity: _singleReveal!.rarity, onTap: _openSingleChest),
+                  : _ChestReveal(rarity: _singleReveal!.rarity, onTap: _openSingleChest, l: l),
             ),
           ),
         if (_multiReveal != null)
@@ -304,6 +309,7 @@ class _SummoningShrineViewState extends State<SummoningShrineView> {
                 displays: _multiReveal!,
                 revealedCount: _multiRevealedCount,
                 onContinue: _dismissMultiReveal,
+                l: l,
               ),
             ),
           ),
@@ -311,7 +317,7 @@ class _SummoningShrineViewState extends State<SummoningShrineView> {
     );
   }
 
-  Widget _header() {
+  Widget _header(AppLocalizations l) {
     return Container(
       height: 64,
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -325,15 +331,15 @@ class _SummoningShrineViewState extends State<SummoningShrineView> {
       ),
       child: Row(
         children: [
-          _iconButton(icon: 'chevron.left', label: 'Back', onTap: () => widget.onNavigate(const DreamHavenRoute())),
+          _iconButton(icon: 'chevron.left', label: l.commonBack, onTap: () => widget.onNavigate(const DreamHavenRoute())),
           const Spacer(),
-          const Text('Summoning Shrine', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+          Text(l.navSummoningShrine, style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
           const Spacer(),
           dk_theme.ResourcePill(
             icon: sfSymbol('sparkles'),
             value: '${_gameState.save.dreamGems}',
             tint: dk_theme.Theme.violet,
-            semanticLabel: 'Dream Gems',
+            semanticLabel: l.resDreamGems,
           ),
         ],
       ),
@@ -355,7 +361,7 @@ class _SummoningShrineViewState extends State<SummoningShrineView> {
     );
   }
 
-  Widget _modePicker() {
+  Widget _modePicker(AppLocalizations l) {
     return Container(
       padding: const EdgeInsets.all(4),
       decoration: BoxDecoration(
@@ -365,8 +371,8 @@ class _SummoningShrineViewState extends State<SummoningShrineView> {
       ),
       child: Row(
         children: [
-          Expanded(child: _modeSegment(_SummonMode.dreamkeeper, 'Dreamkeeper', 'person.3.fill')),
-          Expanded(child: _modeSegment(_SummonMode.equipment, 'Equipment', 'shield.fill')),
+          Expanded(child: _modeSegment(_SummonMode.dreamkeeper, l.summonModeDreamkeeper, 'person.3.fill')),
+          Expanded(child: _modeSegment(_SummonMode.equipment, l.summonModeEquipment, 'shield.fill')),
         ],
       ),
     );
@@ -405,31 +411,29 @@ class _SummoningShrineViewState extends State<SummoningShrineView> {
     );
   }
 
-  Widget _pullCard() {
+  Widget _pullCard(AppLocalizations l) {
     return dk_theme.GlassCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            _mode == _SummonMode.dreamkeeper
-                ? 'Summon a Dreamkeeper from the shrine\'s deep waters.'
-                : 'Summon a piece of Equipment forged for your current stage.',
+            _mode == _SummonMode.dreamkeeper ? l.summonBlurbDreamkeeper : l.summonBlurbEquipment,
             style: TextStyle(color: Colors.white.withValues(alpha: 0.75), fontSize: 13),
           ),
           const SizedBox(height: 14),
-          if (!_canAffordSingle) _insufficientGemsHint() else _pullButtons(),
+          if (!_canAffordSingle) _insufficientGemsHint(l) else _pullButtons(l),
         ],
       ),
     );
   }
 
-  Widget _pullButtons() {
+  Widget _pullButtons(AppLocalizations l) {
     return Row(
       children: [
         Expanded(
           child: dk_theme.PrimaryButton(
             onPressed: _tapSingle,
-            child: Text('Summon ($_singleCost Gems)'),
+            child: Text(l.summonSingleButton(_singleCost)),
           ),
         ),
         const SizedBox(width: 10),
@@ -437,49 +441,49 @@ class _SummoningShrineViewState extends State<SummoningShrineView> {
           child: dk_theme.PrimaryButton(
             tint: dk_theme.Theme.gold,
             onPressed: _canAffordMulti ? _tapMulti : () => _showInsufficientGemsDialog(_multiCost),
-            child: Text('x$_multiCount ($_multiCost Gems)'),
+            child: Text(l.summonMultiButton(_multiCount, _multiCost)),
           ),
         ),
       ],
     );
   }
 
-  Widget _insufficientGemsHint() {
+  Widget _insufficientGemsHint(AppLocalizations l) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text(
-          'Not enough Gems for a pull ($_singleCost needed). You have ${_gameState.save.dreamGems}.',
+          l.summonInsufficientHint(_singleCost, _gameState.save.dreamGems),
           style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 12),
         ),
         const SizedBox(height: 10),
         dk_theme.PrimaryButton(
           tint: dk_theme.Theme.gold,
           onPressed: () => widget.onNavigate(const ShopRoute()),
-          child: const Text('Get Gems'),
+          child: Text(l.summonGetGems),
         ),
       ],
     );
   }
 
-  Widget _oddsCard() {
+  Widget _oddsCard(AppLocalizations l) {
     return dk_theme.GlassCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const Text('Odds', style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600)),
+          Text(l.summonOddsTitle, style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600)),
           const SizedBox(height: 10),
           for (final (rarity, weight) in SummonSystem.rarityOdds) _oddsRow(rarity, weight),
           const SizedBox(height: 14),
           _pityRow(
-            label: 'Epic+ pity',
+            label: l.summonEpicPity,
             current: _gameState.pullsSinceEpicSummon,
             threshold: SummonSystem.epicPityThreshold,
             tint: Rarity.epic.primaryColor,
           ),
           const SizedBox(height: 8),
           _pityRow(
-            label: 'Legendary+ pity',
+            label: l.summonLegendaryPity,
             current: _gameState.pullsSinceLegendarySummon,
             threshold: SummonSystem.legendaryPityThreshold,
             tint: Rarity.legendary.primaryColor,
@@ -639,8 +643,9 @@ class _ResultCard extends StatelessWidget {
 class _ChestReveal extends StatelessWidget {
   final Rarity rarity;
   final VoidCallback onTap;
+  final AppLocalizations l;
 
-  const _ChestReveal({required this.rarity, required this.onTap});
+  const _ChestReveal({required this.rarity, required this.onTap, required this.l});
 
   @override
   Widget build(BuildContext context) {
@@ -664,7 +669,7 @@ class _ChestReveal extends StatelessWidget {
           ),
           const SizedBox(height: 18),
           Text(
-            'Tap to open',
+            l.summonTapToOpen,
             style: TextStyle(color: Colors.white.withValues(alpha: 0.85), fontSize: 15, fontWeight: FontWeight.w600),
           ),
         ],
@@ -680,8 +685,9 @@ class _MultiResultGrid extends StatelessWidget {
   final List<_PullDisplay> displays;
   final int revealedCount;
   final VoidCallback onContinue;
+  final AppLocalizations l;
 
-  const _MultiResultGrid({required this.displays, required this.revealedCount, required this.onContinue});
+  const _MultiResultGrid({required this.displays, required this.revealedCount, required this.onContinue, required this.l});
 
   @override
   Widget build(BuildContext context) {
@@ -691,7 +697,7 @@ class _MultiResultGrid extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Text('Summon Results', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+          Text(l.summonResultsTitle, style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
           const SizedBox(height: 14),
           Wrap(
             spacing: 10,
@@ -709,10 +715,10 @@ class _MultiResultGrid extends StatelessWidget {
           if (done)
             SizedBox(
               width: 200,
-              child: dk_theme.PrimaryButton(onPressed: onContinue, child: const Text('Continue')),
+              child: dk_theme.PrimaryButton(onPressed: onContinue, child: Text(l.commonContinue)),
             )
           else
-            Text('Tap to reveal all', style: TextStyle(color: Colors.white.withValues(alpha: 0.5), fontSize: 12)),
+            Text(l.summonTapToRevealAll, style: TextStyle(color: Colors.white.withValues(alpha: 0.5), fontSize: 12)),
         ],
       ),
     );

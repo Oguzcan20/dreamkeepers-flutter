@@ -654,4 +654,86 @@ class AppLocalizationsDe extends AppLocalizations {
   String invItemSemanticStored(String name, String rarity, int level) {
     return '$name, $rarity, Lv $level, im Lager';
   }
+
+  @override
+  String get summonNew => 'Neu!';
+
+  @override
+  String get summonDuplicate => 'Duplikat';
+
+  @override
+  String summonEquipSubtitle(String slot, int level) {
+    return '$slot · Lv $level';
+  }
+
+  @override
+  String summonMultiTitle(int count) {
+    return 'Beschwörung x$count';
+  }
+
+  @override
+  String summonMultiBody(int cost, int count) {
+    return '$cost Edelsteine für $count Züge ausgeben?';
+  }
+
+  @override
+  String get summonAction => 'Beschwören';
+
+  @override
+  String get summonNotEnoughGemsTitle => 'Nicht genug Edelsteine';
+
+  @override
+  String summonNotEnoughGemsBody(int cost, int have) {
+    return 'Das kostet $cost Edelsteine. Du hast $have.';
+  }
+
+  @override
+  String get summonGetGems => 'Edelsteine holen';
+
+  @override
+  String get summonModeDreamkeeper => 'Traumhüter';
+
+  @override
+  String get summonModeEquipment => 'Ausrüstung';
+
+  @override
+  String get summonBlurbDreamkeeper =>
+      'Beschwöre einen Traumhüter aus den tiefen Wassern des Schreins.';
+
+  @override
+  String get summonBlurbEquipment =>
+      'Beschwöre ein Ausrüstungsstück, geschmiedet für deinen aktuellen Abschnitt.';
+
+  @override
+  String summonSingleButton(int cost) {
+    return 'Beschwören ($cost Edelsteine)';
+  }
+
+  @override
+  String summonMultiButton(int count, int cost) {
+    return 'x$count ($cost Edelsteine)';
+  }
+
+  @override
+  String summonInsufficientHint(int needed, int have) {
+    return 'Nicht genug Edelsteine für einen Zug ($needed nötig). Du hast $have.';
+  }
+
+  @override
+  String get summonOddsTitle => 'Chancen';
+
+  @override
+  String get summonEpicPity => 'Episch+ Garantie';
+
+  @override
+  String get summonLegendaryPity => 'Legendär+ Garantie';
+
+  @override
+  String get summonTapToOpen => 'Zum Öffnen tippen';
+
+  @override
+  String get summonResultsTitle => 'Beschwörungsergebnisse';
+
+  @override
+  String get summonTapToRevealAll => 'Tippen, um alle aufzudecken';
 }
