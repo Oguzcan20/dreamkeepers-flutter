@@ -1111,5 +1111,20 @@
   "achMonsterHunterTitle": "Monster Hunter",
   "achMonsterHunterDetail": "Discover 10 different monsters.",
   "achWeekStreakTitle": "Dedicated Dreamer",
-  "achWeekStreakDetail": "Claim all 7 days of a Login Streak."
+  "achWeekStreakDetail": "Claim all 7 days of a Login Streak.",
+
+  "missionWinBattle": "Clear a Stage",
+  "missionPerformSummon": "Summon a Dreamkeeper",
+  "missionCollectBuilding": "Collect from a Building",
+  "missionUpgradeEquipment": "Upgrade a Piece of Gear",
+  "missionSpendInShop": "Visit the Shop",
+  "missionDefeatBoss": "Defeat a Boss",
+  "missionDeployFullTeam": "Field a Full Team",
+  "missionPremiumBonusStages": "Clear 3 Stages",
+  "missionPremiumBonusSummons": "Summon 3 Dreamkeepers",
+  "weeklyClearStages": "Clear 15 Stages",
+  "weeklyDefeatBosses": "Defeat 5 Bosses",
+  "weeklyPerformSummons": "Summon 5 Dreamkeepers",
+  "weeklyUpgradeEquipment": "Upgrade Gear 8 Times",
+  "weeklyVisitShop": "Visit the Shop 3 Times"
 }

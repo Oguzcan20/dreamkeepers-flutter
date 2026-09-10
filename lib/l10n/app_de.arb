@@ -1018,5 +1018,20 @@
   "achMonsterHunterTitle": "Monsterjäger",
   "achMonsterHunterDetail": "Entdecke 10 verschiedene Monster.",
   "achWeekStreakTitle": "Treuer Träumer",
-  "achWeekStreakDetail": "Löse alle 7 Tage einer Login-Serie ein."
+  "achWeekStreakDetail": "Löse alle 7 Tage einer Login-Serie ein.",
+
+  "missionWinBattle": "Einen Abschnitt bestehen",
+  "missionPerformSummon": "Einen Traumhüter beschwören",
+  "missionCollectBuilding": "Von einem Gebäude abholen",
+  "missionUpgradeEquipment": "Ein Ausrüstungsteil verbessern",
+  "missionSpendInShop": "Den Shop besuchen",
+  "missionDefeatBoss": "Einen Boss besiegen",
+  "missionDeployFullTeam": "Ein volles Team aufstellen",
+  "missionPremiumBonusStages": "3 Abschnitte bestehen",
+  "missionPremiumBonusSummons": "3 Traumhüter beschwören",
+  "weeklyClearStages": "15 Abschnitte bestehen",
+  "weeklyDefeatBosses": "5 Bosse besiegen",
+  "weeklyPerformSummons": "5 Traumhüter beschwören",
+  "weeklyUpgradeEquipment": "Ausrüstung 8-mal verbessern",
+  "weeklyVisitShop": "Den Shop 3-mal besuchen"
 }

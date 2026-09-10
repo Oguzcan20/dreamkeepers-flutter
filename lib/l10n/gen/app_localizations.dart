@@ -5978,6 +5978,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Claim all 7 days of a Login Streak.'**
   String get achWeekStreakDetail;
+
+  /// No description provided for @missionWinBattle.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear a Stage'**
+  String get missionWinBattle;
+
+  /// No description provided for @missionPerformSummon.
+  ///
+  /// In en, this message translates to:
+  /// **'Summon a Dreamkeeper'**
+  String get missionPerformSummon;
+
+  /// No description provided for @missionCollectBuilding.
+  ///
+  /// In en, this message translates to:
+  /// **'Collect from a Building'**
+  String get missionCollectBuilding;
+
+  /// No description provided for @missionUpgradeEquipment.
+  ///
+  /// In en, this message translates to:
+  /// **'Upgrade a Piece of Gear'**
+  String get missionUpgradeEquipment;
+
+  /// No description provided for @missionSpendInShop.
+  ///
+  /// In en, this message translates to:
+  /// **'Visit the Shop'**
+  String get missionSpendInShop;
+
+  /// No description provided for @missionDefeatBoss.
+  ///
+  /// In en, this message translates to:
+  /// **'Defeat a Boss'**
+  String get missionDefeatBoss;
+
+  /// No description provided for @missionDeployFullTeam.
+  ///
+  /// In en, this message translates to:
+  /// **'Field a Full Team'**
+  String get missionDeployFullTeam;
+
+  /// No description provided for @missionPremiumBonusStages.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear 3 Stages'**
+  String get missionPremiumBonusStages;
+
+  /// No description provided for @missionPremiumBonusSummons.
+  ///
+  /// In en, this message translates to:
+  /// **'Summon 3 Dreamkeepers'**
+  String get missionPremiumBonusSummons;
+
+  /// No description provided for @weeklyClearStages.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear 15 Stages'**
+  String get weeklyClearStages;
+
+  /// No description provided for @weeklyDefeatBosses.
+  ///
+  /// In en, this message translates to:
+  /// **'Defeat 5 Bosses'**
+  String get weeklyDefeatBosses;
+
+  /// No description provided for @weeklyPerformSummons.
+  ///
+  /// In en, this message translates to:
+  /// **'Summon 5 Dreamkeepers'**
+  String get weeklyPerformSummons;
+
+  /// No description provided for @weeklyUpgradeEquipment.
+  ///
+  /// In en, this message translates to:
+  /// **'Upgrade Gear 8 Times'**
+  String get weeklyUpgradeEquipment;
+
+  /// No description provided for @weeklyVisitShop.
+  ///
+  /// In en, this message translates to:
+  /// **'Visit the Shop 3 Times'**
+  String get weeklyVisitShop;
 }
 
 class _AppLocalizationsDelegate

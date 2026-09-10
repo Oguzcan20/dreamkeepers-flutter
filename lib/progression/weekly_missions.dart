@@ -1,3 +1,5 @@
+import '../l10n/l10n.dart';
+
 /// Mirrors GameCore/Progression/WeeklyMissions.swift's `WeeklyMissionID`
 /// exactly.
 enum WeeklyMissionID {
@@ -34,10 +36,10 @@ class WeeklyMissionDefinition {
 /// claiming is gated behind Premium, so nothing is lost by unlocking
 /// mid-week. Mirrors GameCore/Progression/WeeklyMissions.swift exactly.
 class WeeklyMissions {
-  static const List<WeeklyMissionDefinition> definitions = [
+  static final List<WeeklyMissionDefinition> definitions = [
     WeeklyMissionDefinition(
       id: WeeklyMissionID.clearStages,
-      title: 'Clear 15 Stages',
+      title: L.weeklyClearStages,
       icon: 'flag.2.crossed.fill',
       target: 15,
       goldReward: 300,
@@ -46,7 +48,7 @@ class WeeklyMissions {
     ),
     WeeklyMissionDefinition(
       id: WeeklyMissionID.defeatBosses,
-      title: 'Defeat 5 Bosses',
+      title: L.weeklyDefeatBosses,
       icon: 'flame.fill',
       target: 5,
       goldReward: 0,
@@ -55,7 +57,7 @@ class WeeklyMissions {
     ),
     WeeklyMissionDefinition(
       id: WeeklyMissionID.performSummons,
-      title: 'Summon 5 Dreamkeepers',
+      title: L.weeklyPerformSummons,
       icon: 'wand.and.stars',
       target: 5,
       goldReward: 0,
@@ -63,7 +65,7 @@ class WeeklyMissions {
     ),
     WeeklyMissionDefinition(
       id: WeeklyMissionID.upgradeEquipment,
-      title: 'Upgrade Gear 8 Times',
+      title: L.weeklyUpgradeEquipment,
       icon: 'hammer.fill',
       target: 8,
       goldReward: 200,
@@ -71,7 +73,7 @@ class WeeklyMissions {
     ),
     WeeklyMissionDefinition(
       id: WeeklyMissionID.visitShop,
-      title: 'Visit the Shop 3 Times',
+      title: L.weeklyVisitShop,
       icon: 'cart.fill',
       target: 3,
       goldReward: 0,

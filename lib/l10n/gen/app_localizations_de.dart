@@ -3452,4 +3452,46 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get achWeekStreakDetail => 'Löse alle 7 Tage einer Login-Serie ein.';
+
+  @override
+  String get missionWinBattle => 'Einen Abschnitt bestehen';
+
+  @override
+  String get missionPerformSummon => 'Einen Traumhüter beschwören';
+
+  @override
+  String get missionCollectBuilding => 'Von einem Gebäude abholen';
+
+  @override
+  String get missionUpgradeEquipment => 'Ein Ausrüstungsteil verbessern';
+
+  @override
+  String get missionSpendInShop => 'Den Shop besuchen';
+
+  @override
+  String get missionDefeatBoss => 'Einen Boss besiegen';
+
+  @override
+  String get missionDeployFullTeam => 'Ein volles Team aufstellen';
+
+  @override
+  String get missionPremiumBonusStages => '3 Abschnitte bestehen';
+
+  @override
+  String get missionPremiumBonusSummons => '3 Traumhüter beschwören';
+
+  @override
+  String get weeklyClearStages => '15 Abschnitte bestehen';
+
+  @override
+  String get weeklyDefeatBosses => '5 Bosse besiegen';
+
+  @override
+  String get weeklyPerformSummons => '5 Traumhüter beschwören';
+
+  @override
+  String get weeklyUpgradeEquipment => 'Ausrüstung 8-mal verbessern';
+
+  @override
+  String get weeklyVisitShop => 'Den Shop 3-mal besuchen';
 }

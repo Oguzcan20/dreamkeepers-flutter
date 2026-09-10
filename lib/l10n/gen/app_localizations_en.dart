@@ -3423,4 +3423,46 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get achWeekStreakDetail => 'Claim all 7 days of a Login Streak.';
+
+  @override
+  String get missionWinBattle => 'Clear a Stage';
+
+  @override
+  String get missionPerformSummon => 'Summon a Dreamkeeper';
+
+  @override
+  String get missionCollectBuilding => 'Collect from a Building';
+
+  @override
+  String get missionUpgradeEquipment => 'Upgrade a Piece of Gear';
+
+  @override
+  String get missionSpendInShop => 'Visit the Shop';
+
+  @override
+  String get missionDefeatBoss => 'Defeat a Boss';
+
+  @override
+  String get missionDeployFullTeam => 'Field a Full Team';
+
+  @override
+  String get missionPremiumBonusStages => 'Clear 3 Stages';
+
+  @override
+  String get missionPremiumBonusSummons => 'Summon 3 Dreamkeepers';
+
+  @override
+  String get weeklyClearStages => 'Clear 15 Stages';
+
+  @override
+  String get weeklyDefeatBosses => 'Defeat 5 Bosses';
+
+  @override
+  String get weeklyPerformSummons => 'Summon 5 Dreamkeepers';
+
+  @override
+  String get weeklyUpgradeEquipment => 'Upgrade Gear 8 Times';
+
+  @override
+  String get weeklyVisitShop => 'Visit the Shop 3 Times';
 }

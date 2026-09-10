@@ -1,3 +1,5 @@
+import '../l10n/l10n.dart';
+
 /// Mirrors GameCore/Progression/DailyMissions.swift's `MissionID` exactly.
 enum MissionID {
   winBattle,
@@ -52,10 +54,10 @@ class DailyMissions {
   /// How many of the 7 free-tier missions are active on a given day.
   static const activeCount = 4;
 
-  static const List<MissionDefinition> definitions = [
+  static final List<MissionDefinition> definitions = [
     MissionDefinition(
       id: MissionID.winBattle,
-      title: 'Clear a Stage',
+      title: L.missionWinBattle,
       icon: 'flag.checkered',
       target: 1,
       goldReward: 40,
@@ -64,7 +66,7 @@ class DailyMissions {
     ),
     MissionDefinition(
       id: MissionID.performSummon,
-      title: 'Summon a Dreamkeeper',
+      title: L.missionPerformSummon,
       icon: 'sparkles',
       target: 1,
       goldReward: 0,
@@ -72,7 +74,7 @@ class DailyMissions {
     ),
     MissionDefinition(
       id: MissionID.collectBuilding,
-      title: 'Collect from a Building',
+      title: L.missionCollectBuilding,
       icon: 'hand.tap.fill',
       target: 1,
       goldReward: 30,
@@ -80,7 +82,7 @@ class DailyMissions {
     ),
     MissionDefinition(
       id: MissionID.upgradeEquipment,
-      title: 'Upgrade a Piece of Gear',
+      title: L.missionUpgradeEquipment,
       icon: 'hammer.fill',
       target: 1,
       goldReward: 0,
@@ -88,7 +90,7 @@ class DailyMissions {
     ),
     MissionDefinition(
       id: MissionID.spendInShop,
-      title: 'Visit the Shop',
+      title: L.missionSpendInShop,
       icon: 'cart.fill',
       target: 1,
       goldReward: 25,
@@ -96,7 +98,7 @@ class DailyMissions {
     ),
     MissionDefinition(
       id: MissionID.defeatBoss,
-      title: 'Defeat a Boss',
+      title: L.missionDefeatBoss,
       icon: 'flame.fill',
       target: 1,
       goldReward: 0,
@@ -105,7 +107,7 @@ class DailyMissions {
     ),
     MissionDefinition(
       id: MissionID.deployFullTeam,
-      title: 'Field a Full Team',
+      title: L.missionDeployFullTeam,
       icon: 'person.3.fill',
       target: 1,
       goldReward: 20,
@@ -113,7 +115,7 @@ class DailyMissions {
     ),
     MissionDefinition(
       id: MissionID.premiumBonusStages,
-      title: 'Clear 3 Stages',
+      title: L.missionPremiumBonusStages,
       icon: 'flag.2.crossed.fill',
       target: 3,
       goldReward: 80,
@@ -123,7 +125,7 @@ class DailyMissions {
     ),
     MissionDefinition(
       id: MissionID.premiumBonusSummons,
-      title: 'Summon 3 Dreamkeepers',
+      title: L.missionPremiumBonusSummons,
       icon: 'wand.and.stars',
       target: 3,
       goldReward: 0,
