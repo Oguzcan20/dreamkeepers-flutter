@@ -912,4 +912,90 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get bpClaimTierReward => 'Stufenbelohnung abholen';
+
+  @override
+  String get arenaNoTeamTitle => 'Kein Team aufgestellt';
+
+  @override
+  String get arenaNoTeamBody =>
+      'Stelle ein Team auf, bevor du Die Endlose Prüfung betrittst.';
+
+  @override
+  String get arenaNoTicketsTitle => 'Keine Prüfungs-Tickets übrig';
+
+  @override
+  String get arenaNoTicketsBody =>
+      'Du hast heute alle Versuche der Endlosen Prüfung aufgebraucht. Komm morgen wieder!';
+
+  @override
+  String arenaFloorProgress(int current, int total) {
+    return 'Etage $current/$total';
+  }
+
+  @override
+  String arenaTicketsSemantic(int count, int max) {
+    return '$count von $max Prüfungs-Tickets heute übrig';
+  }
+
+  @override
+  String arenaBonusTickets(int count) {
+    return '+$count Bonus';
+  }
+
+  @override
+  String get arenaTowerCleared => 'Turm bezwungen!';
+
+  @override
+  String get arenaTowerClearedBody =>
+      'Jede Etage darunter bleibt zum Ausrüstungsfarmen offen.';
+
+  @override
+  String arenaFloorsRange(int from, int to) {
+    return 'Etagen $from–$to';
+  }
+
+  @override
+  String arenaFloorLabel(int floor) {
+    return 'Etage $floor';
+  }
+
+  @override
+  String arenaOpponentLine(int level, String name) {
+    return 'Lv $level · $name';
+  }
+
+  @override
+  String get arenaFarm => 'Farmen';
+
+  @override
+  String get arenaFight => 'Kämpfen';
+
+  @override
+  String get arenaGearChance => 'Ausrüstungschance';
+
+  @override
+  String get arenaResultDefeat => 'Niederlage';
+
+  @override
+  String get arenaTowerClearedResultBody =>
+      'Du hast alle 100 Etagen der Endlosen Prüfung bezwungen.';
+
+  @override
+  String get arenaMilestoneReward => 'Meilenstein-Belohnung!';
+
+  @override
+  String get arenaMilestoneBody =>
+      'Eine garantierte legendäre Belohnung für das Erreichen dieser Etage.';
+
+  @override
+  String get arenaNewTier => 'Neue Liga!';
+
+  @override
+  String get arenaFirstClearReward => 'Erstabschluss-Belohnung';
+
+  @override
+  String get arenaStandardReward => 'Standard-Belohnung';
+
+  @override
+  String get arenaFightAgain => 'Erneut kämpfen';
 }

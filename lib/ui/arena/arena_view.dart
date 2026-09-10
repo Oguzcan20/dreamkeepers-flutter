@@ -17,6 +17,7 @@
 import 'package:flutter/material.dart';
 
 import '../../combat/arena_system.dart';
+import '../../l10n/l10n.dart';
 import '../../state/game_state.dart';
 import '../../theme/sf_symbol_icons.dart';
 import '../../theme/theme.dart' as dk_theme;
@@ -68,12 +69,13 @@ class _ArenaViewState extends State<ArenaView> {
   }
 
   void _attemptFight(int floor) {
+    final l = AppLocalizations.of(context);
     if (_gameState.deployedTeam.isEmpty) {
-      _showAlert('No team deployed', 'Deploy a team before entering the Endless Trial.');
+      _showAlert(l.arenaNoTeamTitle, l.arenaNoTeamBody);
       return;
     }
     if (!_gameState.canAffordArenaBattle()) {
-      _showAlert('No Trial Tickets Left', "You've used all your Endless Trial attempts for today. Come back tomorrow!");
+      _showAlert(l.arenaNoTicketsTitle, l.arenaNoTicketsBody);
       return;
     }
     widget.onFight(floor);
@@ -87,7 +89,7 @@ class _ArenaViewState extends State<ArenaView> {
         child: AlertDialog(
           title: Text(title),
           content: Text(message),
-          actions: [TextButton(onPressed: () => Navigator.of(dialogContext).pop(), child: const Text('OK'))],
+          actions: [TextButton(onPressed: () => Navigator.of(dialogContext).pop(), child: Text(AppLocalizations.of(context).commonOk))],
         ),
       ),
     );
@@ -171,12 +173,13 @@ class _ArenaViewState extends State<ArenaView> {
   }
 
   Widget _header() {
+    final l = AppLocalizations.of(context);
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
       child: Row(
         children: [
           Semantics(
-            label: 'Back',
+            label: l.commonBack,
             button: true,
             child: GestureDetector(
               onTap: () => widget.onNavigate(const DreamHavenRoute()),
@@ -188,7 +191,7 @@ class _ArenaViewState extends State<ArenaView> {
             ),
           ),
           const Spacer(),
-          const Text('The Endless Trial', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+          Text(l.navEndlessTrial, style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
           const Spacer(),
           const SizedBox(width: 40, height: 40),
         ],
@@ -197,6 +200,7 @@ class _ArenaViewState extends State<ArenaView> {
   }
 
   Widget _progressCard() {
+    final l = AppLocalizations.of(context);
     final tier = _gameState.arenaTier;
     return dk_theme.GlassCard(
       child: Row(
@@ -215,7 +219,7 @@ class _ArenaViewState extends State<ArenaView> {
                 Text(tier.displayName, style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold)),
                 const SizedBox(height: 2),
                 Text(
-                  'Floor ${_gameState.arenaFloor.clamp(0, _gameState.arenaMaxFloor)}/${_gameState.arenaMaxFloor}',
+                  l.arenaFloorProgress(_gameState.arenaFloor.clamp(0, _gameState.arenaMaxFloor), _gameState.arenaMaxFloor),
                   style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 12),
                 ),
               ],
@@ -225,7 +229,7 @@ class _ArenaViewState extends State<ArenaView> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Semantics(
-                label: '${_gameState.arenaTicketsRemainingToday} of ${ArenaSystem.maxTicketsPerDay} Trial tickets remaining today',
+                label: l.arenaTicketsSemantic(_gameState.arenaTicketsRemainingToday, ArenaSystem.maxTicketsPerDay),
                 child: ExcludeSemantics(
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
@@ -244,7 +248,7 @@ class _ArenaViewState extends State<ArenaView> {
                 Padding(
                   padding: const EdgeInsets.only(top: 2),
                   child: Text(
-                    '+${_gameState.arenaBonusTickets} bonus',
+                    l.arenaBonusTickets(_gameState.arenaBonusTickets),
                     style: TextStyle(color: dk_theme.Theme.softBlue.withValues(alpha: 0.85), fontSize: 11, fontWeight: FontWeight.w600),
                   ),
                 ),
@@ -256,6 +260,7 @@ class _ArenaViewState extends State<ArenaView> {
   }
 
   Widget _towerClearedBanner() {
+    final l = AppLocalizations.of(context);
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(dk_theme.Theme.cornerRadius),
@@ -279,10 +284,10 @@ class _ArenaViewState extends State<ArenaView> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Tower Cleared!', style: TextStyle(color: dk_theme.Theme.gold, fontSize: 14, fontWeight: FontWeight.bold)),
+                  Text(l.arenaTowerCleared, style: TextStyle(color: dk_theme.Theme.gold, fontSize: 14, fontWeight: FontWeight.bold)),
                   const SizedBox(height: 2),
                   Text(
-                    'Every floor stays open below for farming gear.',
+                    l.arenaTowerClearedBody,
                     style: TextStyle(color: Colors.white.withValues(alpha: 0.65), fontSize: 12),
                   ),
                 ],
@@ -388,7 +393,7 @@ class _TowerZoneBanner extends StatelessWidget {
                       style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w900),
                     ),
                     Text(
-                      'Floors ${tier.floorRange.$1}–${tier.floorRange.$2}',
+                      AppLocalizations.of(context).arenaFloorsRange(tier.floorRange.$1, tier.floorRange.$2),
                       style: TextStyle(color: Colors.white.withValues(alpha: 0.8), fontSize: 11, fontWeight: FontWeight.w600),
                     ),
                   ],
@@ -422,6 +427,7 @@ class _ArenaFloorRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     final definition = _isUnlocked ? gameState.catalog.definition(_opponent.definitionID) : null;
     return Opacity(
       opacity: _isUnlocked ? 1 : 0.6,
@@ -459,7 +465,7 @@ class _ArenaFloorRow extends StatelessWidget {
                       child: Row(
                         children: [
                           Text(
-                            'Floor $floor',
+                            l.arenaFloorLabel(floor),
                             style: TextStyle(
                               color: _isUnlocked ? Colors.white : Colors.white.withValues(alpha: 0.4),
                               fontSize: 14,
@@ -480,19 +486,19 @@ class _ArenaFloorRow extends StatelessWidget {
                     if (_isUnlocked) ...[
                       const SizedBox(height: 4),
                       Text(
-                        'Lv ${_opponent.level} · ${_opponent.name}',
+                        l.arenaOpponentLine(_opponent.level, _opponent.name),
                         style: TextStyle(color: Colors.white.withValues(alpha: 0.5), fontSize: 11),
                       ),
                     ],
                     const SizedBox(height: 4),
-                    _rewardPreview(),
+                    _rewardPreview(l),
                   ],
                 ),
               ),
               SizedBox(
                 width: 84,
                 child: Semantics(
-                  label: 'Floor $floor',
+                  label: l.arenaFloorLabel(floor),
                   button: true,
                   excludeSemantics: true,
                   child: Opacity(
@@ -500,7 +506,7 @@ class _ArenaFloorRow extends StatelessWidget {
                     child: dk_theme.PrimaryButton(
                       tint: _isMilestone && !_isCleared ? dk_theme.Theme.gold : dk_theme.Theme.violet,
                       onPressed: _isUnlocked ? () => onFight(floor) : null,
-                      child: Text(_isCleared ? 'Farm' : 'Fight', style: const TextStyle(fontSize: 13)),
+                      child: Text(_isCleared ? l.arenaFarm : l.arenaFight, style: const TextStyle(fontSize: 13)),
                     ),
                   ),
                 ),
@@ -512,7 +518,7 @@ class _ArenaFloorRow extends StatelessWidget {
     );
   }
 
-  Widget _rewardPreview() {
+  Widget _rewardPreview(AppLocalizations l) {
     if (_isCleared) {
       return Row(
         mainAxisSize: MainAxisSize.min,
@@ -523,7 +529,7 @@ class _ArenaFloorRow extends StatelessWidget {
           const SizedBox(width: 10),
           Icon(sfSymbol('shippingbox.fill'), size: 11, color: Colors.white.withValues(alpha: 0.5)),
           const SizedBox(width: 3),
-          Text('Gear chance', style: TextStyle(color: Colors.white.withValues(alpha: 0.5), fontSize: 11, fontWeight: FontWeight.w600)),
+          Text(l.arenaGearChance, style: TextStyle(color: Colors.white.withValues(alpha: 0.5), fontSize: 11, fontWeight: FontWeight.w600)),
         ],
       );
     }

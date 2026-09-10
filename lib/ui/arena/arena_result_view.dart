@@ -9,6 +9,7 @@
 import 'package:flutter/material.dart';
 
 import '../../combat/battle_engine.dart';
+import '../../l10n/l10n.dart';
 import '../../models/equipment.dart';
 import '../../state/game_state.dart';
 import '../../theme/sf_symbol_icons.dart';
@@ -28,6 +29,7 @@ class ArenaResultView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     var index = 0;
     Widget stagger(Widget child) => _StaggeredCard(index: index++, child: child);
 
@@ -36,64 +38,64 @@ class ArenaResultView extends StatelessWidget {
       child: SafeArea(
         child: Column(
           children: [
-            _header(),
+            _header(l),
             Expanded(
               child: SingleChildScrollView(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    if (summary.towerCleared) ...[stagger(_towerClearedBanner()), const SizedBox(height: 12)],
+                    if (summary.towerCleared) ...[stagger(_towerClearedBanner(l)), const SizedBox(height: 12)],
                     if (!summary.towerCleared && _won && summary.isMilestoneFloor) ...[
-                      stagger(_milestoneBanner()),
+                      stagger(_milestoneBanner(l)),
                       const SizedBox(height: 12),
                     ],
-                    if (_won) ...[stagger(_goldCard()), const SizedBox(height: 12)],
-                    if (summary.tierChanged) ...[stagger(_tierChangeCard()), const SizedBox(height: 12)],
+                    if (_won) ...[stagger(_goldCard(l)), const SizedBox(height: 12)],
+                    if (summary.tierChanged) ...[stagger(_tierChangeCard(l)), const SizedBox(height: 12)],
                     if (summary.droppedEquipment != null) ...[
-                      stagger(_droppedEquipmentCard(summary.droppedEquipment!)),
+                      stagger(_droppedEquipmentCard(l, summary.droppedEquipment!)),
                       const SizedBox(height: 12),
                     ],
                   ],
                 ),
               ),
             ),
-            _footer(),
+            _footer(l),
           ],
         ),
       ),
     );
   }
 
-  Widget _header() {
+  Widget _header(AppLocalizations l) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 14, 0, 6),
       child: Column(
         children: [
           Text(
-            _won ? 'Victory!' : 'Defeat',
+            _won ? l.brVictoryTitle : l.arenaResultDefeat,
             style: TextStyle(color: _won ? dk_theme.Theme.gold : Colors.red, fontSize: 28, fontWeight: FontWeight.w900),
           ),
           const SizedBox(height: 8),
-          Text('Floor ${summary.floor}', style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 14)),
+          Text(l.arenaFloorLabel(summary.floor), style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 14)),
         ],
       ),
     );
   }
 
-  Widget _towerClearedBanner() {
+  Widget _towerClearedBanner(AppLocalizations l) {
     return _glowCard(
       icon: 'crown.fill',
-      title: 'Tower Cleared!',
-      subtitle: "You've conquered all 100 floors of the Endless Trial.",
+      title: l.arenaTowerCleared,
+      subtitle: l.arenaTowerClearedResultBody,
     );
   }
 
-  Widget _milestoneBanner() {
+  Widget _milestoneBanner(AppLocalizations l) {
     return _glowCard(
       icon: 'sparkles',
-      title: 'Milestone Reward!',
-      subtitle: 'A guaranteed Legendary reward for reaching this floor.',
+      title: l.arenaMilestoneReward,
+      subtitle: l.arenaMilestoneBody,
     );
   }
 
@@ -133,20 +135,20 @@ class ArenaResultView extends StatelessWidget {
     );
   }
 
-  Widget _goldCard() {
+  Widget _goldCard(AppLocalizations l) {
     return dk_theme.GlassCard(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(sfSymbol('circle.hexagongrid.fill'), color: dk_theme.Theme.gold, size: 20),
           const SizedBox(width: 6),
-          Text('+${summary.goldGained} Gold', style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 14)),
+          Text(l.havenPlusGold(summary.goldGained), style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 14)),
         ],
       ),
     );
   }
 
-  Widget _tierChangeCard() {
+  Widget _tierChangeCard(AppLocalizations l) {
     return dk_theme.GlassCard(
       child: Row(
         children: [
@@ -165,7 +167,7 @@ class ArenaResultView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('New Tier!', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 14)),
+                Text(l.arenaNewTier, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 14)),
                 Text(summary.newTier.displayName, style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 12)),
               ],
             ),
@@ -175,13 +177,13 @@ class ArenaResultView extends StatelessWidget {
     );
   }
 
-  Widget _droppedEquipmentCard(EquipmentItem item) {
+  Widget _droppedEquipmentCard(AppLocalizations l, EquipmentItem item) {
     return dk_theme.GlassCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            summary.isFirstClear ? 'First Clear Reward' : 'Standard Reward',
+            summary.isFirstClear ? l.arenaFirstClearReward : l.arenaStandardReward,
             style: TextStyle(
               color: summary.isFirstClear ? dk_theme.Theme.gold : Colors.white.withValues(alpha: 0.55),
               fontSize: 11,
@@ -231,18 +233,18 @@ class ArenaResultView extends StatelessWidget {
     );
   }
 
-  Widget _footer() {
+  Widget _footer(AppLocalizations l) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
       child: Row(
         children: [
           Expanded(
-            child: dk_theme.PrimaryButton(tint: Colors.grey, onPressed: _goDreamHaven, child: const Text('Dream Haven')),
+            child: dk_theme.PrimaryButton(tint: Colors.grey, onPressed: _goDreamHaven, child: Text(l.navDreamHaven)),
           ),
           if (!summary.towerCleared) ...[
             const SizedBox(width: 12),
             Expanded(
-              child: dk_theme.PrimaryButton(tint: dk_theme.Theme.gold, onPressed: _goArena, child: const Text('Fight Again')),
+              child: dk_theme.PrimaryButton(tint: dk_theme.Theme.gold, onPressed: _goArena, child: Text(l.arenaFightAgain)),
             ),
           ],
         ],

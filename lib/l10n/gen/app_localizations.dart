@@ -1568,6 +1568,144 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Claim tier reward'**
   String get bpClaimTierReward;
+
+  /// No description provided for @arenaNoTeamTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No team deployed'**
+  String get arenaNoTeamTitle;
+
+  /// No description provided for @arenaNoTeamBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Deploy a team before entering the Endless Trial.'**
+  String get arenaNoTeamBody;
+
+  /// No description provided for @arenaNoTicketsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No Trial Tickets Left'**
+  String get arenaNoTicketsTitle;
+
+  /// No description provided for @arenaNoTicketsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve used all your Endless Trial attempts for today. Come back tomorrow!'**
+  String get arenaNoTicketsBody;
+
+  /// No description provided for @arenaFloorProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Floor {current}/{total}'**
+  String arenaFloorProgress(int current, int total);
+
+  /// No description provided for @arenaTicketsSemantic.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} of {max} Trial tickets remaining today'**
+  String arenaTicketsSemantic(int count, int max);
+
+  /// No description provided for @arenaBonusTickets.
+  ///
+  /// In en, this message translates to:
+  /// **'+{count} bonus'**
+  String arenaBonusTickets(int count);
+
+  /// No description provided for @arenaTowerCleared.
+  ///
+  /// In en, this message translates to:
+  /// **'Tower Cleared!'**
+  String get arenaTowerCleared;
+
+  /// No description provided for @arenaTowerClearedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Every floor stays open below for farming gear.'**
+  String get arenaTowerClearedBody;
+
+  /// No description provided for @arenaFloorsRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Floors {from}–{to}'**
+  String arenaFloorsRange(int from, int to);
+
+  /// No description provided for @arenaFloorLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Floor {floor}'**
+  String arenaFloorLabel(int floor);
+
+  /// No description provided for @arenaOpponentLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Lv {level} · {name}'**
+  String arenaOpponentLine(int level, String name);
+
+  /// No description provided for @arenaFarm.
+  ///
+  /// In en, this message translates to:
+  /// **'Farm'**
+  String get arenaFarm;
+
+  /// No description provided for @arenaFight.
+  ///
+  /// In en, this message translates to:
+  /// **'Fight'**
+  String get arenaFight;
+
+  /// No description provided for @arenaGearChance.
+  ///
+  /// In en, this message translates to:
+  /// **'Gear chance'**
+  String get arenaGearChance;
+
+  /// No description provided for @arenaResultDefeat.
+  ///
+  /// In en, this message translates to:
+  /// **'Defeat'**
+  String get arenaResultDefeat;
+
+  /// No description provided for @arenaTowerClearedResultBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve conquered all 100 floors of the Endless Trial.'**
+  String get arenaTowerClearedResultBody;
+
+  /// No description provided for @arenaMilestoneReward.
+  ///
+  /// In en, this message translates to:
+  /// **'Milestone Reward!'**
+  String get arenaMilestoneReward;
+
+  /// No description provided for @arenaMilestoneBody.
+  ///
+  /// In en, this message translates to:
+  /// **'A guaranteed Legendary reward for reaching this floor.'**
+  String get arenaMilestoneBody;
+
+  /// No description provided for @arenaNewTier.
+  ///
+  /// In en, this message translates to:
+  /// **'New Tier!'**
+  String get arenaNewTier;
+
+  /// No description provided for @arenaFirstClearReward.
+  ///
+  /// In en, this message translates to:
+  /// **'First Clear Reward'**
+  String get arenaFirstClearReward;
+
+  /// No description provided for @arenaStandardReward.
+  ///
+  /// In en, this message translates to:
+  /// **'Standard Reward'**
+  String get arenaStandardReward;
+
+  /// No description provided for @arenaFightAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Fight Again'**
+  String get arenaFightAgain;
 }
 
 class _AppLocalizationsDelegate

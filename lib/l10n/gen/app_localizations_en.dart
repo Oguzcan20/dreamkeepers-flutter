@@ -909,4 +909,90 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get bpClaimTierReward => 'Claim tier reward';
+
+  @override
+  String get arenaNoTeamTitle => 'No team deployed';
+
+  @override
+  String get arenaNoTeamBody =>
+      'Deploy a team before entering the Endless Trial.';
+
+  @override
+  String get arenaNoTicketsTitle => 'No Trial Tickets Left';
+
+  @override
+  String get arenaNoTicketsBody =>
+      'You\'ve used all your Endless Trial attempts for today. Come back tomorrow!';
+
+  @override
+  String arenaFloorProgress(int current, int total) {
+    return 'Floor $current/$total';
+  }
+
+  @override
+  String arenaTicketsSemantic(int count, int max) {
+    return '$count of $max Trial tickets remaining today';
+  }
+
+  @override
+  String arenaBonusTickets(int count) {
+    return '+$count bonus';
+  }
+
+  @override
+  String get arenaTowerCleared => 'Tower Cleared!';
+
+  @override
+  String get arenaTowerClearedBody =>
+      'Every floor stays open below for farming gear.';
+
+  @override
+  String arenaFloorsRange(int from, int to) {
+    return 'Floors $from–$to';
+  }
+
+  @override
+  String arenaFloorLabel(int floor) {
+    return 'Floor $floor';
+  }
+
+  @override
+  String arenaOpponentLine(int level, String name) {
+    return 'Lv $level · $name';
+  }
+
+  @override
+  String get arenaFarm => 'Farm';
+
+  @override
+  String get arenaFight => 'Fight';
+
+  @override
+  String get arenaGearChance => 'Gear chance';
+
+  @override
+  String get arenaResultDefeat => 'Defeat';
+
+  @override
+  String get arenaTowerClearedResultBody =>
+      'You\'ve conquered all 100 floors of the Endless Trial.';
+
+  @override
+  String get arenaMilestoneReward => 'Milestone Reward!';
+
+  @override
+  String get arenaMilestoneBody =>
+      'A guaranteed Legendary reward for reaching this floor.';
+
+  @override
+  String get arenaNewTier => 'New Tier!';
+
+  @override
+  String get arenaFirstClearReward => 'First Clear Reward';
+
+  @override
+  String get arenaStandardReward => 'Standard Reward';
+
+  @override
+  String get arenaFightAgain => 'Fight Again';
 }
