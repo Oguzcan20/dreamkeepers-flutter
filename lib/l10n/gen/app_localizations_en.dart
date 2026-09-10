@@ -52,6 +52,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get commonCollectedExclaim => 'Collected!';
 
   @override
+  String get commonSell => 'Sell';
+
+  @override
   String get settingsTitle => 'Settings';
 
   @override
@@ -518,5 +521,134 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String campaignSweepPayout(int gold, int exp) {
     return '+$gold Gold · +$exp EXP';
+  }
+
+  @override
+  String get profileTitle => 'Profile';
+
+  @override
+  String profilePlayerLevel(int level) {
+    return 'Player Level $level';
+  }
+
+  @override
+  String get profileMaxLevel => 'Max level reached';
+
+  @override
+  String profileExpToNext(int current, int next) {
+    return '$current / $next EXP to next level';
+  }
+
+  @override
+  String get profileJourneySoFar => 'Journey So Far';
+
+  @override
+  String get profileStatDreamkeepers => 'Dreamkeepers';
+
+  @override
+  String get profileStatStagesCleared => 'Stages Cleared';
+
+  @override
+  String get navCodex => 'Dreamkeeper Codex';
+
+  @override
+  String get invTabDreamkeepers => 'Dreamkeepers';
+
+  @override
+  String get invTabItems => 'Items';
+
+  @override
+  String get invSortLevel => 'Level';
+
+  @override
+  String get invSortRarity => 'Rarity';
+
+  @override
+  String get invSortStars => 'Stars';
+
+  @override
+  String get invSortAttack => 'Attack';
+
+  @override
+  String get invSortTooltip => 'Sort Dreamkeepers';
+
+  @override
+  String get invTapHint => 'Tap a Dreamkeeper to view stats and fusion.';
+
+  @override
+  String invDeployedCount(int count, int max) {
+    return '$count/$max deployed';
+  }
+
+  @override
+  String invSelectedCount(int count) {
+    return '$count selected';
+  }
+
+  @override
+  String invSellGainGoldGems(int gold, int gems) {
+    return '+$gold Gold · +$gems Gems';
+  }
+
+  @override
+  String invSellForGoldGems(int gold, int gems) {
+    return 'Sell for $gold Gold + $gems Gems';
+  }
+
+  @override
+  String invSellForGold(int gold) {
+    return 'Sell for $gold Gold';
+  }
+
+  @override
+  String invSellConfirmTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Sell $count Dreamkeepers?',
+      one: 'Sell 1 Dreamkeeper?',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get invSellConfirmBody =>
+      'This can\'t be undone. Equipped gear is unequipped, not sold.';
+
+  @override
+  String get invCreateTeam => 'Create Team';
+
+  @override
+  String get invNoItemsTitle => 'No Items Yet';
+
+  @override
+  String get invNoItemsBody =>
+      'Clear a campaign stage to find equipment for your Dreamkeepers.';
+
+  @override
+  String get invGoToCampaign => 'Go to Campaign';
+
+  @override
+  String invItemSubtitle(String rarity, int level, int max) {
+    return '$rarity · Lv $level/$max';
+  }
+
+  @override
+  String invItemWornBy(String wearer) {
+    return 'Worn by $wearer';
+  }
+
+  @override
+  String get invItemInStorage => 'In storage';
+
+  @override
+  String invItemSemanticWorn(
+      String name, String rarity, int level, String wearer) {
+    return '$name, $rarity, Lv $level, worn by $wearer';
+  }
+
+  @override
+  String invItemSemanticStored(String name, String rarity, int level) {
+    return '$name, $rarity, Lv $level, in storage';
   }
 }

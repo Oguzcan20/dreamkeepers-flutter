@@ -52,6 +52,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get commonCollectedExclaim => 'Abgeholt!';
 
   @override
+  String get commonSell => 'Verkaufen';
+
+  @override
   String get settingsTitle => 'Einstellungen';
 
   @override
@@ -520,5 +523,135 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String campaignSweepPayout(int gold, int exp) {
     return '+$gold Gold · +$exp EP';
+  }
+
+  @override
+  String get profileTitle => 'Profil';
+
+  @override
+  String profilePlayerLevel(int level) {
+    return 'Spielerlevel $level';
+  }
+
+  @override
+  String get profileMaxLevel => 'Maximallevel erreicht';
+
+  @override
+  String profileExpToNext(int current, int next) {
+    return '$current / $next EP bis zum nächsten Level';
+  }
+
+  @override
+  String get profileJourneySoFar => 'Bisherige Reise';
+
+  @override
+  String get profileStatDreamkeepers => 'Traumhüter';
+
+  @override
+  String get profileStatStagesCleared => 'Abschnitte geschafft';
+
+  @override
+  String get navCodex => 'Traumhüter-Kodex';
+
+  @override
+  String get invTabDreamkeepers => 'Traumhüter';
+
+  @override
+  String get invTabItems => 'Gegenstände';
+
+  @override
+  String get invSortLevel => 'Level';
+
+  @override
+  String get invSortRarity => 'Seltenheit';
+
+  @override
+  String get invSortStars => 'Sterne';
+
+  @override
+  String get invSortAttack => 'Angriff';
+
+  @override
+  String get invSortTooltip => 'Traumhüter sortieren';
+
+  @override
+  String get invTapHint =>
+      'Tippe einen Traumhüter an, um Werte und Verschmelzung zu sehen.';
+
+  @override
+  String invDeployedCount(int count, int max) {
+    return '$count/$max eingesetzt';
+  }
+
+  @override
+  String invSelectedCount(int count) {
+    return '$count ausgewählt';
+  }
+
+  @override
+  String invSellGainGoldGems(int gold, int gems) {
+    return '+$gold Gold · +$gems Edelsteine';
+  }
+
+  @override
+  String invSellForGoldGems(int gold, int gems) {
+    return 'Für $gold Gold + $gems Edelsteine verkaufen';
+  }
+
+  @override
+  String invSellForGold(int gold) {
+    return 'Für $gold Gold verkaufen';
+  }
+
+  @override
+  String invSellConfirmTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count Traumhüter verkaufen?',
+      one: '1 Traumhüter verkaufen?',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get invSellConfirmBody =>
+      'Das lässt sich nicht rückgängig machen. Ausgerüstete Gegenstände werden abgelegt, nicht verkauft.';
+
+  @override
+  String get invCreateTeam => 'Team erstellen';
+
+  @override
+  String get invNoItemsTitle => 'Noch keine Gegenstände';
+
+  @override
+  String get invNoItemsBody =>
+      'Schließe einen Kampagnenabschnitt ab, um Ausrüstung für deine Traumhüter zu finden.';
+
+  @override
+  String get invGoToCampaign => 'Zur Kampagne';
+
+  @override
+  String invItemSubtitle(String rarity, int level, int max) {
+    return '$rarity · Lv $level/$max';
+  }
+
+  @override
+  String invItemWornBy(String wearer) {
+    return 'Getragen von $wearer';
+  }
+
+  @override
+  String get invItemInStorage => 'Im Lager';
+
+  @override
+  String invItemSemanticWorn(
+      String name, String rarity, int level, String wearer) {
+    return '$name, $rarity, Lv $level, getragen von $wearer';
+  }
+
+  @override
+  String invItemSemanticStored(String name, String rarity, int level) {
+    return '$name, $rarity, Lv $level, im Lager';
   }
 }

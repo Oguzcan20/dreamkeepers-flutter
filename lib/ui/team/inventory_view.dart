@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../combat/twin_bond.dart';
+import '../../l10n/l10n.dart';
 import '../../models/dreamkeeper.dart';
 import '../../models/equipment.dart';
 import '../../models/rarity.dart';
@@ -24,11 +25,11 @@ enum _RosterSort {
   stars,
   attack;
 
-  String get label => switch (this) {
-        _RosterSort.level => 'Level',
-        _RosterSort.rarity => 'Rarity',
-        _RosterSort.stars => 'Stars',
-        _RosterSort.attack => 'Attack',
+  String label(AppLocalizations l) => switch (this) {
+        _RosterSort.level => l.invSortLevel,
+        _RosterSort.rarity => l.invSortRarity,
+        _RosterSort.stars => l.invSortStars,
+        _RosterSort.attack => l.invSortAttack,
       };
 
   String get symbol => switch (this) {
@@ -129,18 +130,19 @@ class _InventoryViewState extends State<InventoryView> {
   }
 
   Future<void> _confirmSell() async {
+    final l = AppLocalizations.of(context);
     final value = _sellTotal;
-    final label = value.gems > 0 ? 'Sell for ${value.gold} Gold + ${value.gems} Gems' : 'Sell for ${value.gold} Gold';
+    final label = value.gems > 0 ? l.invSellForGoldGems(value.gold, value.gems) : l.invSellForGold(value.gold);
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => Theme(
         data: ThemeData.dark(),
         child: AlertDialog(
           backgroundColor: dk_theme.Theme.midnightPurple,
-          title: Text(_selectedForSale.length == 1 ? 'Sell 1 Dreamkeeper?' : 'Sell ${_selectedForSale.length} Dreamkeepers?'),
-          content: const Text("This can't be undone. Equipped gear is unequipped, not sold."),
+          title: Text(l.invSellConfirmTitle(_selectedForSale.length)),
+          content: Text(l.invSellConfirmBody),
           actions: [
-            TextButton(onPressed: () => Navigator.of(context).pop(false), child: const Text('Cancel')),
+            TextButton(onPressed: () => Navigator.of(context).pop(false), child: Text(l.commonCancel)),
             TextButton(
               onPressed: () => Navigator.of(context).pop(true),
               child: Text(label, style: const TextStyle(color: Colors.redAccent)),
@@ -160,6 +162,7 @@ class _InventoryViewState extends State<InventoryView> {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     return Stack(
       children: [
         dk_theme.AmbientBackground(topTint: dk_theme.Theme.softBlue, bottomTint: dk_theme.Theme.violet),
@@ -168,11 +171,11 @@ class _InventoryViewState extends State<InventoryView> {
           builder: (context, _) => SafeArea(
             child: Column(
               children: [
-                _header(),
+                _header(l),
                 const SizedBox(height: 8),
-                _picker(),
+                _picker(l),
                 const SizedBox(height: 8),
-                Expanded(child: _tab == _Tab.dreamkeepers ? _dreamkeepersTab() : _itemsTab()),
+                Expanded(child: _tab == _Tab.dreamkeepers ? _dreamkeepersTab(l) : _itemsTab(l)),
               ],
             ),
           ),
@@ -181,16 +184,16 @@ class _InventoryViewState extends State<InventoryView> {
     );
   }
 
-  Widget _header() {
+  Widget _header(AppLocalizations l) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         children: [
-          _iconButton(icon: 'chevron.left', label: 'Back', onTap: () => widget.onNavigate(const DreamHavenRoute())),
+          _iconButton(icon: 'chevron.left', label: l.commonBack, onTap: () => widget.onNavigate(const DreamHavenRoute())),
           const Spacer(),
-          const Text('Inventory', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+          Text(l.navInventory, style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
           const Spacer(),
-          _iconButton(icon: 'book.closed.fill', label: 'Dreamkeeper Codex', onTap: () => widget.onNavigate(const CodexRoute())),
+          _iconButton(icon: 'book.closed.fill', label: l.navCodex, onTap: () => widget.onNavigate(const CodexRoute())),
         ],
       ),
     );
@@ -211,7 +214,7 @@ class _InventoryViewState extends State<InventoryView> {
     );
   }
 
-  Widget _picker() {
+  Widget _picker(AppLocalizations l) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Container(
@@ -219,8 +222,8 @@ class _InventoryViewState extends State<InventoryView> {
         decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.08), borderRadius: BorderRadius.circular(10)),
         child: Row(
           children: [
-            Expanded(child: _tabButton(_Tab.dreamkeepers, 'Dreamkeepers')),
-            Expanded(child: _tabButton(_Tab.items, 'Items')),
+            Expanded(child: _tabButton(_Tab.dreamkeepers, l.invTabDreamkeepers)),
+            Expanded(child: _tabButton(_Tab.items, l.invTabItems)),
           ],
         ),
       ),
@@ -243,7 +246,7 @@ class _InventoryViewState extends State<InventoryView> {
 
   // MARK: - Dreamkeepers tab
 
-  Widget _dreamkeepersTab() {
+  Widget _dreamkeepersTab(AppLocalizations l) {
     // Swift pins `teamPicker` and the controls row above a *vertically*
     // scrolling grid. Swift is not landscape-locked; this app is, and on a
     // ~411 logical-px tall landscape phone the fixed chrome (header +
@@ -260,10 +263,10 @@ class _InventoryViewState extends State<InventoryView> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        _teamPicker(),
+        _teamPicker(l),
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 8, 20, 0),
-          child: _sellMode ? _sellBar() : _controlsRow(),
+          child: _sellMode ? _sellBar(l) : _controlsRow(l),
         ),
         Expanded(
           child: ListView.separated(
@@ -305,17 +308,17 @@ class _InventoryViewState extends State<InventoryView> {
     );
   }
 
-  Widget _controlsRow() {
+  Widget _controlsRow(AppLocalizations l) {
     return Row(
       children: [
         Expanded(
-          child: Text('Tap a Dreamkeeper to view stats and fusion.', style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 12)),
+          child: Text(l.invTapHint, style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 12)),
         ),
-        _pillButton(icon: 'tag.fill', label: 'Sell', onTap: () => setState(() => _sellMode = true)),
+        _pillButton(icon: 'tag.fill', label: l.commonSell, onTap: () => setState(() => _sellMode = true)),
         const SizedBox(width: 8),
-        _sortMenu(),
+        _sortMenu(l),
         const SizedBox(width: 8),
-        Text('${_gameState.deployedTeam.length}/${Team.maxSize} deployed', style: TextStyle(color: dk_theme.Theme.gold, fontSize: 11, fontWeight: FontWeight.w600)),
+        Text(l.invDeployedCount(_gameState.deployedTeam.length, Team.maxSize), style: TextStyle(color: dk_theme.Theme.gold, fontSize: 11, fontWeight: FontWeight.w600)),
       ],
     );
   }
@@ -338,10 +341,10 @@ class _InventoryViewState extends State<InventoryView> {
     );
   }
 
-  Widget _sortMenu() {
+  Widget _sortMenu(AppLocalizations l) {
     return PopupMenuButton<_RosterSort>(
       color: dk_theme.Theme.midnightPurple,
-      tooltip: 'Sort Dreamkeepers',
+      tooltip: l.invSortTooltip,
       onSelected: (value) => setState(() => _rosterSort = value),
       itemBuilder: (context) => [
         for (final option in _RosterSort.values)
@@ -351,7 +354,7 @@ class _InventoryViewState extends State<InventoryView> {
               children: [
                 Icon(sfSymbol(option.symbol), size: 16, color: Colors.white),
                 const SizedBox(width: 8),
-                Expanded(child: Text(option.label, style: const TextStyle(color: Colors.white))),
+                Expanded(child: Text(option.label(l), style: const TextStyle(color: Colors.white))),
                 if (_rosterSort == option) const Icon(Icons.check, size: 16, color: Colors.white),
               ],
             ),
@@ -365,7 +368,7 @@ class _InventoryViewState extends State<InventoryView> {
           children: [
             Icon(sfSymbol('arrow.up.arrow.down'), size: 12, color: Colors.white.withValues(alpha: 0.75)),
             const SizedBox(width: 4),
-            Text(_rosterSort.label, style: TextStyle(color: Colors.white.withValues(alpha: 0.75), fontSize: 11, fontWeight: FontWeight.w600)),
+            Text(_rosterSort.label(l), style: TextStyle(color: Colors.white.withValues(alpha: 0.75), fontSize: 11, fontWeight: FontWeight.w600)),
           ],
         ),
       ),
@@ -375,7 +378,7 @@ class _InventoryViewState extends State<InventoryView> {
   /// Replaces the normal "tap to view stats" row while `_sellMode` is
   /// active — shows the running payout for whatever's currently checked and
   /// lets the player back out without selling anything.
-  Widget _sellBar() {
+  Widget _sellBar(AppLocalizations l) {
     final value = _sellTotal;
     return Row(
       children: [
@@ -384,17 +387,17 @@ class _InventoryViewState extends State<InventoryView> {
             _sellMode = false;
             _selectedForSale.clear();
           }),
-          child: Text('Cancel', style: TextStyle(color: Colors.white.withValues(alpha: 0.75))),
+          child: Text(l.commonCancel, style: TextStyle(color: Colors.white.withValues(alpha: 0.75))),
         ),
         const Spacer(),
         Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text('${_selectedForSale.length} selected', style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 10)),
+            Text(l.invSelectedCount(_selectedForSale.length), style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 10)),
             if (_selectedForSale.isNotEmpty)
               Text(
-                value.gems > 0 ? '+${value.gold} Gold · +${value.gems} Gems' : '+${value.gold} Gold',
+                value.gems > 0 ? l.invSellGainGoldGems(value.gold, value.gems) : l.havenPlusGold(value.gold),
                 style: TextStyle(color: dk_theme.Theme.gold, fontSize: 11, fontWeight: FontWeight.w600),
               ),
           ],
@@ -408,14 +411,14 @@ class _InventoryViewState extends State<InventoryView> {
           child: dk_theme.PrimaryButton(
             tint: dk_theme.Theme.gold,
             onPressed: _selectedForSale.isEmpty ? null : _confirmSell,
-            child: const Text('Sell'),
+            child: Text(l.commonSell),
           ),
         ),
       ],
     );
   }
 
-  Widget _teamPicker() {
+  Widget _teamPicker(AppLocalizations l) {
     return SizedBox(
       height: 48,
       child: ListView(
@@ -435,7 +438,7 @@ class _InventoryViewState extends State<InventoryView> {
           ],
           if (_gameState.teams.length < GameState.maxTeams)
             Semantics(
-              label: 'Create Team',
+              label: l.invCreateTeam,
               button: true,
               child: GestureDetector(
                 onTap: () {
@@ -468,16 +471,16 @@ class _InventoryViewState extends State<InventoryView> {
     ];
   }
 
-  Widget _itemsTab() {
+  Widget _itemsTab(AppLocalizations l) {
     if (_gameState.inventory.isEmpty) {
-      return SingleChildScrollView(padding: const EdgeInsets.all(20), child: _emptyItemsCallout());
+      return SingleChildScrollView(padding: const EdgeInsets.all(20), child: _emptyItemsCallout(l));
     }
     return ListView(
       padding: const EdgeInsets.all(20),
       children: [
         for (final group in _itemsBySlot)
           if (group.$2.isNotEmpty) ...[
-            _itemSlotSection(slot: group.$1, items: group.$2),
+            _itemSlotSection(slot: group.$1, items: group.$2, l: l),
             const SizedBox(height: 20),
           ],
       ],
@@ -487,7 +490,7 @@ class _InventoryViewState extends State<InventoryView> {
   /// Landscape leaves a lot of open canvas below a lone small card, which
   /// used to just trail off into empty background — a real CTA gives the
   /// empty state somewhere to send the player instead of a dead end.
-  Widget _emptyItemsCallout() {
+  Widget _emptyItemsCallout(AppLocalizations l) {
     return dk_theme.GlassCard(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 12),
@@ -502,10 +505,10 @@ class _InventoryViewState extends State<InventoryView> {
               child: Icon(sfSymbol('shippingbox.fill'), size: 26, color: dk_theme.Theme.softBlue),
             ),
             const SizedBox(height: 14),
-            const Text('No Items Yet', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600)),
+            Text(l.invNoItemsTitle, style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600)),
             const SizedBox(height: 4),
             Text(
-              'Clear a campaign stage to find equipment for your Dreamkeepers.',
+              l.invNoItemsBody,
               textAlign: TextAlign.center,
               style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 13),
             ),
@@ -527,7 +530,7 @@ class _InventoryViewState extends State<InventoryView> {
                   children: [
                     Icon(sfSymbol('map.fill'), size: 16, color: Colors.white),
                     const SizedBox(width: 8),
-                    const Flexible(child: Text('Go to Campaign', overflow: TextOverflow.ellipsis)),
+                    Flexible(child: Text(l.invGoToCampaign, overflow: TextOverflow.ellipsis)),
                   ],
                 ),
               ),
@@ -538,7 +541,7 @@ class _InventoryViewState extends State<InventoryView> {
     );
   }
 
-  Widget _itemSlotSection({required EquipmentSlot slot, required List<EquipmentItem> items}) {
+  Widget _itemSlotSection({required EquipmentSlot slot, required List<EquipmentItem> items, required AppLocalizations l}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -557,6 +560,7 @@ class _InventoryViewState extends State<InventoryView> {
               final wearer = _gameState.wearer(item);
               return wearer == null ? null : _gameState.definition(wearer)?.name;
             })(),
+            l: l,
             onTap: () => _openItemDetail(item),
           ),
           const SizedBox(height: 10),
@@ -603,16 +607,19 @@ class _TeamChip extends StatelessWidget {
 class _InventoryItemRow extends StatelessWidget {
   final EquipmentItem item;
   final String? wearerName;
+  final AppLocalizations l;
   final VoidCallback onTap;
 
-  const _InventoryItemRow({required this.item, required this.wearerName, required this.onTap});
+  const _InventoryItemRow({required this.item, required this.wearerName, required this.l, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     final hasArt = dk_theme.ItemArt.hasArt(item.name);
     return Semantics(
       button: true,
-      label: '${item.name}, ${item.rarity.displayName}, Lv ${item.level}${wearerName != null ? ', worn by $wearerName' : ', in storage'}',
+      label: wearerName != null
+          ? l.invItemSemanticWorn(item.name, item.rarity.displayName, item.level, wearerName!)
+          : l.invItemSemanticStored(item.name, item.rarity.displayName, item.level),
       child: GestureDetector(
         onTap: onTap,
         child: dk_theme.GlassCard(
@@ -638,13 +645,13 @@ class _InventoryItemRow extends StatelessWidget {
                   children: [
                     Text(item.name, style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w600)),
                     Text(
-                      '${item.rarity.displayName} · Lv ${item.level}/${EquipmentUpgrade.maxLevel}',
+                      l.invItemSubtitle(item.rarity.displayName, item.level, EquipmentUpgrade.maxLevel),
                       style: TextStyle(color: Colors.white.withValues(alpha: 0.55), fontSize: 11),
                     ),
                     const SizedBox(height: 2),
                     StarRow(stars: item.stars, size: 9),
                     Text(
-                      wearerName != null ? 'Worn by $wearerName' : 'In storage',
+                      wearerName != null ? l.invItemWornBy(wearerName!) : l.invItemInStorage,
                       style: TextStyle(color: wearerName != null ? dk_theme.Theme.softBlue : Colors.white.withValues(alpha: 0.4), fontSize: 10),
                     ),
                   ],

@@ -176,6 +176,12 @@ abstract class AppLocalizations {
   /// **'Collected!'**
   String get commonCollectedExclaim;
 
+  /// No description provided for @commonSell.
+  ///
+  /// In en, this message translates to:
+  /// **'Sell'**
+  String get commonSell;
+
   /// No description provided for @settingsTitle.
   ///
   /// In en, this message translates to:
@@ -943,6 +949,199 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'+{gold} Gold · +{exp} EXP'**
   String campaignSweepPayout(int gold, int exp);
+
+  /// No description provided for @profileTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profileTitle;
+
+  /// No description provided for @profilePlayerLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Player Level {level}'**
+  String profilePlayerLevel(int level);
+
+  /// No description provided for @profileMaxLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Max level reached'**
+  String get profileMaxLevel;
+
+  /// No description provided for @profileExpToNext.
+  ///
+  /// In en, this message translates to:
+  /// **'{current} / {next} EXP to next level'**
+  String profileExpToNext(int current, int next);
+
+  /// No description provided for @profileJourneySoFar.
+  ///
+  /// In en, this message translates to:
+  /// **'Journey So Far'**
+  String get profileJourneySoFar;
+
+  /// No description provided for @profileStatDreamkeepers.
+  ///
+  /// In en, this message translates to:
+  /// **'Dreamkeepers'**
+  String get profileStatDreamkeepers;
+
+  /// No description provided for @profileStatStagesCleared.
+  ///
+  /// In en, this message translates to:
+  /// **'Stages Cleared'**
+  String get profileStatStagesCleared;
+
+  /// No description provided for @navCodex.
+  ///
+  /// In en, this message translates to:
+  /// **'Dreamkeeper Codex'**
+  String get navCodex;
+
+  /// No description provided for @invTabDreamkeepers.
+  ///
+  /// In en, this message translates to:
+  /// **'Dreamkeepers'**
+  String get invTabDreamkeepers;
+
+  /// No description provided for @invTabItems.
+  ///
+  /// In en, this message translates to:
+  /// **'Items'**
+  String get invTabItems;
+
+  /// No description provided for @invSortLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Level'**
+  String get invSortLevel;
+
+  /// No description provided for @invSortRarity.
+  ///
+  /// In en, this message translates to:
+  /// **'Rarity'**
+  String get invSortRarity;
+
+  /// No description provided for @invSortStars.
+  ///
+  /// In en, this message translates to:
+  /// **'Stars'**
+  String get invSortStars;
+
+  /// No description provided for @invSortAttack.
+  ///
+  /// In en, this message translates to:
+  /// **'Attack'**
+  String get invSortAttack;
+
+  /// No description provided for @invSortTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort Dreamkeepers'**
+  String get invSortTooltip;
+
+  /// No description provided for @invTapHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap a Dreamkeeper to view stats and fusion.'**
+  String get invTapHint;
+
+  /// No description provided for @invDeployedCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count}/{max} deployed'**
+  String invDeployedCount(int count, int max);
+
+  /// No description provided for @invSelectedCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} selected'**
+  String invSelectedCount(int count);
+
+  /// No description provided for @invSellGainGoldGems.
+  ///
+  /// In en, this message translates to:
+  /// **'+{gold} Gold · +{gems} Gems'**
+  String invSellGainGoldGems(int gold, int gems);
+
+  /// No description provided for @invSellForGoldGems.
+  ///
+  /// In en, this message translates to:
+  /// **'Sell for {gold} Gold + {gems} Gems'**
+  String invSellForGoldGems(int gold, int gems);
+
+  /// No description provided for @invSellForGold.
+  ///
+  /// In en, this message translates to:
+  /// **'Sell for {gold} Gold'**
+  String invSellForGold(int gold);
+
+  /// No description provided for @invSellConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, one{Sell 1 Dreamkeeper?} other{Sell {count} Dreamkeepers?}}'**
+  String invSellConfirmTitle(int count);
+
+  /// No description provided for @invSellConfirmBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This can\'t be undone. Equipped gear is unequipped, not sold.'**
+  String get invSellConfirmBody;
+
+  /// No description provided for @invCreateTeam.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Team'**
+  String get invCreateTeam;
+
+  /// No description provided for @invNoItemsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No Items Yet'**
+  String get invNoItemsTitle;
+
+  /// No description provided for @invNoItemsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear a campaign stage to find equipment for your Dreamkeepers.'**
+  String get invNoItemsBody;
+
+  /// No description provided for @invGoToCampaign.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to Campaign'**
+  String get invGoToCampaign;
+
+  /// No description provided for @invItemSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{rarity} · Lv {level}/{max}'**
+  String invItemSubtitle(String rarity, int level, int max);
+
+  /// No description provided for @invItemWornBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Worn by {wearer}'**
+  String invItemWornBy(String wearer);
+
+  /// No description provided for @invItemInStorage.
+  ///
+  /// In en, this message translates to:
+  /// **'In storage'**
+  String get invItemInStorage;
+
+  /// No description provided for @invItemSemanticWorn.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}, {rarity}, Lv {level}, worn by {wearer}'**
+  String invItemSemanticWorn(
+      String name, String rarity, int level, String wearer);
+
+  /// No description provided for @invItemSemanticStored.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}, {rarity}, Lv {level}, in storage'**
+  String invItemSemanticStored(String name, String rarity, int level);
 }
 
 class _AppLocalizationsDelegate
