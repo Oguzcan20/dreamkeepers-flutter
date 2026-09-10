@@ -146,6 +146,12 @@ abstract class AppLocalizations {
   /// **'Continue'**
   String get commonContinue;
 
+  /// No description provided for @commonBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get commonBack;
+
   /// No description provided for @commonAmountGold.
   ///
   /// In en, this message translates to:
@@ -799,6 +805,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Requires Premium'**
   String get missionsRequiresPremium;
+
+  /// No description provided for @shopBadgePopular.
+  ///
+  /// In en, this message translates to:
+  /// **'Popular'**
+  String get shopBadgePopular;
+
+  /// No description provided for @shopBadgeBestValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Best Value'**
+  String get shopBadgeBestValue;
+
+  /// No description provided for @shopPurchased.
+  ///
+  /// In en, this message translates to:
+  /// **'Purchased!'**
+  String get shopPurchased;
+
+  /// No description provided for @shopAdded.
+  ///
+  /// In en, this message translates to:
+  /// **'Added!'**
+  String get shopAdded;
+
+  /// No description provided for @shopTrialTickets.
+  ///
+  /// In en, this message translates to:
+  /// **'Trial Tickets'**
+  String get shopTrialTickets;
+
+  /// No description provided for @shopGoldExchange.
+  ///
+  /// In en, this message translates to:
+  /// **'Gold Exchange'**
+  String get shopGoldExchange;
+
+  /// No description provided for @shopTicketsGranted.
+  ///
+  /// In en, this message translates to:
+  /// **'+{count} Tickets'**
+  String shopTicketsGranted(int count);
 }
 
 class _AppLocalizationsDelegate

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import '../../data/shop_catalog.dart';
+import '../../l10n/l10n.dart';
 import '../../models/rarity.dart';
 import '../../models/shop_item.dart';
 import '../../platform/platform_service.dart';
@@ -68,12 +69,12 @@ class _ShopViewState extends State<ShopView> {
 
   /// Ribbon shown on a gem pack card, if any — hand-picked (not derived) so
   /// the two callouts stay deliberately distinct. Mirrors `ShopView.badge`.
-  (String, Color)? _badge(ShopItem item) {
+  (String, Color)? _badge(ShopItem item, AppLocalizations l) {
     switch (item.id) {
       case 'gems_medium':
-        return ('Popular', dk_theme.Theme.violet);
+        return (l.shopBadgePopular, dk_theme.Theme.violet);
       case 'gems_large':
-        return ('Best Value', dk_theme.Theme.gold);
+        return (l.shopBadgeBestValue, dk_theme.Theme.gold);
       default:
         return null;
     }
@@ -81,6 +82,7 @@ class _ShopViewState extends State<ShopView> {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     return Stack(
       children: [
         const dk_theme.AmbientBackground(topTint: dk_theme.Theme.gold, bottomTint: dk_theme.Theme.violet),
@@ -92,7 +94,7 @@ class _ShopViewState extends State<ShopView> {
               duration: const Duration(milliseconds: 400),
               child: Column(
                 children: [
-                  _header(),
+                  _header(l),
                   Expanded(
                     child: SingleChildScrollView(
                       padding: const EdgeInsets.all(20),
@@ -101,9 +103,9 @@ class _ShopViewState extends State<ShopView> {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(width: 300, child: _leftColumn()),
+                            SizedBox(width: 300, child: _leftColumn(l)),
                             const SizedBox(width: 16),
-                            Expanded(child: _gemPacksSection()),
+                            Expanded(child: _gemPacksSection(l)),
                           ],
                         ),
                       ),
@@ -118,13 +120,13 @@ class _ShopViewState extends State<ShopView> {
     );
   }
 
-  Widget _header() {
+  Widget _header(AppLocalizations l) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
       child: Row(
         children: [
           Semantics(
-            label: 'Back',
+            label: l.commonBack,
             button: true,
             child: GestureDetector(
               onTap: () => widget.onNavigate(const DreamHavenRoute()),
@@ -136,7 +138,7 @@ class _ShopViewState extends State<ShopView> {
             ),
           ),
           const Spacer(),
-          const Text('Shop', style: TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.bold)),
+          Text(l.navShop, style: const TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.bold)),
           const Spacer(),
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -145,14 +147,14 @@ class _ShopViewState extends State<ShopView> {
                 icon: sfSymbol('circle.hexagongrid.fill'),
                 value: '${_gameState.save.gold}',
                 tint: dk_theme.Theme.gold,
-                semanticLabel: 'Gold',
+                semanticLabel: l.resGold,
               ),
               const SizedBox(height: 6),
               dk_theme.ResourcePill(
                 icon: sfSymbol('sparkles'),
                 value: '${_gameState.save.dreamGems}',
                 tint: dk_theme.Theme.violet,
-                semanticLabel: 'Dream Gems',
+                semanticLabel: l.resDreamGems,
               ),
             ],
           ),
@@ -161,21 +163,21 @@ class _ShopViewState extends State<ShopView> {
     );
   }
 
-  Widget _leftColumn() {
+  Widget _leftColumn(AppLocalizations l) {
     return Column(
       children: [
         if (!_gameState.isPurchased(ShopCatalog.starterPack)) ...[
-          _highlighted(dk_theme.Theme.gold, _offerCard(item: ShopCatalog.starterPack, tint: dk_theme.Theme.gold)),
+          _highlighted(dk_theme.Theme.gold, _offerCard(item: ShopCatalog.starterPack, tint: dk_theme.Theme.gold, l: l)),
           const SizedBox(height: 14),
         ],
         if (!_gameState.isVIP) ...[
-          _highlighted(dk_theme.Theme.violet, _offerCard(item: ShopCatalog.vipPass, tint: dk_theme.Theme.violet)),
+          _highlighted(dk_theme.Theme.violet, _offerCard(item: ShopCatalog.vipPass, tint: dk_theme.Theme.violet, l: l)),
           const SizedBox(height: 14),
         ],
-        ..._exclusiveCharacterCards(),
-        _arenaTicketSection(),
+        ..._exclusiveCharacterCards(l),
+        _arenaTicketSection(l),
         const SizedBox(height: 14),
-        _goldExchangeSection(),
+        _goldExchangeSection(l),
       ],
     );
   }
@@ -194,7 +196,7 @@ class _ShopViewState extends State<ShopView> {
   /// The Starter Pack / VIP Pass card body — both are a one-time offer with
   /// an icon, name, description, and claim button; Starter Pack additionally
   /// shows its gold/gems grant. Mirrors `starterPackCard`/`vipPassCard`.
-  Widget _offerCard({required ShopItem item, required Color tint}) {
+  Widget _offerCard({required ShopItem item, required Color tint, required AppLocalizations l}) {
     return dk_theme.GlassCard(
       child: Column(
         children: [
@@ -223,7 +225,7 @@ class _ShopViewState extends State<ShopView> {
             ),
           ],
           const SizedBox(height: 12),
-          _purchaseButton(item, tint),
+          _purchaseButton(item, tint, l),
         ],
       ),
     );
@@ -232,17 +234,17 @@ class _ShopViewState extends State<ShopView> {
   /// Igo and Ames' shop cards — one per un-owned exclusive character (a card
   /// disappears once bought here or pulled from the Summoning Shrine, per
   /// `GameState.canPurchase`). Mirrors `exclusiveCharactersSection`.
-  List<Widget> _exclusiveCharacterCards() {
+  List<Widget> _exclusiveCharacterCards(AppLocalizations l) {
     final widgets = <Widget>[];
     for (final item in ShopCatalog.exclusiveCharacters) {
       if (!_gameState.canPurchase(item)) continue;
-      widgets.add(_highlighted(Rarity.exclusive.primaryColor, _exclusiveCharacterCard(item)));
+      widgets.add(_highlighted(Rarity.exclusive.primaryColor, _exclusiveCharacterCard(item, l)));
       widgets.add(const SizedBox(height: 14));
     }
     return widgets;
   }
 
-  Widget _exclusiveCharacterCard(ShopItem item) {
+  Widget _exclusiveCharacterCard(ShopItem item, AppLocalizations l) {
     return dk_theme.GlassCard(
       child: Column(
         children: [
@@ -265,7 +267,7 @@ class _ShopViewState extends State<ShopView> {
             style: TextStyle(color: Colors.white.withValues(alpha: 0.65), fontSize: 12),
           ),
           const SizedBox(height: 12),
-          _purchaseButton(item, dk_theme.Theme.gold),
+          _purchaseButton(item, dk_theme.Theme.gold, l),
         ],
       ),
     );
@@ -274,9 +276,9 @@ class _ShopViewState extends State<ShopView> {
   /// Mirrors `ShopView.purchaseButton(for:tint:)` exactly: "Claimed" once
   /// owned (disabled), a transient "Purchased!" right after buying, else the
   /// item's price label.
-  Widget _purchaseButton(ShopItem item, Color tint) {
+  Widget _purchaseButton(ShopItem item, Color tint, AppLocalizations l) {
     final purchased = _gameState.isPurchased(item);
-    final label = purchased ? 'Claimed' : (_justPurchasedID == item.id ? 'Purchased!' : item.priceLabel);
+    final label = purchased ? l.commonClaimed : (_justPurchasedID == item.id ? l.shopPurchased : item.priceLabel);
     return dk_theme.PrimaryButton(
       tint: tint,
       onPressed: (purchased || !_gameState.canPurchase(item)) ? null : () => _buy(item),
@@ -284,11 +286,11 @@ class _ShopViewState extends State<ShopView> {
     );
   }
 
-  Widget _gemPacksSection() {
+  Widget _gemPacksSection(AppLocalizations l) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('Dream Gems', style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold)),
+        Text(l.resDreamGems, style: const TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold)),
         const SizedBox(height: 10),
         Wrap(
           spacing: 12,
@@ -299,7 +301,7 @@ class _ShopViewState extends State<ShopView> {
                 width: 150,
                 child: _GemPackCard(
                   item: item,
-                  badge: _badge(item),
+                  badge: _badge(item, l),
                   justPurchased: _justPurchasedID == item.id,
                   onBuy: () => _buy(item),
                 ),
@@ -312,11 +314,11 @@ class _ShopViewState extends State<ShopView> {
 
   /// Arena Tower tickets, real-money only by design — see
   /// `ShopItemKind.arenaTicketPack`. Mirrors `arenaTicketSection`.
-  Widget _arenaTicketSection() {
+  Widget _arenaTicketSection(AppLocalizations l) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('Trial Tickets', style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold)),
+        Text(l.shopTrialTickets, style: const TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold)),
         const SizedBox(height: 10),
         for (final item in ShopCatalog.arenaTicketPacks) ...[
           _TicketPackRow(item: item, justPurchased: _justPurchasedID == item.id, onBuy: () => _buy(item)),
@@ -326,11 +328,11 @@ class _ShopViewState extends State<ShopView> {
     );
   }
 
-  Widget _goldExchangeSection() {
+  Widget _goldExchangeSection(AppLocalizations l) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('Gold Exchange', style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold)),
+        Text(l.shopGoldExchange, style: const TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold)),
         const SizedBox(height: 10),
         for (final item in ShopCatalog.goldExchanges) ...[
           _ExchangeRow(item: item, canAfford: _gameState.canPurchase(item), onBuy: () => _gameState.purchase(item)),
@@ -351,6 +353,7 @@ class _GemPackCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     final badgeTint = badge?.$2;
     return Stack(
       clipBehavior: Clip.none,
@@ -373,7 +376,7 @@ class _GemPackCard extends StatelessWidget {
                   style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 11),
                 ),
                 const SizedBox(height: 8),
-                dk_theme.PrimaryButton(tint: dk_theme.Theme.violet, onPressed: onBuy, child: Text(justPurchased ? 'Added!' : item.priceLabel)),
+                dk_theme.PrimaryButton(tint: dk_theme.Theme.violet, onPressed: onBuy, child: Text(justPurchased ? l.shopAdded : item.priceLabel)),
               ],
             ),
           ),
@@ -405,6 +408,7 @@ class _TicketPackRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     return dk_theme.GlassCard(
       child: Row(
         children: [
@@ -415,12 +419,12 @@ class _TicketPackRow extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(item.name, style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w600)),
-                Text('+${item.ticketsGranted} Tickets', style: TextStyle(color: dk_theme.Theme.softBlue, fontSize: 11)),
+                Text(l.shopTicketsGranted(item.ticketsGranted), style: TextStyle(color: dk_theme.Theme.softBlue, fontSize: 11)),
               ],
             ),
           ),
           _PillButton(
-            label: justPurchased ? 'Added!' : item.priceLabel,
+            label: justPurchased ? l.shopAdded : item.priceLabel,
             tint: dk_theme.Theme.softBlue,
             onTap: onBuy,
           ),
@@ -439,6 +443,7 @@ class _ExchangeRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     return dk_theme.GlassCard(
       child: Row(
         children: [
@@ -449,7 +454,7 @@ class _ExchangeRow extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(item.name, style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w600)),
-                Text('+${item.goldGranted} Gold', style: TextStyle(color: dk_theme.Theme.gold, fontSize: 11)),
+                Text(l.havenPlusGold(item.goldGranted), style: TextStyle(color: dk_theme.Theme.gold, fontSize: 11)),
               ],
             ),
           ),

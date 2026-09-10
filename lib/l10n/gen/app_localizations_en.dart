@@ -33,6 +33,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get commonContinue => 'Continue';
 
   @override
+  String get commonBack => 'Back';
+
+  @override
   String commonAmountGold(int count) {
     return '$count Gold';
   }
@@ -423,4 +426,27 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get missionsRequiresPremium => 'Requires Premium';
+
+  @override
+  String get shopBadgePopular => 'Popular';
+
+  @override
+  String get shopBadgeBestValue => 'Best Value';
+
+  @override
+  String get shopPurchased => 'Purchased!';
+
+  @override
+  String get shopAdded => 'Added!';
+
+  @override
+  String get shopTrialTickets => 'Trial Tickets';
+
+  @override
+  String get shopGoldExchange => 'Gold Exchange';
+
+  @override
+  String shopTicketsGranted(int count) {
+    return '+$count Tickets';
+  }
 }

@@ -9,6 +9,7 @@
   "commonClaim": "Einlösen",
   "commonClaimed": "Eingelöst",
   "commonContinue": "Weiter",
+  "commonBack": "Zurück",
   "commonAmountGold": "{count} Gold",
   "commonAmountGems": "{count} Edelsteine",
   "commonCollectedExclaim": "Abgeholt!",
@@ -134,5 +135,13 @@
   "missionsBattlePassBonus": "Season-Pass-Bonus",
   "missionsWeeklyChallenge": "Wöchentliche Herausforderung",
   "missionsWeeklyLocked": "Schalte Season Pass Premium frei, um schwerere wöchentliche Herausforderungen mit größeren Belohnungen zu erhalten.",
-  "missionsRequiresPremium": "Erfordert Premium"
+  "missionsRequiresPremium": "Erfordert Premium",
+
+  "shopBadgePopular": "Beliebt",
+  "shopBadgeBestValue": "Bestes Angebot",
+  "shopPurchased": "Gekauft!",
+  "shopAdded": "Hinzugefügt!",
+  "shopTrialTickets": "Prüfungs-Tickets",
+  "shopGoldExchange": "Goldtausch",
+  "shopTicketsGranted": "+{count} Tickets"
 }

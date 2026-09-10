@@ -9,6 +9,7 @@
   "commonClaim": "Claim",
   "commonClaimed": "Claimed",
   "commonContinue": "Continue",
+  "commonBack": "Back",
   "commonAmountGold": "{count} Gold",
   "@commonAmountGold": { "placeholders": { "count": { "type": "int" } } },
   "commonAmountGems": "{count} Gems",
@@ -166,5 +167,14 @@
   "missionsBattlePassBonus": "Battle Pass Bonus",
   "missionsWeeklyChallenge": "Weekly Challenge",
   "missionsWeeklyLocked": "Unlock Battle Pass Premium to access harder weekly challenges with bigger rewards.",
-  "missionsRequiresPremium": "Requires Premium"
+  "missionsRequiresPremium": "Requires Premium",
+
+  "shopBadgePopular": "Popular",
+  "shopBadgeBestValue": "Best Value",
+  "shopPurchased": "Purchased!",
+  "shopAdded": "Added!",
+  "shopTrialTickets": "Trial Tickets",
+  "shopGoldExchange": "Gold Exchange",
+  "shopTicketsGranted": "+{count} Tickets",
+  "@shopTicketsGranted": { "placeholders": { "count": { "type": "int" } } }
 }
