@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 import '../../combat/battle_engine.dart';
 import '../../combat/combatant.dart';
 import '../../data/world_catalog.dart';
+import '../../l10n/l10n.dart';
 import '../../models/element.dart';
 import '../../models/world.dart';
 import '../../platform/platform_service.dart';
@@ -265,11 +266,12 @@ class _BattleViewState extends State<BattleView> with SingleTickerProviderStateM
   }
 
   String _stageLabel() {
-    if (widget.arenaFloor != null) return 'Endless Trial · Floor ${widget.arenaFloor}';
+    final l = AppLocalizations.of(context);
+    if (widget.arenaFloor != null) return l.battleArenaStageLabel(widget.arenaFloor!);
     final world = WorldCatalog.world(_engine.stage);
     final stageInWorld = _engine.stage - world.firstStage + 1;
-    if (_engine.isBossStage) return '${world.name} · Boss';
-    return '${world.name} · $stageInWorld/${World.stagesPerWorld}';
+    if (_engine.isBossStage) return l.battleWorldBossLabel(world.name);
+    return l.battleWorldStageLabel(world.name, stageInWorld, World.stagesPerWorld);
   }
 
   @override
@@ -358,13 +360,14 @@ class _BattleViewState extends State<BattleView> with SingleTickerProviderStateM
   /// trailing side so repeated stages can be blitzed through without
   /// hunting for a settings screen mid-fight.
   Widget _battleControls() {
+    final l = AppLocalizations.of(context);
     final speedIs2x = _gameState.battleSpeedMultiplier >= 2.0;
     final auto = _gameState.autoBattleEnabled;
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
         Semantics(
-          label: speedIs2x ? 'Battle speed 2x, tap for 1x' : 'Battle speed 1x, tap for 2x',
+          label: speedIs2x ? l.battleSpeedTo1x : l.battleSpeedTo2x,
           button: true,
           child: GestureDetector(
             onTap: () {
@@ -392,7 +395,7 @@ class _BattleViewState extends State<BattleView> with SingleTickerProviderStateM
         ),
         const SizedBox(width: 8),
         Semantics(
-          label: auto ? 'Auto-Battle on' : 'Auto-Battle off',
+          label: auto ? l.battleAutoOn : l.battleAutoOff,
           button: true,
           child: GestureDetector(
             onTap: () {
@@ -583,7 +586,8 @@ class _CombatantBanner extends StatelessWidget {
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                         decoration: BoxDecoration(color: Colors.red, borderRadius: BorderRadius.circular(999)),
-                        child: const Text('BOSS', style: TextStyle(color: Colors.white, fontSize: 9, fontWeight: FontWeight.bold)),
+                        child: Text(AppLocalizations.of(context).battleBossBadge,
+                            style: const TextStyle(color: Colors.white, fontSize: 9, fontWeight: FontWeight.bold)),
                       ),
                     ],
                   ],
@@ -853,7 +857,7 @@ class _PartyMemberTile extends StatelessWidget {
                   icon: 'bolt.fill',
                   ready: combatant.activeSkill != null && combatant.skillReady && combatant.isAlive,
                   tint: dk_theme.Theme.softBlue,
-                  semanticLabel: 'Active Skill',
+                  semanticLabel: AppLocalizations.of(context).battleActiveSkillLabel,
                   onTap: (combatant.activeSkill != null && combatant.skillReady && combatant.isAlive) ? onSkill : null,
                 ),
                 const SizedBox(width: 8),
@@ -861,7 +865,7 @@ class _PartyMemberTile extends StatelessWidget {
                   icon: 'sparkles',
                   ready: combatant.ultimateReady && combatant.isAlive,
                   tint: dk_theme.Theme.gold,
-                  semanticLabel: 'Ultimate',
+                  semanticLabel: AppLocalizations.of(context).battleUltimateLabel,
                   onTap: (combatant.ultimateReady && combatant.isAlive) ? onUltimate : null,
                 ),
               ],
@@ -998,7 +1002,7 @@ class _OutcomeOverlay extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                isVictory ? 'Victory!' : 'Defeat...',
+                isVictory ? AppLocalizations.of(context).brVictoryTitle : AppLocalizations.of(context).brDefeatTitle,
                 style: TextStyle(color: isVictory ? dk_theme.Theme.gold : Colors.red, fontWeight: FontWeight.w900, fontSize: 34),
               ),
               const SizedBox(height: 20),
@@ -1007,7 +1011,7 @@ class _OutcomeOverlay extends StatelessWidget {
                 child: dk_theme.PrimaryButton(
                   tint: isVictory ? dk_theme.Theme.violet : Colors.grey,
                   onPressed: onContinue,
-                  child: const Text('Continue'),
+                  child: Text(AppLocalizations.of(context).commonContinue),
                 ),
               ),
             ],

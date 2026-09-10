@@ -1892,6 +1892,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{stars} of {max} stars'**
   String starRowSemantic(int stars, int max);
+
+  /// No description provided for @battleArenaStageLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Endless Trial · Floor {floor}'**
+  String battleArenaStageLabel(int floor);
+
+  /// No description provided for @battleWorldBossLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{world} · Boss'**
+  String battleWorldBossLabel(String world);
+
+  /// No description provided for @battleWorldStageLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{world} · {stage}/{total}'**
+  String battleWorldStageLabel(String world, int stage, int total);
+
+  /// No description provided for @battleSpeedTo1x.
+  ///
+  /// In en, this message translates to:
+  /// **'Battle speed 2x, tap for 1x'**
+  String get battleSpeedTo1x;
+
+  /// No description provided for @battleSpeedTo2x.
+  ///
+  /// In en, this message translates to:
+  /// **'Battle speed 1x, tap for 2x'**
+  String get battleSpeedTo2x;
+
+  /// No description provided for @battleAutoOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto-Battle on'**
+  String get battleAutoOn;
+
+  /// No description provided for @battleAutoOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto-Battle off'**
+  String get battleAutoOff;
+
+  /// No description provided for @battleBossBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'BOSS'**
+  String get battleBossBadge;
+
+  /// No description provided for @battleActiveSkillLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Active Skill'**
+  String get battleActiveSkillLabel;
+
+  /// No description provided for @battleUltimateLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Ultimate'**
+  String get battleUltimateLabel;
 }
 
 class _AppLocalizationsDelegate

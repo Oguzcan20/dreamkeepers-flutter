@@ -330,5 +330,16 @@
   "fusionAtMaxStars": "{name} hat die maximale Sternzahl",
   "fusionStarUpShowcase": "STERNAUFSTIEG!",
 
-  "starRowSemantic": "{stars} von {max} Sternen"
+  "starRowSemantic": "{stars} von {max} Sternen",
+
+  "battleArenaStageLabel": "Die Endlose Prüfung · Etage {floor}",
+  "battleWorldBossLabel": "{world} · Boss",
+  "battleWorldStageLabel": "{world} · {stage}/{total}",
+  "battleSpeedTo1x": "Kampftempo 2x, tippen für 1x",
+  "battleSpeedTo2x": "Kampftempo 1x, tippen für 2x",
+  "battleAutoOn": "Auto-Kampf an",
+  "battleAutoOff": "Auto-Kampf aus",
+  "battleBossBadge": "BOSS",
+  "battleActiveSkillLabel": "Aktive Fähigkeit",
+  "battleUltimateLabel": "Ultimativ"
 }

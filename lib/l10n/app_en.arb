@@ -419,5 +419,19 @@
   "fusionStarUpShowcase": "STAR UP!",
 
   "starRowSemantic": "{stars} of {max} stars",
-  "@starRowSemantic": { "placeholders": { "stars": { "type": "int" }, "max": { "type": "int" } } }
+  "@starRowSemantic": { "placeholders": { "stars": { "type": "int" }, "max": { "type": "int" } } },
+
+  "battleArenaStageLabel": "Endless Trial · Floor {floor}",
+  "@battleArenaStageLabel": { "placeholders": { "floor": { "type": "int" } } },
+  "battleWorldBossLabel": "{world} · Boss",
+  "@battleWorldBossLabel": { "placeholders": { "world": { "type": "String" } } },
+  "battleWorldStageLabel": "{world} · {stage}/{total}",
+  "@battleWorldStageLabel": { "placeholders": { "world": { "type": "String" }, "stage": { "type": "int" }, "total": { "type": "int" } } },
+  "battleSpeedTo1x": "Battle speed 2x, tap for 1x",
+  "battleSpeedTo2x": "Battle speed 1x, tap for 2x",
+  "battleAutoOn": "Auto-Battle on",
+  "battleAutoOff": "Auto-Battle off",
+  "battleBossBadge": "BOSS",
+  "battleActiveSkillLabel": "Active Skill",
+  "battleUltimateLabel": "Ultimate"
 }

@@ -1115,4 +1115,40 @@ class AppLocalizationsDe extends AppLocalizations {
   String starRowSemantic(int stars, int max) {
     return '$stars von $max Sternen';
   }
+
+  @override
+  String battleArenaStageLabel(int floor) {
+    return 'Die Endlose Prüfung · Etage $floor';
+  }
+
+  @override
+  String battleWorldBossLabel(String world) {
+    return '$world · Boss';
+  }
+
+  @override
+  String battleWorldStageLabel(String world, int stage, int total) {
+    return '$world · $stage/$total';
+  }
+
+  @override
+  String get battleSpeedTo1x => 'Kampftempo 2x, tippen für 1x';
+
+  @override
+  String get battleSpeedTo2x => 'Kampftempo 1x, tippen für 2x';
+
+  @override
+  String get battleAutoOn => 'Auto-Kampf an';
+
+  @override
+  String get battleAutoOff => 'Auto-Kampf aus';
+
+  @override
+  String get battleBossBadge => 'BOSS';
+
+  @override
+  String get battleActiveSkillLabel => 'Aktive Fähigkeit';
+
+  @override
+  String get battleUltimateLabel => 'Ultimativ';
 }
