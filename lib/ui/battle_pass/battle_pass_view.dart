@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../l10n/l10n.dart';
 import '../../platform/platform_service.dart';
 import '../../progression/battle_pass_system.dart';
 import '../../state/game_state.dart';
@@ -111,12 +112,13 @@ class _BattlePassViewState extends State<BattlePassView> {
   }
 
   Widget _header() {
+    final l = AppLocalizations.of(context);
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
       child: Row(
         children: [
           Semantics(
-            label: 'Back',
+            label: l.commonBack,
             button: true,
             child: GestureDetector(
               onTap: () => widget.onNavigate(const DreamHavenRoute()),
@@ -130,10 +132,10 @@ class _BattlePassViewState extends State<BattlePassView> {
           const Spacer(),
           Column(
             children: [
-              const Text('Season Pass', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+              Text(l.havenSeasonPass, style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
               const SizedBox(height: 2),
               Text(
-                'Tier ${_gameState.battlePassTier}/${BattlePassSystem.tierCount}',
+                l.bpTierProgress(_gameState.battlePassTier, BattlePassSystem.tierCount),
                 style: TextStyle(color: Colors.white.withValues(alpha: 0.5), fontSize: 11),
               ),
             ],
@@ -146,14 +148,14 @@ class _BattlePassViewState extends State<BattlePassView> {
                 icon: sfSymbol('circle.hexagongrid.fill'),
                 value: '${_gameState.save.gold}',
                 tint: dk_theme.Theme.gold,
-                semanticLabel: 'Gold',
+                semanticLabel: l.resGold,
               ),
               const SizedBox(height: 6),
               dk_theme.ResourcePill(
                 icon: sfSymbol('sparkles'),
                 value: '${_gameState.save.dreamGems}',
                 tint: dk_theme.Theme.violet,
-                semanticLabel: 'Dream Gems',
+                semanticLabel: l.resDreamGems,
               ),
             ],
           ),
@@ -166,6 +168,7 @@ class _BattlePassViewState extends State<BattlePassView> {
   /// player has right now, how much the next tier needs, and how to earn
   /// more — the tier number alone (in the header) wasn't explaining that.
   Widget _xpCard() {
+    final l = AppLocalizations.of(context);
     final progress = _gameState.battlePassProgress;
     final atMaxTier = _gameState.battlePassTier >= BattlePassSystem.tierCount;
     return dk_theme.GlassCard(
@@ -174,10 +177,10 @@ class _BattlePassViewState extends State<BattlePassView> {
         children: [
           Row(
             children: [
-              const Text('Season XP', style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600)),
+              Text(l.bpSeasonXp, style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600)),
               const Spacer(),
               Text(
-                atMaxTier ? 'Max Tier Reached' : '${progress.current}/${progress.needed} XP',
+                atMaxTier ? l.bpMaxTierReached : l.bpXpProgress(progress.current, progress.needed),
                 style: TextStyle(
                   color: dk_theme.Theme.gold,
                   fontSize: 12,
@@ -208,8 +211,7 @@ class _BattlePassViewState extends State<BattlePassView> {
           ),
           const SizedBox(height: 8),
           Text(
-            'Win battles to earn Season XP — bosses grant more. Each tier unlocks a Free reward automatically; tap the arrow '
-            'on a tier to claim it, or claim the matching Premium reward too once unlocked.',
+            l.bpXpBlurb,
             style: TextStyle(color: Colors.white.withValues(alpha: 0.55), fontSize: 11),
           ),
         ],
@@ -218,6 +220,7 @@ class _BattlePassViewState extends State<BattlePassView> {
   }
 
   Widget _premiumUpsellCard() {
+    final l = AppLocalizations.of(context);
     return Stack(
       children: [
         dk_theme.GlassCard(
@@ -227,11 +230,10 @@ class _BattlePassViewState extends State<BattlePassView> {
               children: [
                 Icon(sfSymbol('rosette'), size: 34, color: dk_theme.Theme.gold),
                 const SizedBox(height: 10),
-                const Text('Unlock Premium Track', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w700)),
+                Text(l.bpUnlockPremium, style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w700)),
                 const SizedBox(height: 10),
                 Text(
-                  "Claim the gold and gem rewards on every tier you've already reached — no rush, they stay unlocked "
-                  'for the rest of the season.',
+                  l.bpPremiumBlurb,
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.white.withValues(alpha: 0.65), fontSize: 12),
                 ),
@@ -390,7 +392,7 @@ class _RewardSlot extends StatelessWidget {
               ],
             ),
           ),
-          _stateIcon(),
+          _stateIcon(AppLocalizations.of(context)),
         ],
       ),
     );
@@ -416,7 +418,7 @@ class _RewardSlot extends StatelessWidget {
     );
   }
 
-  Widget _stateIcon() {
+  Widget _stateIcon(AppLocalizations l) {
     switch (state) {
       case _RewardState.claimed:
         return Icon(sfSymbol('checkmark.circle.fill'), color: Colors.green.withValues(alpha: 0.8), size: 20);
@@ -429,7 +431,7 @@ class _RewardSlot extends StatelessWidget {
         // claimable slot on screen shares it, so `find.bySemanticsLabel`
         // alone can't pick out a specific tier.
         return Semantics(
-          label: 'Claim tier reward',
+          label: l.bpClaimTierReward,
           button: true,
           child: GestureDetector(
             key: claimKey,

@@ -8,6 +8,7 @@
 import 'package:flutter/material.dart';
 
 import '../../combat/battle_engine.dart';
+import '../../l10n/l10n.dart';
 import '../../models/equipment.dart';
 import '../../state/game_state.dart';
 import '../../theme/sf_symbol_icons.dart';
@@ -29,6 +30,7 @@ class BattleResultView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     return Container(
       decoration: const BoxDecoration(gradient: dk_theme.Theme.background),
       child: SafeArea(
@@ -40,22 +42,22 @@ class BattleResultView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    _header(),
+                    _header(l),
                     const SizedBox(height: 20),
-                    if (_isVictory) _victoryBody() else _defeatBody(),
+                    if (_isVictory) _victoryBody(l) else _defeatBody(l),
                   ],
                 ),
               ),
             ),
-            _footer(),
+            _footer(l),
           ],
         ),
       ),
     );
   }
 
-  Widget _header() {
-    final title = !_isVictory ? 'Defeat...' : (summary.wasBoss ? 'Boss Defeated!' : 'Victory!');
+  Widget _header(AppLocalizations l) {
+    final title = !_isVictory ? l.brDefeatTitle : (summary.wasBoss ? l.brBossDefeatedTitle : l.brVictoryTitle);
     return Column(
       children: [
         Text(
@@ -64,21 +66,21 @@ class BattleResultView extends StatelessWidget {
         ),
         const SizedBox(height: 6),
         Text(
-          'Stage ${summary.stage}',
+          l.campaignStageLabel(summary.stage),
           style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 14, fontWeight: FontWeight.w600),
         ),
       ],
     );
   }
 
-  Widget _defeatBody() {
+  Widget _defeatBody(AppLocalizations l) {
     return _StaggeredCard(
       index: 0,
       child: dk_theme.GlassCard(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 8),
           child: Text(
-            'The team was overwhelmed. Level up or gear up before trying again.',
+            l.brDefeatBody,
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.white.withValues(alpha: 0.8), fontSize: 14),
           ),
@@ -87,14 +89,14 @@ class BattleResultView extends StatelessWidget {
     );
   }
 
-  Widget _victoryBody() {
-    final leftCards = <Widget>[_rewardsCard()];
-    if (summary.accountLevelUp != null) leftCards.add(_accountLevelUpCard(summary.accountLevelUp!));
+  Widget _victoryBody(AppLocalizations l) {
+    final leftCards = <Widget>[_rewardsCard(l)];
+    if (summary.accountLevelUp != null) leftCards.add(_accountLevelUpCard(l, summary.accountLevelUp!));
     if (summary.droppedEquipment != null) leftCards.add(_droppedEquipmentCard(summary.droppedEquipment!));
 
     final rightCards = <Widget>[];
-    if (summary.levelUps.isNotEmpty) rightCards.add(_levelUpsCard());
-    if (summary.newRecruit != null) rightCards.add(_newRecruitCard(summary.newRecruit!));
+    if (summary.levelUps.isNotEmpty) rightCards.add(_levelUpsCard(l));
+    if (summary.newRecruit != null) rightCards.add(_newRecruitCard(l, summary.newRecruit!));
 
     var index = 0;
     Widget stagger(Widget child) => _StaggeredCard(index: index++, child: child);
@@ -103,11 +105,11 @@ class BattleResultView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         if (summary.isPerfectClear) ...[
-          stagger(_perfectClearBanner()),
+          stagger(_perfectClearBanner(l)),
           const SizedBox(height: 14),
         ],
         if (summary.completedWorldNumber != null) ...[
-          stagger(_worldCompletedBanner(summary.completedWorldNumber!)),
+          stagger(_worldCompletedBanner(l, summary.completedWorldNumber!)),
           const SizedBox(height: 14),
         ],
         IntrinsicHeight(
@@ -134,14 +136,14 @@ class BattleResultView extends StatelessWidget {
     );
   }
 
-  Widget _perfectClearBanner() {
+  Widget _perfectClearBanner(AppLocalizations l) {
     return dk_theme.GlassCard(
       child: Row(
         children: [
           Icon(sfSymbol('star.fill'), color: dk_theme.Theme.gold, size: 22),
           const SizedBox(width: 10),
           Expanded(
-            child: Text('Perfect Clear! +${summary.perfectClearBonusGold} bonus Gold',
+            child: Text(l.brPerfectClear(summary.perfectClearBonusGold),
                 style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14)),
           ),
         ],
@@ -149,19 +151,19 @@ class BattleResultView extends StatelessWidget {
     );
   }
 
-  Widget _rewardsCard() {
+  Widget _rewardsCard(AppLocalizations l) {
     return dk_theme.GlassCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Rewards', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15)),
+          Text(l.brRewards, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15)),
           const SizedBox(height: 10),
-          _CountUpRow(icon: 'paid', tint: dk_theme.Theme.gold, label: 'Gold', value: summary.goldGained),
+          _CountUpRow(icon: 'paid', tint: dk_theme.Theme.gold, label: l.resGold, value: summary.goldGained),
           const SizedBox(height: 8),
-          _CountUpRow(icon: 'star.circle.fill', tint: dk_theme.Theme.softBlue, label: 'EXP', value: summary.expGained),
+          _CountUpRow(icon: 'star.circle.fill', tint: dk_theme.Theme.softBlue, label: l.brExp, value: summary.expGained),
           if (summary.gemsGained > 0) ...[
             const SizedBox(height: 8),
-            _CountUpRow(icon: 'sparkles', tint: dk_theme.Theme.violet, label: 'Dream Gems', value: summary.gemsGained),
+            _CountUpRow(icon: 'sparkles', tint: dk_theme.Theme.violet, label: l.resDreamGems, value: summary.gemsGained),
           ],
         ],
       ),
@@ -172,7 +174,7 @@ class BattleResultView extends StatelessWidget {
   /// got cleared for the first time, which is rarer and more significant
   /// than a single stage win, so it gets its own banner above the reward
   /// tiles rather than blending into the gem count alone.
-  Widget _worldCompletedBanner(int worldNumber) {
+  Widget _worldCompletedBanner(AppLocalizations l, int worldNumber) {
     return dk_theme.GlassCard(
       child: Row(
         children: [
@@ -183,9 +185,9 @@ class BattleResultView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text('World $worldNumber Completed!',
+                Text(l.brWorldCompleted(worldNumber),
                     style: TextStyle(color: dk_theme.Theme.violet, fontWeight: FontWeight.bold, fontSize: 14)),
-                Text('+${summary.gemsGained} Dream Gems',
+                Text(l.brGemsGained(summary.gemsGained),
                     style: TextStyle(color: Colors.white.withValues(alpha: 0.65), fontSize: 12)),
               ],
             ),
@@ -195,14 +197,14 @@ class BattleResultView extends StatelessWidget {
     );
   }
 
-  Widget _accountLevelUpCard(AccountLevelUp levelUp) {
+  Widget _accountLevelUpCard(AppLocalizations l, AccountLevelUp levelUp) {
     return dk_theme.GlassCard(
       child: Row(
         children: [
           Icon(sfSymbol('crown.fill'), color: dk_theme.Theme.gold, size: 22),
           const SizedBox(width: 10),
           Expanded(
-            child: Text('Account Level ${levelUp.oldLevel} → ${levelUp.newLevel}',
+            child: Text(l.brAccountLevel(levelUp.oldLevel, levelUp.newLevel),
                 style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14)),
           ),
         ],
@@ -249,12 +251,12 @@ class BattleResultView extends StatelessWidget {
     );
   }
 
-  Widget _levelUpsCard() {
+  Widget _levelUpsCard(AppLocalizations l) {
     return dk_theme.GlassCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Level Up!', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15)),
+          Text(l.brLevelUpTitle, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15)),
           const SizedBox(height: 10),
           for (final up in summary.levelUps) ...[
             Padding(
@@ -262,7 +264,7 @@ class BattleResultView extends StatelessWidget {
               child: Row(
                 children: [
                   Expanded(child: Text(up.name, style: const TextStyle(color: Colors.white, fontSize: 13), overflow: TextOverflow.ellipsis)),
-                  Text('Lv.${up.oldLevel} → ${up.newLevel}',
+                  Text(l.brLevelChange(up.oldLevel, up.newLevel),
                       style: TextStyle(color: dk_theme.Theme.gold, fontSize: 12, fontWeight: FontWeight.w600)),
                 ],
               ),
@@ -273,7 +275,7 @@ class BattleResultView extends StatelessWidget {
     );
   }
 
-  Widget _newRecruitCard(dynamic definition) {
+  Widget _newRecruitCard(AppLocalizations l, dynamic definition) {
     return dk_theme.GlassCard(
       child: Row(
         children: [
@@ -302,7 +304,7 @@ class BattleResultView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Text('New Recruit!', style: TextStyle(color: Colors.white, fontSize: 11)),
+                Text(l.brNewRecruit, style: const TextStyle(color: Colors.white, fontSize: 11)),
                 Text(definition.name as String, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14)),
               ],
             ),
@@ -312,25 +314,25 @@ class BattleResultView extends StatelessWidget {
     );
   }
 
-  Widget _footer() {
+  Widget _footer(AppLocalizations l) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(24, 0, 24, 20),
       child: _offersNextBattle
           ? Row(
               children: [
                 Expanded(
-                  child: dk_theme.PrimaryButton(tint: Colors.grey, onPressed: _goDreamHaven, child: const Text('Dream Haven')),
+                  child: dk_theme.PrimaryButton(tint: Colors.grey, onPressed: _goDreamHaven, child: Text(l.navDreamHaven)),
                 ),
                 const SizedBox(width: 12),
                 Expanded(
-                  child: dk_theme.PrimaryButton(tint: dk_theme.Theme.violet, onPressed: _goNextBattle, child: const Text('Next Battle')),
+                  child: dk_theme.PrimaryButton(tint: dk_theme.Theme.violet, onPressed: _goNextBattle, child: Text(l.brNextBattle)),
                 ),
               ],
             )
           : dk_theme.PrimaryButton(
               tint: _isVictory ? dk_theme.Theme.violet : Colors.grey,
               onPressed: _goDreamHaven,
-              child: Text(_isVictory ? 'Return to Dream Haven' : 'Continue'),
+              child: Text(_isVictory ? l.brReturnToDreamHaven : l.commonContinue),
             ),
     );
   }

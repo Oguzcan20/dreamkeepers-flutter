@@ -247,5 +247,30 @@
   "codexRoleMechanicHealer": "Das Ultimativ heilt das ganze Team auf einmal; die aktive Fähigkeit heilt den Verbündeten mit den wenigsten HP.",
   "codexRoleMechanicSupport": "Das Ultimativ erhöht den Angriff des ganzen Teams für den Rest des Kampfes; die aktive Fähigkeit erhöht den eigenen Angriff.",
   "codexRoleMechanicControl": "Das Ultimativ trifft den Gegner und betäubt ihn kurz; die aktive Fähigkeit ist ein schneller Schlag.",
-  "codexRoleMechanicGuardian": "Das Ultimativ schützt das ganze Team mit einem Schild; die aktive Fähigkeit trifft den Gegner und verlangsamt ihn."
+  "codexRoleMechanicGuardian": "Das Ultimativ schützt das ganze Team mit einem Schild; die aktive Fähigkeit trifft den Gegner und verlangsamt ihn.",
+
+  "brDefeatTitle": "Niederlage …",
+  "brBossDefeatedTitle": "Boss besiegt!",
+  "brVictoryTitle": "Sieg!",
+  "brDefeatBody": "Das Team wurde überwältigt. Steigere Level oder Ausrüstung, bevor du es erneut versuchst.",
+  "brPerfectClear": "Perfekter Sieg! +{gold} Bonus-Gold",
+  "brRewards": "Belohnungen",
+  "brExp": "EP",
+  "brWorldCompleted": "Welt {number} abgeschlossen!",
+  "brGemsGained": "+{count} Traum-Edelsteine",
+  "brAccountLevel": "Kontostufe {from} → {to}",
+  "brLevelUpTitle": "Stufenaufstieg!",
+  "brLevelChange": "Lv.{from} → {to}",
+  "brNewRecruit": "Neuzugang!",
+  "brNextBattle": "Nächster Kampf",
+  "brReturnToDreamHaven": "Zurück zum Traumhafen",
+
+  "bpTierProgress": "Stufe {tier}/{total}",
+  "bpSeasonXp": "Season-EP",
+  "bpMaxTierReached": "Höchste Stufe erreicht",
+  "bpXpProgress": "{current}/{needed} EP",
+  "bpXpBlurb": "Gewinne Kämpfe, um Season-EP zu verdienen — Bosse geben mehr. Jede Stufe schaltet automatisch eine kostenlose Belohnung frei; tippe auf den Pfeil einer Stufe, um sie abzuholen, oder hole die passende Premium-Belohnung ab, sobald sie freigeschaltet ist.",
+  "bpUnlockPremium": "Premium-Pfad freischalten",
+  "bpPremiumBlurb": "Hole die Gold- und Edelstein-Belohnungen jeder bereits erreichten Stufe ab — kein Zeitdruck, sie bleiben für den Rest der Season freigeschaltet.",
+  "bpClaimTierReward": "Stufenbelohnung abholen"
 }

@@ -1430,6 +1430,144 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The Ultimate shields the whole team; the Active Skill strikes the enemy and slows it.'**
   String get codexRoleMechanicGuardian;
+
+  /// No description provided for @brDefeatTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Defeat...'**
+  String get brDefeatTitle;
+
+  /// No description provided for @brBossDefeatedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Boss Defeated!'**
+  String get brBossDefeatedTitle;
+
+  /// No description provided for @brVictoryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Victory!'**
+  String get brVictoryTitle;
+
+  /// No description provided for @brDefeatBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The team was overwhelmed. Level up or gear up before trying again.'**
+  String get brDefeatBody;
+
+  /// No description provided for @brPerfectClear.
+  ///
+  /// In en, this message translates to:
+  /// **'Perfect Clear! +{gold} bonus Gold'**
+  String brPerfectClear(int gold);
+
+  /// No description provided for @brRewards.
+  ///
+  /// In en, this message translates to:
+  /// **'Rewards'**
+  String get brRewards;
+
+  /// No description provided for @brExp.
+  ///
+  /// In en, this message translates to:
+  /// **'EXP'**
+  String get brExp;
+
+  /// No description provided for @brWorldCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'World {number} Completed!'**
+  String brWorldCompleted(int number);
+
+  /// No description provided for @brGemsGained.
+  ///
+  /// In en, this message translates to:
+  /// **'+{count} Dream Gems'**
+  String brGemsGained(int count);
+
+  /// No description provided for @brAccountLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Account Level {from} → {to}'**
+  String brAccountLevel(int from, int to);
+
+  /// No description provided for @brLevelUpTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Level Up!'**
+  String get brLevelUpTitle;
+
+  /// No description provided for @brLevelChange.
+  ///
+  /// In en, this message translates to:
+  /// **'Lv.{from} → {to}'**
+  String brLevelChange(int from, int to);
+
+  /// No description provided for @brNewRecruit.
+  ///
+  /// In en, this message translates to:
+  /// **'New Recruit!'**
+  String get brNewRecruit;
+
+  /// No description provided for @brNextBattle.
+  ///
+  /// In en, this message translates to:
+  /// **'Next Battle'**
+  String get brNextBattle;
+
+  /// No description provided for @brReturnToDreamHaven.
+  ///
+  /// In en, this message translates to:
+  /// **'Return to Dream Haven'**
+  String get brReturnToDreamHaven;
+
+  /// No description provided for @bpTierProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Tier {tier}/{total}'**
+  String bpTierProgress(int tier, int total);
+
+  /// No description provided for @bpSeasonXp.
+  ///
+  /// In en, this message translates to:
+  /// **'Season XP'**
+  String get bpSeasonXp;
+
+  /// No description provided for @bpMaxTierReached.
+  ///
+  /// In en, this message translates to:
+  /// **'Max Tier Reached'**
+  String get bpMaxTierReached;
+
+  /// No description provided for @bpXpProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{current}/{needed} XP'**
+  String bpXpProgress(int current, int needed);
+
+  /// No description provided for @bpXpBlurb.
+  ///
+  /// In en, this message translates to:
+  /// **'Win battles to earn Season XP — bosses grant more. Each tier unlocks a Free reward automatically; tap the arrow on a tier to claim it, or claim the matching Premium reward too once unlocked.'**
+  String get bpXpBlurb;
+
+  /// No description provided for @bpUnlockPremium.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock Premium Track'**
+  String get bpUnlockPremium;
+
+  /// No description provided for @bpPremiumBlurb.
+  ///
+  /// In en, this message translates to:
+  /// **'Claim the gold and gem rewards on every tier you\'ve already reached — no rush, they stay unlocked for the rest of the season.'**
+  String get bpPremiumBlurb;
+
+  /// No description provided for @bpClaimTierReward.
+  ///
+  /// In en, this message translates to:
+  /// **'Claim tier reward'**
+  String get bpClaimTierReward;
 }
 
 class _AppLocalizationsDelegate

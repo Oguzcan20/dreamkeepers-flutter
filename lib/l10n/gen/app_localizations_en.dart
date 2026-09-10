@@ -823,4 +823,90 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get codexRoleMechanicGuardian =>
       'The Ultimate shields the whole team; the Active Skill strikes the enemy and slows it.';
+
+  @override
+  String get brDefeatTitle => 'Defeat...';
+
+  @override
+  String get brBossDefeatedTitle => 'Boss Defeated!';
+
+  @override
+  String get brVictoryTitle => 'Victory!';
+
+  @override
+  String get brDefeatBody =>
+      'The team was overwhelmed. Level up or gear up before trying again.';
+
+  @override
+  String brPerfectClear(int gold) {
+    return 'Perfect Clear! +$gold bonus Gold';
+  }
+
+  @override
+  String get brRewards => 'Rewards';
+
+  @override
+  String get brExp => 'EXP';
+
+  @override
+  String brWorldCompleted(int number) {
+    return 'World $number Completed!';
+  }
+
+  @override
+  String brGemsGained(int count) {
+    return '+$count Dream Gems';
+  }
+
+  @override
+  String brAccountLevel(int from, int to) {
+    return 'Account Level $from → $to';
+  }
+
+  @override
+  String get brLevelUpTitle => 'Level Up!';
+
+  @override
+  String brLevelChange(int from, int to) {
+    return 'Lv.$from → $to';
+  }
+
+  @override
+  String get brNewRecruit => 'New Recruit!';
+
+  @override
+  String get brNextBattle => 'Next Battle';
+
+  @override
+  String get brReturnToDreamHaven => 'Return to Dream Haven';
+
+  @override
+  String bpTierProgress(int tier, int total) {
+    return 'Tier $tier/$total';
+  }
+
+  @override
+  String get bpSeasonXp => 'Season XP';
+
+  @override
+  String get bpMaxTierReached => 'Max Tier Reached';
+
+  @override
+  String bpXpProgress(int current, int needed) {
+    return '$current/$needed XP';
+  }
+
+  @override
+  String get bpXpBlurb =>
+      'Win battles to earn Season XP — bosses grant more. Each tier unlocks a Free reward automatically; tap the arrow on a tier to claim it, or claim the matching Premium reward too once unlocked.';
+
+  @override
+  String get bpUnlockPremium => 'Unlock Premium Track';
+
+  @override
+  String get bpPremiumBlurb =>
+      'Claim the gold and gem rewards on every tier you\'ve already reached — no rush, they stay unlocked for the rest of the season.';
+
+  @override
+  String get bpClaimTierReward => 'Claim tier reward';
 }

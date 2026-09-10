@@ -826,4 +826,90 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get codexRoleMechanicGuardian =>
       'Das Ultimativ schützt das ganze Team mit einem Schild; die aktive Fähigkeit trifft den Gegner und verlangsamt ihn.';
+
+  @override
+  String get brDefeatTitle => 'Niederlage …';
+
+  @override
+  String get brBossDefeatedTitle => 'Boss besiegt!';
+
+  @override
+  String get brVictoryTitle => 'Sieg!';
+
+  @override
+  String get brDefeatBody =>
+      'Das Team wurde überwältigt. Steigere Level oder Ausrüstung, bevor du es erneut versuchst.';
+
+  @override
+  String brPerfectClear(int gold) {
+    return 'Perfekter Sieg! +$gold Bonus-Gold';
+  }
+
+  @override
+  String get brRewards => 'Belohnungen';
+
+  @override
+  String get brExp => 'EP';
+
+  @override
+  String brWorldCompleted(int number) {
+    return 'Welt $number abgeschlossen!';
+  }
+
+  @override
+  String brGemsGained(int count) {
+    return '+$count Traum-Edelsteine';
+  }
+
+  @override
+  String brAccountLevel(int from, int to) {
+    return 'Kontostufe $from → $to';
+  }
+
+  @override
+  String get brLevelUpTitle => 'Stufenaufstieg!';
+
+  @override
+  String brLevelChange(int from, int to) {
+    return 'Lv.$from → $to';
+  }
+
+  @override
+  String get brNewRecruit => 'Neuzugang!';
+
+  @override
+  String get brNextBattle => 'Nächster Kampf';
+
+  @override
+  String get brReturnToDreamHaven => 'Zurück zum Traumhafen';
+
+  @override
+  String bpTierProgress(int tier, int total) {
+    return 'Stufe $tier/$total';
+  }
+
+  @override
+  String get bpSeasonXp => 'Season-EP';
+
+  @override
+  String get bpMaxTierReached => 'Höchste Stufe erreicht';
+
+  @override
+  String bpXpProgress(int current, int needed) {
+    return '$current/$needed EP';
+  }
+
+  @override
+  String get bpXpBlurb =>
+      'Gewinne Kämpfe, um Season-EP zu verdienen — Bosse geben mehr. Jede Stufe schaltet automatisch eine kostenlose Belohnung frei; tippe auf den Pfeil einer Stufe, um sie abzuholen, oder hole die passende Premium-Belohnung ab, sobald sie freigeschaltet ist.';
+
+  @override
+  String get bpUnlockPremium => 'Premium-Pfad freischalten';
+
+  @override
+  String get bpPremiumBlurb =>
+      'Hole die Gold- und Edelstein-Belohnungen jeder bereits erreichten Stufe ab — kein Zeitdruck, sie bleiben für den Rest der Season freigeschaltet.';
+
+  @override
+  String get bpClaimTierReward => 'Stufenbelohnung abholen';
 }
