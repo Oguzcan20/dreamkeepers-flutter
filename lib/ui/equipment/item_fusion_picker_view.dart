@@ -101,6 +101,10 @@ class _ItemFusionPickerViewState extends State<ItemFusionPickerView> {
           elevation: 0,
           centerTitle: true,
           title: const Text('Fuse', style: TextStyle(color: Colors.white)),
+          // Default `leadingWidth` is `kToolbarHeight` (56) — too narrow for
+          // the "Close" label + `TextButton` padding, which wrapped it to
+          // "Clos\ne" on the landscape layout.
+          leadingWidth: 80,
           leading: TextButton(
             onPressed: () => Navigator.of(context).pop(),
             child: const Text('Close', style: TextStyle(color: Colors.white)),
