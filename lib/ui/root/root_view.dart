@@ -22,6 +22,8 @@ import '../bestiary/bestiary_view.dart';
 import '../campaign/campaign_view.dart';
 import '../codex/dreamkeeper_codex_view.dart';
 import '../dream_haven/dream_haven_view.dart';
+import '../dungeon/dungeon_result_view.dart';
+import '../dungeon/dungeon_view.dart';
 import '../main_menu/loading_view.dart';
 import '../main_menu/main_menu_view.dart';
 import '../onboarding/onboarding_view.dart';
@@ -135,6 +137,8 @@ class _RootViewState extends State<RootView> {
         SummonRoute() ||
         ArenaBattleRoute() ||
         ArenaResultRoute() ||
+        DungeonBattleRoute() ||
+        DungeonResultRoute() ||
         CodexRoute() =>
           false,
         _ => true,
@@ -384,6 +388,15 @@ class _RootViewState extends State<RootView> {
           gameState: state, floor: floor, onNavigate: _navigate),
       ArenaResultRoute(:final summary) =>
         ArenaResultView(summary: summary, onNavigate: _navigate),
+      DungeonRoute() => DungeonView(
+          gameState: state,
+          onNavigate: _navigate,
+          onFight: (dungeon) => _navigate(DungeonBattleRoute(dungeon)),
+        ),
+      DungeonBattleRoute(:final dungeon) => DungeonBattleScreen(
+          gameState: state, dungeon: dungeon, onNavigate: _navigate),
+      DungeonResultRoute(:final summary) =>
+        DungeonResultView(summary: summary, onNavigate: _navigate),
     };
   }
 }

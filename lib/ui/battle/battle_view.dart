@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 
 import '../../combat/battle_engine.dart';
 import '../../combat/combatant.dart';
+import '../../combat/dungeon_system.dart';
 import '../../data/world_catalog.dart';
 import '../../l10n/l10n.dart';
 import '../../models/element.dart';
@@ -63,6 +64,62 @@ class _BattleScreenState extends State<BattleScreen> {
       onFinished: (finishedEngine) {
         final summary = widget.gameState.applyBattleResult(finishedEngine);
         widget.onNavigate(BattleResultRoute(summary));
+      },
+    );
+  }
+}
+
+/// Owns the `BattleEngine` for one Dungeon run — same deferred,
+/// post-frame-callback pattern as [ArenaBattleScreen] (building the engine
+/// spends a Dungeon Key and calls `GameState.persist()`, which can't happen
+/// mid-build), carrying `dungeon` through to `BattleView.dungeonName` for the
+/// wave banner and to `GameState.applyDungeonBattleResult` on finish.
+class DungeonBattleScreen extends StatefulWidget {
+  final GameState gameState;
+  final DungeonId dungeon;
+  final ValueChanged<AppRoute> onNavigate;
+
+  const DungeonBattleScreen({super.key, required this.gameState, required this.dungeon, required this.onNavigate});
+
+  @override
+  State<DungeonBattleScreen> createState() => _DungeonBattleScreenState();
+}
+
+class _DungeonBattleScreenState extends State<DungeonBattleScreen> {
+  BattleEngine? _engine;
+  bool _resolved = false;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final engine = widget.gameState.makeDungeonBattleEngine(widget.dungeon);
+      if (mounted) {
+        setState(() {
+          _engine = engine;
+          _resolved = true;
+        });
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (!_resolved) return const SizedBox.shrink();
+    final engine = _engine;
+    if (engine == null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) widget.onNavigate(const DungeonRoute());
+      });
+      return const SizedBox.shrink();
+    }
+    return BattleView(
+      engine: engine,
+      gameState: widget.gameState,
+      dungeonName: DungeonSystem.displayName(widget.dungeon),
+      onFinished: (finishedEngine) {
+        final summary = widget.gameState.applyDungeonBattleResult(finishedEngine, widget.dungeon);
+        widget.onNavigate(DungeonResultRoute(summary));
       },
     );
   }
@@ -153,6 +210,10 @@ class BattleView extends StatefulWidget {
   /// text for the floor number instead. See Swift's own doc comment on this
   /// same field.
   final int? arenaFloor;
+
+  /// Non-nil only for a Dungeon run — swaps the banner text for the dungeon
+  /// name plus a "Wave X/Y" counter.
+  final String? dungeonName;
   final ValueChanged<BattleEngine> onFinished;
 
   const BattleView({
@@ -160,6 +221,7 @@ class BattleView extends StatefulWidget {
     required this.engine,
     required this.gameState,
     this.arenaFloor,
+    this.dungeonName,
     required this.onFinished,
   });
 
@@ -267,6 +329,9 @@ class _BattleViewState extends State<BattleView> with SingleTickerProviderStateM
 
   String _stageLabel() {
     final l = AppLocalizations.of(context);
+    if (widget.dungeonName != null) {
+      return l.dungeonBattleLabel(widget.dungeonName!, _engine.currentWave, _engine.totalWaves);
+    }
     if (widget.arenaFloor != null) return l.battleArenaStageLabel(widget.arenaFloor!);
     final world = WorldCatalog.world(_engine.stage);
     final stageInWorld = _engine.stage - world.firstStage + 1;
@@ -423,8 +488,8 @@ class _BattleViewState extends State<BattleView> with SingleTickerProviderStateM
   }
 
   Widget _enemyArea() {
-    if (_engine.enemyUnits.isEmpty) return const SizedBox.shrink();
-    final enemy = _engine.enemyUnits.first;
+    final enemy = _engine.activeEnemy;
+    if (enemy == null) return const SizedBox.shrink();
     return Padding(
       padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
       child: Align(
@@ -439,7 +504,7 @@ class _BattleViewState extends State<BattleView> with SingleTickerProviderStateM
 
   Widget _partyRow() {
     final units = _engine.playerUnits;
-    final enemyElement = _engine.enemyUnits.isNotEmpty ? _engine.enemyUnits.first.element : null;
+    final enemyElement = _engine.activeEnemy?.element;
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 6, 20, 12),
       child: Row(

@@ -1,3 +1,4 @@
+import '../../combat/dungeon_system.dart';
 import '../../state/game_state.dart';
 
 /// Every screen `RootView` can show. Mirrors Swift's `AppRoute` enum
@@ -78,4 +79,21 @@ class ArenaBattleRoute extends AppRoute {
 class ArenaResultRoute extends AppRoute {
   final ArenaBattleResultSummary summary;
   const ArenaResultRoute(this.summary);
+}
+
+/// Dungeon hub — a Flutter-only screen, no Swift-original counterpart.
+class DungeonRoute extends AppRoute {
+  const DungeonRoute();
+}
+
+class DungeonBattleRoute extends AppRoute {
+  /// Which dungeon to run — rides on the route the same way
+  /// [ArenaBattleRoute.floor] does.
+  final DungeonId dungeon;
+  const DungeonBattleRoute(this.dungeon);
+}
+
+class DungeonResultRoute extends AppRoute {
+  final DungeonBattleResultSummary summary;
+  const DungeonResultRoute(this.summary);
 }

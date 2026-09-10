@@ -3760,4 +3760,99 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get soulUpgradeOfflineDetail =>
       '+10% offline building rewards per rank';
+
+  @override
+  String get navDungeons => 'Dungeons';
+
+  @override
+  String get dungeonWhisperwoodName => 'Whisperwood';
+
+  @override
+  String get dungeonWhisperwoodBlurb =>
+      'A hushed forest of drifting spores. A gentle first delve.';
+
+  @override
+  String get dungeonGloomvaultName => 'Gloomvault';
+
+  @override
+  String get dungeonGloomvaultBlurb =>
+      'Moonlit halls beneath the old keep. The dark bites back.';
+
+  @override
+  String get dungeonStarspireName => 'Starspire';
+
+  @override
+  String get dungeonStarspireBlurb =>
+      'A tower that pierces the night sky. Only the strongest teams return.';
+
+  @override
+  String dungeonBossName(String name) {
+    return '$name Warden';
+  }
+
+  @override
+  String dungeonWaveEnemyName(int wave) {
+    return 'Wave $wave Pack';
+  }
+
+  @override
+  String blNextWave(String name) {
+    return 'A new wave closes in — $name!';
+  }
+
+  @override
+  String dungeonBattleLabel(String name, int current, int total) {
+    return '$name · Wave $current/$total';
+  }
+
+  @override
+  String get dungeonKeysTitle => 'Dungeon Keys';
+
+  @override
+  String get dungeonKeysBlurb => 'One key per run. Refills daily.';
+
+  @override
+  String get dungeonNoKeysTitle => 'Out of keys';
+
+  @override
+  String get dungeonNoKeysBody =>
+      'You\'ve used all your Dungeon Keys today. Come back tomorrow.';
+
+  @override
+  String dungeonRecommendedLevel(int level) {
+    return 'Recommended team Lv $level';
+  }
+
+  @override
+  String get dungeonRewardItem => 'Gear';
+
+  @override
+  String get dungeonEnter => 'Enter';
+
+  @override
+  String get dungeonFarmRun => 'Farm run';
+
+  @override
+  String get dungeonResultDefeat => 'Defeated';
+
+  @override
+  String get dungeonFirstClearTitle => 'First Clear!';
+
+  @override
+  String get dungeonFirstClearBody =>
+      'You cleared this dungeon for the first time — bonus reward granted.';
+
+  @override
+  String get dungeonFirstClearReward => 'FIRST-CLEAR REWARD';
+
+  @override
+  String get dungeonFarmReward => 'FARM REWARD';
+
+  @override
+  String get dungeonBackToHub => 'Back to Dungeons';
+
+  @override
+  String havenDungeonKeys(int remaining, int max) {
+    return '$remaining/$max keys';
+  }
 }

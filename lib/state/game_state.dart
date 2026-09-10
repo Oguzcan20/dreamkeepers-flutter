@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import '../combat/arena_system.dart';
 import '../combat/battle_engine.dart';
 import '../combat/combatant.dart';
+import '../combat/dungeon_system.dart';
 import '../combat/enemy_factory.dart';
 import '../combat/twin_bond.dart';
 import '../data/dreamkeeper_catalog.dart';
@@ -127,6 +128,30 @@ class ArenaBattleResultSummary {
     required this.isFirstClear,
     required this.isMilestoneFloor,
     required this.towerCleared,
+  });
+}
+
+/// Result of one Dungeon run — its own type (like `ArenaBattleResultSummary`)
+/// since a dungeon never touches campaign progress and adds its own concepts
+/// (`isFirstClear`, gem payout). A Flutter-only type, no Swift original.
+class DungeonBattleResultSummary {
+  final BattleOutcome outcome;
+  final DungeonId dungeon;
+  final int goldGained;
+  final int gemsGained;
+  final EquipmentItem? droppedEquipment;
+
+  /// True when this win was the dungeon's very first clear (big fixed
+  /// reward) rather than a repeat farm run (smaller reward).
+  final bool isFirstClear;
+
+  const DungeonBattleResultSummary({
+    required this.outcome,
+    required this.dungeon,
+    required this.goldGained,
+    required this.gemsGained,
+    this.droppedEquipment,
+    required this.isFirstClear,
   });
 }
 
@@ -1041,6 +1066,95 @@ class GameState extends ChangeNotifier {
     _save.soulUpgradeRanks[u.storageKey] = current + 1;
     persist();
     return true;
+  }
+
+  // MARK: - Dungeons
+
+  /// See `DungeonSystem` — a Flutter-only feature, no Swift original. Each
+  /// run is a 3-wave fight (2 mobs + boss, no heal between) costing one
+  /// Dungeon Key; first clears pay a big fixed reward, repeats a smaller farm.
+  List<DungeonId> get dungeons => DungeonSystem.all;
+
+  void _ensureDungeonKeyDayCurrent() {
+    final today = _startOfDay(DateTime.now());
+    if (_isSameDay(_save.dungeonKeyDay, today)) return;
+    _save.dungeonKeyDay = today;
+    _save.dungeonKeys = DungeonSystem.maxKeysPerDay;
+  }
+
+  int get dungeonKeysRemainingToday {
+    _ensureDungeonKeyDayCurrent();
+    return _save.dungeonKeys;
+  }
+
+  int get maxDungeonKeysPerDay => DungeonSystem.maxKeysPerDay;
+
+  bool isDungeonCleared(DungeonId id) => _save.clearedDungeonIDs.contains(id.storageKey);
+
+  bool canEnterDungeon(DungeonId id) => deployedTeam.isNotEmpty && dungeonKeysRemainingToday > 0;
+
+  /// Builds a Dungeon run against [id], spending one Dungeon Key up front.
+  BattleEngine? makeDungeonBattleEngine(DungeonId id) {
+    _ensureDungeonKeyDayCurrent();
+    if (deployedTeam.isEmpty || _save.dungeonKeys <= 0) return null;
+    final playerCombatants = _makePlayerCombatants(deployedTeam);
+    if (playerCombatants.isEmpty) return null;
+    final waves = DungeonSystem.waves(id);
+    if (waves.isEmpty) return null;
+    _save.dungeonKeys -= 1;
+    persist();
+    return BattleEngine(
+      playerUnits: playerCombatants,
+      enemy: waves.first,
+      stage: DungeonSystem.lootStage(id),
+      isBossStage: false,
+      playerDamageMultiplier: soulDamageMult,
+      reinforcements: waves.sublist(1),
+    );
+  }
+
+  /// Applies reward changes for a finished Dungeon run.
+  DungeonBattleResultSummary applyDungeonBattleResult(BattleEngine engine, DungeonId id) {
+    final outcome = engine.outcome ?? BattleOutcome.defeat;
+    final won = outcome == BattleOutcome.victory;
+    final firstClear = won && !isDungeonCleared(id);
+
+    var goldGained = 0;
+    var gemsGained = 0;
+    EquipmentItem? droppedEquipment;
+
+    if (won) {
+      _incrementMission(MissionID.winBattle);
+      if (firstClear) {
+        goldGained = _soulGold(DungeonSystem.firstClearGold(id));
+        gemsGained = DungeonSystem.firstClearGems(id);
+        final item = EquipmentFactory.item(
+          stage: DungeonSystem.lootStage(id),
+          rarity: DungeonSystem.firstClearRarity(id),
+        );
+        _save.inventory.add(item);
+        droppedEquipment = item;
+        _save.clearedDungeonIDs.add(id.storageKey);
+      } else {
+        goldGained = _soulGold(DungeonSystem.repeatGold(id));
+        final item = EquipmentFactory.randomItem(stage: DungeonSystem.lootStage(id), isBoss: false);
+        _save.inventory.add(item);
+        droppedEquipment = item;
+      }
+      _save.gold += goldGained;
+      _save.dreamGems += gemsGained;
+    }
+
+    persist();
+    checkAchievements();
+    return DungeonBattleResultSummary(
+      outcome: outcome,
+      dungeon: id,
+      goldGained: goldGained,
+      gemsGained: gemsGained,
+      droppedEquipment: droppedEquipment,
+      isFirstClear: firstClear,
+    );
   }
 
   // MARK: - Stage sweep

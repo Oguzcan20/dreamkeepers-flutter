@@ -422,6 +422,17 @@ class _DreamHavenViewState extends State<DreamHavenView> {
         accent: dk_theme.Theme.gold,
         onTap: () => widget.onNavigate(const ArenaRoute()),
       ),
+      _BuildingCard(
+        key: const Key('dream-haven-building-dungeon'),
+        icon: 'square.grid.3x3.fill',
+        name: l.navDungeons,
+        status: l.havenDungeonKeys(state.dungeonKeysRemainingToday, state.maxDungeonKeysPerDay),
+        isActive: true,
+        isReady: state.dungeonKeysRemainingToday > 0,
+        delay: 210,
+        accent: dk_theme.Theme.violet,
+        onTap: () => widget.onNavigate(const DungeonRoute()),
+      ),
       if (state.isRewardedAdAvailable)
         _BuildingCard(
           key: const Key('dream-haven-building-watchad'),

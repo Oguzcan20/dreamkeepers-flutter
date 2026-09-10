@@ -3789,4 +3789,100 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get soulUpgradeOfflineDetail =>
       '+10% Offline-Gebäudebelohnungen pro Rang';
+
+  @override
+  String get navDungeons => 'Schlünde';
+
+  @override
+  String get dungeonWhisperwoodName => 'Flüsterwald';
+
+  @override
+  String get dungeonWhisperwoodBlurb =>
+      'Ein stiller Wald aus treibenden Sporen. Ein sanfter erster Abstieg.';
+
+  @override
+  String get dungeonGloomvaultName => 'Düstergruft';
+
+  @override
+  String get dungeonGloomvaultBlurb =>
+      'Mondbeschienene Hallen unter der alten Feste. Die Dunkelheit beißt zurück.';
+
+  @override
+  String get dungeonStarspireName => 'Sternenspitze';
+
+  @override
+  String get dungeonStarspireBlurb =>
+      'Ein Turm, der den Nachthimmel durchbohrt. Nur die stärksten Teams kehren zurück.';
+
+  @override
+  String dungeonBossName(String name) {
+    return '$name-Wächter';
+  }
+
+  @override
+  String dungeonWaveEnemyName(int wave) {
+    return 'Welle-$wave-Meute';
+  }
+
+  @override
+  String blNextWave(String name) {
+    return 'Eine neue Welle rückt an – $name!';
+  }
+
+  @override
+  String dungeonBattleLabel(String name, int current, int total) {
+    return '$name · Welle $current/$total';
+  }
+
+  @override
+  String get dungeonKeysTitle => 'Dungeon-Schlüssel';
+
+  @override
+  String get dungeonKeysBlurb =>
+      'Ein Schlüssel pro Lauf. Füllt sich täglich auf.';
+
+  @override
+  String get dungeonNoKeysTitle => 'Keine Schlüssel mehr';
+
+  @override
+  String get dungeonNoKeysBody =>
+      'Du hast heute alle Dungeon-Schlüssel verbraucht. Komm morgen wieder.';
+
+  @override
+  String dungeonRecommendedLevel(int level) {
+    return 'Empfohlenes Team-Lv $level';
+  }
+
+  @override
+  String get dungeonRewardItem => 'Ausrüstung';
+
+  @override
+  String get dungeonEnter => 'Betreten';
+
+  @override
+  String get dungeonFarmRun => 'Farm-Lauf';
+
+  @override
+  String get dungeonResultDefeat => 'Besiegt';
+
+  @override
+  String get dungeonFirstClearTitle => 'Erster Abschluss!';
+
+  @override
+  String get dungeonFirstClearBody =>
+      'Du hast diesen Schlund zum ersten Mal abgeschlossen – Bonusbelohnung erhalten.';
+
+  @override
+  String get dungeonFirstClearReward => 'ERSTABSCHLUSS-BELOHNUNG';
+
+  @override
+  String get dungeonFarmReward => 'FARM-BELOHNUNG';
+
+  @override
+  String get dungeonBackToHub => 'Zurück zu den Schlünden';
+
+  @override
+  String havenDungeonKeys(int remaining, int max) {
+    return '$remaining/$max Schlüssel';
+  }
 }

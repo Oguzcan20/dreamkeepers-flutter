@@ -1,4 +1,5 @@
 import '../combat/arena_system.dart';
+import '../combat/dungeon_system.dart';
 import '../models/dreamkeeper.dart';
 import '../models/equipment.dart';
 import '../models/team.dart';
@@ -179,6 +180,16 @@ class GameSave {
   Map<String, int> soulUpgradeRanks;
   int rebirthCount;
 
+  /// Dungeons ("Schlünde") — a Flutter-only feature with no Swift-original
+  /// counterpart. `dungeonKeys` is today's remaining run attempts (refilled
+  /// to `DungeonSystem.maxKeysPerDay` when `dungeonKeyDay` rolls over);
+  /// `clearedDungeonIDs` holds the `DungeonId.name`s already first-cleared
+  /// (so a repeat run pays the smaller farm reward). Absent from older
+  /// saves — backfilled to a full key refill and no clears.
+  int dungeonKeys;
+  DateTime dungeonKeyDay;
+  Set<String> clearedDungeonIDs;
+
   GameSave({
     required this.playerLevel,
     required this.playerExp,
@@ -234,7 +245,13 @@ class GameSave {
     this.soulPoints = 0,
     Map<String, int>? soulUpgradeRanks,
     this.rebirthCount = 0,
+    int? dungeonKeys,
+    DateTime? dungeonKeyDay,
+    Set<String>? clearedDungeonIDs,
   })  : soulUpgradeRanks = soulUpgradeRanks ?? {},
+        dungeonKeys = dungeonKeys ?? DungeonSystem.maxKeysPerDay,
+        dungeonKeyDay = dungeonKeyDay ?? _distantPast,
+        clearedDungeonIDs = clearedDungeonIDs ?? {},
         dailyMissionSelectedIDs = dailyMissionSelectedIDs ?? [],
         weeklyMissionWeek = weeklyMissionWeek ?? _distantPast,
         weeklyMissionProgress = weeklyMissionProgress ?? {},
@@ -332,6 +349,9 @@ class GameSave {
         'soulPoints': soulPoints,
         'soulUpgradeRanks': soulUpgradeRanks,
         'rebirthCount': rebirthCount,
+        'dungeonKeys': dungeonKeys,
+        'dungeonKeyDay': _dateToJson(dungeonKeyDay),
+        'clearedDungeonIDs': clearedDungeonIDs.toList(),
       };
 
   /// Backfills missing keys with the same defaults the Swift
@@ -433,6 +453,11 @@ class GameSave {
       soulUpgradeRanks:
           (json['soulUpgradeRanks'] as Map<String, dynamic>?)?.map((k, v) => MapEntry(k, v as int)) ?? {},
       rebirthCount: json['rebirthCount'] as int? ?? 0,
+      // Missing keys mean this save predates the Dungeon system — start with
+      // a full key refill and no first-clears recorded.
+      dungeonKeys: json['dungeonKeys'] as int? ?? DungeonSystem.maxKeysPerDay,
+      dungeonKeyDay: _dateFromJson(json['dungeonKeyDay'], _distantPast),
+      clearedDungeonIDs: (json['clearedDungeonIDs'] as List?)?.cast<String>().toSet() ?? {},
     );
   }
 }

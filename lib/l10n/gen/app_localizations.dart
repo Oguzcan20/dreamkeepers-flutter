@@ -6530,6 +6530,162 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'+10% offline building rewards per rank'**
   String get soulUpgradeOfflineDetail;
+
+  /// No description provided for @navDungeons.
+  ///
+  /// In en, this message translates to:
+  /// **'Dungeons'**
+  String get navDungeons;
+
+  /// No description provided for @dungeonWhisperwoodName.
+  ///
+  /// In en, this message translates to:
+  /// **'Whisperwood'**
+  String get dungeonWhisperwoodName;
+
+  /// No description provided for @dungeonWhisperwoodBlurb.
+  ///
+  /// In en, this message translates to:
+  /// **'A hushed forest of drifting spores. A gentle first delve.'**
+  String get dungeonWhisperwoodBlurb;
+
+  /// No description provided for @dungeonGloomvaultName.
+  ///
+  /// In en, this message translates to:
+  /// **'Gloomvault'**
+  String get dungeonGloomvaultName;
+
+  /// No description provided for @dungeonGloomvaultBlurb.
+  ///
+  /// In en, this message translates to:
+  /// **'Moonlit halls beneath the old keep. The dark bites back.'**
+  String get dungeonGloomvaultBlurb;
+
+  /// No description provided for @dungeonStarspireName.
+  ///
+  /// In en, this message translates to:
+  /// **'Starspire'**
+  String get dungeonStarspireName;
+
+  /// No description provided for @dungeonStarspireBlurb.
+  ///
+  /// In en, this message translates to:
+  /// **'A tower that pierces the night sky. Only the strongest teams return.'**
+  String get dungeonStarspireBlurb;
+
+  /// No description provided for @dungeonBossName.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} Warden'**
+  String dungeonBossName(String name);
+
+  /// No description provided for @dungeonWaveEnemyName.
+  ///
+  /// In en, this message translates to:
+  /// **'Wave {wave} Pack'**
+  String dungeonWaveEnemyName(int wave);
+
+  /// No description provided for @blNextWave.
+  ///
+  /// In en, this message translates to:
+  /// **'A new wave closes in — {name}!'**
+  String blNextWave(String name);
+
+  /// No description provided for @dungeonBattleLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} · Wave {current}/{total}'**
+  String dungeonBattleLabel(String name, int current, int total);
+
+  /// No description provided for @dungeonKeysTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Dungeon Keys'**
+  String get dungeonKeysTitle;
+
+  /// No description provided for @dungeonKeysBlurb.
+  ///
+  /// In en, this message translates to:
+  /// **'One key per run. Refills daily.'**
+  String get dungeonKeysBlurb;
+
+  /// No description provided for @dungeonNoKeysTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Out of keys'**
+  String get dungeonNoKeysTitle;
+
+  /// No description provided for @dungeonNoKeysBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve used all your Dungeon Keys today. Come back tomorrow.'**
+  String get dungeonNoKeysBody;
+
+  /// No description provided for @dungeonRecommendedLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Recommended team Lv {level}'**
+  String dungeonRecommendedLevel(int level);
+
+  /// No description provided for @dungeonRewardItem.
+  ///
+  /// In en, this message translates to:
+  /// **'Gear'**
+  String get dungeonRewardItem;
+
+  /// No description provided for @dungeonEnter.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter'**
+  String get dungeonEnter;
+
+  /// No description provided for @dungeonFarmRun.
+  ///
+  /// In en, this message translates to:
+  /// **'Farm run'**
+  String get dungeonFarmRun;
+
+  /// No description provided for @dungeonResultDefeat.
+  ///
+  /// In en, this message translates to:
+  /// **'Defeated'**
+  String get dungeonResultDefeat;
+
+  /// No description provided for @dungeonFirstClearTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'First Clear!'**
+  String get dungeonFirstClearTitle;
+
+  /// No description provided for @dungeonFirstClearBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You cleared this dungeon for the first time — bonus reward granted.'**
+  String get dungeonFirstClearBody;
+
+  /// No description provided for @dungeonFirstClearReward.
+  ///
+  /// In en, this message translates to:
+  /// **'FIRST-CLEAR REWARD'**
+  String get dungeonFirstClearReward;
+
+  /// No description provided for @dungeonFarmReward.
+  ///
+  /// In en, this message translates to:
+  /// **'FARM REWARD'**
+  String get dungeonFarmReward;
+
+  /// No description provided for @dungeonBackToHub.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to Dungeons'**
+  String get dungeonBackToHub;
+
+  /// No description provided for @havenDungeonKeys.
+  ///
+  /// In en, this message translates to:
+  /// **'{remaining}/{max} keys'**
+  String havenDungeonKeys(int remaining, int max);
 }
 
 class _AppLocalizationsDelegate

@@ -95,6 +95,26 @@ class BattleEngine extends ChangeNotifier {
   /// `1.0` for battles built without one (tests, older call sites).
   final double playerDamageMultiplier;
 
+  /// Dungeon runs only — enemies fought one after another in this same
+  /// battle once the current one falls, with player HP/energy carried over
+  /// (no heal between waves). Empty for every ordinary single-enemy fight.
+  final List<Combatant> _pendingWaves;
+
+  /// 1-based index of the wave currently being fought, and the run's total
+  /// wave count. Both are `1` for an ordinary single-enemy battle.
+  int _currentWave = 1;
+  int get currentWave => _currentWave;
+  int get totalWaves => _currentWave + _pendingWaves.length;
+
+  /// The enemy the player is currently up against — the first still-alive
+  /// enemy (dungeon runs keep felled earlier-wave bodies in [combatants]).
+  Combatant? get activeEnemy {
+    for (final c in combatants) {
+      if (!c.isPlayer && c.isAlive) return c;
+    }
+    return enemyUnits.isEmpty ? null : enemyUnits.last;
+  }
+
   /// Injected so tests can make damage deterministic; defaults to a small
   /// +/-10% swing for UI "liveliness".
   double Function() varianceProvider;
@@ -114,8 +134,10 @@ class BattleEngine extends ChangeNotifier {
     required this.stage,
     required this.isBossStage,
     this.playerDamageMultiplier = 1.0,
+    List<Combatant> reinforcements = const [],
     double Function()? varianceProvider,
   })  : combatants = [...playerUnits, enemy],
+        _pendingWaves = [...reinforcements],
         varianceProvider = varianceProvider ?? _defaultVariance;
 
   List<Combatant> get playerUnits => combatants.where((c) => c.isPlayer).toList();
@@ -520,7 +542,17 @@ class BattleEngine extends ChangeNotifier {
   // MARK: - Outcome
 
   void _resolveOutcomeIfNeeded() {
+    if (outcome != null) return;
     if (enemyUnits.every((c) => !c.isAlive)) {
+      // Dungeon run: send in the next wave instead of ending the battle.
+      // Player HP/energy/cooldowns carry over untouched.
+      if (_pendingWaves.isNotEmpty) {
+        final next = _pendingWaves.removeAt(0);
+        combatants.add(next);
+        _currentWave += 1;
+        _appendLog(L.blNextWave(next.name));
+        return;
+      }
       outcome = BattleOutcome.victory;
       _appendLog(L.blVictory);
     } else if (playerUnits.every((c) => !c.isAlive)) {

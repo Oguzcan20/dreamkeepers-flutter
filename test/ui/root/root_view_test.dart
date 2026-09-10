@@ -161,6 +161,9 @@ void main() {
     // (matching Swift) isn't on the global-home-button exclusion list —
     // its own header reads "The Endless Trial", not "Arena".
     await _tapAndReturnToRealScreen(tester, const Key('dream-haven-building-arena'), 'The Endless Trial');
+    // `DungeonView` — a Flutter-only screen, no Swift original; not on the
+    // global-home-button exclusion list, header reads "Dungeons".
+    await _tapAndReturnToRealScreen(tester, const Key('dream-haven-building-dungeon'), 'Dungeons');
     // `SettingsView` is a real screen now too (not a `_ComingSoonScreen`),
     // and (matching Swift) isn't on the global-home-button exclusion list.
     await _tapAndReturnToRealScreen(tester, const Key('dream-haven-header-settings'), 'Settings');
@@ -292,6 +295,46 @@ void main() {
     // Arena Result is also on the exclusion list.
     expect(find.byKey(const Key('global-home-button')), findsNothing);
     expect(find.textContaining('Floor 1'), findsOneWidget);
+
+    await tester.tap(find.text('Dream Haven'));
+    await _settle(tester);
+
+    expect(find.text('Dream Haven'), findsOneWidget);
+    expect(find.byKey(const Key('global-home-button')), findsNothing);
+  });
+
+  testWidgets(
+      'entering a dungeon from the hub reaches Dungeon Battle, then Dungeon Result, then Dream Haven',
+      (tester) async {
+    await _bootedToDreamHaven(tester);
+
+    await tester.tap(find.byKey(const Key('dream-haven-building-dungeon')));
+    await _settle(tester);
+    expect(find.text('Dungeons'), findsOneWidget);
+
+    // A brand new save has a deployed starter and a full key allowance, so
+    // the first dungeon's Enter button is live with no dialog.
+    await tester.tap(find.text('Enter').first);
+    await _settle(tester);
+
+    // Dungeon Battle reuses the shared `BattleView` — on the
+    // `showsGlobalHomeButton` exclusion list like every other battle route.
+    expect(find.byKey(const Key('global-home-button')), findsNothing);
+
+    var resolved = false;
+    for (var i = 0; i < 600 && !resolved; i++) {
+      await tester.pump(const Duration(milliseconds: 100));
+      resolved = find.text('Continue').evaluate().isNotEmpty;
+    }
+    expect(resolved, isTrue, reason: 'dungeon battle never resolved within the polling budget');
+
+    await tester.tap(find.text('Continue'));
+    await _settle(tester);
+
+    // Dungeon Result is also on the exclusion list; its footer returns to
+    // the hub or to Dream Haven.
+    expect(find.byKey(const Key('global-home-button')), findsNothing);
+    expect(find.text('Dream Haven'), findsOneWidget);
 
     await tester.tap(find.text('Dream Haven'));
     await _settle(tester);
