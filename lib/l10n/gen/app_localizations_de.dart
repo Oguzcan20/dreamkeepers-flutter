@@ -1247,4 +1247,1016 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get arenaZoneDiamond => 'Diamantgipfel';
+
+  @override
+  String get dk_ember_fox_name => 'Glutfuchs';
+
+  @override
+  String get dk_ember_fox_flavor =>
+      'Geboren aus dem letzten Flackern einer Kerze vor der Morgendämmerung.';
+
+  @override
+  String get dk_ember_fox_ult => 'Flammensprung';
+
+  @override
+  String get dk_ember_fox_ultDesc =>
+      'Ein lodernder Satz, der das Ziel versengt.';
+
+  @override
+  String get dk_ember_fox_skill => 'Glutbiss';
+
+  @override
+  String get dk_ember_fox_skillDesc =>
+      'Ein schneller, sengender Biss nach dem nächsten Feind.';
+
+  @override
+  String get dk_ember_fox_pass => 'Entfachter Geist';
+
+  @override
+  String get dk_ember_fox_passDesc => 'Im Kampf etwas mutiger.';
+
+  @override
+  String get dk_moon_hare_name => 'Mondhase';
+
+  @override
+  String get dk_moon_hare_flavor =>
+      'Folgt Reisenden, die unter freiem Himmel einschlafen.';
+
+  @override
+  String get dk_moon_hare_ult => 'Mondlicht-Segen';
+
+  @override
+  String get dk_moon_hare_ultDesc =>
+      'Badet das ganze Team in heilendem Mondlicht.';
+
+  @override
+  String get dk_moon_hare_skill => 'Sanfte Berührung';
+
+  @override
+  String get dk_moon_hare_skillDesc =>
+      'Ein sanfter Mondlichtpuls für den Verbündeten, der ihn am nötigsten braucht.';
+
+  @override
+  String get dk_moon_hare_pass => 'Sanftes Leuchten';
+
+  @override
+  String get dk_moon_hare_passDesc => 'Eine ruhige, festigende Gegenwart.';
+
+  @override
+  String get dk_forest_spirit_name => 'Waldgeist';
+
+  @override
+  String get dk_forest_spirit_flavor =>
+      'Gewachsen aus dem Traum eines vergessenen Gartens.';
+
+  @override
+  String get dk_forest_spirit_ult => 'Grünender Chor';
+
+  @override
+  String get dk_forest_spirit_ultDesc =>
+      'Sammelt das Team mit einem Schub an Lebenskraft.';
+
+  @override
+  String get dk_forest_spirit_skill => 'Dornenschutz';
+
+  @override
+  String get dk_forest_spirit_skillDesc =>
+      'Hüllt sich in zähe Dornen und wird kühner.';
+
+  @override
+  String get dk_forest_spirit_pass => 'Verwurzelte Ruhe';
+
+  @override
+  String get dk_forest_spirit_passDesc => 'Fester Stand, fester Sinn.';
+
+  @override
+  String get dk_crystal_golem_name => 'Kristallgolem';
+
+  @override
+  String get dk_crystal_golem_flavor =>
+      'Entstanden, wo ein Gezeitentraum mitten in der Welle erstarrte.';
+
+  @override
+  String get dk_crystal_golem_ult => 'Bollwerk-Schlag';
+
+  @override
+  String get dk_crystal_golem_ultDesc =>
+      'Ein bodenerschütternder Hieb, der den Feind ins Wanken bringt.';
+
+  @override
+  String get dk_crystal_golem_skill => 'Schildschlag';
+
+  @override
+  String get dk_crystal_golem_skillDesc =>
+      'Ein schwerer, aber gemächlicher Hieb.';
+
+  @override
+  String get dk_crystal_golem_pass => 'Kristallhaut';
+
+  @override
+  String get dk_crystal_golem_passDesc =>
+      'Bricht einen Teil der einkommenden Wucht.';
+
+  @override
+  String get dk_star_wolf_name => 'Sternenwolf';
+
+  @override
+  String get dk_star_wolf_flavor =>
+      'Läuft die Pfade zwischen fallenden Sternen.';
+
+  @override
+  String get dk_star_wolf_ult => 'Sternenfall-Heulen';
+
+  @override
+  String get dk_star_wolf_ultDesc =>
+      'Ein durchdringendes Heulen, das den Feind an Ort und Stelle einfriert.';
+
+  @override
+  String get dk_star_wolf_skill => 'Schneller Biss';
+
+  @override
+  String get dk_star_wolf_skillDesc =>
+      'Ein rascher Schnapper, bevor der Feind reagieren kann.';
+
+  @override
+  String get dk_star_wolf_pass => 'Nachtsicht';
+
+  @override
+  String get dk_star_wolf_passDesc => 'Verfehlt im Dunkeln nie einen Schritt.';
+
+  @override
+  String get dk_thorn_viper_name => 'Dornenviper';
+
+  @override
+  String get dk_thorn_viper_flavor =>
+      'Windet sich durch Dornen, die nur in unruhigen Träumen wachsen.';
+
+  @override
+  String get dk_thorn_viper_ult => 'Giftzahn';
+
+  @override
+  String get dk_thorn_viper_ultDesc =>
+      'Ein präziser Stoß, durchsetzt mit Traumdorn-Gift.';
+
+  @override
+  String get dk_thorn_viper_skill => 'Durchstich';
+
+  @override
+  String get dk_thorn_viper_skillDesc =>
+      'Ein stechender Hieb auf die Schwachstellen.';
+
+  @override
+  String get dk_thorn_viper_pass => 'Giftschicht';
+
+  @override
+  String get dk_thorn_viper_passDesc =>
+      'Zähne, die nie ganz aufhören zu brennen.';
+
+  @override
+  String get dk_tide_serpent_name => 'Gezeitenschlange';
+
+  @override
+  String get dk_tide_serpent_flavor =>
+      'Gleitet zwischen Wellen hindurch, zu schnell für wache Augen.';
+
+  @override
+  String get dk_tide_serpent_ult => 'Sog-Windung';
+
+  @override
+  String get dk_tide_serpent_ultDesc =>
+      'Umschlingt den Feind mit einer zermalmenden Wasserspirale.';
+
+  @override
+  String get dk_tide_serpent_skill => 'Peitschenwindung';
+
+  @override
+  String get dk_tide_serpent_skillDesc =>
+      'Ein plötzlicher Schlag des gewundenen Körpers.';
+
+  @override
+  String get dk_tide_serpent_pass => 'Glitschige Schuppen';
+
+  @override
+  String get dk_tide_serpent_passDesc =>
+      'Schwer festzunageln, schwerer zu fangen.';
+
+  @override
+  String get dk_ember_phoenix_name => 'Glutphönix';
+
+  @override
+  String get dk_ember_phoenix_flavor =>
+      'Erhebt sich neu, jedes Mal wenn ein Träumer nicht aufgeben will.';
+
+  @override
+  String get dk_ember_phoenix_ult => 'Wiedergeburts-Flamme';
+
+  @override
+  String get dk_ember_phoenix_ultDesc =>
+      'Eine lodernde Wiedergeburt, die jede Wunde im Team heilt.';
+
+  @override
+  String get dk_ember_phoenix_skill => 'Warme Feder';
+
+  @override
+  String get dk_ember_phoenix_skillDesc =>
+      'Lässt eine einzelne glutwarme Feder über einem Verbündeten fallen.';
+
+  @override
+  String get dk_ember_phoenix_pass => 'Ewige Glut';
+
+  @override
+  String get dk_ember_phoenix_passDesc =>
+      'Eine Flamme, die sich weigert, als letzte zu erlöschen.';
+
+  @override
+  String get dk_lunar_owl_name => 'Mondeule';
+
+  @override
+  String get dk_lunar_owl_flavor =>
+      'Wacht von Ästen aus, die nur bei Vollmond existieren.';
+
+  @override
+  String get dk_lunar_owl_ult => 'Lautlose Klauen';
+
+  @override
+  String get dk_lunar_owl_ultDesc =>
+      'Ein geräuschloser Sturzflug, der das Ziel taumeln lässt.';
+
+  @override
+  String get dk_lunar_owl_skill => 'Schneller Hieb';
+
+  @override
+  String get dk_lunar_owl_skillDesc => 'Ein präziser Schlag von oben.';
+
+  @override
+  String get dk_lunar_owl_pass => 'Scharfe Augen';
+
+  @override
+  String get dk_lunar_owl_passDesc => 'Sieht jede Lücke, bevor sie entsteht.';
+
+  @override
+  String get dk_astral_sentinel_name => 'Astralwächter';
+
+  @override
+  String get dk_astral_sentinel_flavor =>
+      'Hält Wache an der Grenze zwischen Traum und Sternen.';
+
+  @override
+  String get dk_astral_sentinel_ult => 'Sternwärts-Bollwerk';
+
+  @override
+  String get dk_astral_sentinel_ultDesc =>
+      'Ruft eine Wand aus Sternenlicht herab, um das Team zu schützen.';
+
+  @override
+  String get dk_astral_sentinel_skill => 'Wappnen';
+
+  @override
+  String get dk_astral_sentinel_skillDesc =>
+      'Stellt sich fest hin und schlägt zurück.';
+
+  @override
+  String get dk_astral_sentinel_pass => 'Astralschutz';
+
+  @override
+  String get dk_astral_sentinel_passDesc =>
+      'Ein leises Schimmern, das das Schlimmste ablenkt.';
+
+  @override
+  String get dk_coral_warden_name => 'Korallenwächter';
+
+  @override
+  String get dk_coral_warden_flavor =>
+      'Gewachsen aus einem Riff, das nur im Tiefschlaf blüht.';
+
+  @override
+  String get dk_coral_warden_ult => 'Gezeitenchor';
+
+  @override
+  String get dk_coral_warden_ultDesc =>
+      'Eine rollende Welle der Ermutigung überspült das Team.';
+
+  @override
+  String get dk_coral_warden_skill => 'Ermutigen';
+
+  @override
+  String get dk_coral_warden_skillDesc =>
+      'Ein festigendes Wort, das die Entschlossenheit stärkt.';
+
+  @override
+  String get dk_coral_warden_pass => 'Riffwache';
+
+  @override
+  String get dk_coral_warden_passDesc =>
+      'Wurde zäh, wo die Strömungen am rauesten sind.';
+
+  @override
+  String get dk_cinder_sprite_name => 'Aschekobold';
+
+  @override
+  String get dk_cinder_sprite_flavor =>
+      'Ein Funke, der nie ganz erlischt, egal wie dunkel es wird.';
+
+  @override
+  String get dk_cinder_sprite_ult => 'Funkensammlung';
+
+  @override
+  String get dk_cinder_sprite_ultDesc =>
+      'Ein Schauer warmer Funken hebt die Stimmung des ganzen Teams.';
+
+  @override
+  String get dk_cinder_sprite_skill => 'Warmer Funkenstoß';
+
+  @override
+  String get dk_cinder_sprite_skillDesc =>
+      'Ein freundlicher Funke, der die Stimmung hebt.';
+
+  @override
+  String get dk_cinder_sprite_pass => 'Warmer Funke';
+
+  @override
+  String get dk_cinder_sprite_passDesc =>
+      'Ein Funke, der nie ganz erlischt, egal wie dunkel es wird.';
+
+  @override
+  String get dk_flicker_pup_name => 'Flackerwelpe';
+
+  @override
+  String get dk_flicker_pup_flavor =>
+      'Geschlüpft aus dem letzten Funken eines Traums, der fast erloschen wäre.';
+
+  @override
+  String get dk_flicker_pup_ult => 'Kerzensturm';
+
+  @override
+  String get dk_flicker_pup_ultDesc =>
+      'Ein tollpatschiger, aber eifriger Ansturm, umhüllt von flackernder Flamme.';
+
+  @override
+  String get dk_flicker_pup_skill => 'Warmer Biss';
+
+  @override
+  String get dk_flicker_pup_skillDesc =>
+      'Ein spielerischer Biss, heißer als er aussieht.';
+
+  @override
+  String get dk_flicker_pup_pass => 'Rastloser Funke';
+
+  @override
+  String get dk_flicker_pup_passDesc =>
+      'Zu aufgeregt, um je lange still zu halten.';
+
+  @override
+  String get dk_ripple_minnow_name => 'Kräuselfischchen';
+
+  @override
+  String get dk_ripple_minnow_flavor =>
+      'Schwimmt im flachen Teil von Träumen, zu klein für alles Größere.';
+
+  @override
+  String get dk_ripple_minnow_ult => 'Schwarmwoge';
+
+  @override
+  String get dk_ripple_minnow_ultDesc =>
+      'Ein Ansturm kleiner Fische, der das ganze Team festigt.';
+
+  @override
+  String get dk_ripple_minnow_skill => 'Anstupsen';
+
+  @override
+  String get dk_ripple_minnow_skillDesc =>
+      'Ein sanfter Schubs in die richtige Richtung.';
+
+  @override
+  String get dk_ripple_minnow_pass => 'Sicherheit in der Menge';
+
+  @override
+  String get dk_ripple_minnow_passDesc =>
+      'Nie wirklich allein, auch wenn es so aussieht.';
+
+  @override
+  String get dk_sprout_cub_name => 'Sprossjunges';
+
+  @override
+  String get dk_sprout_cub_flavor =>
+      'Ein Keimlingstraum, der beschloss, Klauen statt Blätter zu treiben.';
+
+  @override
+  String get dk_sprout_cub_ult => 'Sture Wurzel';
+
+  @override
+  String get dk_sprout_cub_ultDesc =>
+      'Verankert sich am Boden und weigert sich schlicht, sich zu bewegen.';
+
+  @override
+  String get dk_sprout_cub_skill => 'Kopfstoß';
+
+  @override
+  String get dk_sprout_cub_skillDesc => 'Ein ernster, tollpatschiger Ansturm.';
+
+  @override
+  String get dk_sprout_cub_pass => 'Dicke Borke';
+
+  @override
+  String get dk_sprout_cub_passDesc =>
+      'Jung, aber schon zäher als es aussieht.';
+
+  @override
+  String get dk_nightling_name => 'Nachtling';
+
+  @override
+  String get dk_nightling_flavor =>
+      'Ein Fetzen Nacht, der abbrach, bevor der Traum fertig war.';
+
+  @override
+  String get dk_nightling_ult => 'Kleiner Schatten';
+
+  @override
+  String get dk_nightling_ultDesc =>
+      'Schiebt einen Splitter Dunkelheit über die Augen des Feindes.';
+
+  @override
+  String get dk_nightling_skill => 'Flackerschritt';
+
+  @override
+  String get dk_nightling_skillDesc =>
+      'Ein rascher Seitschritt in die Dunkelheit und zurück.';
+
+  @override
+  String get dk_nightling_pass => 'Halb gesehen';
+
+  @override
+  String get dk_nightling_passDesc => 'Nie ganz dort, wo man es erwartet.';
+
+  @override
+  String get dk_stardust_moth_name => 'Sternenstaubmotte';
+
+  @override
+  String get dk_stardust_moth_flavor =>
+      'Angezogen von jedem Traum, der noch hell genug zum Sehen ist.';
+
+  @override
+  String get dk_stardust_moth_ult => 'Staubspur';
+
+  @override
+  String get dk_stardust_moth_ultDesc =>
+      'Lässt einen feinen, heilenden Staub über dem Team rieseln.';
+
+  @override
+  String get dk_stardust_moth_skill => 'Flügelschlag';
+
+  @override
+  String get dk_stardust_moth_skillDesc =>
+      'Ein sanftes Flattern, das den Schmerz eines Verbündeten lindert.';
+
+  @override
+  String get dk_stardust_moth_pass => 'Zum Licht gezogen';
+
+  @override
+  String get dk_stardust_moth_passDesc =>
+      'Folgt jedem Licht, das im Kampf noch übrig ist.';
+
+  @override
+  String get dk_cinder_badger_name => 'Aschedachs';
+
+  @override
+  String get dk_cinder_badger_flavor =>
+      'Gräbt seinen Bau, wo ein Herdfeuertraum zu Glut niederbrannte.';
+
+  @override
+  String get dk_cinder_badger_ult => 'Kohlegrabung';
+
+  @override
+  String get dk_cinder_badger_ultDesc =>
+      'Wühlt sich ein und bricht mit gestauter Hitze hervor.';
+
+  @override
+  String get dk_cinder_badger_skill => 'Sturer Ansturm';
+
+  @override
+  String get dk_cinder_badger_skillDesc =>
+      'Senkt den Kopf und schiebt sich einfach durch.';
+
+  @override
+  String get dk_cinder_badger_pass => 'Gestaute Hitze';
+
+  @override
+  String get dk_cinder_badger_passDesc =>
+      'Läuft heißer, je länger ein Kampf sich zieht.';
+
+  @override
+  String get dk_pearl_otter_name => 'Perlenotter';
+
+  @override
+  String get dk_pearl_otter_flavor =>
+      'Sammelt Perlen aus Träumen, zu ruhig, um je Wellen zu schlagen.';
+
+  @override
+  String get dk_pearl_otter_ult => 'Perlengezeiten';
+
+  @override
+  String get dk_pearl_otter_ultDesc =>
+      'Eine Woge leuchtender Perlen heilt die Wunden des Teams.';
+
+  @override
+  String get dk_pearl_otter_skill => 'Polieren';
+
+  @override
+  String get dk_pearl_otter_skillDesc =>
+      'Ein rascher, penibler Putzgang über einen Verbündeten.';
+
+  @override
+  String get dk_pearl_otter_pass => 'Auftrieb';
+
+  @override
+  String get dk_pearl_otter_passDesc =>
+      'Findet immer einen Weg, oben zu bleiben.';
+
+  @override
+  String get dk_comet_fox_name => 'Kometenfuchs';
+
+  @override
+  String get dk_comet_fox_flavor =>
+      'Jagt den Schweif eines echten Kometen durch den Traumhimmel und gewinnt meistens.';
+
+  @override
+  String get dk_comet_fox_ult => 'Leuchtsprint';
+
+  @override
+  String get dk_comet_fox_ultDesc =>
+      'Ein blendender Sprint, der eine Lichtspur hinterlässt.';
+
+  @override
+  String get dk_comet_fox_skill => 'Schweifblitz';
+
+  @override
+  String get dk_comet_fox_skillDesc =>
+      'Ein rasches Schnippen eines glühenden Schweifs.';
+
+  @override
+  String get dk_comet_fox_pass => 'Nachziehendes Licht';
+
+  @override
+  String get dk_comet_fox_passDesc =>
+      'Lässt die Luft schimmern, allein vom Hindurchziehen.';
+
+  @override
+  String get dk_bramble_lynx_name => 'Dornenluchs';
+
+  @override
+  String get dk_bramble_lynx_flavor =>
+      'Pirscht durch die Hecken eines Gartentraums, an dessen Pflanzung sich niemand erinnert.';
+
+  @override
+  String get dk_bramble_lynx_ult => 'Dickichtsprung';
+
+  @override
+  String get dk_bramble_lynx_ultDesc =>
+      'Verschwindet ins Gebüsch und schlägt aus einem Winkel zu, den niemand erwartet.';
+
+  @override
+  String get dk_bramble_lynx_skill => 'Klauenhieb';
+
+  @override
+  String get dk_bramble_lynx_skillDesc =>
+      'Ein schneller, tiefer Hieb über die Beine.';
+
+  @override
+  String get dk_bramble_lynx_pass => 'Dornenfell';
+
+  @override
+  String get dk_bramble_lynx_passDesc =>
+      'Ließ sein Fell durch eine Dornenhecke wachsen.';
+
+  @override
+  String get dk_shade_panther_name => 'Schattenpanther';
+
+  @override
+  String get dk_shade_panther_flavor =>
+      'Jagt in den Nächten, in denen der Mond ganz vergisst aufzugehen.';
+
+  @override
+  String get dk_shade_panther_ult => 'Mondloser Schlag';
+
+  @override
+  String get dk_shade_panther_ultDesc =>
+      'Ein Schlag, getimt auf den einen Moment, in dem ihn kein Licht erreicht.';
+
+  @override
+  String get dk_shade_panther_skill => 'Lautloser Sprung';
+
+  @override
+  String get dk_shade_panther_skillDesc =>
+      'Überbrückt die Distanz, bevor der Schall aufholt.';
+
+  @override
+  String get dk_shade_panther_pass => 'Ungesehen';
+
+  @override
+  String get dk_shade_panther_passDesc =>
+      'Verschmilzt mit jedem Schatten, in dem es steht.';
+
+  @override
+  String get dk_nova_falcon_name => 'Novafalke';
+
+  @override
+  String get dk_nova_falcon_flavor =>
+      'Nistet auf der Spitze eines Bergs, der nur an der Spitze eines Traums existiert.';
+
+  @override
+  String get dk_nova_falcon_ult => 'Nova-Sturzflug';
+
+  @override
+  String get dk_nova_falcon_ultDesc =>
+      'Ein kreischender Sturzflug mit einem Schweif aus Sternenlicht.';
+
+  @override
+  String get dk_nova_falcon_skill => 'Flügelschnitt';
+
+  @override
+  String get dk_nova_falcon_skillDesc =>
+      'Eine scharfe Wendung, die das Ziel im Flug streift.';
+
+  @override
+  String get dk_nova_falcon_pass => 'Aufwind';
+
+  @override
+  String get dk_nova_falcon_passDesc =>
+      'Reitet Strömungen, die nur er spüren kann.';
+
+  @override
+  String get dk_magma_titan_name => 'Magmatitan';
+
+  @override
+  String get dk_magma_titan_flavor =>
+      'Steht dort, wo ein berggroßer Traum langsam fertig schmolz.';
+
+  @override
+  String get dk_magma_titan_ult => 'Geschmolzene Faust';
+
+  @override
+  String get dk_magma_titan_ultDesc =>
+      'Ein langsamer, unaufhaltsamer Hieb aus flüssigem Gestein.';
+
+  @override
+  String get dk_magma_titan_skill => 'Hitzewand';
+
+  @override
+  String get dk_magma_titan_skillDesc =>
+      'Strahlt genug Hitze ab, dass die ganze Frontlinie zurückzuckt.';
+
+  @override
+  String get dk_magma_titan_pass => 'Geschmolzener Kern';
+
+  @override
+  String get dk_magma_titan_passDesc =>
+      'Kühlt nie genug ab, um sicher berührbar zu sein.';
+
+  @override
+  String get dk_verdant_stag_name => 'Grünhirsch';
+
+  @override
+  String get dk_verdant_stag_flavor =>
+      'Trägt eine Krone, gewachsen aus dem ältesten, sanftesten Traum eines Waldes.';
+
+  @override
+  String get dk_verdant_stag_ult => 'Geweihblüte';
+
+  @override
+  String get dk_verdant_stag_ultDesc =>
+      'Blüten brechen aus seinem Geweih und heben das ganze Team.';
+
+  @override
+  String get dk_verdant_stag_skill => 'Stolzer Ansturm';
+
+  @override
+  String get dk_verdant_stag_skillDesc =>
+      'Ein würdevoller, gemächlicher Ansturm.';
+
+  @override
+  String get dk_verdant_stag_pass => 'Alter Bestand';
+
+  @override
+  String get dk_verdant_stag_passDesc =>
+      'Trägt die Ruhe eines Waldes in sich, der seit Ewigkeiten steht.';
+
+  @override
+  String get dk_abyssal_kraken_name => 'Abgrundkrake';
+
+  @override
+  String get dk_abyssal_kraken_flavor =>
+      'Stieg einst aus einem Traum so tief, dass selbst die Gezeiten ihn vergaßen.';
+
+  @override
+  String get dk_abyssal_kraken_ult => 'Tiefengriff';
+
+  @override
+  String get dk_abyssal_kraken_ultDesc =>
+      'Aus dem Graben heraufgezogene Windungen schließen sich um das Ziel.';
+
+  @override
+  String get dk_abyssal_kraken_skill => 'Tentakelhieb';
+
+  @override
+  String get dk_abyssal_kraken_skillDesc =>
+      'Ein schwerer Hieb aus dem gerade eben Unsichtbaren.';
+
+  @override
+  String get dk_abyssal_kraken_pass => 'Grabendruck';
+
+  @override
+  String get dk_abyssal_kraken_passDesc =>
+      'Schlägt härter, je tiefer der Kampf geht.';
+
+  @override
+  String get dk_leviathan_queen_name => 'Leviathan-Königin';
+
+  @override
+  String get dk_leviathan_queen_flavor =>
+      'Beherrscht jede Strömung im Traumozean, und jede Strömung weiß es.';
+
+  @override
+  String get dk_leviathan_queen_ult => 'Gezeitenkrone';
+
+  @override
+  String get dk_leviathan_queen_ultDesc =>
+      'Ruft eine Krone aus Wasser herauf, die auf jeden Feind niederkracht.';
+
+  @override
+  String get dk_leviathan_queen_skill => 'Königliche Welle';
+
+  @override
+  String get dk_leviathan_queen_skillDesc =>
+      'Ein langsamer, gebieterischer Strömungsstoß.';
+
+  @override
+  String get dk_leviathan_queen_pass => 'Herrschergezeiten';
+
+  @override
+  String get dk_leviathan_queen_passDesc =>
+      'Der Ozean selbst scheint sich ihr zu beugen.';
+
+  @override
+  String get dk_world_tree_warden_name => 'Weltenbaum-Wächter';
+
+  @override
+  String get dk_world_tree_warden_flavor =>
+      'Gewachsen aus dem allerersten Samen, den je ein Träumer pflanzte.';
+
+  @override
+  String get dk_world_tree_warden_ult => 'Wurzel der Zeitalter';
+
+  @override
+  String get dk_world_tree_warden_ultDesc =>
+      'Schöpft aus einer Wurzel älter als der Wald, um das ganze Team zu heilen.';
+
+  @override
+  String get dk_world_tree_warden_skill => 'Harzsegen';
+
+  @override
+  String get dk_world_tree_warden_skillDesc =>
+      'Ein langsames, warmes Rinnsal heilenden Harzes.';
+
+  @override
+  String get dk_world_tree_warden_pass => 'Uralte Wurzeln';
+
+  @override
+  String get dk_world_tree_warden_passDesc =>
+      'Reicht tiefer, als je ein Traum es gebraucht hat.';
+
+  @override
+  String get dk_celestial_dragon_name => 'Himmelsdrache';
+
+  @override
+  String get dk_celestial_dragon_flavor =>
+      'Der letzte Traum, den jeder Träumer hat, wenn er lange genug träumt.';
+
+  @override
+  String get dk_celestial_dragon_ult => 'Sternenfeuer-Kataklysmus';
+
+  @override
+  String get dk_celestial_dragon_ultDesc =>
+      'Atmet das Licht einer sterbenden Galaxie aus.';
+
+  @override
+  String get dk_celestial_dragon_skill => 'Kometenbiss';
+
+  @override
+  String get dk_celestial_dragon_skillDesc =>
+      'Ein Biss, der noch die Hitze des Sturzes durch den Himmel trägt.';
+
+  @override
+  String get dk_celestial_dragon_pass => 'Lebendes Sternbild';
+
+  @override
+  String get dk_celestial_dragon_passDesc =>
+      'Aus demselben Stoff wie die Sterne, zwischen denen er fliegt.';
+
+  @override
+  String get dk_eclipse_empress_name => 'Finsternis-Kaiserin';
+
+  @override
+  String get dk_eclipse_empress_flavor =>
+      'Herrscht über den Raum zwischen dem Ende eines Traums und dem Beginn des nächsten.';
+
+  @override
+  String get dk_eclipse_empress_ult => 'Totale Finsternis';
+
+  @override
+  String get dk_eclipse_empress_ultDesc =>
+      'Löscht jedes Licht auf einmal aus und lässt dem Feind kein Versteck.';
+
+  @override
+  String get dk_eclipse_empress_skill => 'Sichel-Erlass';
+
+  @override
+  String get dk_eclipse_empress_skillDesc =>
+      'Ein einziger, absoluter Befehl, in Mondlicht gemeißelt.';
+
+  @override
+  String get dk_eclipse_empress_pass => 'Herrscherin der Schatten';
+
+  @override
+  String get dk_eclipse_empress_passDesc =>
+      'Jeder dunkle Winkel des Traums gehorcht ihr.';
+
+  @override
+  String get dk_igo_name => 'Igo';
+
+  @override
+  String get dk_igo_flavor =>
+      'Überhaupt kein Geschöpf des Traums — Igo ist einer von nur zwei Menschen, die je für immer im Traumhafen blieben, ein Außenseiter, der sich entschied, dessen Schild zu werden. Die Traumhüter nennen ihn Traumwandler, nie einen der Ihren, und ihm wäre es nicht anders recht.';
+
+  @override
+  String get dk_igo_ult => 'Flutwand';
+
+  @override
+  String get dk_igo_ultDesc =>
+      'Errichtet eine schützende Wasserwand um das ganze Team.';
+
+  @override
+  String get dk_igo_skill => 'Strömungsriss';
+
+  @override
+  String get dk_igo_skillDesc =>
+      'Eine reißende Strömung, die den Feind verletzt und verlangsamt.';
+
+  @override
+  String get dk_igo_pass => 'Gezeitenwache';
+
+  @override
+  String get dk_igo_passDesc =>
+      'Einmal pro Kampf weigert er sich zu fallen und kehrt mit 30% HP zurück.';
+
+  @override
+  String get dk_ames_name => 'Ames';
+
+  @override
+  String get dk_ames_flavor =>
+      'Ames kam einst in den Traumhafen und ging schlicht nie wieder — die zweite der beiden Menschen, die diesen Ort für immer zur Heimat machten. Kein Traumgeschöpf brennt so wie sie; das Feuer gehört ganz und stur ihr allein.';
+
+  @override
+  String get dk_ames_ult => 'Glutschnitt';
+
+  @override
+  String get dk_ames_ultDesc =>
+      'Ein einziger verheerender Schnitt weißglühender Flamme.';
+
+  @override
+  String get dk_ames_skill => 'Aschesturm';
+
+  @override
+  String get dk_ames_skillDesc =>
+      'Ein brennender Schlag, der den Feind weiter schwelen lässt.';
+
+  @override
+  String get dk_ames_pass => 'Feuertaufe';
+
+  @override
+  String get dk_ames_passDesc =>
+      'Schlägt härter, je näher sie dem Fallen kommt — bis zu +60% Angriff nahe dem Tod.';
+
+  @override
+  String get dk_olf_name => 'Olf';
+
+  @override
+  String get dk_olf_ember_flavor =>
+      'Jeder Spielstand beginnt mit einem Olf. Keiner weiß so recht, warum er auf der Tunika besteht.';
+
+  @override
+  String get dk_olf_ember_ult => 'Wackliger Flammenstoß';
+
+  @override
+  String get dk_olf_ember_ultDesc =>
+      'Stürmt herein und schwingt sein Zweigschwert — und fängt unterwegs irgendwie Feuer.';
+
+  @override
+  String get dk_olf_ember_skill => 'Hitzköpfiger Hieb';
+
+  @override
+  String get dk_olf_ember_skillDesc =>
+      'Ein Hieb, geworfen mit mehr Begeisterung als Technik.';
+
+  @override
+  String get dk_olf_pass => 'Zu dumm für Angst';
+
+  @override
+  String get dk_olf_passDesc => 'Weiß nicht genug, um zusammenzuzucken.';
+
+  @override
+  String get dk_olf_tide_flavor =>
+      'Wählte Flut, weil Pfützen freundlicher schienen als die Alternative.';
+
+  @override
+  String get dk_olf_tide_ult => 'Bauchklatscher';
+
+  @override
+  String get dk_olf_tide_ultDesc =>
+      'Springt als Bombe hinein, hauptsächlich um zu sehen, was passiert.';
+
+  @override
+  String get dk_olf_tide_skill => 'Pfützenstupser';
+
+  @override
+  String get dk_olf_tide_skillDesc =>
+      'Stupst den nächsten Feind mit seinem Zweigschwert an, tropfend.';
+
+  @override
+  String get dk_olf_bloom_flavor =>
+      'Sein Schwert und sein Element sind, streng genommen, dieselbe Pflanze.';
+
+  @override
+  String get dk_olf_bloom_ult => 'Wuchernder Wutanfall';
+
+  @override
+  String get dk_olf_bloom_ultDesc =>
+      'Schlägt wild durch das Gestrüpp, das er größtenteils selbst gezogen hat.';
+
+  @override
+  String get dk_olf_bloom_skill => 'Zweigschwert-Klatsch';
+
+  @override
+  String get dk_olf_bloom_skillDesc =>
+      'Ein Klatsch mit dem Zweigschwert — das passenderweise auch ein Zweig ist.';
+
+  @override
+  String get dk_olf_lunar_flavor =>
+      'Wählte Mond, weil er gern lange aufblieb. Er ist ständig müde.';
+
+  @override
+  String get dk_olf_lunar_ult => 'Mondsüchtiges Stolpern';
+
+  @override
+  String get dk_olf_lunar_ultDesc =>
+      'Stolpert über die eigenen Füße direkt in den Feind, irgendwie mit Absicht.';
+
+  @override
+  String get dk_olf_lunar_skill => 'Schläfriger Hieb';
+
+  @override
+  String get dk_olf_lunar_skillDesc =>
+      'Ein Hieb, halb im Schlaf geworfen, also meistens.';
+
+  @override
+  String get dk_olf_astral_flavor =>
+      'Glaubt, die Sterne hätten ihn erwählt. Die Sterne haben sich nicht geäußert.';
+
+  @override
+  String get dk_olf_astral_ult => 'Sternäugiger Ansturm';
+
+  @override
+  String get dk_olf_astral_ultDesc =>
+      'Stürmt herein und starrt in den Himmel statt auf den Feind.';
+
+  @override
+  String get dk_olf_astral_skill => 'Glückstreffer';
+
+  @override
+  String get dk_olf_astral_skillDesc =>
+      'Ein Hieb, den er ganz sicher landen wollte.';
+
+  @override
+  String get dk_olf_ultimate_flavor =>
+      'Der andere Olf weiß auch nicht, wie das passiert ist.';
+
+  @override
+  String get dk_olf_ultimate_ult => 'Flammenstoß des unwahrscheinlichen Helden';
+
+  @override
+  String get dk_olf_ultimate_ultDesc =>
+      'Derselbe wacklige Stoß — der diesmal irgendwie tatsächlich trifft.';
+
+  @override
+  String get dk_olf_ultimate_skill => 'Verdächtig kompetenter Hieb';
+
+  @override
+  String get dk_olf_ultimate_skillDesc =>
+      'Ein Hieb, der genau dort landet, wo er sollte. Er schaut so überrascht wie du.';
+
+  @override
+  String get dk_olf_ultimate_pass => 'Heimlich anders gebaut';
+
+  @override
+  String get dk_olf_ultimate_passDesc =>
+      'Irgendwie, allen Widrigkeiten zum Trotz, wurde dieser Olf unfair stark.';
 }

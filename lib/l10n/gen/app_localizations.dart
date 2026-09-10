@@ -2144,6 +2144,1752 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Diamond Summit'**
   String get arenaZoneDiamond;
+
+  /// No description provided for @dk_ember_fox_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Ember Fox'**
+  String get dk_ember_fox_name;
+
+  /// No description provided for @dk_ember_fox_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'Born from a candle\'s last flicker before dawn.'**
+  String get dk_ember_fox_flavor;
+
+  /// No description provided for @dk_ember_fox_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Wildfire Pounce'**
+  String get dk_ember_fox_ult;
+
+  /// No description provided for @dk_ember_fox_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A blazing leap that scorches the target.'**
+  String get dk_ember_fox_ultDesc;
+
+  /// No description provided for @dk_ember_fox_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Ember Nip'**
+  String get dk_ember_fox_skill;
+
+  /// No description provided for @dk_ember_fox_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A quick, scorching nip at the nearest foe.'**
+  String get dk_ember_fox_skillDesc;
+
+  /// No description provided for @dk_ember_fox_pass.
+  ///
+  /// In en, this message translates to:
+  /// **'Kindled Spirit'**
+  String get dk_ember_fox_pass;
+
+  /// No description provided for @dk_ember_fox_passDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Slightly bolder in a fight.'**
+  String get dk_ember_fox_passDesc;
+
+  /// No description provided for @dk_moon_hare_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Moon Hare'**
+  String get dk_moon_hare_name;
+
+  /// No description provided for @dk_moon_hare_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'Follows travelers who fall asleep beneath the open sky.'**
+  String get dk_moon_hare_flavor;
+
+  /// No description provided for @dk_moon_hare_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Moonlit Blessing'**
+  String get dk_moon_hare_ult;
+
+  /// No description provided for @dk_moon_hare_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Bathes the whole team in restorative moonlight.'**
+  String get dk_moon_hare_ultDesc;
+
+  /// No description provided for @dk_moon_hare_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Soothing Touch'**
+  String get dk_moon_hare_skill;
+
+  /// No description provided for @dk_moon_hare_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A gentle pulse of moonlight for the ally who needs it most.'**
+  String get dk_moon_hare_skillDesc;
+
+  /// No description provided for @dk_moon_hare_pass.
+  ///
+  /// In en, this message translates to:
+  /// **'Gentle Glow'**
+  String get dk_moon_hare_pass;
+
+  /// No description provided for @dk_moon_hare_passDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A quiet, steadying presence.'**
+  String get dk_moon_hare_passDesc;
+
+  /// No description provided for @dk_forest_spirit_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Forest Spirit'**
+  String get dk_forest_spirit_name;
+
+  /// No description provided for @dk_forest_spirit_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'Grown from the dream of a forgotten garden.'**
+  String get dk_forest_spirit_flavor;
+
+  /// No description provided for @dk_forest_spirit_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Verdant Chorus'**
+  String get dk_forest_spirit_ult;
+
+  /// No description provided for @dk_forest_spirit_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Rallies the team with a surge of vitality.'**
+  String get dk_forest_spirit_ultDesc;
+
+  /// No description provided for @dk_forest_spirit_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Bramble Ward'**
+  String get dk_forest_spirit_skill;
+
+  /// No description provided for @dk_forest_spirit_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Wraps itself in hardy brambles, growing bolder.'**
+  String get dk_forest_spirit_skillDesc;
+
+  /// No description provided for @dk_forest_spirit_pass.
+  ///
+  /// In en, this message translates to:
+  /// **'Rooted Calm'**
+  String get dk_forest_spirit_pass;
+
+  /// No description provided for @dk_forest_spirit_passDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Steady footing, steady mind.'**
+  String get dk_forest_spirit_passDesc;
+
+  /// No description provided for @dk_crystal_golem_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Crystal Golem'**
+  String get dk_crystal_golem_name;
+
+  /// No description provided for @dk_crystal_golem_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'Formed where a tidal dream froze mid-wave.'**
+  String get dk_crystal_golem_flavor;
+
+  /// No description provided for @dk_crystal_golem_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Bulwark Slam'**
+  String get dk_crystal_golem_ult;
+
+  /// No description provided for @dk_crystal_golem_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A ground-shaking blow that staggers the foe.'**
+  String get dk_crystal_golem_ultDesc;
+
+  /// No description provided for @dk_crystal_golem_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Guard Slam'**
+  String get dk_crystal_golem_skill;
+
+  /// No description provided for @dk_crystal_golem_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A heavy but unhurried blow.'**
+  String get dk_crystal_golem_skillDesc;
+
+  /// No description provided for @dk_crystal_golem_pass.
+  ///
+  /// In en, this message translates to:
+  /// **'Crystalline Hide'**
+  String get dk_crystal_golem_pass;
+
+  /// No description provided for @dk_crystal_golem_passDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Refracts a portion of incoming force.'**
+  String get dk_crystal_golem_passDesc;
+
+  /// No description provided for @dk_star_wolf_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Star Wolf'**
+  String get dk_star_wolf_name;
+
+  /// No description provided for @dk_star_wolf_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'Runs the paths between falling stars.'**
+  String get dk_star_wolf_flavor;
+
+  /// No description provided for @dk_star_wolf_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Starfall Howl'**
+  String get dk_star_wolf_ult;
+
+  /// No description provided for @dk_star_wolf_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A resonant howl that freezes the enemy in place.'**
+  String get dk_star_wolf_ultDesc;
+
+  /// No description provided for @dk_star_wolf_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick Bite'**
+  String get dk_star_wolf_skill;
+
+  /// No description provided for @dk_star_wolf_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A fast snap before the foe can react.'**
+  String get dk_star_wolf_skillDesc;
+
+  /// No description provided for @dk_star_wolf_pass.
+  ///
+  /// In en, this message translates to:
+  /// **'Night Vision'**
+  String get dk_star_wolf_pass;
+
+  /// No description provided for @dk_star_wolf_passDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Never misses a step in the dark.'**
+  String get dk_star_wolf_passDesc;
+
+  /// No description provided for @dk_thorn_viper_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Thorn Viper'**
+  String get dk_thorn_viper_name;
+
+  /// No description provided for @dk_thorn_viper_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'Coils through brambles that grow only in restless dreams.'**
+  String get dk_thorn_viper_flavor;
+
+  /// No description provided for @dk_thorn_viper_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Venom Fang'**
+  String get dk_thorn_viper_ult;
+
+  /// No description provided for @dk_thorn_viper_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A precise strike laced with dream-thorn poison.'**
+  String get dk_thorn_viper_ultDesc;
+
+  /// No description provided for @dk_thorn_viper_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Puncture'**
+  String get dk_thorn_viper_skill;
+
+  /// No description provided for @dk_thorn_viper_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A jabbing strike aimed at the weak points.'**
+  String get dk_thorn_viper_skillDesc;
+
+  /// No description provided for @dk_thorn_viper_pass.
+  ///
+  /// In en, this message translates to:
+  /// **'Toxic Coating'**
+  String get dk_thorn_viper_pass;
+
+  /// No description provided for @dk_thorn_viper_passDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Fangs that never quite stop stinging.'**
+  String get dk_thorn_viper_passDesc;
+
+  /// No description provided for @dk_tide_serpent_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Tide Serpent'**
+  String get dk_tide_serpent_name;
+
+  /// No description provided for @dk_tide_serpent_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'Slips between waves too quick for waking eyes to follow.'**
+  String get dk_tide_serpent_flavor;
+
+  /// No description provided for @dk_tide_serpent_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Riptide Coil'**
+  String get dk_tide_serpent_ult;
+
+  /// No description provided for @dk_tide_serpent_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Wraps the foe in a crushing spiral of water.'**
+  String get dk_tide_serpent_ultDesc;
+
+  /// No description provided for @dk_tide_serpent_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Snap Coil'**
+  String get dk_tide_serpent_skill;
+
+  /// No description provided for @dk_tide_serpent_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A sudden lash of its coiled body.'**
+  String get dk_tide_serpent_skillDesc;
+
+  /// No description provided for @dk_tide_serpent_pass.
+  ///
+  /// In en, this message translates to:
+  /// **'Slippery Scales'**
+  String get dk_tide_serpent_pass;
+
+  /// No description provided for @dk_tide_serpent_passDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Hard to pin down, harder to catch.'**
+  String get dk_tide_serpent_passDesc;
+
+  /// No description provided for @dk_ember_phoenix_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Ember Phoenix'**
+  String get dk_ember_phoenix_name;
+
+  /// No description provided for @dk_ember_phoenix_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'Rises anew each time a dreamer refuses to give up.'**
+  String get dk_ember_phoenix_flavor;
+
+  /// No description provided for @dk_ember_phoenix_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Rebirth Flame'**
+  String get dk_ember_phoenix_ult;
+
+  /// No description provided for @dk_ember_phoenix_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A blazing rebirth that mends every wound in the team.'**
+  String get dk_ember_phoenix_ultDesc;
+
+  /// No description provided for @dk_ember_phoenix_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Warm Feather'**
+  String get dk_ember_phoenix_skill;
+
+  /// No description provided for @dk_ember_phoenix_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Sheds a single ember-warm feather over an ally.'**
+  String get dk_ember_phoenix_skillDesc;
+
+  /// No description provided for @dk_ember_phoenix_pass.
+  ///
+  /// In en, this message translates to:
+  /// **'Eternal Ember'**
+  String get dk_ember_phoenix_pass;
+
+  /// No description provided for @dk_ember_phoenix_passDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A flame that refuses to be the last one out.'**
+  String get dk_ember_phoenix_passDesc;
+
+  /// No description provided for @dk_lunar_owl_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Lunar Owl'**
+  String get dk_lunar_owl_name;
+
+  /// No description provided for @dk_lunar_owl_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'Watches from branches that exist only under a full moon.'**
+  String get dk_lunar_owl_flavor;
+
+  /// No description provided for @dk_lunar_owl_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Silent Talons'**
+  String get dk_lunar_owl_ult;
+
+  /// No description provided for @dk_lunar_owl_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A soundless dive that leaves the target reeling.'**
+  String get dk_lunar_owl_ultDesc;
+
+  /// No description provided for @dk_lunar_owl_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Swift Peck'**
+  String get dk_lunar_owl_skill;
+
+  /// No description provided for @dk_lunar_owl_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A precise strike from above.'**
+  String get dk_lunar_owl_skillDesc;
+
+  /// No description provided for @dk_lunar_owl_pass.
+  ///
+  /// In en, this message translates to:
+  /// **'Keen Eyes'**
+  String get dk_lunar_owl_pass;
+
+  /// No description provided for @dk_lunar_owl_passDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Sees every opening before it appears.'**
+  String get dk_lunar_owl_passDesc;
+
+  /// No description provided for @dk_astral_sentinel_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Astral Sentinel'**
+  String get dk_astral_sentinel_name;
+
+  /// No description provided for @dk_astral_sentinel_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'Stands guard at the border between dream and stars.'**
+  String get dk_astral_sentinel_flavor;
+
+  /// No description provided for @dk_astral_sentinel_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Starward Bulwark'**
+  String get dk_astral_sentinel_ult;
+
+  /// No description provided for @dk_astral_sentinel_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Calls down a wall of starlight to guard the team.'**
+  String get dk_astral_sentinel_ultDesc;
+
+  /// No description provided for @dk_astral_sentinel_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Brace'**
+  String get dk_astral_sentinel_skill;
+
+  /// No description provided for @dk_astral_sentinel_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Plants itself firm and strikes back.'**
+  String get dk_astral_sentinel_skillDesc;
+
+  /// No description provided for @dk_astral_sentinel_pass.
+  ///
+  /// In en, this message translates to:
+  /// **'Astral Ward'**
+  String get dk_astral_sentinel_pass;
+
+  /// No description provided for @dk_astral_sentinel_passDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A quiet shimmer that deflects the worst of it.'**
+  String get dk_astral_sentinel_passDesc;
+
+  /// No description provided for @dk_coral_warden_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Coral Warden'**
+  String get dk_coral_warden_name;
+
+  /// No description provided for @dk_coral_warden_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'Grew from a reef that only blooms in deep sleep.'**
+  String get dk_coral_warden_flavor;
+
+  /// No description provided for @dk_coral_warden_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Tidal Chorus'**
+  String get dk_coral_warden_ult;
+
+  /// No description provided for @dk_coral_warden_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A rolling wave of encouragement washes over the team.'**
+  String get dk_coral_warden_ultDesc;
+
+  /// No description provided for @dk_coral_warden_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Encourage'**
+  String get dk_coral_warden_skill;
+
+  /// No description provided for @dk_coral_warden_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A steadying word that stiffens resolve.'**
+  String get dk_coral_warden_skillDesc;
+
+  /// No description provided for @dk_coral_warden_pass.
+  ///
+  /// In en, this message translates to:
+  /// **'Reef Guard'**
+  String get dk_coral_warden_pass;
+
+  /// No description provided for @dk_coral_warden_passDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Grew tough where the currents are roughest.'**
+  String get dk_coral_warden_passDesc;
+
+  /// No description provided for @dk_cinder_sprite_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Cinder Sprite'**
+  String get dk_cinder_sprite_name;
+
+  /// No description provided for @dk_cinder_sprite_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'A spark that never quite burns out, no matter the dark.'**
+  String get dk_cinder_sprite_flavor;
+
+  /// No description provided for @dk_cinder_sprite_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Spark Rally'**
+  String get dk_cinder_sprite_ult;
+
+  /// No description provided for @dk_cinder_sprite_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A shower of warm sparks lifts the whole team\'s spirit.'**
+  String get dk_cinder_sprite_ultDesc;
+
+  /// No description provided for @dk_cinder_sprite_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Warm Spark Jab'**
+  String get dk_cinder_sprite_skill;
+
+  /// No description provided for @dk_cinder_sprite_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A friendly spark that lifts the spirit.'**
+  String get dk_cinder_sprite_skillDesc;
+
+  /// No description provided for @dk_cinder_sprite_pass.
+  ///
+  /// In en, this message translates to:
+  /// **'Warm Spark'**
+  String get dk_cinder_sprite_pass;
+
+  /// No description provided for @dk_cinder_sprite_passDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A spark that never quite burns out, no matter the dark.'**
+  String get dk_cinder_sprite_passDesc;
+
+  /// No description provided for @dk_flicker_pup_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Flicker Pup'**
+  String get dk_flicker_pup_name;
+
+  /// No description provided for @dk_flicker_pup_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'Hatched from the last spark of a dream that almost went out.'**
+  String get dk_flicker_pup_flavor;
+
+  /// No description provided for @dk_flicker_pup_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Candle Charge'**
+  String get dk_flicker_pup_ult;
+
+  /// No description provided for @dk_flicker_pup_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A clumsy but eager charge wreathed in flickering flame.'**
+  String get dk_flicker_pup_ultDesc;
+
+  /// No description provided for @dk_flicker_pup_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Warm Nip'**
+  String get dk_flicker_pup_skill;
+
+  /// No description provided for @dk_flicker_pup_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A playful nip that\'s hotter than it looks.'**
+  String get dk_flicker_pup_skillDesc;
+
+  /// No description provided for @dk_flicker_pup_pass.
+  ///
+  /// In en, this message translates to:
+  /// **'Restless Spark'**
+  String get dk_flicker_pup_pass;
+
+  /// No description provided for @dk_flicker_pup_passDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Too excitable to ever stay still for long.'**
+  String get dk_flicker_pup_passDesc;
+
+  /// No description provided for @dk_ripple_minnow_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Ripple Minnow'**
+  String get dk_ripple_minnow_name;
+
+  /// No description provided for @dk_ripple_minnow_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'Swims in the shallow end of dreams too small for anything bigger.'**
+  String get dk_ripple_minnow_flavor;
+
+  /// No description provided for @dk_ripple_minnow_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Shoal Surge'**
+  String get dk_ripple_minnow_ult;
+
+  /// No description provided for @dk_ripple_minnow_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A rush of small fish that steadies the whole team.'**
+  String get dk_ripple_minnow_ultDesc;
+
+  /// No description provided for @dk_ripple_minnow_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Nudge'**
+  String get dk_ripple_minnow_skill;
+
+  /// No description provided for @dk_ripple_minnow_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A gentle push in the right direction.'**
+  String get dk_ripple_minnow_skillDesc;
+
+  /// No description provided for @dk_ripple_minnow_pass.
+  ///
+  /// In en, this message translates to:
+  /// **'Safety in Numbers'**
+  String get dk_ripple_minnow_pass;
+
+  /// No description provided for @dk_ripple_minnow_passDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Never truly alone, even when it looks that way.'**
+  String get dk_ripple_minnow_passDesc;
+
+  /// No description provided for @dk_sprout_cub_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Sprout Cub'**
+  String get dk_sprout_cub_name;
+
+  /// No description provided for @dk_sprout_cub_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'A seedling dream that decided to grow claws instead of leaves.'**
+  String get dk_sprout_cub_flavor;
+
+  /// No description provided for @dk_sprout_cub_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Stubborn Root'**
+  String get dk_sprout_cub_ult;
+
+  /// No description provided for @dk_sprout_cub_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Plants itself down and simply refuses to move.'**
+  String get dk_sprout_cub_ultDesc;
+
+  /// No description provided for @dk_sprout_cub_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Headbutt'**
+  String get dk_sprout_cub_skill;
+
+  /// No description provided for @dk_sprout_cub_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'An earnest, clumsy charge.'**
+  String get dk_sprout_cub_skillDesc;
+
+  /// No description provided for @dk_sprout_cub_pass.
+  ///
+  /// In en, this message translates to:
+  /// **'Thick Bark'**
+  String get dk_sprout_cub_pass;
+
+  /// No description provided for @dk_sprout_cub_passDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Young, but already tougher than it looks.'**
+  String get dk_sprout_cub_passDesc;
+
+  /// No description provided for @dk_nightling_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Nightling'**
+  String get dk_nightling_name;
+
+  /// No description provided for @dk_nightling_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'A scrap of night that broke off before the dream was finished.'**
+  String get dk_nightling_flavor;
+
+  /// No description provided for @dk_nightling_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Small Shadow'**
+  String get dk_nightling_ult;
+
+  /// No description provided for @dk_nightling_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Slips a sliver of dark across the enemy\'s eyes.'**
+  String get dk_nightling_ultDesc;
+
+  /// No description provided for @dk_nightling_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Flicker Step'**
+  String get dk_nightling_skill;
+
+  /// No description provided for @dk_nightling_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A quick sidestep into darkness and back.'**
+  String get dk_nightling_skillDesc;
+
+  /// No description provided for @dk_nightling_pass.
+  ///
+  /// In en, this message translates to:
+  /// **'Half-Seen'**
+  String get dk_nightling_pass;
+
+  /// No description provided for @dk_nightling_passDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Never quite where you expect it to be.'**
+  String get dk_nightling_passDesc;
+
+  /// No description provided for @dk_stardust_moth_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Stardust Moth'**
+  String get dk_stardust_moth_name;
+
+  /// No description provided for @dk_stardust_moth_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'Drawn to any dream still bright enough to see.'**
+  String get dk_stardust_moth_flavor;
+
+  /// No description provided for @dk_stardust_moth_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Dust Trail'**
+  String get dk_stardust_moth_ult;
+
+  /// No description provided for @dk_stardust_moth_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Sheds a fine, healing dust over the team.'**
+  String get dk_stardust_moth_ultDesc;
+
+  /// No description provided for @dk_stardust_moth_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Wing Flutter'**
+  String get dk_stardust_moth_skill;
+
+  /// No description provided for @dk_stardust_moth_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A soft flutter that eases an ally\'s pain.'**
+  String get dk_stardust_moth_skillDesc;
+
+  /// No description provided for @dk_stardust_moth_pass.
+  ///
+  /// In en, this message translates to:
+  /// **'Drawn to Light'**
+  String get dk_stardust_moth_pass;
+
+  /// No description provided for @dk_stardust_moth_passDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Follows whatever light is left in the fight.'**
+  String get dk_stardust_moth_passDesc;
+
+  /// No description provided for @dk_cinder_badger_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Cinder Badger'**
+  String get dk_cinder_badger_name;
+
+  /// No description provided for @dk_cinder_badger_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'Digs its den where a hearth-fire dream burned down to embers.'**
+  String get dk_cinder_badger_flavor;
+
+  /// No description provided for @dk_cinder_badger_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Coal Dig'**
+  String get dk_cinder_badger_ult;
+
+  /// No description provided for @dk_cinder_badger_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Burrows in and erupts with banked heat.'**
+  String get dk_cinder_badger_ultDesc;
+
+  /// No description provided for @dk_cinder_badger_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Stubborn Charge'**
+  String get dk_cinder_badger_skill;
+
+  /// No description provided for @dk_cinder_badger_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Lowers its head and simply pushes through.'**
+  String get dk_cinder_badger_skillDesc;
+
+  /// No description provided for @dk_cinder_badger_pass.
+  ///
+  /// In en, this message translates to:
+  /// **'Banked Heat'**
+  String get dk_cinder_badger_pass;
+
+  /// No description provided for @dk_cinder_badger_passDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Runs warmer the longer a fight drags on.'**
+  String get dk_cinder_badger_passDesc;
+
+  /// No description provided for @dk_pearl_otter_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Pearl Otter'**
+  String get dk_pearl_otter_name;
+
+  /// No description provided for @dk_pearl_otter_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'Collects pearls from dreams too calm to ever make waves.'**
+  String get dk_pearl_otter_flavor;
+
+  /// No description provided for @dk_pearl_otter_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Pearl Tide'**
+  String get dk_pearl_otter_ult;
+
+  /// No description provided for @dk_pearl_otter_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A wave of luminous pearls mends the team\'s wounds.'**
+  String get dk_pearl_otter_ultDesc;
+
+  /// No description provided for @dk_pearl_otter_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Polish'**
+  String get dk_pearl_otter_skill;
+
+  /// No description provided for @dk_pearl_otter_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A quick, fussy grooming pass over an ally.'**
+  String get dk_pearl_otter_skillDesc;
+
+  /// No description provided for @dk_pearl_otter_pass.
+  ///
+  /// In en, this message translates to:
+  /// **'Buoyant'**
+  String get dk_pearl_otter_pass;
+
+  /// No description provided for @dk_pearl_otter_passDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Always finds a way to stay afloat.'**
+  String get dk_pearl_otter_passDesc;
+
+  /// No description provided for @dk_comet_fox_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Comet Fox'**
+  String get dk_comet_fox_name;
+
+  /// No description provided for @dk_comet_fox_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'Chases the tail of an actual comet through the dream sky and usually wins.'**
+  String get dk_comet_fox_flavor;
+
+  /// No description provided for @dk_comet_fox_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Streaking Dash'**
+  String get dk_comet_fox_ult;
+
+  /// No description provided for @dk_comet_fox_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A blinding dash that leaves a trail of light.'**
+  String get dk_comet_fox_ultDesc;
+
+  /// No description provided for @dk_comet_fox_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Tail Flash'**
+  String get dk_comet_fox_skill;
+
+  /// No description provided for @dk_comet_fox_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A quick flick of a glowing tail.'**
+  String get dk_comet_fox_skillDesc;
+
+  /// No description provided for @dk_comet_fox_pass.
+  ///
+  /// In en, this message translates to:
+  /// **'Trailing Light'**
+  String get dk_comet_fox_pass;
+
+  /// No description provided for @dk_comet_fox_passDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Leaves the air shimmering just from passing through.'**
+  String get dk_comet_fox_passDesc;
+
+  /// No description provided for @dk_bramble_lynx_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Bramble Lynx'**
+  String get dk_bramble_lynx_name;
+
+  /// No description provided for @dk_bramble_lynx_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'Stalks the hedgerows of a garden dream no one remembers planting.'**
+  String get dk_bramble_lynx_flavor;
+
+  /// No description provided for @dk_bramble_lynx_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Thicket Pounce'**
+  String get dk_bramble_lynx_ult;
+
+  /// No description provided for @dk_bramble_lynx_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Vanishes into brush and strikes from an angle no one expects.'**
+  String get dk_bramble_lynx_ultDesc;
+
+  /// No description provided for @dk_bramble_lynx_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Claw Rake'**
+  String get dk_bramble_lynx_skill;
+
+  /// No description provided for @dk_bramble_lynx_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A fast, low rake across the legs.'**
+  String get dk_bramble_lynx_skillDesc;
+
+  /// No description provided for @dk_bramble_lynx_pass.
+  ///
+  /// In en, this message translates to:
+  /// **'Thorned Coat'**
+  String get dk_bramble_lynx_pass;
+
+  /// No description provided for @dk_bramble_lynx_passDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Grew its fur through a hedge of brambles.'**
+  String get dk_bramble_lynx_passDesc;
+
+  /// No description provided for @dk_shade_panther_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Shade Panther'**
+  String get dk_shade_panther_name;
+
+  /// No description provided for @dk_shade_panther_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'Hunts on the nights the moon forgets to rise at all.'**
+  String get dk_shade_panther_flavor;
+
+  /// No description provided for @dk_shade_panther_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Moonless Strike'**
+  String get dk_shade_panther_ult;
+
+  /// No description provided for @dk_shade_panther_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A strike timed to the one moment no light reaches it.'**
+  String get dk_shade_panther_ultDesc;
+
+  /// No description provided for @dk_shade_panther_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Silent Pounce'**
+  String get dk_shade_panther_skill;
+
+  /// No description provided for @dk_shade_panther_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Crosses the distance before the sound catches up.'**
+  String get dk_shade_panther_skillDesc;
+
+  /// No description provided for @dk_shade_panther_pass.
+  ///
+  /// In en, this message translates to:
+  /// **'Unseen'**
+  String get dk_shade_panther_pass;
+
+  /// No description provided for @dk_shade_panther_passDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Blends into whatever shadow it\'s standing in.'**
+  String get dk_shade_panther_passDesc;
+
+  /// No description provided for @dk_nova_falcon_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Nova Falcon'**
+  String get dk_nova_falcon_name;
+
+  /// No description provided for @dk_nova_falcon_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'Nests at the peak of a mountain that only exists at the top of a dream.'**
+  String get dk_nova_falcon_flavor;
+
+  /// No description provided for @dk_nova_falcon_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Nova Dive'**
+  String get dk_nova_falcon_ult;
+
+  /// No description provided for @dk_nova_falcon_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A screaming dive trailing a burst of starlight.'**
+  String get dk_nova_falcon_ultDesc;
+
+  /// No description provided for @dk_nova_falcon_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Wing Cut'**
+  String get dk_nova_falcon_skill;
+
+  /// No description provided for @dk_nova_falcon_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A sharp turn that clips the target mid-flight.'**
+  String get dk_nova_falcon_skillDesc;
+
+  /// No description provided for @dk_nova_falcon_pass.
+  ///
+  /// In en, this message translates to:
+  /// **'Updraft'**
+  String get dk_nova_falcon_pass;
+
+  /// No description provided for @dk_nova_falcon_passDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Rides currents that only it can feel.'**
+  String get dk_nova_falcon_passDesc;
+
+  /// No description provided for @dk_magma_titan_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Magma Titan'**
+  String get dk_magma_titan_name;
+
+  /// No description provided for @dk_magma_titan_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'Stands where a mountain-sized dream slowly finished melting.'**
+  String get dk_magma_titan_flavor;
+
+  /// No description provided for @dk_magma_titan_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Molten Fist'**
+  String get dk_magma_titan_ult;
+
+  /// No description provided for @dk_magma_titan_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A slow, unstoppable punch of liquid rock.'**
+  String get dk_magma_titan_ultDesc;
+
+  /// No description provided for @dk_magma_titan_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Heat Wall'**
+  String get dk_magma_titan_skill;
+
+  /// No description provided for @dk_magma_titan_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Radiates enough heat to make the whole front line flinch.'**
+  String get dk_magma_titan_skillDesc;
+
+  /// No description provided for @dk_magma_titan_pass.
+  ///
+  /// In en, this message translates to:
+  /// **'Molten Core'**
+  String get dk_magma_titan_pass;
+
+  /// No description provided for @dk_magma_titan_passDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Never quite cools down enough to be safe to touch.'**
+  String get dk_magma_titan_passDesc;
+
+  /// No description provided for @dk_verdant_stag_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Verdant Stag'**
+  String get dk_verdant_stag_name;
+
+  /// No description provided for @dk_verdant_stag_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'Wears a crown grown from a forest\'s oldest, gentlest dream.'**
+  String get dk_verdant_stag_flavor;
+
+  /// No description provided for @dk_verdant_stag_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Antler Bloom'**
+  String get dk_verdant_stag_ult;
+
+  /// No description provided for @dk_verdant_stag_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Flowers burst from its antlers, lifting the whole team.'**
+  String get dk_verdant_stag_ultDesc;
+
+  /// No description provided for @dk_verdant_stag_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Proud Charge'**
+  String get dk_verdant_stag_skill;
+
+  /// No description provided for @dk_verdant_stag_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A dignified, unhurried charge.'**
+  String get dk_verdant_stag_skillDesc;
+
+  /// No description provided for @dk_verdant_stag_pass.
+  ///
+  /// In en, this message translates to:
+  /// **'Old Growth'**
+  String get dk_verdant_stag_pass;
+
+  /// No description provided for @dk_verdant_stag_passDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Carries the calm of a forest that\'s stood for ages.'**
+  String get dk_verdant_stag_passDesc;
+
+  /// No description provided for @dk_abyssal_kraken_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Abyssal Kraken'**
+  String get dk_abyssal_kraken_name;
+
+  /// No description provided for @dk_abyssal_kraken_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'Rose once from a dream so deep even the tide forgot it was there.'**
+  String get dk_abyssal_kraken_flavor;
+
+  /// No description provided for @dk_abyssal_kraken_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Deep Grasp'**
+  String get dk_abyssal_kraken_ult;
+
+  /// No description provided for @dk_abyssal_kraken_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Coils dragged up from the trench close around the target.'**
+  String get dk_abyssal_kraken_ultDesc;
+
+  /// No description provided for @dk_abyssal_kraken_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Tentacle Lash'**
+  String get dk_abyssal_kraken_skill;
+
+  /// No description provided for @dk_abyssal_kraken_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A heavy lash from somewhere just out of sight.'**
+  String get dk_abyssal_kraken_skillDesc;
+
+  /// No description provided for @dk_abyssal_kraken_pass.
+  ///
+  /// In en, this message translates to:
+  /// **'Trench Pressure'**
+  String get dk_abyssal_kraken_pass;
+
+  /// No description provided for @dk_abyssal_kraken_passDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Hits harder the deeper the fight goes.'**
+  String get dk_abyssal_kraken_passDesc;
+
+  /// No description provided for @dk_leviathan_queen_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Leviathan Queen'**
+  String get dk_leviathan_queen_name;
+
+  /// No description provided for @dk_leviathan_queen_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'Rules every current in the dream ocean, and every current knows it.'**
+  String get dk_leviathan_queen_flavor;
+
+  /// No description provided for @dk_leviathan_queen_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Tidal Crown'**
+  String get dk_leviathan_queen_ult;
+
+  /// No description provided for @dk_leviathan_queen_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Calls up a crown of water that crashes down on every foe.'**
+  String get dk_leviathan_queen_ultDesc;
+
+  /// No description provided for @dk_leviathan_queen_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Regal Wave'**
+  String get dk_leviathan_queen_skill;
+
+  /// No description provided for @dk_leviathan_queen_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A slow, commanding push of current.'**
+  String get dk_leviathan_queen_skillDesc;
+
+  /// No description provided for @dk_leviathan_queen_pass.
+  ///
+  /// In en, this message translates to:
+  /// **'Sovereign Tide'**
+  String get dk_leviathan_queen_pass;
+
+  /// No description provided for @dk_leviathan_queen_passDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'The ocean itself seems to defer to her.'**
+  String get dk_leviathan_queen_passDesc;
+
+  /// No description provided for @dk_world_tree_warden_name.
+  ///
+  /// In en, this message translates to:
+  /// **'World Tree Warden'**
+  String get dk_world_tree_warden_name;
+
+  /// No description provided for @dk_world_tree_warden_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'Grew from the very first seed a dreamer ever planted.'**
+  String get dk_world_tree_warden_flavor;
+
+  /// No description provided for @dk_world_tree_warden_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Root of Ages'**
+  String get dk_world_tree_warden_ult;
+
+  /// No description provided for @dk_world_tree_warden_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Draws on a root older than the forest to mend the whole team.'**
+  String get dk_world_tree_warden_ultDesc;
+
+  /// No description provided for @dk_world_tree_warden_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Sap Blessing'**
+  String get dk_world_tree_warden_skill;
+
+  /// No description provided for @dk_world_tree_warden_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A slow, warm trickle of restorative sap.'**
+  String get dk_world_tree_warden_skillDesc;
+
+  /// No description provided for @dk_world_tree_warden_pass.
+  ///
+  /// In en, this message translates to:
+  /// **'Ancient Roots'**
+  String get dk_world_tree_warden_pass;
+
+  /// No description provided for @dk_world_tree_warden_passDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Reaches deeper than any dream has ever needed.'**
+  String get dk_world_tree_warden_passDesc;
+
+  /// No description provided for @dk_celestial_dragon_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Celestial Dragon'**
+  String get dk_celestial_dragon_name;
+
+  /// No description provided for @dk_celestial_dragon_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'The last dream every dreamer has, if they dream long enough.'**
+  String get dk_celestial_dragon_flavor;
+
+  /// No description provided for @dk_celestial_dragon_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Starfire Cataclysm'**
+  String get dk_celestial_dragon_ult;
+
+  /// No description provided for @dk_celestial_dragon_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Breathes out the light of a dying galaxy.'**
+  String get dk_celestial_dragon_ultDesc;
+
+  /// No description provided for @dk_celestial_dragon_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Comet Bite'**
+  String get dk_celestial_dragon_skill;
+
+  /// No description provided for @dk_celestial_dragon_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A bite that still carries the heat of falling through the sky.'**
+  String get dk_celestial_dragon_skillDesc;
+
+  /// No description provided for @dk_celestial_dragon_pass.
+  ///
+  /// In en, this message translates to:
+  /// **'Living Constellation'**
+  String get dk_celestial_dragon_pass;
+
+  /// No description provided for @dk_celestial_dragon_passDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Made of the same stuff as the stars it flies among.'**
+  String get dk_celestial_dragon_passDesc;
+
+  /// No description provided for @dk_eclipse_empress_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Eclipse Empress'**
+  String get dk_eclipse_empress_name;
+
+  /// No description provided for @dk_eclipse_empress_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'Rules the space between one dream ending and the next beginning.'**
+  String get dk_eclipse_empress_flavor;
+
+  /// No description provided for @dk_eclipse_empress_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Eclipse'**
+  String get dk_eclipse_empress_ult;
+
+  /// No description provided for @dk_eclipse_empress_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Blots out every light at once, leaving the enemy nowhere to hide.'**
+  String get dk_eclipse_empress_ultDesc;
+
+  /// No description provided for @dk_eclipse_empress_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Crescent Edict'**
+  String get dk_eclipse_empress_skill;
+
+  /// No description provided for @dk_eclipse_empress_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A single, absolute command carved in moonlight.'**
+  String get dk_eclipse_empress_skillDesc;
+
+  /// No description provided for @dk_eclipse_empress_pass.
+  ///
+  /// In en, this message translates to:
+  /// **'Sovereign of Shadow'**
+  String get dk_eclipse_empress_pass;
+
+  /// No description provided for @dk_eclipse_empress_passDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Every dark corner of the dream answers to her.'**
+  String get dk_eclipse_empress_passDesc;
+
+  /// No description provided for @dk_igo_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Igo'**
+  String get dk_igo_name;
+
+  /// No description provided for @dk_igo_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'Not a creature of the dream at all — Igo is one of only two humans who ever stayed in Dream Haven for good, an outsider who chose to become its shield. The Dreamkeepers call him Dreamwalker, never one of their own, and he wouldn\'t have it any other way.'**
+  String get dk_igo_flavor;
+
+  /// No description provided for @dk_igo_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Flutwand'**
+  String get dk_igo_ult;
+
+  /// No description provided for @dk_igo_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Raises a protective wall of water around the whole team.'**
+  String get dk_igo_ultDesc;
+
+  /// No description provided for @dk_igo_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Strömungsriss'**
+  String get dk_igo_skill;
+
+  /// No description provided for @dk_igo_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A tearing current that damages and slows the enemy.'**
+  String get dk_igo_skillDesc;
+
+  /// No description provided for @dk_igo_pass.
+  ///
+  /// In en, this message translates to:
+  /// **'Gezeitenwache'**
+  String get dk_igo_pass;
+
+  /// No description provided for @dk_igo_passDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Once per battle, refuses to fall and surges back at 30% HP.'**
+  String get dk_igo_passDesc;
+
+  /// No description provided for @dk_ames_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Ames'**
+  String get dk_ames_name;
+
+  /// No description provided for @dk_ames_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'Ames walked into Dream Haven once and simply never left — the second of the two humans who made this place home for good. No creature of dream burns quite like she does; the fire is entirely, stubbornly hers.'**
+  String get dk_ames_flavor;
+
+  /// No description provided for @dk_ames_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Glutschnitt'**
+  String get dk_ames_ult;
+
+  /// No description provided for @dk_ames_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A single devastating cut of white-hot flame.'**
+  String get dk_ames_ultDesc;
+
+  /// No description provided for @dk_ames_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Aschesturm'**
+  String get dk_ames_skill;
+
+  /// No description provided for @dk_ames_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A burning strike that keeps the enemy smoldering.'**
+  String get dk_ames_skillDesc;
+
+  /// No description provided for @dk_ames_pass.
+  ///
+  /// In en, this message translates to:
+  /// **'Feuertaufe'**
+  String get dk_ames_pass;
+
+  /// No description provided for @dk_ames_passDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Hits harder the closer she comes to falling — up to +60% attack near death.'**
+  String get dk_ames_passDesc;
+
+  /// No description provided for @dk_olf_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Olf'**
+  String get dk_olf_name;
+
+  /// No description provided for @dk_olf_ember_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'Every save starts with an Olf. Nobody\'s quite sure why he insists on the tunic.'**
+  String get dk_olf_ember_flavor;
+
+  /// No description provided for @dk_olf_ember_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Wobbly Flame Lunge'**
+  String get dk_olf_ember_ult;
+
+  /// No description provided for @dk_olf_ember_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Charges in swinging his twig sword, somehow catching fire on the way.'**
+  String get dk_olf_ember_ultDesc;
+
+  /// No description provided for @dk_olf_ember_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Hot-Headed Jab'**
+  String get dk_olf_ember_skill;
+
+  /// No description provided for @dk_olf_ember_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A jab thrown with more enthusiasm than technique.'**
+  String get dk_olf_ember_skillDesc;
+
+  /// No description provided for @dk_olf_pass.
+  ///
+  /// In en, this message translates to:
+  /// **'Too Dumb to Be Scared'**
+  String get dk_olf_pass;
+
+  /// No description provided for @dk_olf_passDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Doesn\'t know enough to flinch.'**
+  String get dk_olf_passDesc;
+
+  /// No description provided for @dk_olf_tide_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'Chose Tide because puddles seemed friendlier than the alternative.'**
+  String get dk_olf_tide_flavor;
+
+  /// No description provided for @dk_olf_tide_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Bellyflop Splash'**
+  String get dk_olf_tide_ult;
+
+  /// No description provided for @dk_olf_tide_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Cannonballs in, mostly to see what happens.'**
+  String get dk_olf_tide_ultDesc;
+
+  /// No description provided for @dk_olf_tide_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Puddle Poke'**
+  String get dk_olf_tide_skill;
+
+  /// No description provided for @dk_olf_tide_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Pokes the nearest foe with his twig sword, dripping.'**
+  String get dk_olf_tide_skillDesc;
+
+  /// No description provided for @dk_olf_bloom_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'His sword and his element are, technically, the same plant.'**
+  String get dk_olf_bloom_flavor;
+
+  /// No description provided for @dk_olf_bloom_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Overgrown Tantrum'**
+  String get dk_olf_bloom_ult;
+
+  /// No description provided for @dk_olf_bloom_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Flails wildly through the underbrush he mostly grew himself.'**
+  String get dk_olf_bloom_ultDesc;
+
+  /// No description provided for @dk_olf_bloom_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Twig Sword Thwack'**
+  String get dk_olf_bloom_skill;
+
+  /// No description provided for @dk_olf_bloom_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A thwack from the twig sword — which is, appropriately, also a twig.'**
+  String get dk_olf_bloom_skillDesc;
+
+  /// No description provided for @dk_olf_lunar_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'Picked Lunar because he liked staying up. He is always tired.'**
+  String get dk_olf_lunar_flavor;
+
+  /// No description provided for @dk_olf_lunar_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Moonstruck Stumble'**
+  String get dk_olf_lunar_ult;
+
+  /// No description provided for @dk_olf_lunar_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Trips over his own feet directly into the enemy, somehow on purpose.'**
+  String get dk_olf_lunar_ultDesc;
+
+  /// No description provided for @dk_olf_lunar_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Sleepy Swipe'**
+  String get dk_olf_lunar_skill;
+
+  /// No description provided for @dk_olf_lunar_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A swipe thrown half-asleep, which is most of the time.'**
+  String get dk_olf_lunar_skillDesc;
+
+  /// No description provided for @dk_olf_astral_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'Believes the stars picked him. The stars have not commented.'**
+  String get dk_olf_astral_flavor;
+
+  /// No description provided for @dk_olf_astral_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Starry-Eyed Charge'**
+  String get dk_olf_astral_ult;
+
+  /// No description provided for @dk_olf_astral_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Charges in staring at the sky instead of the enemy.'**
+  String get dk_olf_astral_ultDesc;
+
+  /// No description provided for @dk_olf_astral_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Lucky Jab'**
+  String get dk_olf_astral_skill;
+
+  /// No description provided for @dk_olf_astral_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A jab he definitely meant to land.'**
+  String get dk_olf_astral_skillDesc;
+
+  /// No description provided for @dk_olf_ultimate_flavor.
+  ///
+  /// In en, this message translates to:
+  /// **'The other Olf isn\'t sure how this happened either.'**
+  String get dk_olf_ultimate_flavor;
+
+  /// No description provided for @dk_olf_ultimate_ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlikely Hero\'s Flame Lunge'**
+  String get dk_olf_ultimate_ult;
+
+  /// No description provided for @dk_olf_ultimate_ultDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'The same wobbly lunge — somehow, this time, it actually connects.'**
+  String get dk_olf_ultimate_ultDesc;
+
+  /// No description provided for @dk_olf_ultimate_skill.
+  ///
+  /// In en, this message translates to:
+  /// **'Suspiciously Competent Jab'**
+  String get dk_olf_ultimate_skill;
+
+  /// No description provided for @dk_olf_ultimate_skillDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A jab that lands exactly where he meant it to. He looks as surprised as you.'**
+  String get dk_olf_ultimate_skillDesc;
+
+  /// No description provided for @dk_olf_ultimate_pass.
+  ///
+  /// In en, this message translates to:
+  /// **'Secretly Built Different'**
+  String get dk_olf_ultimate_pass;
+
+  /// No description provided for @dk_olf_ultimate_passDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Somehow, against all odds, this Olf turned out unfairly strong.'**
+  String get dk_olf_ultimate_passDesc;
 }
 
 class _AppLocalizationsDelegate
