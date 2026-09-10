@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/l10n.dart';
+
 /// Mirrors GameCore/Models/Element.swift exactly — keep both in sync. Named
 /// `GameElement` (not `Element`) to avoid colliding with Flutter's own
 /// widgets-framework `Element` class.
@@ -13,15 +15,15 @@ enum GameElement {
   String get displayName {
     switch (this) {
       case GameElement.ember:
-        return 'Ember';
+        return L.elementEmber;
       case GameElement.tide:
-        return 'Tide';
+        return L.elementTide;
       case GameElement.bloom:
-        return 'Bloom';
+        return L.elementBloom;
       case GameElement.lunar:
-        return 'Lunar';
+        return L.elementLunar;
       case GameElement.astral:
-        return 'Astral';
+        return L.elementAstral;
     }
   }
 

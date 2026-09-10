@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/l10n.dart';
+
 /// Mirrors GameCore/Models/Rarity.swift exactly — keep both in sync.
 enum Rarity implements Comparable<Rarity> {
   common,
@@ -42,8 +44,22 @@ enum Rarity implements Comparable<Rarity> {
   bool operator >=(Rarity other) => _sortOrder >= other._sortOrder;
 
   String get displayName {
-    final raw = name;
-    return raw[0].toUpperCase() + raw.substring(1);
+    switch (this) {
+      case Rarity.common:
+        return L.rarityCommon;
+      case Rarity.uncommon:
+        return L.rarityUncommon;
+      case Rarity.rare:
+        return L.rarityRare;
+      case Rarity.epic:
+        return L.rarityEpic;
+      case Rarity.legendary:
+        return L.rarityLegendary;
+      case Rarity.mythic:
+        return L.rarityMythic;
+      case Rarity.exclusive:
+        return L.rarityExclusive;
+    }
   }
 
   /// The two-stop palette this rarity draws from — brighter and richer as

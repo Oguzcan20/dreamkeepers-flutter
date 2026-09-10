@@ -1151,4 +1151,70 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get battleUltimateLabel => 'Ultimativ';
+
+  @override
+  String get elementEmber => 'Glut';
+
+  @override
+  String get elementTide => 'Flut';
+
+  @override
+  String get elementBloom => 'Blüte';
+
+  @override
+  String get elementLunar => 'Lunar';
+
+  @override
+  String get elementAstral => 'Astral';
+
+  @override
+  String get roleTank => 'Tank';
+
+  @override
+  String get roleDamage => 'Schaden';
+
+  @override
+  String get roleSupport => 'Unterstützung';
+
+  @override
+  String get roleHealer => 'Heiler';
+
+  @override
+  String get roleControl => 'Kontrolle';
+
+  @override
+  String get roleGuardian => 'Wächter';
+
+  @override
+  String get rarityCommon => 'Gewöhnlich';
+
+  @override
+  String get rarityUncommon => 'Ungewöhnlich';
+
+  @override
+  String get rarityRare => 'Selten';
+
+  @override
+  String get rarityEpic => 'Episch';
+
+  @override
+  String get rarityLegendary => 'Legendär';
+
+  @override
+  String get rarityMythic => 'Mythisch';
+
+  @override
+  String get rarityExclusive => 'Exklusiv';
+
+  @override
+  String get slotWeapon => 'Waffe';
+
+  @override
+  String get slotCharm => 'Talisman';
+
+  @override
+  String get slotCloak => 'Umhang';
+
+  @override
+  String get slotRing => 'Ring';
 }

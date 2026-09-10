@@ -1952,6 +1952,138 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Ultimate'**
   String get battleUltimateLabel;
+
+  /// No description provided for @elementEmber.
+  ///
+  /// In en, this message translates to:
+  /// **'Ember'**
+  String get elementEmber;
+
+  /// No description provided for @elementTide.
+  ///
+  /// In en, this message translates to:
+  /// **'Tide'**
+  String get elementTide;
+
+  /// No description provided for @elementBloom.
+  ///
+  /// In en, this message translates to:
+  /// **'Bloom'**
+  String get elementBloom;
+
+  /// No description provided for @elementLunar.
+  ///
+  /// In en, this message translates to:
+  /// **'Lunar'**
+  String get elementLunar;
+
+  /// No description provided for @elementAstral.
+  ///
+  /// In en, this message translates to:
+  /// **'Astral'**
+  String get elementAstral;
+
+  /// No description provided for @roleTank.
+  ///
+  /// In en, this message translates to:
+  /// **'Tank'**
+  String get roleTank;
+
+  /// No description provided for @roleDamage.
+  ///
+  /// In en, this message translates to:
+  /// **'Damage'**
+  String get roleDamage;
+
+  /// No description provided for @roleSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'Support'**
+  String get roleSupport;
+
+  /// No description provided for @roleHealer.
+  ///
+  /// In en, this message translates to:
+  /// **'Healer'**
+  String get roleHealer;
+
+  /// No description provided for @roleControl.
+  ///
+  /// In en, this message translates to:
+  /// **'Control'**
+  String get roleControl;
+
+  /// No description provided for @roleGuardian.
+  ///
+  /// In en, this message translates to:
+  /// **'Guardian'**
+  String get roleGuardian;
+
+  /// No description provided for @rarityCommon.
+  ///
+  /// In en, this message translates to:
+  /// **'Common'**
+  String get rarityCommon;
+
+  /// No description provided for @rarityUncommon.
+  ///
+  /// In en, this message translates to:
+  /// **'Uncommon'**
+  String get rarityUncommon;
+
+  /// No description provided for @rarityRare.
+  ///
+  /// In en, this message translates to:
+  /// **'Rare'**
+  String get rarityRare;
+
+  /// No description provided for @rarityEpic.
+  ///
+  /// In en, this message translates to:
+  /// **'Epic'**
+  String get rarityEpic;
+
+  /// No description provided for @rarityLegendary.
+  ///
+  /// In en, this message translates to:
+  /// **'Legendary'**
+  String get rarityLegendary;
+
+  /// No description provided for @rarityMythic.
+  ///
+  /// In en, this message translates to:
+  /// **'Mythic'**
+  String get rarityMythic;
+
+  /// No description provided for @rarityExclusive.
+  ///
+  /// In en, this message translates to:
+  /// **'Exclusive'**
+  String get rarityExclusive;
+
+  /// No description provided for @slotWeapon.
+  ///
+  /// In en, this message translates to:
+  /// **'Weapon'**
+  String get slotWeapon;
+
+  /// No description provided for @slotCharm.
+  ///
+  /// In en, this message translates to:
+  /// **'Charm'**
+  String get slotCharm;
+
+  /// No description provided for @slotCloak.
+  ///
+  /// In en, this message translates to:
+  /// **'Cloak'**
+  String get slotCloak;
+
+  /// No description provided for @slotRing.
+  ///
+  /// In en, this message translates to:
+  /// **'Ring'**
+  String get slotRing;
 }
 
 class _AppLocalizationsDelegate

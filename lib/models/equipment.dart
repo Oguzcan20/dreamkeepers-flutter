@@ -2,6 +2,7 @@ import 'package:uuid/uuid.dart';
 
 import 'rarity.dart';
 import 'stats.dart';
+import '../l10n/l10n.dart';
 import '../progression/star_fusion_system.dart';
 
 const _uuid = Uuid();
@@ -13,8 +14,16 @@ enum EquipmentSlot {
   ring;
 
   String get displayName {
-    final raw = name;
-    return raw[0].toUpperCase() + raw.substring(1);
+    switch (this) {
+      case EquipmentSlot.weapon:
+        return L.slotWeapon;
+      case EquipmentSlot.charm:
+        return L.slotCharm;
+      case EquipmentSlot.cloak:
+        return L.slotCloak;
+      case EquipmentSlot.ring:
+        return L.slotRing;
+    }
   }
 
   String get symbol {

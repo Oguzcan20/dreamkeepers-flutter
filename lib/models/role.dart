@@ -1,3 +1,5 @@
+import '../l10n/l10n.dart';
+
 /// Mirrors GameCore/Models/Role.swift exactly — keep both in sync.
 enum Role {
   tank,
@@ -15,17 +17,17 @@ enum Role {
   String get displayName {
     switch (this) {
       case Role.tank:
-        return 'Tank';
+        return L.roleTank;
       case Role.damage:
-        return 'Damage';
+        return L.roleDamage;
       case Role.support:
-        return 'Support';
+        return L.roleSupport;
       case Role.healer:
-        return 'Healer';
+        return L.roleHealer;
       case Role.control:
-        return 'Control';
+        return L.roleControl;
       case Role.guardian:
-        return 'Guardian';
+        return L.roleGuardian;
     }
   }
 
