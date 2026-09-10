@@ -5690,6 +5690,138 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Ruler of the highest dream, and the last, greatest guardian the Dreamkeepers must face.'**
   String get monBoss10Lore;
+
+  /// No description provided for @shopGemsSmallName.
+  ///
+  /// In en, this message translates to:
+  /// **'Handful of Gems'**
+  String get shopGemsSmallName;
+
+  /// No description provided for @shopGemsSmallDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A small top-up.'**
+  String get shopGemsSmallDesc;
+
+  /// No description provided for @shopGemsMediumName.
+  ///
+  /// In en, this message translates to:
+  /// **'Pouch of Gems'**
+  String get shopGemsMediumName;
+
+  /// No description provided for @shopGemsMediumDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Good value for regular summoning.'**
+  String get shopGemsMediumDesc;
+
+  /// No description provided for @shopGemsLargeName.
+  ///
+  /// In en, this message translates to:
+  /// **'Chest of Gems'**
+  String get shopGemsLargeName;
+
+  /// No description provided for @shopGemsLargeDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Best value per gem.'**
+  String get shopGemsLargeDesc;
+
+  /// No description provided for @shopGemsMegaName.
+  ///
+  /// In en, this message translates to:
+  /// **'Vault of Gems'**
+  String get shopGemsMegaName;
+
+  /// No description provided for @shopGemsMegaDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'For serious Dream Haven builders.'**
+  String get shopGemsMegaDesc;
+
+  /// No description provided for @shopGoldSmallName.
+  ///
+  /// In en, this message translates to:
+  /// **'Gold Pouch'**
+  String get shopGoldSmallName;
+
+  /// No description provided for @shopGoldSmallDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Exchange gems for gold.'**
+  String get shopGoldSmallDesc;
+
+  /// No description provided for @shopGoldLargeName.
+  ///
+  /// In en, this message translates to:
+  /// **'Gold Chest'**
+  String get shopGoldLargeName;
+
+  /// No description provided for @shopGoldLargeDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Better exchange rate.'**
+  String get shopGoldLargeDesc;
+
+  /// No description provided for @shopStarterPackName.
+  ///
+  /// In en, this message translates to:
+  /// **'Dreamkeeper Starter Pack'**
+  String get shopStarterPackName;
+
+  /// No description provided for @shopStarterPackDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'One-time bonus for new Dream Haven builders: gold and gems to get your roster going.'**
+  String get shopStarterPackDesc;
+
+  /// No description provided for @shopVipPassName.
+  ///
+  /// In en, this message translates to:
+  /// **'VIP Pass'**
+  String get shopVipPassName;
+
+  /// No description provided for @shopVipPassDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Removes rewarded-ad prompts for good — a permanent, one-time thank-you for supporting Dream Haven.'**
+  String get shopVipPassDesc;
+
+  /// No description provided for @shopTicketSmallName.
+  ///
+  /// In en, this message translates to:
+  /// **'Trial Ticket Pack'**
+  String get shopTicketSmallName;
+
+  /// No description provided for @shopTicketSmallDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'5 extra Endless Trial attempts, on top of your free daily tickets.'**
+  String get shopTicketSmallDesc;
+
+  /// No description provided for @shopTicketLargeName.
+  ///
+  /// In en, this message translates to:
+  /// **'Trial Ticket Bundle'**
+  String get shopTicketLargeName;
+
+  /// No description provided for @shopTicketLargeDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'15 extra Endless Trial attempts — better value for a serious climb.'**
+  String get shopTicketLargeDesc;
+
+  /// No description provided for @shopExclusiveIgoDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'The tide\'s own guardian — permanently joins your roster at max level and max stars.'**
+  String get shopExclusiveIgoDesc;
+
+  /// No description provided for @shopExclusiveAmesDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Ember given human form — permanently joins your roster at max level and max stars.'**
+  String get shopExclusiveAmesDesc;
 }
 
 class _AppLocalizationsDelegate

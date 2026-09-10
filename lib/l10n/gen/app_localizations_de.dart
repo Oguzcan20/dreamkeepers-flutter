@@ -3296,4 +3296,76 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get monBoss10Lore =>
       'Herrscher des höchsten Traums und der letzte, größte Wächter, dem die Traumhüter gegenübertreten müssen.';
+
+  @override
+  String get shopGemsSmallName => 'Handvoll Edelsteine';
+
+  @override
+  String get shopGemsSmallDesc => 'Ein kleines Aufstocken.';
+
+  @override
+  String get shopGemsMediumName => 'Beutel voll Edelsteine';
+
+  @override
+  String get shopGemsMediumDesc => 'Guter Wert für regelmäßiges Beschwören.';
+
+  @override
+  String get shopGemsLargeName => 'Truhe voll Edelsteine';
+
+  @override
+  String get shopGemsLargeDesc => 'Bester Wert pro Edelstein.';
+
+  @override
+  String get shopGemsMegaName => 'Tresor voll Edelsteine';
+
+  @override
+  String get shopGemsMegaDesc => 'Für ernsthafte Traumhafen-Baumeister.';
+
+  @override
+  String get shopGoldSmallName => 'Goldbeutel';
+
+  @override
+  String get shopGoldSmallDesc => 'Tausche Edelsteine gegen Gold.';
+
+  @override
+  String get shopGoldLargeName => 'Goldtruhe';
+
+  @override
+  String get shopGoldLargeDesc => 'Besserer Wechselkurs.';
+
+  @override
+  String get shopStarterPackName => 'Traumhüter-Starterpaket';
+
+  @override
+  String get shopStarterPackDesc =>
+      'Einmaliger Bonus für neue Traumhafen-Baumeister: Gold und Edelsteine, um deinen Kader in Gang zu bringen.';
+
+  @override
+  String get shopVipPassName => 'VIP-Pass';
+
+  @override
+  String get shopVipPassDesc =>
+      'Entfernt Belohnungsanzeigen-Aufforderungen für immer — ein dauerhaftes, einmaliges Dankeschön für die Unterstützung des Traumhafens.';
+
+  @override
+  String get shopTicketSmallName => 'Prüfungs-Ticketpaket';
+
+  @override
+  String get shopTicketSmallDesc =>
+      '5 zusätzliche Versuche in der Endlosen Prüfung, zusätzlich zu deinen kostenlosen Tagestickets.';
+
+  @override
+  String get shopTicketLargeName => 'Prüfungs-Ticketbündel';
+
+  @override
+  String get shopTicketLargeDesc =>
+      '15 zusätzliche Versuche in der Endlosen Prüfung — besserer Wert für einen ernsthaften Aufstieg.';
+
+  @override
+  String get shopExclusiveIgoDesc =>
+      'Der Wächter der Flut selbst — tritt dauerhaft mit maximalem Level und maximalen Sternen deinem Kader bei.';
+
+  @override
+  String get shopExclusiveAmesDesc =>
+      'Glut in Menschengestalt — tritt dauerhaft mit maximalem Level und maximalen Sternen deinem Kader bei.';
 }

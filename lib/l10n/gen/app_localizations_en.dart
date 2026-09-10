@@ -3271,4 +3271,76 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get monBoss10Lore =>
       'Ruler of the highest dream, and the last, greatest guardian the Dreamkeepers must face.';
+
+  @override
+  String get shopGemsSmallName => 'Handful of Gems';
+
+  @override
+  String get shopGemsSmallDesc => 'A small top-up.';
+
+  @override
+  String get shopGemsMediumName => 'Pouch of Gems';
+
+  @override
+  String get shopGemsMediumDesc => 'Good value for regular summoning.';
+
+  @override
+  String get shopGemsLargeName => 'Chest of Gems';
+
+  @override
+  String get shopGemsLargeDesc => 'Best value per gem.';
+
+  @override
+  String get shopGemsMegaName => 'Vault of Gems';
+
+  @override
+  String get shopGemsMegaDesc => 'For serious Dream Haven builders.';
+
+  @override
+  String get shopGoldSmallName => 'Gold Pouch';
+
+  @override
+  String get shopGoldSmallDesc => 'Exchange gems for gold.';
+
+  @override
+  String get shopGoldLargeName => 'Gold Chest';
+
+  @override
+  String get shopGoldLargeDesc => 'Better exchange rate.';
+
+  @override
+  String get shopStarterPackName => 'Dreamkeeper Starter Pack';
+
+  @override
+  String get shopStarterPackDesc =>
+      'One-time bonus for new Dream Haven builders: gold and gems to get your roster going.';
+
+  @override
+  String get shopVipPassName => 'VIP Pass';
+
+  @override
+  String get shopVipPassDesc =>
+      'Removes rewarded-ad prompts for good — a permanent, one-time thank-you for supporting Dream Haven.';
+
+  @override
+  String get shopTicketSmallName => 'Trial Ticket Pack';
+
+  @override
+  String get shopTicketSmallDesc =>
+      '5 extra Endless Trial attempts, on top of your free daily tickets.';
+
+  @override
+  String get shopTicketLargeName => 'Trial Ticket Bundle';
+
+  @override
+  String get shopTicketLargeDesc =>
+      '15 extra Endless Trial attempts — better value for a serious climb.';
+
+  @override
+  String get shopExclusiveIgoDesc =>
+      'The tide\'s own guardian — permanently joins your roster at max level and max stars.';
+
+  @override
+  String get shopExclusiveAmesDesc =>
+      'Ember given human form — permanently joins your roster at max level and max stars.';
 }

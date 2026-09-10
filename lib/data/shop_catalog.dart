@@ -1,3 +1,4 @@
+import '../l10n/l10n.dart';
 import '../models/shop_item.dart';
 
 /// Mirrors GameCore/Data/ShopCatalog.swift exactly.
@@ -8,12 +9,12 @@ class ShopCatalog {
   /// matching the app's own bundle/application ID convention.
   static const _productIDPrefix = 'com.dreamhaven.dreamkeepers';
 
-  static const List<ShopItem> gemPacks = [
+  static final List<ShopItem> gemPacks = [
     ShopItem(
       id: 'gems_small',
       kind: ShopItemKind.gemPack,
-      name: 'Handful of Gems',
-      description: 'A small top-up.',
+      name: L.shopGemsSmallName,
+      description: L.shopGemsSmallDesc,
       priceLabel: r'$0.99',
       icon: 'sparkles',
       gemCost: 0,
@@ -24,8 +25,8 @@ class ShopCatalog {
     ShopItem(
       id: 'gems_medium',
       kind: ShopItemKind.gemPack,
-      name: 'Pouch of Gems',
-      description: 'Good value for regular summoning.',
+      name: L.shopGemsMediumName,
+      description: L.shopGemsMediumDesc,
       priceLabel: r'$4.99',
       icon: 'sparkles',
       gemCost: 0,
@@ -36,8 +37,8 @@ class ShopCatalog {
     ShopItem(
       id: 'gems_large',
       kind: ShopItemKind.gemPack,
-      name: 'Chest of Gems',
-      description: 'Best value per gem.',
+      name: L.shopGemsLargeName,
+      description: L.shopGemsLargeDesc,
       priceLabel: r'$9.99',
       icon: 'sparkles',
       gemCost: 0,
@@ -48,8 +49,8 @@ class ShopCatalog {
     ShopItem(
       id: 'gems_mega',
       kind: ShopItemKind.gemPack,
-      name: 'Vault of Gems',
-      description: 'For serious Dream Haven builders.',
+      name: L.shopGemsMegaName,
+      description: L.shopGemsMegaDesc,
       priceLabel: r'$19.99',
       icon: 'sparkles',
       gemCost: 0,
@@ -59,13 +60,13 @@ class ShopCatalog {
     ),
   ];
 
-  static const List<ShopItem> goldExchanges = [
+  static final List<ShopItem> goldExchanges = [
     ShopItem(
       id: 'gold_small',
       kind: ShopItemKind.goldExchange,
-      name: 'Gold Pouch',
-      description: 'Exchange gems for gold.',
-      priceLabel: '20 Gems',
+      name: L.shopGoldSmallName,
+      description: L.shopGoldSmallDesc,
+      priceLabel: L.commonAmountGems(20),
       icon: 'circle.hexagongrid.fill',
       gemCost: 20,
       goldGranted: 200,
@@ -74,9 +75,9 @@ class ShopCatalog {
     ShopItem(
       id: 'gold_large',
       kind: ShopItemKind.goldExchange,
-      name: 'Gold Chest',
-      description: 'Better exchange rate.',
-      priceLabel: '80 Gems',
+      name: L.shopGoldLargeName,
+      description: L.shopGoldLargeDesc,
+      priceLabel: L.commonAmountGems(80),
       icon: 'circle.hexagongrid.fill',
       gemCost: 80,
       goldGranted: 1000,
@@ -84,12 +85,12 @@ class ShopCatalog {
     ),
   ];
 
-  static const ShopItem starterPack = ShopItem(
+  static final ShopItem starterPack = ShopItem(
     id: starterPackID,
     kind: ShopItemKind.starterPack,
-    name: 'Dreamkeeper Starter Pack',
+    name: L.shopStarterPackName,
     description:
-        'One-time bonus for new Dream Haven builders: gold and gems to get your roster going.',
+        L.shopStarterPackDesc,
     priceLabel: r'$2.99',
     icon: 'gift.fill',
     gemCost: 0,
@@ -100,12 +101,12 @@ class ShopCatalog {
 
   static const vipPassID = 'vip_pass';
 
-  static const ShopItem vipPass = ShopItem(
+  static final ShopItem vipPass = ShopItem(
     id: vipPassID,
     kind: ShopItemKind.vip,
-    name: 'VIP Pass',
+    name: L.shopVipPassName,
     description:
-        'Removes rewarded-ad prompts for good — a permanent, one-time thank-you for supporting Dream Haven.',
+        L.shopVipPassDesc,
     priceLabel: r'$4.99',
     icon: 'crown.fill',
     gemCost: 0,
@@ -117,12 +118,12 @@ class ShopCatalog {
   /// Real-money-only Arena Tower ticket top-ups — never purchasable with
   /// gold or gems, by design. Granted tickets stack on top of the free
   /// daily allotment via `GameSave.arenaBonusTickets` and never expire.
-  static const List<ShopItem> arenaTicketPacks = [
+  static final List<ShopItem> arenaTicketPacks = [
     ShopItem(
       id: 'arena_tickets_small',
       kind: ShopItemKind.arenaTicketPack,
-      name: 'Trial Ticket Pack',
-      description: '5 extra Endless Trial attempts, on top of your free daily tickets.',
+      name: L.shopTicketSmallName,
+      description: L.shopTicketSmallDesc,
       priceLabel: r'$1.99',
       icon: 'ticket.fill',
       gemCost: 0,
@@ -134,8 +135,8 @@ class ShopCatalog {
     ShopItem(
       id: 'arena_tickets_large',
       kind: ShopItemKind.arenaTicketPack,
-      name: 'Trial Ticket Bundle',
-      description: '15 extra Endless Trial attempts — better value for a serious climb.',
+      name: L.shopTicketLargeName,
+      description: L.shopTicketLargeDesc,
       priceLabel: r'$4.99',
       icon: 'ticket.fill',
       gemCost: 0,
@@ -150,13 +151,13 @@ class ShopCatalog {
   /// Each is its own one-time purchase (not bundled) that grants a
   /// max-level, max-star copy directly, the shop half of their dual
   /// acquisition path alongside the Summoning Shrine (see `TwinBond`).
-  static const List<ShopItem> exclusiveCharacters = [
+  static final List<ShopItem> exclusiveCharacters = [
     ShopItem(
       id: 'exclusive_igo',
       kind: ShopItemKind.exclusiveCharacter,
-      name: 'Igo',
+      name: L.dk_igo_name,
       description:
-          "The tide's own guardian — permanently joins your roster at max level and max stars.",
+          L.shopExclusiveIgoDesc,
       priceLabel: r'$99.99',
       icon: 'shield.righthalf.filled',
       gemCost: 0,
@@ -168,9 +169,9 @@ class ShopCatalog {
     ShopItem(
       id: 'exclusive_ames',
       kind: ShopItemKind.exclusiveCharacter,
-      name: 'Ames',
+      name: L.dk_ames_name,
       description:
-          'Ember given human form — permanently joins your roster at max level and max stars.',
+          L.shopExclusiveAmesDesc,
       priceLabel: r'$99.99',
       icon: 'flame.fill',
       gemCost: 0,
