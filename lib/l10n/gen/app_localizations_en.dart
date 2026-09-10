@@ -3465,4 +3465,123 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get weeklyVisitShop => 'Visit the Shop 3 Times';
+
+  @override
+  String blShieldShatters(String name) {
+    return '$name\'s shield shatters!';
+  }
+
+  @override
+  String blRefusesToFall(String name) {
+    return '$name refuses to fall, surging back with the tide!';
+  }
+
+  @override
+  String blHits(String attacker, String target, int amount) {
+    return '$attacker hits $target for $amount.';
+  }
+
+  @override
+  String blFalls(String name) {
+    return '$name falls.';
+  }
+
+  @override
+  String blUnleashesUltimate(String name, String ultimate) {
+    return '$name unleashes $ultimate!';
+  }
+
+  @override
+  String blFrozenStill(String name) {
+    return '$name is frozen still!';
+  }
+
+  @override
+  String blMoonlightHeal(int amount) {
+    return 'The team is bathed in moonlight, healing for $amount.';
+  }
+
+  @override
+  String blEmpowersTeam(String name) {
+    return '$name empowers the whole team!';
+  }
+
+  @override
+  String blWallOfWater(String name) {
+    return '$name raises a wall of water around the team!';
+  }
+
+  @override
+  String blUsesSkill(String name, String skill) {
+    return '$name uses $skill.';
+  }
+
+  @override
+  String blSoothed(String name, int amount) {
+    return '$name is soothed for $amount.';
+  }
+
+  @override
+  String blSteelsThemself(String name) {
+    return '$name steels themself.';
+  }
+
+  @override
+  String blCaughtInCurrent(String name) {
+    return '$name is caught in the current, slowed!';
+  }
+
+  @override
+  String blHiddenReserves(String name, int amount) {
+    return '$name calls on hidden reserves, healing for $amount!';
+  }
+
+  @override
+  String blRage(String name) {
+    return '$name flies into a rage, striking harder!';
+  }
+
+  @override
+  String blDrainsResolve(String name) {
+    return '$name drains the team\'s resolve!';
+  }
+
+  @override
+  String blFreshShieldRoots(String name) {
+    return '$name grows a fresh shield of roots!';
+  }
+
+  @override
+  String blLightToShadow(String name) {
+    return '$name turns from light to shadow!';
+  }
+
+  @override
+  String blSovereignForm(String name) {
+    return '$name awakens its final, sovereign form!';
+  }
+
+  @override
+  String get blVictory => 'Victory!';
+
+  @override
+  String get blDefeat => 'Defeat...';
+
+  @override
+  String get mechHealed => 'Healed!';
+
+  @override
+  String get mechEnraged => 'Enraged!';
+
+  @override
+  String get mechShielded => 'Shielded!';
+
+  @override
+  String get mechDrained => 'Drained!';
+
+  @override
+  String get mechPhaseShift => 'Phase Shift!';
+
+  @override
+  String get mechAwakened => 'Awakened!';
 }

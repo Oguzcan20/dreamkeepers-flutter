@@ -6,6 +6,7 @@ import 'package:uuid/uuid.dart';
 import '../models/element.dart';
 import '../models/role.dart';
 import 'combatant.dart';
+import '../l10n/l10n.dart';
 
 const _uuid = Uuid();
 
@@ -216,7 +217,7 @@ class BattleEngine extends ChangeNotifier {
       dmg *= 0.4;
       combatants[index].shieldCharges -= 1;
       if (combatants[index].shieldCharges == 0) {
-        _appendLog("${combatants[index].name}'s shield shatters!");
+        _appendLog(L.blShieldShatters(combatants[index].name));
       }
     }
 
@@ -229,7 +230,7 @@ class BattleEngine extends ChangeNotifier {
         !combatants[index].hasUsedRevive) {
       combatants[index].currentHP = combatants[index].maxHP * reviveFraction;
       combatants[index].hasUsedRevive = true;
-      _appendLog("${combatants[index].name} refuses to fall, surging back with the tide!");
+      _appendLog(L.blRefusesToFall(combatants[index].name));
     } else {
       combatants[index].currentHP = max(0, newHP);
     }
@@ -241,9 +242,9 @@ class BattleEngine extends ChangeNotifier {
       attackerElement: attackerElement,
       isElementAdvantage: isAdvantage,
     );
-    _appendLog('$attackerName hits ${combatants[index].name} for $amount.');
+    _appendLog(L.blHits(attackerName, combatants[index].name, amount));
     if (!combatants[index].isAlive) {
-      _appendLog('${combatants[index].name} falls.');
+      _appendLog(L.blFalls(combatants[index].name));
     }
     _triggerBossMechanicIfNeeded(index);
   }
@@ -263,7 +264,7 @@ class BattleEngine extends ChangeNotifier {
 
     combatants[index].energy = 0;
     lastUltimate = UltimateEvent(casterID: combatants[index].id);
-    _appendLog('${combatants[index].name} unleashes ${ultimate.name}!');
+    _appendLog(L.blUnleashesUltimate(combatants[index].name, ultimate.name));
 
     switch (combatants[index].role) {
       case Role.healer:
@@ -313,7 +314,7 @@ class BattleEngine extends ChangeNotifier {
         attackerElement: combatants[index].element);
     if (combatants[targetIndex].isAlive) {
       combatants[targetIndex].stunTicks = 20;
-      _appendLog('${combatants[targetIndex].name} is frozen still!');
+      _appendLog(L.blFrozenStill(combatants[targetIndex].name));
     }
   }
 
@@ -325,7 +326,7 @@ class BattleEngine extends ChangeNotifier {
             min(combatants[index].maxHP, combatants[index].currentHP + healAmount);
       }
     }
-    _appendLog('The team is bathed in moonlight, healing for ${healAmount.round()}.');
+    _appendLog(L.blMoonlightHeal(healAmount.round()));
   }
 
   void _buffAllies({required Combatant caster, required double multiplier}) {
@@ -334,7 +335,7 @@ class BattleEngine extends ChangeNotifier {
         combatants[index].attack *= (1 + (multiplier - 1) * 0.5);
       }
     }
-    _appendLog('${caster.name} empowers the whole team!');
+    _appendLog(L.blEmpowersTeam(caster.name));
   }
 
   void _shieldAllies({required Combatant caster, required double multiplier}) {
@@ -344,7 +345,7 @@ class BattleEngine extends ChangeNotifier {
         combatants[index].shieldCharges = charges;
       }
     }
-    _appendLog('${caster.name} raises a wall of water around the team!');
+    _appendLog(L.blWallOfWater(caster.name));
   }
 
   // MARK: - Active Skill
@@ -366,7 +367,7 @@ class BattleEngine extends ChangeNotifier {
 
     combatants[index].skillCooldownRemaining = skill.cooldownSeconds;
     lastSkillUse = SkillEvent(casterID: combatants[index].id);
-    _appendLog('${combatants[index].name} uses ${skill.name}.');
+    _appendLog(L.blUsesSkill(combatants[index].name, skill.name));
 
     switch (combatants[index].role) {
       case Role.healer:
@@ -413,12 +414,12 @@ class BattleEngine extends ChangeNotifier {
     final healAmount = caster.attack * multiplier;
     combatants[targetIndex].currentHP =
         min(combatants[targetIndex].maxHP, combatants[targetIndex].currentHP + healAmount);
-    _appendLog('${combatants[targetIndex].name} is soothed for ${healAmount.round()}.');
+    _appendLog(L.blSoothed(combatants[targetIndex].name, healAmount.round()));
   }
 
   void _buffSelf(int index, {required double multiplier}) {
     combatants[index].attack *= (1 + (multiplier - 1) * 0.5);
-    _appendLog('${combatants[index].name} steels themself.');
+    _appendLog(L.blSteelsThemself(combatants[index].name));
   }
 
   void _quickStrikeAndSlow(int index, {required double multiplier}) {
@@ -433,7 +434,7 @@ class BattleEngine extends ChangeNotifier {
         attackerElement: combatants[index].element);
     if (combatants[targetIndex].isAlive) {
       combatants[targetIndex].stunTicks = 10;
-      _appendLog('${combatants[targetIndex].name} is caught in the current, slowed!');
+      _appendLog(L.blCaughtInCurrent(combatants[targetIndex].name));
     }
   }
 
@@ -458,14 +459,13 @@ class BattleEngine extends ChangeNotifier {
         combatants[index].currentHP =
             min(combatants[index].maxHP, combatants[index].currentHP + healAmount);
         combatants[index].mechanicTriggered = true;
-        _appendLog(
-            '${combatants[index].name} calls on hidden reserves, healing for ${healAmount.round()}!');
+        _appendLog(L.blHiddenReserves(combatants[index].name, healAmount.round()));
         break;
       case BossMechanic.enrage:
         if (combatants[index].hpFraction > 0.3) return;
         combatants[index].attack *= 1.5;
         combatants[index].mechanicTriggered = true;
-        _appendLog('${combatants[index].name} flies into a rage, striking harder!');
+        _appendLog(L.blRage(combatants[index].name));
         break;
       case BossMechanic.shield:
         break;
@@ -475,20 +475,20 @@ class BattleEngine extends ChangeNotifier {
           if (combatants[i].isPlayer) combatants[i].energy = 0;
         }
         combatants[index].mechanicTriggered = true;
-        _appendLog("${combatants[index].name} drains the team's resolve!");
+        _appendLog(L.blDrainsResolve(combatants[index].name));
         break;
       case BossMechanic.regenShield:
         if (combatants[index].hpFraction > 0.5) return;
         combatants[index].shieldCharges = 3;
         combatants[index].mechanicTriggered = true;
-        _appendLog('${combatants[index].name} grows a fresh shield of roots!');
+        _appendLog(L.blFreshShieldRoots(combatants[index].name));
         break;
       case BossMechanic.phaseShift:
         if (combatants[index].hpFraction > 0.5) return;
         combatants[index].attack *= 1.35;
         combatants[index].shieldCharges = 3;
         combatants[index].mechanicTriggered = true;
-        _appendLog('${combatants[index].name} turns from light to shadow!');
+        _appendLog(L.blLightToShadow(combatants[index].name));
         break;
       case BossMechanic.sovereign:
         if (combatants[index].hpFraction > 0.4) return;
@@ -498,7 +498,7 @@ class BattleEngine extends ChangeNotifier {
         combatants[index].attack *= 1.5;
         combatants[index].shieldCharges = 3;
         combatants[index].mechanicTriggered = true;
-        _appendLog('${combatants[index].name} awakens its final, sovereign form!');
+        _appendLog(L.blSovereignForm(combatants[index].name));
         break;
     }
 
@@ -515,10 +515,10 @@ class BattleEngine extends ChangeNotifier {
   void _resolveOutcomeIfNeeded() {
     if (enemyUnits.every((c) => !c.isAlive)) {
       outcome = BattleOutcome.victory;
-      _appendLog('Victory!');
+      _appendLog(L.blVictory);
     } else if (playerUnits.every((c) => !c.isAlive)) {
       outcome = BattleOutcome.defeat;
-      _appendLog('Defeat...');
+      _appendLog(L.blDefeat);
     }
   }
 

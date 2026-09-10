@@ -6062,6 +6062,168 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Visit the Shop 3 Times'**
   String get weeklyVisitShop;
+
+  /// No description provided for @blShieldShatters.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}\'s shield shatters!'**
+  String blShieldShatters(String name);
+
+  /// No description provided for @blRefusesToFall.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} refuses to fall, surging back with the tide!'**
+  String blRefusesToFall(String name);
+
+  /// No description provided for @blHits.
+  ///
+  /// In en, this message translates to:
+  /// **'{attacker} hits {target} for {amount}.'**
+  String blHits(String attacker, String target, int amount);
+
+  /// No description provided for @blFalls.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} falls.'**
+  String blFalls(String name);
+
+  /// No description provided for @blUnleashesUltimate.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} unleashes {ultimate}!'**
+  String blUnleashesUltimate(String name, String ultimate);
+
+  /// No description provided for @blFrozenStill.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} is frozen still!'**
+  String blFrozenStill(String name);
+
+  /// No description provided for @blMoonlightHeal.
+  ///
+  /// In en, this message translates to:
+  /// **'The team is bathed in moonlight, healing for {amount}.'**
+  String blMoonlightHeal(int amount);
+
+  /// No description provided for @blEmpowersTeam.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} empowers the whole team!'**
+  String blEmpowersTeam(String name);
+
+  /// No description provided for @blWallOfWater.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} raises a wall of water around the team!'**
+  String blWallOfWater(String name);
+
+  /// No description provided for @blUsesSkill.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} uses {skill}.'**
+  String blUsesSkill(String name, String skill);
+
+  /// No description provided for @blSoothed.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} is soothed for {amount}.'**
+  String blSoothed(String name, int amount);
+
+  /// No description provided for @blSteelsThemself.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} steels themself.'**
+  String blSteelsThemself(String name);
+
+  /// No description provided for @blCaughtInCurrent.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} is caught in the current, slowed!'**
+  String blCaughtInCurrent(String name);
+
+  /// No description provided for @blHiddenReserves.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} calls on hidden reserves, healing for {amount}!'**
+  String blHiddenReserves(String name, int amount);
+
+  /// No description provided for @blRage.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} flies into a rage, striking harder!'**
+  String blRage(String name);
+
+  /// No description provided for @blDrainsResolve.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} drains the team\'s resolve!'**
+  String blDrainsResolve(String name);
+
+  /// No description provided for @blFreshShieldRoots.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} grows a fresh shield of roots!'**
+  String blFreshShieldRoots(String name);
+
+  /// No description provided for @blLightToShadow.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} turns from light to shadow!'**
+  String blLightToShadow(String name);
+
+  /// No description provided for @blSovereignForm.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} awakens its final, sovereign form!'**
+  String blSovereignForm(String name);
+
+  /// No description provided for @blVictory.
+  ///
+  /// In en, this message translates to:
+  /// **'Victory!'**
+  String get blVictory;
+
+  /// No description provided for @blDefeat.
+  ///
+  /// In en, this message translates to:
+  /// **'Defeat...'**
+  String get blDefeat;
+
+  /// No description provided for @mechHealed.
+  ///
+  /// In en, this message translates to:
+  /// **'Healed!'**
+  String get mechHealed;
+
+  /// No description provided for @mechEnraged.
+  ///
+  /// In en, this message translates to:
+  /// **'Enraged!'**
+  String get mechEnraged;
+
+  /// No description provided for @mechShielded.
+  ///
+  /// In en, this message translates to:
+  /// **'Shielded!'**
+  String get mechShielded;
+
+  /// No description provided for @mechDrained.
+  ///
+  /// In en, this message translates to:
+  /// **'Drained!'**
+  String get mechDrained;
+
+  /// No description provided for @mechPhaseShift.
+  ///
+  /// In en, this message translates to:
+  /// **'Phase Shift!'**
+  String get mechPhaseShift;
+
+  /// No description provided for @mechAwakened.
+  ///
+  /// In en, this message translates to:
+  /// **'Awakened!'**
+  String get mechAwakened;
 }
 
 class _AppLocalizationsDelegate

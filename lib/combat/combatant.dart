@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../models/element.dart';
 import '../models/role.dart';
 import '../models/skill.dart';
+import '../l10n/l10n.dart';
 
 /// A world boss's signature twist — see `BattleEngine.triggerBossMechanicIfNeeded`
 /// and `applyDamage` for where each one actually fires.
@@ -37,19 +38,19 @@ enum BossMechanic {
   String get triggerLabel {
     switch (this) {
       case BossMechanic.selfHeal:
-        return 'Healed!';
+        return L.mechHealed;
       case BossMechanic.enrage:
-        return 'Enraged!';
+        return L.mechEnraged;
       case BossMechanic.shield:
-        return 'Shielded!';
+        return L.mechShielded;
       case BossMechanic.drain:
-        return 'Drained!';
+        return L.mechDrained;
       case BossMechanic.regenShield:
-        return 'Shielded!';
+        return L.mechShielded;
       case BossMechanic.phaseShift:
-        return 'Phase Shift!';
+        return L.mechPhaseShift;
       case BossMechanic.sovereign:
-        return 'Awakened!';
+        return L.mechAwakened;
     }
   }
 
