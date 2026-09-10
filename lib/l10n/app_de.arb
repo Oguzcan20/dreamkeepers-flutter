@@ -15,6 +15,7 @@
   "commonAmountGems": "{count} Edelsteine",
   "commonCollectedExclaim": "Abgeholt!",
   "commonSell": "Verkaufen",
+  "commonAll": "Alle",
 
   "settingsTitle": "Einstellungen",
   "settingsBack": "Zurück",
@@ -218,5 +219,33 @@
   "summonLegendaryPity": "Legendär+ Garantie",
   "summonTapToOpen": "Zum Öffnen tippen",
   "summonResultsTitle": "Beschwörungsergebnisse",
-  "summonTapToRevealAll": "Tippen, um alle aufzudecken"
+  "summonTapToRevealAll": "Tippen, um alle aufzudecken",
+
+  "bestiaryNotEncountered": "Noch nicht angetroffen.",
+
+  "codexCollected": "{count}/{total} gesammelt",
+  "codexFilterByRole": "Nach Rolle filtern",
+  "codexAllRoles": "Alle Rollen",
+  "codexNotOwned": "Nicht im Besitz",
+
+  "codexDetailClose": "Schließen",
+  "codexInYourCollection": "In deiner Sammlung",
+  "codexOwnedTimes": "Im Besitz ×{count}",
+  "codexNotOwnedYet": "Noch nicht im Besitz",
+  "codexNotOwnedHint": "Finde diesen Traumhüter im Beschwörungsschrein.",
+  "codexHowItFights": "Kampfweise",
+  "codexBaseStats": "Grundwerte",
+  "codexAbilityUltimate": "Ultimativ",
+  "codexAbilityActiveSkill": "Aktive Fähigkeit",
+  "codexAbilityPassive": "Passiv",
+  "codexElementMatchups": "Elementarvergleich",
+  "codexMatchupBalanced": "Ausgeglichen gegen jedes Element — weder Bonus noch Malus.",
+  "codexStrongAgainst": "Stark gegen",
+  "codexWeakAgainst": "Schwach gegen",
+  "codexRoleMechanicTank": "Hohe HP und Verteidigung — zum Standhalten gebaut. Ultimativ und aktive Fähigkeit treffen den Gegner direkt.",
+  "codexRoleMechanicDamage": "Hoher Angriff. Ultimativ und aktive Fähigkeit treffen den Gegner für zusätzlichen Schaden.",
+  "codexRoleMechanicHealer": "Das Ultimativ heilt das ganze Team auf einmal; die aktive Fähigkeit heilt den Verbündeten mit den wenigsten HP.",
+  "codexRoleMechanicSupport": "Das Ultimativ erhöht den Angriff des ganzen Teams für den Rest des Kampfes; die aktive Fähigkeit erhöht den eigenen Angriff.",
+  "codexRoleMechanicControl": "Das Ultimativ trifft den Gegner und betäubt ihn kurz; die aktive Fähigkeit ist ein schneller Schlag.",
+  "codexRoleMechanicGuardian": "Das Ultimativ schützt das ganze Team mit einem Schild; die aktive Fähigkeit trifft den Gegner und verlangsamt ihn."
 }

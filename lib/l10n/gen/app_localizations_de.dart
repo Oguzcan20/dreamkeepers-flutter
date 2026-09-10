@@ -55,6 +55,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get commonSell => 'Verkaufen';
 
   @override
+  String get commonAll => 'Alle';
+
+  @override
   String get settingsTitle => 'Einstellungen';
 
   @override
@@ -736,4 +739,91 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get summonTapToRevealAll => 'Tippen, um alle aufzudecken';
+
+  @override
+  String get bestiaryNotEncountered => 'Noch nicht angetroffen.';
+
+  @override
+  String codexCollected(int count, int total) {
+    return '$count/$total gesammelt';
+  }
+
+  @override
+  String get codexFilterByRole => 'Nach Rolle filtern';
+
+  @override
+  String get codexAllRoles => 'Alle Rollen';
+
+  @override
+  String get codexNotOwned => 'Nicht im Besitz';
+
+  @override
+  String get codexDetailClose => 'Schließen';
+
+  @override
+  String get codexInYourCollection => 'In deiner Sammlung';
+
+  @override
+  String codexOwnedTimes(int count) {
+    return 'Im Besitz ×$count';
+  }
+
+  @override
+  String get codexNotOwnedYet => 'Noch nicht im Besitz';
+
+  @override
+  String get codexNotOwnedHint =>
+      'Finde diesen Traumhüter im Beschwörungsschrein.';
+
+  @override
+  String get codexHowItFights => 'Kampfweise';
+
+  @override
+  String get codexBaseStats => 'Grundwerte';
+
+  @override
+  String get codexAbilityUltimate => 'Ultimativ';
+
+  @override
+  String get codexAbilityActiveSkill => 'Aktive Fähigkeit';
+
+  @override
+  String get codexAbilityPassive => 'Passiv';
+
+  @override
+  String get codexElementMatchups => 'Elementarvergleich';
+
+  @override
+  String get codexMatchupBalanced =>
+      'Ausgeglichen gegen jedes Element — weder Bonus noch Malus.';
+
+  @override
+  String get codexStrongAgainst => 'Stark gegen';
+
+  @override
+  String get codexWeakAgainst => 'Schwach gegen';
+
+  @override
+  String get codexRoleMechanicTank =>
+      'Hohe HP und Verteidigung — zum Standhalten gebaut. Ultimativ und aktive Fähigkeit treffen den Gegner direkt.';
+
+  @override
+  String get codexRoleMechanicDamage =>
+      'Hoher Angriff. Ultimativ und aktive Fähigkeit treffen den Gegner für zusätzlichen Schaden.';
+
+  @override
+  String get codexRoleMechanicHealer =>
+      'Das Ultimativ heilt das ganze Team auf einmal; die aktive Fähigkeit heilt den Verbündeten mit den wenigsten HP.';
+
+  @override
+  String get codexRoleMechanicSupport =>
+      'Das Ultimativ erhöht den Angriff des ganzen Teams für den Rest des Kampfes; die aktive Fähigkeit erhöht den eigenen Angriff.';
+
+  @override
+  String get codexRoleMechanicControl =>
+      'Das Ultimativ trifft den Gegner und betäubt ihn kurz; die aktive Fähigkeit ist ein schneller Schlag.';
+
+  @override
+  String get codexRoleMechanicGuardian =>
+      'Das Ultimativ schützt das ganze Team mit einem Schild; die aktive Fähigkeit trifft den Gegner und verlangsamt ihn.';
 }

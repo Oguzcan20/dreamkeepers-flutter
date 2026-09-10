@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../data/dreamkeeper_catalog.dart';
+import '../../l10n/l10n.dart';
 import '../../models/dreamkeeper.dart';
 import '../../models/element.dart';
 import '../../models/rarity.dart';
@@ -72,8 +73,8 @@ class _DreamkeeperCodexViewState extends State<DreamkeeperCodexView> {
           SafeArea(
             child: Column(
               children: [
-                _header(),
-                _filterBar(),
+                _header(AppLocalizations.of(context)),
+                _filterBar(AppLocalizations.of(context)),
                 Expanded(child: _grid()),
               ],
             ),
@@ -92,13 +93,13 @@ class _DreamkeeperCodexViewState extends State<DreamkeeperCodexView> {
     );
   }
 
-  Widget _header() {
+  Widget _header(AppLocalizations l) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
       child: Row(
         children: [
           Semantics(
-            label: 'Back',
+            label: l.commonBack,
             button: true,
             child: GestureDetector(
               onTap: () => widget.onNavigate(const DreamHavenRoute()),
@@ -112,10 +113,10 @@ class _DreamkeeperCodexViewState extends State<DreamkeeperCodexView> {
           const Spacer(),
           Column(
             children: [
-              const Text('Dreamkeeper Codex', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+              Text(l.navCodex, style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
               const SizedBox(height: 2),
               Text(
-                '${widget.gameState.ownedSpeciesCount}/${_catalog.definitions.length} Collected',
+                l.codexCollected(widget.gameState.ownedSpeciesCount, _catalog.definitions.length),
                 style: TextStyle(color: Colors.white.withValues(alpha: 0.5), fontSize: 11),
               ),
             ],
@@ -127,7 +128,7 @@ class _DreamkeeperCodexViewState extends State<DreamkeeperCodexView> {
     );
   }
 
-  Widget _filterBar() {
+  Widget _filterBar(AppLocalizations l) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
       child: Row(
@@ -138,7 +139,7 @@ class _DreamkeeperCodexViewState extends State<DreamkeeperCodexView> {
               child: Row(
                 children: [
                   _ElementChip(
-                    title: 'All',
+                    title: l.commonAll,
                     color: Colors.white,
                     isSelected: _elementFilter == null,
                     onTap: () => setState(() => _elementFilter = null),
@@ -158,15 +159,15 @@ class _DreamkeeperCodexViewState extends State<DreamkeeperCodexView> {
             ),
           ),
           const SizedBox(width: 10),
-          _roleFilterButton(),
+          _roleFilterButton(l),
         ],
       ),
     );
   }
 
-  Widget _roleFilterButton() {
+  Widget _roleFilterButton(AppLocalizations l) {
     return Semantics(
-      label: 'Filter by Role',
+      label: l.codexFilterByRole,
       button: true,
       // `PopupMenuButton` wraps its `child` in its own `Tooltip`/`InkWell`
       // (its own semantics-emitting subtree), so this outer label needs
@@ -177,7 +178,7 @@ class _DreamkeeperCodexViewState extends State<DreamkeeperCodexView> {
         onSelected: (role) => setState(() => _roleFilter = role),
         color: dk_theme.Theme.midnightPurple,
         itemBuilder: (context) => [
-          const PopupMenuItem<Role?>(value: null, child: Text('All Roles', style: TextStyle(color: Colors.white))),
+          PopupMenuItem<Role?>(value: null, child: Text(l.codexAllRoles, style: const TextStyle(color: Colors.white))),
           for (final role in Role.values)
             PopupMenuItem<Role?>(
               value: role,
@@ -199,7 +200,7 @@ class _DreamkeeperCodexViewState extends State<DreamkeeperCodexView> {
               Icon(sfSymbol(_roleFilter?.symbol ?? 'line.3.horizontal.decrease.circle'), size: 14, color: Colors.white.withValues(alpha: 0.85)),
               const SizedBox(width: 6),
               Text(
-                _roleFilter?.displayName ?? 'All Roles',
+                _roleFilter?.displayName ?? l.codexAllRoles,
                 style: TextStyle(color: Colors.white.withValues(alpha: 0.85), fontSize: 12, fontWeight: FontWeight.w600),
               ),
             ],
@@ -379,7 +380,7 @@ class _CodexCard extends StatelessWidget {
           if (isOwned)
             StarRow(stars: maxStars)
           else
-            Text('Not Owned', style: TextStyle(color: Colors.white.withValues(alpha: 0.4), fontSize: 10)),
+            Text(AppLocalizations.of(context).codexNotOwned, style: TextStyle(color: Colors.white.withValues(alpha: 0.4), fontSize: 10)),
         ],
       ),
     );

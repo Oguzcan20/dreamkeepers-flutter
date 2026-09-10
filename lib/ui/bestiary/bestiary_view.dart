@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../data/monster_catalog.dart';
 import '../../data/world_catalog.dart';
+import '../../l10n/l10n.dart';
 import '../../models/world.dart';
 import '../../state/game_state.dart';
 import '../../theme/sf_symbol_icons.dart';
@@ -19,13 +20,14 @@ class BestiaryView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     return Stack(
       children: [
         const dk_theme.AmbientBackground(topTint: dk_theme.Theme.softBlue, bottomTint: dk_theme.Theme.gold),
         SafeArea(
           child: Column(
             children: [
-              _header(),
+              _header(l),
               Expanded(
                 child: AnimatedBuilder(
                   animation: gameState,
@@ -49,13 +51,13 @@ class BestiaryView extends StatelessWidget {
     );
   }
 
-  Widget _header() {
+  Widget _header(AppLocalizations l) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
       child: Row(
         children: [
           Semantics(
-            label: 'Back',
+            label: l.commonBack,
             button: true,
             child: GestureDetector(
               onTap: () => onNavigate(const DreamHavenRoute()),
@@ -69,10 +71,10 @@ class BestiaryView extends StatelessWidget {
           const Spacer(),
           Column(
             children: [
-              const Text('Dream Observatory', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+              Text(l.navObservatory, style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
               const SizedBox(height: 2),
               Text(
-                '${gameState.bestiaryDiscoveredCount}/${gameState.bestiaryTotalCount} Discovered',
+                l.havenDiscovered(gameState.bestiaryDiscoveredCount, gameState.bestiaryTotalCount),
                 style: TextStyle(color: Colors.white.withValues(alpha: 0.5), fontSize: 11),
               ),
             ],
@@ -147,6 +149,7 @@ class _CodexEntryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     return Container(
       padding: const EdgeInsets.all(12),
       alignment: Alignment.topLeft,
@@ -172,7 +175,7 @@ class _CodexEntryCard extends StatelessWidget {
           ),
           const SizedBox(height: 2),
           Text(
-            isDiscovered ? lore : 'Not yet encountered.',
+            isDiscovered ? lore : l.bestiaryNotEncountered,
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(color: Colors.white.withValues(alpha: isDiscovered ? 0.6 : 0.35), fontSize: 10),

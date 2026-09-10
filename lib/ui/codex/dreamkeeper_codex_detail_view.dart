@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../combat/twin_bond.dart';
 import '../../data/dreamkeeper_catalog.dart';
+import '../../l10n/l10n.dart';
 import '../../models/dreamkeeper.dart';
 import '../../models/element.dart';
 import '../../models/role.dart';
@@ -51,14 +52,14 @@ class DreamkeeperCodexDetailView extends StatelessWidget {
   /// What each role's Ultimate/Active Skill actually resolves to in
   /// `BattleEngine` — the numbers on a skill card don't explain themselves
   /// without this.
-  static const Map<Role, String> _roleMechanics = {
-    Role.tank: 'High HP and Defense — built to endure. Both the Ultimate and Active Skill strike the enemy directly.',
-    Role.damage: 'High Attack. Both the Ultimate and Active Skill strike the enemy for extra damage.',
-    Role.healer: 'The Ultimate heals the whole team at once; the Active Skill heals whichever ally is lowest on HP.',
-    Role.support: "The Ultimate boosts the whole team's Attack for the rest of the battle; the Active Skill boosts its own Attack.",
-    Role.control: 'The Ultimate strikes the enemy and briefly stuns it; the Active Skill is a quick strike.',
-    Role.guardian: 'The Ultimate shields the whole team; the Active Skill strikes the enemy and slows it.',
-  };
+  static String _roleMechanic(Role role, AppLocalizations l) => switch (role) {
+        Role.tank => l.codexRoleMechanicTank,
+        Role.damage => l.codexRoleMechanicDamage,
+        Role.healer => l.codexRoleMechanicHealer,
+        Role.support => l.codexRoleMechanicSupport,
+        Role.control => l.codexRoleMechanicControl,
+        Role.guardian => l.codexRoleMechanicGuardian,
+      };
 
   List<GameElement> get _strongAgainst =>
       GameElement.values.where((e) => definition.element.multiplier(e) > 1.0).toList();
@@ -78,6 +79,7 @@ class DreamkeeperCodexDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     return Positioned.fill(
       child: Stack(
         children: [
@@ -97,25 +99,25 @@ class DreamkeeperCodexDetailView extends StatelessWidget {
           SafeArea(
             child: Column(
               children: [
-                _closeHeader(),
+                _closeHeader(l),
                 Expanded(
                   child: SingleChildScrollView(
                     padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(width: 250, child: _heroColumn()),
+                        SizedBox(width: 250, child: _heroColumn(l)),
                         const SizedBox(width: 20),
                         Expanded(
                           child: Column(
                             children: [
-                              _roleCard(),
+                              _roleCard(l),
                               const SizedBox(height: 14),
-                              _statsCard(),
+                              _statsCard(l),
                               const SizedBox(height: 14),
-                              _abilitiesCard(),
+                              _abilitiesCard(l),
                               const SizedBox(height: 14),
-                              _matchupCard(),
+                              _matchupCard(l),
                             ],
                           ),
                         ),
@@ -131,14 +133,14 @@ class DreamkeeperCodexDetailView extends StatelessWidget {
     );
   }
 
-  Widget _closeHeader() {
+  Widget _closeHeader(AppLocalizations l) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Semantics(
-            label: 'Close',
+            label: l.codexDetailClose,
             button: true,
             child: GestureDetector(
               onTap: onClose,
@@ -156,7 +158,7 @@ class DreamkeeperCodexDetailView extends StatelessWidget {
 
   // MARK: - Hero column
 
-  Widget _heroColumn() {
+  Widget _heroColumn(AppLocalizations l) {
     return Column(
       children: [
         SizedBox(
@@ -207,14 +209,14 @@ class DreamkeeperCodexDetailView extends StatelessWidget {
         const SizedBox(height: 6),
         _PillBadge(icon: 'sparkles', text: definition.rarity.displayName, tint: definition.rarity.primaryColor, filled: true),
         const SizedBox(height: 12),
-        _ownershipCard(),
+        _ownershipCard(l),
         const SizedBox(height: 12),
         _storyCard(),
       ],
     );
   }
 
-  Widget _ownershipCard() {
+  Widget _ownershipCard(AppLocalizations l) {
     return SizedBox(
       width: double.infinity,
       child: dk_theme.GlassCard(
@@ -229,7 +231,7 @@ class DreamkeeperCodexDetailView extends StatelessWidget {
                       const SizedBox(width: 6),
                       Flexible(
                         child: Text(
-                          'In Your Collection',
+                          l.codexInYourCollection,
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w600),
                         ),
@@ -237,7 +239,7 @@ class DreamkeeperCodexDetailView extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 4),
-                  Text('Owned ×$ownedCount', style: TextStyle(color: Colors.white.withValues(alpha: 0.55), fontSize: 10)),
+                  Text(l.codexOwnedTimes(ownedCount), style: TextStyle(color: Colors.white.withValues(alpha: 0.55), fontSize: 10)),
                   const SizedBox(height: 4),
                   StarRow(stars: maxStars),
                 ],
@@ -252,7 +254,7 @@ class DreamkeeperCodexDetailView extends StatelessWidget {
                       const SizedBox(width: 6),
                       Flexible(
                         child: Text(
-                          'Not Owned Yet',
+                          l.codexNotOwnedYet,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(color: Colors.white.withValues(alpha: 0.8), fontSize: 12, fontWeight: FontWeight.w600),
                         ),
@@ -261,7 +263,7 @@ class DreamkeeperCodexDetailView extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    'Find this Dreamkeeper at the Summoning Shrine.',
+                    l.codexNotOwnedHint,
                     textAlign: TextAlign.center,
                     style: TextStyle(color: Colors.white.withValues(alpha: 0.45), fontSize: 10),
                   ),
@@ -293,7 +295,7 @@ class DreamkeeperCodexDetailView extends StatelessWidget {
 
   // MARK: - Right column
 
-  Widget _roleCard() {
+  Widget _roleCard(AppLocalizations l) {
     return dk_theme.GlassCard(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -305,9 +307,9 @@ class DreamkeeperCodexDetailView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Text('How It Fights', style: TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w600)),
+                Text(l.codexHowItFights, style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w600)),
                 const SizedBox(height: 3),
-                Text(_roleMechanics[definition.role] ?? '', style: TextStyle(color: Colors.white.withValues(alpha: 0.65), fontSize: 11)),
+                Text(_roleMechanic(definition.role, l), style: TextStyle(color: Colors.white.withValues(alpha: 0.65), fontSize: 11)),
               ],
             ),
           ),
@@ -316,13 +318,13 @@ class DreamkeeperCodexDetailView extends StatelessWidget {
     );
   }
 
-  Widget _statsCard() {
+  Widget _statsCard(AppLocalizations l) {
     return dk_theme.GlassCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Text('Base Stats', style: TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w600)),
+          Text(l.codexBaseStats, style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w600)),
           const SizedBox(height: 10),
           _StatBar(label: 'HP', value: definition.baseStats.hp, maxValue: _maxHP, tint: Colors.red.withValues(alpha: 0.75)),
           const SizedBox(height: 8),
@@ -336,13 +338,13 @@ class DreamkeeperCodexDetailView extends StatelessWidget {
     );
   }
 
-  Widget _abilitiesCard() {
+  Widget _abilitiesCard(AppLocalizations l) {
     return Column(
       children: [
         _AbilityRow(
           icon: 'sparkles',
           tint: dk_theme.Theme.gold,
-          category: 'Ultimate',
+          category: l.codexAbilityUltimate,
           name: definition.ultimate.name,
           description: definition.ultimate.description,
           detail: _localized(
@@ -354,7 +356,7 @@ class DreamkeeperCodexDetailView extends StatelessWidget {
         _AbilityRow(
           icon: 'bolt.fill',
           tint: dk_theme.Theme.softBlue,
-          category: 'Active Skill',
+          category: l.codexAbilityActiveSkill,
           name: definition.activeSkill.name,
           description: definition.activeSkill.description,
           detail: _localized(
@@ -366,7 +368,7 @@ class DreamkeeperCodexDetailView extends StatelessWidget {
         _AbilityRow(
           icon: 'shield.lefthalf.filled',
           tint: Colors.white.withValues(alpha: 0.7),
-          category: 'Passive',
+          category: l.codexAbilityPassive,
           name: definition.passive.name,
           description: definition.passive.description,
           detail: _statBonusSummary(definition.passive.statBonus),
@@ -410,7 +412,7 @@ class DreamkeeperCodexDetailView extends StatelessWidget {
     return parts.isEmpty ? _localized(en: 'Always active', de: 'Immer aktiv') : parts.join(' · ');
   }
 
-  Widget _matchupCard() {
+  Widget _matchupCard(AppLocalizations l) {
     final strong = _strongAgainst;
     final weak = _weakAgainst;
     return dk_theme.GlassCard(
@@ -418,18 +420,18 @@ class DreamkeeperCodexDetailView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Text('Element Matchups', style: TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w600)),
+          Text(l.codexElementMatchups, style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w600)),
           const SizedBox(height: 8),
           if (strong.isEmpty && weak.isEmpty)
             Text(
-              'Balanced against every element — no bonus or penalty either way.',
+              l.codexMatchupBalanced,
               style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 11),
             )
           else ...[
-            if (strong.isNotEmpty) _MatchupRow(icon: 'arrow.up.circle.fill', tint: Colors.green, label: 'Strong Against', elements: strong),
+            if (strong.isNotEmpty) _MatchupRow(icon: 'arrow.up.circle.fill', tint: Colors.green, label: l.codexStrongAgainst, elements: strong),
             if (strong.isNotEmpty && weak.isNotEmpty) const SizedBox(height: 6),
             if (weak.isNotEmpty)
-              _MatchupRow(icon: 'arrow.down.circle.fill', tint: Colors.red.withValues(alpha: 0.85), label: 'Weak Against', elements: weak),
+              _MatchupRow(icon: 'arrow.down.circle.fill', tint: Colors.red.withValues(alpha: 0.85), label: l.codexWeakAgainst, elements: weak),
           ],
         ],
       ),

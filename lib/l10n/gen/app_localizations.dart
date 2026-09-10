@@ -182,6 +182,12 @@ abstract class AppLocalizations {
   /// **'Sell'**
   String get commonSell;
 
+  /// No description provided for @commonAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get commonAll;
+
   /// No description provided for @settingsTitle.
   ///
   /// In en, this message translates to:
@@ -1274,6 +1280,156 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Tap to reveal all'**
   String get summonTapToRevealAll;
+
+  /// No description provided for @bestiaryNotEncountered.
+  ///
+  /// In en, this message translates to:
+  /// **'Not yet encountered.'**
+  String get bestiaryNotEncountered;
+
+  /// No description provided for @codexCollected.
+  ///
+  /// In en, this message translates to:
+  /// **'{count}/{total} Collected'**
+  String codexCollected(int count, int total);
+
+  /// No description provided for @codexFilterByRole.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter by Role'**
+  String get codexFilterByRole;
+
+  /// No description provided for @codexAllRoles.
+  ///
+  /// In en, this message translates to:
+  /// **'All Roles'**
+  String get codexAllRoles;
+
+  /// No description provided for @codexNotOwned.
+  ///
+  /// In en, this message translates to:
+  /// **'Not Owned'**
+  String get codexNotOwned;
+
+  /// No description provided for @codexDetailClose.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get codexDetailClose;
+
+  /// No description provided for @codexInYourCollection.
+  ///
+  /// In en, this message translates to:
+  /// **'In Your Collection'**
+  String get codexInYourCollection;
+
+  /// No description provided for @codexOwnedTimes.
+  ///
+  /// In en, this message translates to:
+  /// **'Owned ×{count}'**
+  String codexOwnedTimes(int count);
+
+  /// No description provided for @codexNotOwnedYet.
+  ///
+  /// In en, this message translates to:
+  /// **'Not Owned Yet'**
+  String get codexNotOwnedYet;
+
+  /// No description provided for @codexNotOwnedHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Find this Dreamkeeper at the Summoning Shrine.'**
+  String get codexNotOwnedHint;
+
+  /// No description provided for @codexHowItFights.
+  ///
+  /// In en, this message translates to:
+  /// **'How It Fights'**
+  String get codexHowItFights;
+
+  /// No description provided for @codexBaseStats.
+  ///
+  /// In en, this message translates to:
+  /// **'Base Stats'**
+  String get codexBaseStats;
+
+  /// No description provided for @codexAbilityUltimate.
+  ///
+  /// In en, this message translates to:
+  /// **'Ultimate'**
+  String get codexAbilityUltimate;
+
+  /// No description provided for @codexAbilityActiveSkill.
+  ///
+  /// In en, this message translates to:
+  /// **'Active Skill'**
+  String get codexAbilityActiveSkill;
+
+  /// No description provided for @codexAbilityPassive.
+  ///
+  /// In en, this message translates to:
+  /// **'Passive'**
+  String get codexAbilityPassive;
+
+  /// No description provided for @codexElementMatchups.
+  ///
+  /// In en, this message translates to:
+  /// **'Element Matchups'**
+  String get codexElementMatchups;
+
+  /// No description provided for @codexMatchupBalanced.
+  ///
+  /// In en, this message translates to:
+  /// **'Balanced against every element — no bonus or penalty either way.'**
+  String get codexMatchupBalanced;
+
+  /// No description provided for @codexStrongAgainst.
+  ///
+  /// In en, this message translates to:
+  /// **'Strong Against'**
+  String get codexStrongAgainst;
+
+  /// No description provided for @codexWeakAgainst.
+  ///
+  /// In en, this message translates to:
+  /// **'Weak Against'**
+  String get codexWeakAgainst;
+
+  /// No description provided for @codexRoleMechanicTank.
+  ///
+  /// In en, this message translates to:
+  /// **'High HP and Defense — built to endure. Both the Ultimate and Active Skill strike the enemy directly.'**
+  String get codexRoleMechanicTank;
+
+  /// No description provided for @codexRoleMechanicDamage.
+  ///
+  /// In en, this message translates to:
+  /// **'High Attack. Both the Ultimate and Active Skill strike the enemy for extra damage.'**
+  String get codexRoleMechanicDamage;
+
+  /// No description provided for @codexRoleMechanicHealer.
+  ///
+  /// In en, this message translates to:
+  /// **'The Ultimate heals the whole team at once; the Active Skill heals whichever ally is lowest on HP.'**
+  String get codexRoleMechanicHealer;
+
+  /// No description provided for @codexRoleMechanicSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'The Ultimate boosts the whole team\'s Attack for the rest of the battle; the Active Skill boosts its own Attack.'**
+  String get codexRoleMechanicSupport;
+
+  /// No description provided for @codexRoleMechanicControl.
+  ///
+  /// In en, this message translates to:
+  /// **'The Ultimate strikes the enemy and briefly stuns it; the Active Skill is a quick strike.'**
+  String get codexRoleMechanicControl;
+
+  /// No description provided for @codexRoleMechanicGuardian.
+  ///
+  /// In en, this message translates to:
+  /// **'The Ultimate shields the whole team; the Active Skill strikes the enemy and slows it.'**
+  String get codexRoleMechanicGuardian;
 }
 
 class _AppLocalizationsDelegate

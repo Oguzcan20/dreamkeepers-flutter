@@ -55,6 +55,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get commonSell => 'Sell';
 
   @override
+  String get commonAll => 'All';
+
+  @override
   String get settingsTitle => 'Settings';
 
   @override
@@ -733,4 +736,91 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get summonTapToRevealAll => 'Tap to reveal all';
+
+  @override
+  String get bestiaryNotEncountered => 'Not yet encountered.';
+
+  @override
+  String codexCollected(int count, int total) {
+    return '$count/$total Collected';
+  }
+
+  @override
+  String get codexFilterByRole => 'Filter by Role';
+
+  @override
+  String get codexAllRoles => 'All Roles';
+
+  @override
+  String get codexNotOwned => 'Not Owned';
+
+  @override
+  String get codexDetailClose => 'Close';
+
+  @override
+  String get codexInYourCollection => 'In Your Collection';
+
+  @override
+  String codexOwnedTimes(int count) {
+    return 'Owned ×$count';
+  }
+
+  @override
+  String get codexNotOwnedYet => 'Not Owned Yet';
+
+  @override
+  String get codexNotOwnedHint =>
+      'Find this Dreamkeeper at the Summoning Shrine.';
+
+  @override
+  String get codexHowItFights => 'How It Fights';
+
+  @override
+  String get codexBaseStats => 'Base Stats';
+
+  @override
+  String get codexAbilityUltimate => 'Ultimate';
+
+  @override
+  String get codexAbilityActiveSkill => 'Active Skill';
+
+  @override
+  String get codexAbilityPassive => 'Passive';
+
+  @override
+  String get codexElementMatchups => 'Element Matchups';
+
+  @override
+  String get codexMatchupBalanced =>
+      'Balanced against every element — no bonus or penalty either way.';
+
+  @override
+  String get codexStrongAgainst => 'Strong Against';
+
+  @override
+  String get codexWeakAgainst => 'Weak Against';
+
+  @override
+  String get codexRoleMechanicTank =>
+      'High HP and Defense — built to endure. Both the Ultimate and Active Skill strike the enemy directly.';
+
+  @override
+  String get codexRoleMechanicDamage =>
+      'High Attack. Both the Ultimate and Active Skill strike the enemy for extra damage.';
+
+  @override
+  String get codexRoleMechanicHealer =>
+      'The Ultimate heals the whole team at once; the Active Skill heals whichever ally is lowest on HP.';
+
+  @override
+  String get codexRoleMechanicSupport =>
+      'The Ultimate boosts the whole team\'s Attack for the rest of the battle; the Active Skill boosts its own Attack.';
+
+  @override
+  String get codexRoleMechanicControl =>
+      'The Ultimate strikes the enemy and briefly stuns it; the Active Skill is a quick strike.';
+
+  @override
+  String get codexRoleMechanicGuardian =>
+      'The Ultimate shields the whole team; the Active Skill strikes the enemy and slows it.';
 }
