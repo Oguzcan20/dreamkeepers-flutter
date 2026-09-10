@@ -1195,5 +1195,17 @@
   "codexTwinBondInactive": "Inactive",
   "codexPassiveAlwaysActive": "Always active",
   "commonCollected": "Collected!",
-  "achUnlockedLabel": "Unlocked"
+  "achUnlockedLabel": "Unlocked",
+
+  "teamDefaultName": "Main Team",
+  "arenaRivalNightblade": "Team Nightblade",
+  "arenaRivalStarshadow": "Team Starshadow",
+  "arenaRivalEmbermane": "Team Embermane",
+  "arenaRivalRiverghost": "Team Riverghost",
+  "arenaRivalRootbond": "Team Rootbond",
+  "arenaRivalCrescent": "Team Crescent",
+  "arenaRivalAshcrown": "Team Ashcrown",
+  "arenaRivalDeepcall": "Team Deepcall",
+  "arenaRivalLightbreaker": "Team Lightbreaker",
+  "arenaRivalStormeye": "Team Stormeye"
 }

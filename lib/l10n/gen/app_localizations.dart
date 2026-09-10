@@ -6332,6 +6332,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Unlocked'**
   String get achUnlockedLabel;
+
+  /// No description provided for @teamDefaultName.
+  ///
+  /// In en, this message translates to:
+  /// **'Main Team'**
+  String get teamDefaultName;
+
+  /// No description provided for @arenaRivalNightblade.
+  ///
+  /// In en, this message translates to:
+  /// **'Team Nightblade'**
+  String get arenaRivalNightblade;
+
+  /// No description provided for @arenaRivalStarshadow.
+  ///
+  /// In en, this message translates to:
+  /// **'Team Starshadow'**
+  String get arenaRivalStarshadow;
+
+  /// No description provided for @arenaRivalEmbermane.
+  ///
+  /// In en, this message translates to:
+  /// **'Team Embermane'**
+  String get arenaRivalEmbermane;
+
+  /// No description provided for @arenaRivalRiverghost.
+  ///
+  /// In en, this message translates to:
+  /// **'Team Riverghost'**
+  String get arenaRivalRiverghost;
+
+  /// No description provided for @arenaRivalRootbond.
+  ///
+  /// In en, this message translates to:
+  /// **'Team Rootbond'**
+  String get arenaRivalRootbond;
+
+  /// No description provided for @arenaRivalCrescent.
+  ///
+  /// In en, this message translates to:
+  /// **'Team Crescent'**
+  String get arenaRivalCrescent;
+
+  /// No description provided for @arenaRivalAshcrown.
+  ///
+  /// In en, this message translates to:
+  /// **'Team Ashcrown'**
+  String get arenaRivalAshcrown;
+
+  /// No description provided for @arenaRivalDeepcall.
+  ///
+  /// In en, this message translates to:
+  /// **'Team Deepcall'**
+  String get arenaRivalDeepcall;
+
+  /// No description provided for @arenaRivalLightbreaker.
+  ///
+  /// In en, this message translates to:
+  /// **'Team Lightbreaker'**
+  String get arenaRivalLightbreaker;
+
+  /// No description provided for @arenaRivalStormeye.
+  ///
+  /// In en, this message translates to:
+  /// **'Team Stormeye'**
+  String get arenaRivalStormeye;
 }
 
 class _AppLocalizationsDelegate

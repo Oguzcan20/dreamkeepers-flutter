@@ -3677,4 +3677,37 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get achUnlockedLabel => 'Freigeschaltet';
+
+  @override
+  String get teamDefaultName => 'Hauptteam';
+
+  @override
+  String get arenaRivalNightblade => 'Team Nachtklinge';
+
+  @override
+  String get arenaRivalStarshadow => 'Team Sternenschatten';
+
+  @override
+  String get arenaRivalEmbermane => 'Team Glutmähne';
+
+  @override
+  String get arenaRivalRiverghost => 'Team Flussgeist';
+
+  @override
+  String get arenaRivalRootbond => 'Team Wurzelbund';
+
+  @override
+  String get arenaRivalCrescent => 'Team Mondsichel';
+
+  @override
+  String get arenaRivalAshcrown => 'Team Aschekrone';
+
+  @override
+  String get arenaRivalDeepcall => 'Team Tiefenruf';
+
+  @override
+  String get arenaRivalLightbreaker => 'Team Lichtbrecher';
+
+  @override
+  String get arenaRivalStormeye => 'Team Sturmauge';
 }

@@ -1,5 +1,7 @@
 import 'package:uuid/uuid.dart';
 
+import '../l10n/l10n.dart';
+
 const _uuid = Uuid();
 
 /// A named lineup of deployed Dreamkeepers. Mirrors GameCore/Models/Team.swift.
@@ -10,8 +12,9 @@ class Team {
   final String name;
   final List<String> memberIDs;
 
-  Team({String? id, this.name = 'Main Team', List<String>? memberIDs})
+  Team({String? id, String? name, List<String>? memberIDs})
       : id = id ?? _uuid.v4(),
+        name = name ?? L.teamDefaultName,
         memberIDs = memberIDs ?? [];
 
   Team copyWith({String? name, List<String>? memberIDs}) => Team(

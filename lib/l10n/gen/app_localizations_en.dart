@@ -3648,4 +3648,37 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get achUnlockedLabel => 'Unlocked';
+
+  @override
+  String get teamDefaultName => 'Main Team';
+
+  @override
+  String get arenaRivalNightblade => 'Team Nightblade';
+
+  @override
+  String get arenaRivalStarshadow => 'Team Starshadow';
+
+  @override
+  String get arenaRivalEmbermane => 'Team Embermane';
+
+  @override
+  String get arenaRivalRiverghost => 'Team Riverghost';
+
+  @override
+  String get arenaRivalRootbond => 'Team Rootbond';
+
+  @override
+  String get arenaRivalCrescent => 'Team Crescent';
+
+  @override
+  String get arenaRivalAshcrown => 'Team Ashcrown';
+
+  @override
+  String get arenaRivalDeepcall => 'Team Deepcall';
+
+  @override
+  String get arenaRivalLightbreaker => 'Team Lightbreaker';
+
+  @override
+  String get arenaRivalStormeye => 'Team Stormeye';
 }

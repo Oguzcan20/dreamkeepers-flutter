@@ -179,17 +179,17 @@ class ArenaSystem {
 
   static bool isMilestoneFloor(int floor) => floor % milestoneInterval == 0;
 
-  static const List<String> _rivalNames = [
-    'Team Nachtklinge',
-    'Team Sternenschatten',
-    'Team Glutmähne',
-    'Team Flussgeist',
-    'Team Wurzelbund',
-    'Team Mondsichel',
-    'Team Aschekrone',
-    'Team Tiefenruf',
-    'Team Lichtbrecher',
-    'Team Sturmauge',
+  static final List<String> _rivalNames = [
+    L.arenaRivalNightblade,
+    L.arenaRivalStarshadow,
+    L.arenaRivalEmbermane,
+    L.arenaRivalRiverghost,
+    L.arenaRivalRootbond,
+    L.arenaRivalCrescent,
+    L.arenaRivalAshcrown,
+    L.arenaRivalDeepcall,
+    L.arenaRivalLightbreaker,
+    L.arenaRivalStormeye,
   ];
 
   /// The rival guarding `floor` — deterministic per floor (see

@@ -1081,5 +1081,17 @@
   "codexTwinBondInactive": "Inaktiv",
   "codexPassiveAlwaysActive": "Immer aktiv",
   "commonCollected": "Eingesammelt!",
-  "achUnlockedLabel": "Freigeschaltet"
+  "achUnlockedLabel": "Freigeschaltet",
+
+  "teamDefaultName": "Hauptteam",
+  "arenaRivalNightblade": "Team Nachtklinge",
+  "arenaRivalStarshadow": "Team Sternenschatten",
+  "arenaRivalEmbermane": "Team Glutmähne",
+  "arenaRivalRiverghost": "Team Flussgeist",
+  "arenaRivalRootbond": "Team Wurzelbund",
+  "arenaRivalCrescent": "Team Mondsichel",
+  "arenaRivalAshcrown": "Team Aschekrone",
+  "arenaRivalDeepcall": "Team Tiefenruf",
+  "arenaRivalLightbreaker": "Team Lichtbrecher",
+  "arenaRivalStormeye": "Team Sturmauge"
 }
