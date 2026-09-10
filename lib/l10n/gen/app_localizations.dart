@@ -6272,6 +6272,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Your team has EXP waiting to be collected.'**
   String get notifTrainingGardenBody;
+
+  /// No description provided for @codexUltimateDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Charges after {attacks} attacks · ×{power} power'**
+  String codexUltimateDetail(int attacks, String power);
+
+  /// No description provided for @codexActiveSkillDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'{seconds}s cooldown · ×{power} power'**
+  String codexActiveSkillDetail(int seconds, String power);
+
+  /// No description provided for @codexTwinBondCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Twin Bond'**
+  String get codexTwinBondCategory;
+
+  /// No description provided for @codexTwinBondDescIgo.
+  ///
+  /// In en, this message translates to:
+  /// **'Twin Bond: +75% ATK/DEF — only active while Ames is also in the battle formation.'**
+  String get codexTwinBondDescIgo;
+
+  /// No description provided for @codexTwinBondDescAmes.
+  ///
+  /// In en, this message translates to:
+  /// **'Twin Bond: +75% ATK/DEF — only active while Igo is also in the battle formation.'**
+  String get codexTwinBondDescAmes;
+
+  /// No description provided for @codexTwinBondActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get codexTwinBondActive;
+
+  /// No description provided for @codexTwinBondInactive.
+  ///
+  /// In en, this message translates to:
+  /// **'Inactive'**
+  String get codexTwinBondInactive;
+
+  /// No description provided for @codexPassiveAlwaysActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Always active'**
+  String get codexPassiveAlwaysActive;
+
+  /// No description provided for @commonCollected.
+  ///
+  /// In en, this message translates to:
+  /// **'Collected!'**
+  String get commonCollected;
+
+  /// No description provided for @achUnlockedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlocked'**
+  String get achUnlockedLabel;
 }
 
 class _AppLocalizationsDelegate

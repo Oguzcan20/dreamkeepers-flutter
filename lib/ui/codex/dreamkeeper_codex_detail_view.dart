@@ -67,16 +67,6 @@ class DreamkeeperCodexDetailView extends StatelessWidget {
   List<GameElement> get _weakAgainst =>
       GameElement.values.where((e) => e.multiplier(definition.element) > 1.0).toList();
 
-  /// `AbilityRow`'s detail lines and `_statBonusSummary` build plain
-  /// `String`s from interpolated numbers, so they never go through any
-  /// localization table no matter how they're wrapped — picking the
-  /// finished sentence directly, in whichever language is active, is the
-  /// only way these read correctly in German. Mirrors Swift's `isGerman`/
-  /// `localized(en:de:)` on this view.
-  bool get _isGerman => gameState.preferredLanguage == 'de';
-
-  String _localized({required String en, required String de}) => _isGerman ? de : en;
-
   @override
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context);
@@ -347,9 +337,9 @@ class DreamkeeperCodexDetailView extends StatelessWidget {
           category: l.codexAbilityUltimate,
           name: definition.ultimate.name,
           description: definition.ultimate.description,
-          detail: _localized(
-            en: 'Charges after ${definition.ultimate.attacksToCharge} attacks · ×${definition.ultimate.damageMultiplier.toStringAsFixed(1)} power',
-            de: 'Lädt nach ${definition.ultimate.attacksToCharge} Angriffen · ×${definition.ultimate.damageMultiplier.toStringAsFixed(1)} Stärke',
+          detail: L.codexUltimateDetail(
+            definition.ultimate.attacksToCharge,
+            definition.ultimate.damageMultiplier.toStringAsFixed(1),
           ),
         ),
         const SizedBox(height: 10),
@@ -359,9 +349,9 @@ class DreamkeeperCodexDetailView extends StatelessWidget {
           category: l.codexAbilityActiveSkill,
           name: definition.activeSkill.name,
           description: definition.activeSkill.description,
-          detail: _localized(
-            en: '${definition.activeSkill.cooldownSeconds.toInt()}s cooldown · ×${definition.activeSkill.effectMultiplier.toStringAsFixed(1)} power',
-            de: '${definition.activeSkill.cooldownSeconds.toInt()} s Abklingzeit · ×${definition.activeSkill.effectMultiplier.toStringAsFixed(1)} Stärke',
+          detail: L.codexActiveSkillDetail(
+            definition.activeSkill.cooldownSeconds.toInt(),
+            definition.activeSkill.effectMultiplier.toStringAsFixed(1),
           ),
         ),
         const SizedBox(height: 10),
@@ -389,17 +379,10 @@ class DreamkeeperCodexDetailView extends StatelessWidget {
     return _AbilityRow(
       icon: 'link',
       tint: active ? dk_theme.Theme.gold : Colors.white.withValues(alpha: 0.4),
-      category: _localized(en: 'Twin Bond', de: 'Zwillingsbund'),
+      category: L.codexTwinBondCategory,
       name: '+75% ATK/DEF',
-      description: _localized(
-        en: isIgo
-            ? 'Twin Bond: +75% ATK/DEF — only active while Ames is also in the battle formation.'
-            : 'Twin Bond: +75% ATK/DEF — only active while Igo is also in the battle formation.',
-        de: isIgo
-            ? 'Zwillingsbund: +75% ATK/DEF — nur aktiv, wenn Ames ebenfalls in der Kampfformation steht.'
-            : 'Zwillingsbund: +75% ATK/DEF — nur aktiv, wenn Igo ebenfalls in der Kampfformation steht.',
-      ),
-      detail: _localized(en: active ? 'Active' : 'Inactive', de: active ? 'Aktiv' : 'Inaktiv'),
+      description: isIgo ? L.codexTwinBondDescIgo : L.codexTwinBondDescAmes,
+      detail: active ? L.codexTwinBondActive : L.codexTwinBondInactive,
     );
   }
 
@@ -409,7 +392,7 @@ class DreamkeeperCodexDetailView extends StatelessWidget {
     if (bonus.attack > 0) parts.add('+${bonus.attack.toInt()} ATK');
     if (bonus.defense > 0) parts.add('+${bonus.defense.toInt()} DEF');
     if (bonus.speed > 0) parts.add('+${bonus.speed.toInt()} SPD');
-    return parts.isEmpty ? _localized(en: 'Always active', de: 'Immer aktiv') : parts.join(' · ');
+    return parts.isEmpty ? L.codexPassiveAlwaysActive : parts.join(' · ');
   }
 
   Widget _matchupCard(AppLocalizations l) {

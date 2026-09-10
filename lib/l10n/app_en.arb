@@ -1182,5 +1182,18 @@
   "notifGoldFountainTitle": "Gold Fountain is full!",
   "notifGoldFountainBody": "Come collect your gold before it caps out.",
   "notifTrainingGardenTitle": "Training Garden is full!",
-  "notifTrainingGardenBody": "Your team has EXP waiting to be collected."
+  "notifTrainingGardenBody": "Your team has EXP waiting to be collected.",
+
+  "codexUltimateDetail": "Charges after {attacks} attacks · ×{power} power",
+  "@codexUltimateDetail": { "placeholders": { "attacks": { "type": "int" }, "power": { "type": "String" } } },
+  "codexActiveSkillDetail": "{seconds}s cooldown · ×{power} power",
+  "@codexActiveSkillDetail": { "placeholders": { "seconds": { "type": "int" }, "power": { "type": "String" } } },
+  "codexTwinBondCategory": "Twin Bond",
+  "codexTwinBondDescIgo": "Twin Bond: +75% ATK/DEF — only active while Ames is also in the battle formation.",
+  "codexTwinBondDescAmes": "Twin Bond: +75% ATK/DEF — only active while Igo is also in the battle formation.",
+  "codexTwinBondActive": "Active",
+  "codexTwinBondInactive": "Inactive",
+  "codexPassiveAlwaysActive": "Always active",
+  "commonCollected": "Collected!",
+  "achUnlockedLabel": "Unlocked"
 }

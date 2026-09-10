@@ -144,7 +144,7 @@ class _AchievementCard extends StatelessWidget {
             if (isUnlocked)
               Semantics(
                 container: true,
-                label: 'Unlocked',
+                label: AppLocalizations.of(context).achUnlockedLabel,
                 child: Icon(sfSymbol('checkmark.circle.fill'), size: 16, color: dk_theme.Theme.gold),
               ),
           ],

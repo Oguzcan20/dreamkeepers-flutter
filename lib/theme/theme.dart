@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 import '../combat/arena_system.dart';
+import '../l10n/l10n.dart';
 import 'art_manifest.dart';
 
 /// Looks up hand-supplied monster/boss/Dreamkeeper/item/tier art bundled as
@@ -411,7 +412,7 @@ class CollectConfirmation extends StatelessWidget {
           const SizedBox(height: 10),
           Text(text, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18)),
           const SizedBox(height: 4),
-          Text('Collected!', style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 12)),
+          Text(AppLocalizations.of(context).commonCollected, style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 12)),
         ],
       ),
     );

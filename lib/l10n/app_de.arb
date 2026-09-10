@@ -1070,5 +1070,16 @@
   "notifGoldFountainTitle": "Der Goldbrunnen ist voll!",
   "notifGoldFountainBody": "Hol dir dein Gold ab, bevor es überläuft.",
   "notifTrainingGardenTitle": "Der Trainingsgarten ist voll!",
-  "notifTrainingGardenBody": "Dein Team hat EP, die abgeholt werden können."
+  "notifTrainingGardenBody": "Dein Team hat EP, die abgeholt werden können.",
+
+  "codexUltimateDetail": "Lädt nach {attacks} Angriffen · ×{power} Stärke",
+  "codexActiveSkillDetail": "{seconds} s Abklingzeit · ×{power} Stärke",
+  "codexTwinBondCategory": "Zwillingsbund",
+  "codexTwinBondDescIgo": "Zwillingsbund: +75% ATK/DEF — nur aktiv, wenn Ames ebenfalls in der Kampfformation steht.",
+  "codexTwinBondDescAmes": "Zwillingsbund: +75% ATK/DEF — nur aktiv, wenn Igo ebenfalls in der Kampfformation steht.",
+  "codexTwinBondActive": "Aktiv",
+  "codexTwinBondInactive": "Inaktiv",
+  "codexPassiveAlwaysActive": "Immer aktiv",
+  "commonCollected": "Eingesammelt!",
+  "achUnlockedLabel": "Freigeschaltet"
 }

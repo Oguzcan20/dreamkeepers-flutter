@@ -3641,4 +3641,40 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get notifTrainingGardenBody =>
       'Dein Team hat EP, die abgeholt werden können.';
+
+  @override
+  String codexUltimateDetail(int attacks, String power) {
+    return 'Lädt nach $attacks Angriffen · ×$power Stärke';
+  }
+
+  @override
+  String codexActiveSkillDetail(int seconds, String power) {
+    return '$seconds s Abklingzeit · ×$power Stärke';
+  }
+
+  @override
+  String get codexTwinBondCategory => 'Zwillingsbund';
+
+  @override
+  String get codexTwinBondDescIgo =>
+      'Zwillingsbund: +75% ATK/DEF — nur aktiv, wenn Ames ebenfalls in der Kampfformation steht.';
+
+  @override
+  String get codexTwinBondDescAmes =>
+      'Zwillingsbund: +75% ATK/DEF — nur aktiv, wenn Igo ebenfalls in der Kampfformation steht.';
+
+  @override
+  String get codexTwinBondActive => 'Aktiv';
+
+  @override
+  String get codexTwinBondInactive => 'Inaktiv';
+
+  @override
+  String get codexPassiveAlwaysActive => 'Immer aktiv';
+
+  @override
+  String get commonCollected => 'Eingesammelt!';
+
+  @override
+  String get achUnlockedLabel => 'Freigeschaltet';
 }

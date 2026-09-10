@@ -3612,4 +3612,40 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get notifTrainingGardenBody =>
       'Your team has EXP waiting to be collected.';
+
+  @override
+  String codexUltimateDetail(int attacks, String power) {
+    return 'Charges after $attacks attacks · ×$power power';
+  }
+
+  @override
+  String codexActiveSkillDetail(int seconds, String power) {
+    return '${seconds}s cooldown · ×$power power';
+  }
+
+  @override
+  String get codexTwinBondCategory => 'Twin Bond';
+
+  @override
+  String get codexTwinBondDescIgo =>
+      'Twin Bond: +75% ATK/DEF — only active while Ames is also in the battle formation.';
+
+  @override
+  String get codexTwinBondDescAmes =>
+      'Twin Bond: +75% ATK/DEF — only active while Igo is also in the battle formation.';
+
+  @override
+  String get codexTwinBondActive => 'Active';
+
+  @override
+  String get codexTwinBondInactive => 'Inactive';
+
+  @override
+  String get codexPassiveAlwaysActive => 'Always active';
+
+  @override
+  String get commonCollected => 'Collected!';
+
+  @override
+  String get achUnlockedLabel => 'Unlocked';
 }
