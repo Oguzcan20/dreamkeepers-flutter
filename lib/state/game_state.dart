@@ -12,6 +12,7 @@ import '../data/dreamkeeper_catalog.dart';
 import '../data/monster_catalog.dart';
 import '../data/shop_catalog.dart';
 import '../data/world_catalog.dart';
+import '../l10n/l10n.dart';
 import '../models/dreamkeeper.dart';
 import '../models/element.dart';
 import '../models/equipment.dart';
@@ -1855,21 +1856,15 @@ class GameState extends ChangeNotifier {
       _scheduleBuildingNotifications();
       _platform.scheduleDailyNotification(
         id: _dailyMissionsNotificationID,
-        title: _notificationText(en: 'Daily Missions', de: 'Tägliche Missionen'),
-        body: _notificationText(
-          en: 'New daily missions are ready in Dream Haven.',
-          de: 'Neue tägliche Missionen warten im Traumhafen.',
-        ),
+        title: L.notifDailyMissionsTitle,
+        body: L.notifDailyMissionsBody,
         hour: 18,
         minute: 0,
       );
       _platform.scheduleDailyNotification(
         id: _loginRewardNotificationID,
-        title: _notificationText(en: 'Daily Login Bonus', de: 'Tägliche Login-Belohnung'),
-        body: _notificationText(
-          en: 'Your login streak reward is waiting in Dream Haven.',
-          de: 'Deine Login-Streak-Belohnung wartet im Traumhafen.',
-        ),
+        title: L.notifLoginBonusTitle,
+        body: L.notifLoginBonusBody,
         hour: 10,
         minute: 0,
       );
@@ -1885,11 +1880,8 @@ class GameState extends ChangeNotifier {
   void _scheduleGoldFountainNotification() {
     _platform.scheduleNotification(
       id: _goldFountainNotificationID,
-      title: _notificationText(en: 'Gold Fountain is full!', de: 'Der Goldbrunnen ist voll!'),
-      body: _notificationText(
-        en: 'Come collect your gold before it caps out.',
-        de: 'Hol dir dein Gold ab, bevor es überläuft.',
-      ),
+      title: L.notifGoldFountainTitle,
+      body: L.notifGoldFountainBody,
       fireDate: _save.lastGoldCollectedAt.add(const Duration(seconds: OfflineRewards.maxAccrualSeconds)),
     );
   }
@@ -1897,23 +1889,11 @@ class GameState extends ChangeNotifier {
   void _scheduleTrainingGardenNotification() {
     _platform.scheduleNotification(
       id: _trainingGardenNotificationID,
-      title: _notificationText(en: 'Training Garden is full!', de: 'Der Trainingsgarten ist voll!'),
-      body: _notificationText(
-        en: 'Your team has EXP waiting to be collected.',
-        de: 'Dein Team hat EP, die abgeholt werden können.',
-      ),
+      title: L.notifTrainingGardenTitle,
+      body: L.notifTrainingGardenBody,
       fireDate: _save.lastTrainingCollectedAt.add(const Duration(seconds: OfflineRewards.maxAccrualSeconds)),
     );
   }
-
-  /// Local notifications can't pick up localized strings the way on-screen
-  /// widget text does — this picks between two hand-supplied strings using
-  /// the same preference the rest of the app reads. Simplified vs. Swift's
-  /// version: checks `save.preferredLanguage` directly rather than also
-  /// falling back to the system locale, since no real locale/notification
-  /// plugin is wired in yet.
-  String _notificationText({required String en, required String de}) =>
-      _save.preferredLanguage == 'de' ? de : en;
 
   // MARK: - Onboarding
 

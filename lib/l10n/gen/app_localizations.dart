@@ -6224,6 +6224,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Awakened!'**
   String get mechAwakened;
+
+  /// No description provided for @notifDailyMissionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Missions'**
+  String get notifDailyMissionsTitle;
+
+  /// No description provided for @notifDailyMissionsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'New daily missions are ready in Dream Haven.'**
+  String get notifDailyMissionsBody;
+
+  /// No description provided for @notifLoginBonusTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Login Bonus'**
+  String get notifLoginBonusTitle;
+
+  /// No description provided for @notifLoginBonusBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your login streak reward is waiting in Dream Haven.'**
+  String get notifLoginBonusBody;
+
+  /// No description provided for @notifGoldFountainTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Gold Fountain is full!'**
+  String get notifGoldFountainTitle;
+
+  /// No description provided for @notifGoldFountainBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Come collect your gold before it caps out.'**
+  String get notifGoldFountainBody;
+
+  /// No description provided for @notifTrainingGardenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Training Garden is full!'**
+  String get notifTrainingGardenTitle;
+
+  /// No description provided for @notifTrainingGardenBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your team has EXP waiting to be collected.'**
+  String get notifTrainingGardenBody;
 }
 
 class _AppLocalizationsDelegate

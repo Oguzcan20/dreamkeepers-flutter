@@ -3584,4 +3584,32 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get mechAwakened => 'Awakened!';
+
+  @override
+  String get notifDailyMissionsTitle => 'Daily Missions';
+
+  @override
+  String get notifDailyMissionsBody =>
+      'New daily missions are ready in Dream Haven.';
+
+  @override
+  String get notifLoginBonusTitle => 'Daily Login Bonus';
+
+  @override
+  String get notifLoginBonusBody =>
+      'Your login streak reward is waiting in Dream Haven.';
+
+  @override
+  String get notifGoldFountainTitle => 'Gold Fountain is full!';
+
+  @override
+  String get notifGoldFountainBody =>
+      'Come collect your gold before it caps out.';
+
+  @override
+  String get notifTrainingGardenTitle => 'Training Garden is full!';
+
+  @override
+  String get notifTrainingGardenBody =>
+      'Your team has EXP waiting to be collected.';
 }

@@ -1173,5 +1173,14 @@
   "mechShielded": "Shielded!",
   "mechDrained": "Drained!",
   "mechPhaseShift": "Phase Shift!",
-  "mechAwakened": "Awakened!"
+  "mechAwakened": "Awakened!",
+
+  "notifDailyMissionsTitle": "Daily Missions",
+  "notifDailyMissionsBody": "New daily missions are ready in Dream Haven.",
+  "notifLoginBonusTitle": "Daily Login Bonus",
+  "notifLoginBonusBody": "Your login streak reward is waiting in Dream Haven.",
+  "notifGoldFountainTitle": "Gold Fountain is full!",
+  "notifGoldFountainBody": "Come collect your gold before it caps out.",
+  "notifTrainingGardenTitle": "Training Garden is full!",
+  "notifTrainingGardenBody": "Your team has EXP waiting to be collected."
 }

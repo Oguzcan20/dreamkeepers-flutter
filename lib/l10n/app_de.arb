@@ -1061,5 +1061,14 @@
   "mechShielded": "Abgeschirmt!",
   "mechDrained": "Entzogen!",
   "mechPhaseShift": "Phasenwechsel!",
-  "mechAwakened": "Erwacht!"
+  "mechAwakened": "Erwacht!",
+
+  "notifDailyMissionsTitle": "Tägliche Missionen",
+  "notifDailyMissionsBody": "Neue tägliche Missionen warten im Traumhafen.",
+  "notifLoginBonusTitle": "Tägliche Login-Belohnung",
+  "notifLoginBonusBody": "Deine Login-Streak-Belohnung wartet im Traumhafen.",
+  "notifGoldFountainTitle": "Der Goldbrunnen ist voll!",
+  "notifGoldFountainBody": "Hol dir dein Gold ab, bevor es überläuft.",
+  "notifTrainingGardenTitle": "Der Trainingsgarten ist voll!",
+  "notifTrainingGardenBody": "Dein Team hat EP, die abgeholt werden können."
 }

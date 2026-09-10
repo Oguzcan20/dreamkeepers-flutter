@@ -3613,4 +3613,32 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get mechAwakened => 'Erwacht!';
+
+  @override
+  String get notifDailyMissionsTitle => 'Tägliche Missionen';
+
+  @override
+  String get notifDailyMissionsBody =>
+      'Neue tägliche Missionen warten im Traumhafen.';
+
+  @override
+  String get notifLoginBonusTitle => 'Tägliche Login-Belohnung';
+
+  @override
+  String get notifLoginBonusBody =>
+      'Deine Login-Streak-Belohnung wartet im Traumhafen.';
+
+  @override
+  String get notifGoldFountainTitle => 'Der Goldbrunnen ist voll!';
+
+  @override
+  String get notifGoldFountainBody =>
+      'Hol dir dein Gold ab, bevor es überläuft.';
+
+  @override
+  String get notifTrainingGardenTitle => 'Der Trainingsgarten ist voll!';
+
+  @override
+  String get notifTrainingGardenBody =>
+      'Dein Team hat EP, die abgeholt werden können.';
 }
