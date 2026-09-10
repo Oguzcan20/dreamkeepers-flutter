@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../l10n/l10n.dart';
 import '../../progression/star_fusion_system.dart';
 import '../../theme/theme.dart' as dk_theme;
 
@@ -16,7 +17,7 @@ class StarRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Semantics(
-      label: '$stars of ${StarFusionSystem.maxStars} stars',
+      label: AppLocalizations.of(context).starRowSemantic(stars, StarFusionSystem.maxStars),
       child: ExcludeSemantics(
         child: Row(
           mainAxisSize: MainAxisSize.min,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../l10n/l10n.dart';
 import '../../models/equipment.dart';
 import '../../platform/platform_service.dart';
 import '../../progression/equipment_upgrade.dart';
@@ -32,6 +33,7 @@ class _EquipmentDetailSheetState extends State<EquipmentDetailSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     final item = _item;
     return Theme(
       data: ThemeData.dark(),
@@ -41,14 +43,14 @@ class _EquipmentDetailSheetState extends State<EquipmentDetailSheet> {
           backgroundColor: Colors.transparent,
           elevation: 0,
           centerTitle: true,
-          title: Text(item?.name ?? 'Item', style: const TextStyle(color: Colors.white)),
+          title: Text(item?.name ?? l.eqItemFallback, style: const TextStyle(color: Colors.white)),
           // Default `leadingWidth` is `kToolbarHeight` (56) — too narrow for
           // the "Done" label + `TextButton` padding, which wrapped it to
           // "Don\ne" on the landscape layout.
           leadingWidth: 80,
           leading: TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Done', style: TextStyle(color: Colors.white)),
+            child: Text(l.commonDone, style: const TextStyle(color: Colors.white)),
           ),
         ),
         body: Stack(
@@ -115,6 +117,7 @@ class _EquipmentDetailSheetState extends State<EquipmentDetailSheet> {
   }
 
   Widget _header({required EquipmentItem item}) {
+    final l = AppLocalizations.of(context);
     final hasArt = dk_theme.ItemArt.hasArt(item.name);
     final wearer = widget.gameState.wearer(item);
     final wearerName = wearer == null ? null : widget.gameState.definition(wearer)?.name;
@@ -135,12 +138,12 @@ class _EquipmentDetailSheetState extends State<EquipmentDetailSheet> {
         ),
         const SizedBox(height: 8),
         Text(
-          '${item.rarity.displayName} · Lv ${item.level}/${EquipmentUpgrade.maxLevel}',
+          l.invItemSubtitle(item.rarity.displayName, item.level, EquipmentUpgrade.maxLevel),
           style: TextStyle(color: Colors.white.withValues(alpha: 0.7), fontSize: 13),
         ),
         if (wearerName != null) ...[
           const SizedBox(height: 4),
-          Text('Worn by $wearerName', style: TextStyle(color: dk_theme.Theme.softBlue, fontSize: 11)),
+          Text(l.invItemWornBy(wearerName), style: TextStyle(color: dk_theme.Theme.softBlue, fontSize: 11)),
         ],
       ],
     );
@@ -161,15 +164,16 @@ class _EquipmentDetailSheetState extends State<EquipmentDetailSheet> {
   }
 
   Widget _upgradeCard({required EquipmentItem item}) {
+    final l = AppLocalizations.of(context);
     final isMaxed = !EquipmentUpgrade.canUpgrade(item);
     final cost = EquipmentUpgrade.cost(item);
     final canAfford = widget.gameState.save.gold >= cost;
     return dk_theme.GlassCard(
       child: isMaxed
-          ? Text('Max Level Reached', style: TextStyle(color: dk_theme.Theme.gold, fontSize: 11, fontWeight: FontWeight.w600))
+          ? Text(l.eqMaxLevel, style: TextStyle(color: dk_theme.Theme.gold, fontSize: 11, fontWeight: FontWeight.w600))
           : Row(
               children: [
-                Expanded(child: Text('$cost Gold', style: TextStyle(color: Colors.white.withValues(alpha: 0.65), fontSize: 12))),
+                Expanded(child: Text(l.commonAmountGold(cost), style: TextStyle(color: Colors.white.withValues(alpha: 0.65), fontSize: 12))),
                 // See `PrimaryButton`'s doc comment (theme.dart) — it always
                 // forces `width: double.infinity`, so a Row placement needs
                 // a fixed-width wrapper.
@@ -183,7 +187,7 @@ class _EquipmentDetailSheetState extends State<EquipmentDetailSheet> {
                             widget.gameState.playHaptic(HapticStyle.light);
                           }
                         : null,
-                    child: const Text('Upgrade'),
+                    child: Text(l.eqUpgrade),
                   ),
                 ),
               ],
@@ -232,6 +236,7 @@ class _FusionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     final current = _currentItem;
     if (current == null) return const SizedBox.shrink();
     final cost = gameState.nextFusionCostForItem(current);
@@ -247,13 +252,13 @@ class _FusionCard extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           if (cost == null)
-            Text('Max Stars Reached', style: TextStyle(color: dk_theme.Theme.gold, fontSize: 11, fontWeight: FontWeight.w600))
+            Text(l.eqMaxStars, style: TextStyle(color: dk_theme.Theme.gold, fontSize: 11, fontWeight: FontWeight.w600))
           else
             Row(
               children: [
                 Expanded(
                   child: Text(
-                    '${current.fusionProgress}/$cost banked · ${gameState.duplicatesOfItem(current).length} available',
+                    l.eqFusionProgress(current.fusionProgress, cost, gameState.duplicatesOfItem(current).length),
                     style: TextStyle(color: Colors.white.withValues(alpha: 0.65), fontSize: 11),
                   ),
                 ),
@@ -265,7 +270,7 @@ class _FusionCard extends StatelessWidget {
                   child: dk_theme.PrimaryButton(
                     tint: dk_theme.Theme.gold,
                     onPressed: gameState.duplicatesOfItem(current).isEmpty ? null : () => _openPicker(context),
-                    child: Text('Fuse to ★${current.stars + 1}'),
+                    child: Text(l.eqFuseToStar(current.stars + 1)),
                   ),
                 ),
               ],

@@ -1706,6 +1706,192 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Fight Again'**
   String get arenaFightAgain;
+
+  /// No description provided for @eqDreamkeeperFallback.
+  ///
+  /// In en, this message translates to:
+  /// **'Dreamkeeper'**
+  String get eqDreamkeeperFallback;
+
+  /// No description provided for @eqItemFallback.
+  ///
+  /// In en, this message translates to:
+  /// **'Item'**
+  String get eqItemFallback;
+
+  /// No description provided for @eqLevelLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Level {level}'**
+  String eqLevelLabel(int level);
+
+  /// No description provided for @eqBench.
+  ///
+  /// In en, this message translates to:
+  /// **'Bench'**
+  String get eqBench;
+
+  /// No description provided for @eqDeploy.
+  ///
+  /// In en, this message translates to:
+  /// **'Deploy'**
+  String get eqDeploy;
+
+  /// No description provided for @eqUltimateDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Ultimate · charges after {attacks} attacks'**
+  String eqUltimateDetail(int attacks);
+
+  /// No description provided for @eqActiveSkillDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Active Skill · {seconds}s cooldown'**
+  String eqActiveSkillDetail(int seconds);
+
+  /// No description provided for @eqSkillPassive.
+  ///
+  /// In en, this message translates to:
+  /// **'Passive'**
+  String get eqSkillPassive;
+
+  /// No description provided for @eqAutoEquip.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto-Equip Best Gear'**
+  String get eqAutoEquip;
+
+  /// No description provided for @eqMaxStars.
+  ///
+  /// In en, this message translates to:
+  /// **'Max Stars Reached'**
+  String get eqMaxStars;
+
+  /// No description provided for @eqFusionProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{banked}/{cost} banked · {available} available'**
+  String eqFusionProgress(int banked, int cost, int available);
+
+  /// No description provided for @eqFuseToStar.
+  ///
+  /// In en, this message translates to:
+  /// **'Fuse to ★{stars}'**
+  String eqFuseToStar(int stars);
+
+  /// No description provided for @eqUnequip.
+  ///
+  /// In en, this message translates to:
+  /// **'Unequip'**
+  String get eqUnequip;
+
+  /// No description provided for @eqNoItems.
+  ///
+  /// In en, this message translates to:
+  /// **'No items in inventory'**
+  String get eqNoItems;
+
+  /// No description provided for @eqItemWithRarity.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} ({rarity})'**
+  String eqItemWithRarity(String name, String rarity);
+
+  /// No description provided for @eqEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Empty'**
+  String get eqEmpty;
+
+  /// No description provided for @eqChange.
+  ///
+  /// In en, this message translates to:
+  /// **'Change'**
+  String get eqChange;
+
+  /// No description provided for @eqMaxLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Max Level Reached'**
+  String get eqMaxLevel;
+
+  /// No description provided for @eqUpgrade.
+  ///
+  /// In en, this message translates to:
+  /// **'Upgrade'**
+  String get eqUpgrade;
+
+  /// No description provided for @fusionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Fuse'**
+  String get fusionTitle;
+
+  /// No description provided for @fusionNoDuplicatesDreamkeeper.
+  ///
+  /// In en, this message translates to:
+  /// **'No duplicate {name}s yet. Summon more to gather fusion fodder.'**
+  String fusionNoDuplicatesDreamkeeper(String name);
+
+  /// No description provided for @fusionNoDuplicatesItem.
+  ///
+  /// In en, this message translates to:
+  /// **'No duplicate {name}s yet. Clear more stages to find fusion fodder.'**
+  String fusionNoDuplicatesItem(String name);
+
+  /// No description provided for @fusionSelectDuplicates.
+  ///
+  /// In en, this message translates to:
+  /// **'Select duplicates to fuse'**
+  String get fusionSelectDuplicates;
+
+  /// No description provided for @fusionProgressTowardStar.
+  ///
+  /// In en, this message translates to:
+  /// **'{banked}/{cost} toward next star'**
+  String fusionProgressTowardStar(int banked, int cost);
+
+  /// No description provided for @fusionToStarGrants.
+  ///
+  /// In en, this message translates to:
+  /// **'Fusing to ★{stars} grants'**
+  String fusionToStarGrants(int stars);
+
+  /// No description provided for @fusionStarUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Star Up!'**
+  String get fusionStarUp;
+
+  /// No description provided for @fusionFused.
+  ///
+  /// In en, this message translates to:
+  /// **'Fused!'**
+  String get fusionFused;
+
+  /// No description provided for @fusionAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Fuse'**
+  String get fusionAction;
+
+  /// No description provided for @fusionAtMaxStars.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} is at max stars'**
+  String fusionAtMaxStars(String name);
+
+  /// No description provided for @fusionStarUpShowcase.
+  ///
+  /// In en, this message translates to:
+  /// **'STAR UP!'**
+  String get fusionStarUpShowcase;
+
+  /// No description provided for @starRowSemantic.
+  ///
+  /// In en, this message translates to:
+  /// **'{stars} of {max} stars'**
+  String starRowSemantic(int stars, int max);
 }
 
 class _AppLocalizationsDelegate

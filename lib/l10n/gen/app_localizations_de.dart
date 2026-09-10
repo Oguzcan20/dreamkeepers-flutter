@@ -998,4 +998,121 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get arenaFightAgain => 'Erneut kämpfen';
+
+  @override
+  String get eqDreamkeeperFallback => 'Traumhüter';
+
+  @override
+  String get eqItemFallback => 'Gegenstand';
+
+  @override
+  String eqLevelLabel(int level) {
+    return 'Level $level';
+  }
+
+  @override
+  String get eqBench => 'Auf die Bank';
+
+  @override
+  String get eqDeploy => 'Einsetzen';
+
+  @override
+  String eqUltimateDetail(int attacks) {
+    return 'Ultimativ · lädt nach $attacks Angriffen';
+  }
+
+  @override
+  String eqActiveSkillDetail(int seconds) {
+    return 'Aktive Fähigkeit · $seconds s Abklingzeit';
+  }
+
+  @override
+  String get eqSkillPassive => 'Passiv';
+
+  @override
+  String get eqAutoEquip => 'Beste Ausrüstung anlegen';
+
+  @override
+  String get eqMaxStars => 'Maximale Sterne erreicht';
+
+  @override
+  String eqFusionProgress(int banked, int cost, int available) {
+    return '$banked/$cost angespart · $available verfügbar';
+  }
+
+  @override
+  String eqFuseToStar(int stars) {
+    return 'Verschmelzen zu ★$stars';
+  }
+
+  @override
+  String get eqUnequip => 'Ablegen';
+
+  @override
+  String get eqNoItems => 'Keine Gegenstände im Inventar';
+
+  @override
+  String eqItemWithRarity(String name, String rarity) {
+    return '$name ($rarity)';
+  }
+
+  @override
+  String get eqEmpty => 'Leer';
+
+  @override
+  String get eqChange => 'Ändern';
+
+  @override
+  String get eqMaxLevel => 'Maximale Stufe erreicht';
+
+  @override
+  String get eqUpgrade => 'Verbessern';
+
+  @override
+  String get fusionTitle => 'Verschmelzen';
+
+  @override
+  String fusionNoDuplicatesDreamkeeper(String name) {
+    return 'Noch keine Duplikate von $name. Beschwöre mehr, um Verschmelzungsmaterial zu sammeln.';
+  }
+
+  @override
+  String fusionNoDuplicatesItem(String name) {
+    return 'Noch keine Duplikate von $name. Schließe mehr Abschnitte ab, um Verschmelzungsmaterial zu finden.';
+  }
+
+  @override
+  String get fusionSelectDuplicates => 'Duplikate zum Verschmelzen auswählen';
+
+  @override
+  String fusionProgressTowardStar(int banked, int cost) {
+    return '$banked/$cost zum nächsten Stern';
+  }
+
+  @override
+  String fusionToStarGrants(int stars) {
+    return 'Verschmelzen zu ★$stars bringt';
+  }
+
+  @override
+  String get fusionStarUp => 'Sternaufstieg!';
+
+  @override
+  String get fusionFused => 'Verschmolzen!';
+
+  @override
+  String get fusionAction => 'Verschmelzen';
+
+  @override
+  String fusionAtMaxStars(String name) {
+    return '$name hat die maximale Sternzahl';
+  }
+
+  @override
+  String get fusionStarUpShowcase => 'STERNAUFSTIEG!';
+
+  @override
+  String starRowSemantic(int stars, int max) {
+    return '$stars von $max Sternen';
+  }
 }

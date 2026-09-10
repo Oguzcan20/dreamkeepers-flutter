@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import '../../l10n/l10n.dart';
 import '../../models/equipment.dart';
 import '../../platform/platform_service.dart';
 import '../../state/game_state.dart';
@@ -100,14 +101,14 @@ class _ItemFusionPickerViewState extends State<ItemFusionPickerView> {
           backgroundColor: Colors.transparent,
           elevation: 0,
           centerTitle: true,
-          title: const Text('Fuse', style: TextStyle(color: Colors.white)),
+          title: Text(AppLocalizations.of(context).fusionTitle, style: const TextStyle(color: Colors.white)),
           // Default `leadingWidth` is `kToolbarHeight` (56) — too narrow for
           // the "Close" label + `TextButton` padding, which wrapped it to
           // "Clos\ne" on the landscape layout.
           leadingWidth: 80,
           leading: TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Close', style: TextStyle(color: Colors.white)),
+            child: Text(AppLocalizations.of(context).commonClose, style: const TextStyle(color: Colors.white)),
           ),
         ),
         body: Stack(
@@ -121,6 +122,7 @@ class _ItemFusionPickerViewState extends State<ItemFusionPickerView> {
   }
 
   Widget _content({required EquipmentItem target, required int cost}) {
+    final l = AppLocalizations.of(context);
     return Column(
       children: [
         Expanded(
@@ -136,7 +138,7 @@ class _ItemFusionPickerViewState extends State<ItemFusionPickerView> {
                 if (_duplicates.isEmpty)
                   dk_theme.GlassCard(
                     child: Text(
-                      'No duplicate ${target.name}s yet. Clear more stages to find fusion fodder.',
+                      l.fusionNoDuplicatesItem(target.name),
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 14),
                     ),
@@ -145,7 +147,7 @@ class _ItemFusionPickerViewState extends State<ItemFusionPickerView> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text('Select duplicates to fuse', style: TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.w600)),
+                      Text(l.fusionSelectDuplicates, style: const TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.w600)),
                       const SizedBox(height: 10),
                       GridView.builder(
                         shrinkWrap: true,
@@ -181,7 +183,7 @@ class _ItemFusionPickerViewState extends State<ItemFusionPickerView> {
     return dk_theme.GlassCard(
       child: Column(
         children: [
-          Text('$_bankedTotal/$cost toward next star', style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600)),
+          Text(AppLocalizations.of(context).fusionProgressTowardStar(_bankedTotal, cost), style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600)),
           const SizedBox(height: 8),
           LayoutBuilder(
             builder: (context, constraints) {
@@ -234,7 +236,7 @@ class _ItemFusionPickerViewState extends State<ItemFusionPickerView> {
     return dk_theme.GlassCard(
       child: Column(
         children: [
-          Text('Fusing to ★${target.stars + 1} grants',
+          Text(AppLocalizations.of(context).fusionToStarGrants(target.stars + 1),
               style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 11, fontWeight: FontWeight.w600)),
           const SizedBox(height: 10),
           Row(
@@ -251,14 +253,15 @@ class _ItemFusionPickerViewState extends State<ItemFusionPickerView> {
   }
 
   Widget _footer({required EquipmentItem target, required int cost}) {
-    final label = _justFused ? (_lastFuseGrantedStar ? 'Star Up!' : 'Fused!') : 'Fuse';
+    final l = AppLocalizations.of(context);
+    final label = _justFused ? (_lastFuseGrantedStar ? l.fusionStarUp : l.fusionFused) : l.fusionAction;
     return Container(
       color: dk_theme.Theme.deepNavy,
       padding: const EdgeInsets.only(left: 20, right: 20, top: 8, bottom: 16),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text('${_selectedIDs.length} selected', style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 11, fontWeight: FontWeight.w600)),
+          Text(l.invSelectedCount(_selectedIDs.length), style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 11, fontWeight: FontWeight.w600)),
           const SizedBox(height: 8),
           dk_theme.PrimaryButton(
             tint: dk_theme.Theme.gold,
@@ -277,7 +280,7 @@ class _ItemFusionPickerViewState extends State<ItemFusionPickerView> {
         children: [
           Icon(Icons.star, size: 40, color: dk_theme.Theme.gold),
           const SizedBox(height: 12),
-          Text('${target.name} is at max stars', style: const TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.w600)),
+          Text(AppLocalizations.of(context).fusionAtMaxStars(target.name), style: const TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.w600)),
         ],
       ),
     );

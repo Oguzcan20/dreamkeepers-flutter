@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../l10n/l10n.dart';
 import '../../models/dreamkeeper.dart';
 import '../../models/equipment.dart';
 import '../../platform/platform_service.dart';
@@ -38,6 +39,7 @@ class _EquipmentSheetState extends State<EquipmentSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     final instance = _instance;
     final definition = instance == null ? null : widget.gameState.definition(instance);
     return Theme(
@@ -48,14 +50,14 @@ class _EquipmentSheetState extends State<EquipmentSheet> {
           backgroundColor: Colors.transparent,
           elevation: 0,
           centerTitle: true,
-          title: Text(definition?.name ?? 'Dreamkeeper', style: const TextStyle(color: Colors.white)),
+          title: Text(definition?.name ?? l.eqDreamkeeperFallback, style: const TextStyle(color: Colors.white)),
           // Default `leadingWidth` is `kToolbarHeight` (56) — too narrow for
           // the "Done" label + `TextButton` padding, which wrapped it to
           // "Don\ne" on the landscape layout.
           leadingWidth: 80,
           leading: TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Done', style: TextStyle(color: Colors.white)),
+            child: Text(l.commonDone, style: const TextStyle(color: Colors.white)),
           ),
         ),
         body: Stack(
@@ -160,7 +162,7 @@ class _EquipmentSheetState extends State<EquipmentSheet> {
               : Icon(sfSymbol(definition.symbol), size: 30, color: Colors.white),
         ),
         const SizedBox(height: 8),
-        Text('Level ${instance.level}', style: TextStyle(color: Colors.white.withValues(alpha: 0.7), fontSize: 13)),
+        Text(AppLocalizations.of(context).eqLevelLabel(instance.level), style: TextStyle(color: Colors.white.withValues(alpha: 0.7), fontSize: 13)),
       ],
     );
   }
@@ -175,7 +177,7 @@ class _EquipmentSheetState extends State<EquipmentSheet> {
           widget.gameState.toggleDeployed(instance);
           widget.gameState.playHaptic(HapticStyle.light);
         },
-        child: Text(deployed ? 'Bench' : 'Deploy'),
+        child: Text(deployed ? AppLocalizations.of(context).eqBench : AppLocalizations.of(context).eqDeploy),
       ),
     );
   }
@@ -195,6 +197,7 @@ class _EquipmentSheetState extends State<EquipmentSheet> {
   }
 
   Widget _skillsSection({required DreamkeeperDefinition definition}) {
+    final l = AppLocalizations.of(context);
     return Column(
       children: [
         _SkillRow(
@@ -202,7 +205,7 @@ class _EquipmentSheetState extends State<EquipmentSheet> {
           tint: dk_theme.Theme.gold,
           name: definition.ultimate.name,
           description: definition.ultimate.description,
-          detail: 'Ultimate · charges after ${definition.ultimate.attacksToCharge} attacks',
+          detail: l.eqUltimateDetail(definition.ultimate.attacksToCharge),
         ),
         const SizedBox(height: 10),
         _SkillRow(
@@ -210,7 +213,7 @@ class _EquipmentSheetState extends State<EquipmentSheet> {
           tint: dk_theme.Theme.softBlue,
           name: definition.activeSkill.name,
           description: definition.activeSkill.description,
-          detail: 'Active Skill · ${definition.activeSkill.cooldownSeconds.toInt()}s cooldown',
+          detail: l.eqActiveSkillDetail(definition.activeSkill.cooldownSeconds.toInt()),
         ),
         const SizedBox(height: 10),
         _SkillRow(
@@ -218,7 +221,7 @@ class _EquipmentSheetState extends State<EquipmentSheet> {
           tint: Colors.white.withValues(alpha: 0.7),
           name: definition.passive.name,
           description: definition.passive.description,
-          detail: 'Passive',
+          detail: l.eqSkillPassive,
         ),
       ],
     );
@@ -244,7 +247,7 @@ class _EquipmentSheetState extends State<EquipmentSheet> {
           children: [
             Icon(sfSymbol('wand.and.stars'), size: 18, color: Colors.white),
             const SizedBox(width: 8),
-            const Flexible(child: Text('Auto-Equip Best Gear', overflow: TextOverflow.ellipsis)),
+            Flexible(child: Text(AppLocalizations.of(context).eqAutoEquip, overflow: TextOverflow.ellipsis)),
           ],
         ),
       ),
@@ -292,6 +295,7 @@ class _FusionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     final current = _currentInstance;
     final cost = gameState.nextFusionCost(current);
     return dk_theme.GlassCard(
@@ -306,13 +310,13 @@ class _FusionCard extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           if (cost == null)
-            Text('Max Stars Reached', style: TextStyle(color: dk_theme.Theme.gold, fontSize: 11, fontWeight: FontWeight.w600))
+            Text(l.eqMaxStars, style: TextStyle(color: dk_theme.Theme.gold, fontSize: 11, fontWeight: FontWeight.w600))
           else
             Row(
               children: [
                 Expanded(
                   child: Text(
-                    '${current.fusionProgress}/$cost banked · ${gameState.duplicates(current).length} available',
+                    l.eqFusionProgress(current.fusionProgress, cost, gameState.duplicates(current).length),
                     style: TextStyle(color: Colors.white.withValues(alpha: 0.65), fontSize: 11),
                   ),
                 ),
@@ -326,7 +330,7 @@ class _FusionCard extends StatelessWidget {
                   child: dk_theme.PrimaryButton(
                     tint: dk_theme.Theme.gold,
                     onPressed: gameState.duplicates(current).isEmpty ? null : () => _openPicker(context),
-                    child: Text('Fuse to ★${current.stars + 1}'),
+                    child: Text(l.eqFuseToStar(current.stars + 1)),
                   ),
                 ),
               ],
@@ -382,6 +386,7 @@ class _SlotRow extends StatelessWidget {
   EquipmentItem? get _equippedItem => gameState.equippedItem(slot, instance);
 
   void _openPicker(BuildContext context) {
+    final l = AppLocalizations.of(context);
     final equipped = _equippedItem;
     final available = gameState.availableItems(slot);
     showModalBottomSheet(
@@ -406,7 +411,7 @@ class _SlotRow extends StatelessWidget {
                   if (equipped != null)
                     ListTile(
                       leading: const Icon(Icons.close, color: Colors.redAccent),
-                      title: const Text('Unequip', style: TextStyle(color: Colors.redAccent)),
+                      title: Text(l.eqUnequip, style: const TextStyle(color: Colors.redAccent)),
                       onTap: () {
                         gameState.unequip(slot, instance);
                         gameState.playHaptic(HapticStyle.light);
@@ -416,12 +421,12 @@ class _SlotRow extends StatelessWidget {
                   if (available.isEmpty)
                     Padding(
                       padding: const EdgeInsets.all(20),
-                      child: Text('No items in inventory', style: TextStyle(color: Colors.white.withValues(alpha: 0.6))),
+                      child: Text(l.eqNoItems, style: TextStyle(color: Colors.white.withValues(alpha: 0.6))),
                     )
                   else
                     ...available.map(
                       (item) => ListTile(
-                        title: Text('${item.name} (${item.rarity.displayName})', style: const TextStyle(color: Colors.white)),
+                        title: Text(l.eqItemWithRarity(item.name, item.rarity.displayName), style: const TextStyle(color: Colors.white)),
                         onTap: () {
                           gameState.equip(item, instance);
                           gameState.playHaptic(HapticStyle.light);
@@ -440,6 +445,7 @@ class _SlotRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     final equipped = _equippedItem;
     return dk_theme.GlassCard(
       child: Row(
@@ -455,7 +461,7 @@ class _SlotRow extends StatelessWidget {
               children: [
                 Text(slot.displayName, style: TextStyle(color: Colors.white.withValues(alpha: 0.55), fontSize: 11)),
                 Text(
-                  equipped?.name ?? 'Empty',
+                  equipped?.name ?? l.eqEmpty,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w500),
                 ),
@@ -464,7 +470,7 @@ class _SlotRow extends StatelessWidget {
           ),
           TextButton(
             onPressed: () => _openPicker(context),
-            child: Text('Change', style: TextStyle(color: dk_theme.Theme.softBlue, fontSize: 12, fontWeight: FontWeight.w600)),
+            child: Text(l.eqChange, style: TextStyle(color: dk_theme.Theme.softBlue, fontSize: 12, fontWeight: FontWeight.w600)),
           ),
         ],
       ),

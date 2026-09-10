@@ -995,4 +995,121 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get arenaFightAgain => 'Fight Again';
+
+  @override
+  String get eqDreamkeeperFallback => 'Dreamkeeper';
+
+  @override
+  String get eqItemFallback => 'Item';
+
+  @override
+  String eqLevelLabel(int level) {
+    return 'Level $level';
+  }
+
+  @override
+  String get eqBench => 'Bench';
+
+  @override
+  String get eqDeploy => 'Deploy';
+
+  @override
+  String eqUltimateDetail(int attacks) {
+    return 'Ultimate · charges after $attacks attacks';
+  }
+
+  @override
+  String eqActiveSkillDetail(int seconds) {
+    return 'Active Skill · ${seconds}s cooldown';
+  }
+
+  @override
+  String get eqSkillPassive => 'Passive';
+
+  @override
+  String get eqAutoEquip => 'Auto-Equip Best Gear';
+
+  @override
+  String get eqMaxStars => 'Max Stars Reached';
+
+  @override
+  String eqFusionProgress(int banked, int cost, int available) {
+    return '$banked/$cost banked · $available available';
+  }
+
+  @override
+  String eqFuseToStar(int stars) {
+    return 'Fuse to ★$stars';
+  }
+
+  @override
+  String get eqUnequip => 'Unequip';
+
+  @override
+  String get eqNoItems => 'No items in inventory';
+
+  @override
+  String eqItemWithRarity(String name, String rarity) {
+    return '$name ($rarity)';
+  }
+
+  @override
+  String get eqEmpty => 'Empty';
+
+  @override
+  String get eqChange => 'Change';
+
+  @override
+  String get eqMaxLevel => 'Max Level Reached';
+
+  @override
+  String get eqUpgrade => 'Upgrade';
+
+  @override
+  String get fusionTitle => 'Fuse';
+
+  @override
+  String fusionNoDuplicatesDreamkeeper(String name) {
+    return 'No duplicate ${name}s yet. Summon more to gather fusion fodder.';
+  }
+
+  @override
+  String fusionNoDuplicatesItem(String name) {
+    return 'No duplicate ${name}s yet. Clear more stages to find fusion fodder.';
+  }
+
+  @override
+  String get fusionSelectDuplicates => 'Select duplicates to fuse';
+
+  @override
+  String fusionProgressTowardStar(int banked, int cost) {
+    return '$banked/$cost toward next star';
+  }
+
+  @override
+  String fusionToStarGrants(int stars) {
+    return 'Fusing to ★$stars grants';
+  }
+
+  @override
+  String get fusionStarUp => 'Star Up!';
+
+  @override
+  String get fusionFused => 'Fused!';
+
+  @override
+  String get fusionAction => 'Fuse';
+
+  @override
+  String fusionAtMaxStars(String name) {
+    return '$name is at max stars';
+  }
+
+  @override
+  String get fusionStarUpShowcase => 'STAR UP!';
+
+  @override
+  String starRowSemantic(int stars, int max) {
+    return '$stars of $max stars';
+  }
 }
