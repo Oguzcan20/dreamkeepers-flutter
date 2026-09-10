@@ -173,6 +173,7 @@ class _BattleViewState extends State<BattleView> with SingleTickerProviderStateM
   Timer? _ultimateTimer;
   HitEvent? _lastHandledHit;
   UltimateEvent? _lastHandledUltimate;
+  SkillEvent? _lastHandledSkill;
 
   late final AnimationController _shakeController;
 
@@ -230,7 +231,15 @@ class _BattleViewState extends State<BattleView> with SingleTickerProviderStateM
     final hit = _engine.lastHit;
     if (hit != null && hit != _lastHandledHit) {
       _lastHandledHit = hit;
+      _gameState.playSound(SoundEffect.attack);
       _shakeController.forward(from: 0);
+    }
+    final skill = _engine.lastSkillUse;
+    if (skill != null && skill != _lastHandledSkill) {
+      // Fires for both manual taps and Auto-Battle, same as the Ultimate
+      // sound below — a short, quiet cast blip.
+      _lastHandledSkill = skill;
+      _gameState.playSound(SoundEffect.skill);
     }
     final ultimate = _engine.lastUltimate;
     if (ultimate != null && ultimate != _lastHandledUltimate) {

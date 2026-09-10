@@ -11,10 +11,12 @@ import 'platform_service.dart';
 /// a separate piece of work); this class only fills in the two seams the
 /// game actually leans on for feel — `playHaptic` and `playSound`.
 ///
-/// The battle cues (`skill`, `ultimate`, `bossEncounter`, `bossVictory`)
-/// are the real composed WAVs in `assets/audio/`, mirrored from the iOS
-/// build. Every other `SoundEffect` is intentionally silent here (iOS
-/// renders those via tiny system sounds that have no Android equivalent).
+/// The battle cues (`attack`, `skill`, `ultimate`, `bossEncounter`,
+/// `bossVictory`) are the real composed WAVs in `assets/audio/`, mirrored
+/// from the iOS build — `attack`/`skill` deliberately tiny and quiet (they
+/// fire on every hit / skill tap), the boss cues short dramatic stings.
+/// Every other `SoundEffect` is intentionally silent here (iOS renders
+/// those via tiny system sounds that have no Android equivalent).
 class FlutterPlatformService extends NoopPlatformService {
   FlutterPlatformService() {
     // SFX should mix under the player's own music, not seize audio focus.
@@ -31,6 +33,7 @@ class FlutterPlatformService extends NoopPlatformService {
     SoundEffect.bossVictory: 'audio/boss_victory.wav',
     SoundEffect.ultimate: 'audio/ultimate.wav',
     SoundEffect.skill: 'audio/skill.wav',
+    SoundEffect.attack: 'audio/attack.wav',
   };
 
   static double _volume(SoundEffect e) {
@@ -42,16 +45,19 @@ class FlutterPlatformService extends NoopPlatformService {
       case SoundEffect.ultimate:
         return 0.9;
       case SoundEffect.skill:
-        return 0.55;
+        return 0.5;
+      case SoundEffect.attack:
+        return 0.32;
       default:
         return 0.8;
     }
   }
 
-  /// Small round-robin pool so back-to-back cues (two Ultimates) overlap
-  /// instead of cutting each other off, without leaking a player per play.
+  /// Small round-robin pool so back-to-back cues (rapid hits, two Ultimates)
+  /// overlap instead of cutting each other off, without leaking a player per
+  /// play. Six so a fast Auto-Battle's attack blips don't starve the pool.
   final List<AudioPlayer> _pool =
-      List.generate(4, (i) => AudioPlayer()..setReleaseMode(ReleaseMode.stop));
+      List.generate(6, (i) => AudioPlayer()..setReleaseMode(ReleaseMode.stop));
   int _next = 0;
 
   @override
