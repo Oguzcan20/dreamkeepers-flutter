@@ -3343,4 +3343,84 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get shopExclusiveAmesDesc =>
       'Ember given human form — permanently joins your roster at max level and max stars.';
+
+  @override
+  String get achFirstSummonTitle => 'First Summon';
+
+  @override
+  String get achFirstSummonDetail => 'Summon your first Dreamkeeper.';
+
+  @override
+  String get achFirstLegendaryTitle => 'Legendary!';
+
+  @override
+  String get achFirstLegendaryDetail => 'Recruit a Legendary Dreamkeeper.';
+
+  @override
+  String get achCollector5Title => 'Growing Collection';
+
+  @override
+  String get achCollector5Detail => 'Own 5 different Dreamkeepers.';
+
+  @override
+  String get achCollector10Title => 'Dream Team';
+
+  @override
+  String get achCollector10Detail => 'Own 10 different Dreamkeepers.';
+
+  @override
+  String get achFirstBossTitle => 'Boss Slayer';
+
+  @override
+  String get achFirstBossDetail => 'Defeat your first Boss.';
+
+  @override
+  String get achStarUpTitle => 'Star Power';
+
+  @override
+  String get achStarUpDetail => 'Fuse a Dreamkeeper to raise its stars.';
+
+  @override
+  String get achMaxStarsTitle => 'Fully Ascended';
+
+  @override
+  String get achMaxStarsDetail => 'Raise a Dreamkeeper to max stars.';
+
+  @override
+  String get achFullTeamTitle => 'Squad Goals';
+
+  @override
+  String achFullTeamDetail(int size) {
+    return 'Deploy a full team of $size.';
+  }
+
+  @override
+  String get achPerfectClearTitle => 'Untouchable';
+
+  @override
+  String get achPerfectClearDetail => 'Win a battle without taking damage.';
+
+  @override
+  String get achAccountLevel10Title => 'Rising Dreamer';
+
+  @override
+  String get achAccountLevel10Detail => 'Reach Account Level 10.';
+
+  @override
+  String get achGoldHoarderTitle => 'Gold Hoarder';
+
+  @override
+  String get achGoldHoarderDetail => 'Hold 5,000 Gold at once.';
+
+  @override
+  String get achMonsterHunterTitle => 'Monster Hunter';
+
+  @override
+  String get achMonsterHunterDetail => 'Discover 10 different monsters.';
+
+  @override
+  String get achWeekStreakTitle => 'Dedicated Dreamer';
+
+  @override
+  String get achWeekStreakDetail => 'Claim all 7 days of a Login Streak.';
 }

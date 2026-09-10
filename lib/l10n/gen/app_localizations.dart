@@ -5822,6 +5822,162 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Ember given human form — permanently joins your roster at max level and max stars.'**
   String get shopExclusiveAmesDesc;
+
+  /// No description provided for @achFirstSummonTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'First Summon'**
+  String get achFirstSummonTitle;
+
+  /// No description provided for @achFirstSummonDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Summon your first Dreamkeeper.'**
+  String get achFirstSummonDetail;
+
+  /// No description provided for @achFirstLegendaryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Legendary!'**
+  String get achFirstLegendaryTitle;
+
+  /// No description provided for @achFirstLegendaryDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Recruit a Legendary Dreamkeeper.'**
+  String get achFirstLegendaryDetail;
+
+  /// No description provided for @achCollector5Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Growing Collection'**
+  String get achCollector5Title;
+
+  /// No description provided for @achCollector5Detail.
+  ///
+  /// In en, this message translates to:
+  /// **'Own 5 different Dreamkeepers.'**
+  String get achCollector5Detail;
+
+  /// No description provided for @achCollector10Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Dream Team'**
+  String get achCollector10Title;
+
+  /// No description provided for @achCollector10Detail.
+  ///
+  /// In en, this message translates to:
+  /// **'Own 10 different Dreamkeepers.'**
+  String get achCollector10Detail;
+
+  /// No description provided for @achFirstBossTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Boss Slayer'**
+  String get achFirstBossTitle;
+
+  /// No description provided for @achFirstBossDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Defeat your first Boss.'**
+  String get achFirstBossDetail;
+
+  /// No description provided for @achStarUpTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Star Power'**
+  String get achStarUpTitle;
+
+  /// No description provided for @achStarUpDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Fuse a Dreamkeeper to raise its stars.'**
+  String get achStarUpDetail;
+
+  /// No description provided for @achMaxStarsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Fully Ascended'**
+  String get achMaxStarsTitle;
+
+  /// No description provided for @achMaxStarsDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Raise a Dreamkeeper to max stars.'**
+  String get achMaxStarsDetail;
+
+  /// No description provided for @achFullTeamTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Squad Goals'**
+  String get achFullTeamTitle;
+
+  /// No description provided for @achFullTeamDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Deploy a full team of {size}.'**
+  String achFullTeamDetail(int size);
+
+  /// No description provided for @achPerfectClearTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Untouchable'**
+  String get achPerfectClearTitle;
+
+  /// No description provided for @achPerfectClearDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Win a battle without taking damage.'**
+  String get achPerfectClearDetail;
+
+  /// No description provided for @achAccountLevel10Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Rising Dreamer'**
+  String get achAccountLevel10Title;
+
+  /// No description provided for @achAccountLevel10Detail.
+  ///
+  /// In en, this message translates to:
+  /// **'Reach Account Level 10.'**
+  String get achAccountLevel10Detail;
+
+  /// No description provided for @achGoldHoarderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Gold Hoarder'**
+  String get achGoldHoarderTitle;
+
+  /// No description provided for @achGoldHoarderDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Hold 5,000 Gold at once.'**
+  String get achGoldHoarderDetail;
+
+  /// No description provided for @achMonsterHunterTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Monster Hunter'**
+  String get achMonsterHunterTitle;
+
+  /// No description provided for @achMonsterHunterDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Discover 10 different monsters.'**
+  String get achMonsterHunterDetail;
+
+  /// No description provided for @achWeekStreakTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Dedicated Dreamer'**
+  String get achWeekStreakTitle;
+
+  /// No description provided for @achWeekStreakDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Claim all 7 days of a Login Streak.'**
+  String get achWeekStreakDetail;
 }
 
 class _AppLocalizationsDelegate

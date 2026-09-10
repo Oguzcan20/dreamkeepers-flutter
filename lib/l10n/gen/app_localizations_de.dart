@@ -3368,4 +3368,88 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get shopExclusiveAmesDesc =>
       'Glut in Menschengestalt — tritt dauerhaft mit maximalem Level und maximalen Sternen deinem Kader bei.';
+
+  @override
+  String get achFirstSummonTitle => 'Erste Beschwörung';
+
+  @override
+  String get achFirstSummonDetail => 'Beschwöre deinen ersten Traumhüter.';
+
+  @override
+  String get achFirstLegendaryTitle => 'Legendär!';
+
+  @override
+  String get achFirstLegendaryDetail =>
+      'Rekrutiere einen legendären Traumhüter.';
+
+  @override
+  String get achCollector5Title => 'Wachsende Sammlung';
+
+  @override
+  String get achCollector5Detail => 'Besitze 5 verschiedene Traumhüter.';
+
+  @override
+  String get achCollector10Title => 'Traumteam';
+
+  @override
+  String get achCollector10Detail => 'Besitze 10 verschiedene Traumhüter.';
+
+  @override
+  String get achFirstBossTitle => 'Bossbezwinger';
+
+  @override
+  String get achFirstBossDetail => 'Besiege deinen ersten Boss.';
+
+  @override
+  String get achStarUpTitle => 'Sternenkraft';
+
+  @override
+  String get achStarUpDetail =>
+      'Verschmilz einen Traumhüter, um seine Sterne zu erhöhen.';
+
+  @override
+  String get achMaxStarsTitle => 'Voll aufgestiegen';
+
+  @override
+  String get achMaxStarsDetail =>
+      'Bring einen Traumhüter auf die maximale Sternzahl.';
+
+  @override
+  String get achFullTeamTitle => 'Perfekte Truppe';
+
+  @override
+  String achFullTeamDetail(int size) {
+    return 'Setze ein volles Team von $size ein.';
+  }
+
+  @override
+  String get achPerfectClearTitle => 'Unberührbar';
+
+  @override
+  String get achPerfectClearDetail =>
+      'Gewinne einen Kampf, ohne Schaden zu nehmen.';
+
+  @override
+  String get achAccountLevel10Title => 'Aufstrebender Träumer';
+
+  @override
+  String get achAccountLevel10Detail => 'Erreiche Kontostufe 10.';
+
+  @override
+  String get achGoldHoarderTitle => 'Goldhamster';
+
+  @override
+  String get achGoldHoarderDetail => 'Halte 5.000 Gold auf einmal.';
+
+  @override
+  String get achMonsterHunterTitle => 'Monsterjäger';
+
+  @override
+  String get achMonsterHunterDetail => 'Entdecke 10 verschiedene Monster.';
+
+  @override
+  String get achWeekStreakTitle => 'Treuer Träumer';
+
+  @override
+  String get achWeekStreakDetail => 'Löse alle 7 Tage einer Login-Serie ein.';
 }
