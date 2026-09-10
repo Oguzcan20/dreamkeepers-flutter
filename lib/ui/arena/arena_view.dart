@@ -129,7 +129,14 @@ class _ArenaViewState extends State<ArenaView> {
                   child: AnimatedOpacity(
                     opacity: _appeared ? 1 : 0,
                     duration: const Duration(milliseconds: 500),
-                    child: SingleChildScrollView(
+                    // A GlassCard row scrolled flush against the viewport top
+                    // otherwise lets its BackdropFilter blur bleed up over the
+                    // progress card above (Flutter #48212 — BackdropFilter
+                    // ignores an ancestor's scroll clip). In the tight
+                    // landscape layout the frontier row sits right at that
+                    // edge, making the bleed obvious — clip it explicitly.
+                    child: ClipRect(
+                      child: SingleChildScrollView(
                       controller: _scrollController,
                       // Bottom pad clears the floating home button in the
                       // bottom-left corner (RootView only reserves ~56 of
@@ -151,6 +158,7 @@ class _ArenaViewState extends State<ArenaView> {
                           ],
                         ],
                       ),
+                    ),
                     ),
                   ),
                 ),
