@@ -3681,4 +3681,83 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get arenaRivalStormeye => 'Team Stormeye';
+
+  @override
+  String get rebirthTitle => 'Rebirth';
+
+  @override
+  String get rebirthBlurb =>
+      'Reset the Endless Trial tower to bank Soul Points, then spend them on permanent account-wide bonuses.';
+
+  @override
+  String get rebirthSoulPointsLabel => 'Soul Points';
+
+  @override
+  String rebirthCountLabel(int count) {
+    return 'Rebirths performed: $count';
+  }
+
+  @override
+  String get rebirthButton => 'Rebirth now';
+
+  @override
+  String rebirthGainPreview(int points) {
+    return 'This Rebirth banks +$points Soul Points';
+  }
+
+  @override
+  String get rebirthResetWarning =>
+      'The Trial tower resets to floor 1. Your roster, gold, gems and gear all stay.';
+
+  @override
+  String rebirthRequirementNotMet(int floor) {
+    return 'Reach floor $floor of the Endless Trial to unlock Rebirth.';
+  }
+
+  @override
+  String get rebirthUpgradesTitle => 'Soul Upgrades';
+
+  @override
+  String rebirthUpgradeRank(int current, int max) {
+    return 'Rank $current/$max';
+  }
+
+  @override
+  String rebirthUpgradeCost(int cost) {
+    return '$cost SP';
+  }
+
+  @override
+  String get rebirthMaxed => 'Maxed out';
+
+  @override
+  String get rebirthEntrySubtitle => 'Prestige for permanent bonuses';
+
+  @override
+  String get rebirthConfirmTitle => 'Perform Rebirth?';
+
+  @override
+  String get soulUpgradeGoldFindName => 'Gold Find';
+
+  @override
+  String get soulUpgradeGoldFindDetail => '+4% gold from all sources per rank';
+
+  @override
+  String get soulUpgradeExpBoostName => 'EXP Boost';
+
+  @override
+  String get soulUpgradeExpBoostDetail => '+4% EXP from all sources per rank';
+
+  @override
+  String get soulUpgradeDamageName => 'Damage';
+
+  @override
+  String get soulUpgradeDamageDetail => '+2% team damage per rank';
+
+  @override
+  String get soulUpgradeOfflineName => 'Offline Rewards';
+
+  @override
+  String get soulUpgradeOfflineDetail =>
+      '+10% offline building rewards per rank';
 }

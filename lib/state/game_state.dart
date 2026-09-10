@@ -39,6 +39,7 @@ import '../progression/equipment_upgrade.dart';
 import '../progression/level_system.dart';
 import '../progression/login_reward_system.dart';
 import '../progression/offline_rewards.dart';
+import '../progression/rebirth_system.dart';
 import '../progression/rewards.dart';
 import '../progression/star_fusion_system.dart';
 import '../progression/summon_system.dart';
@@ -746,6 +747,7 @@ class GameState extends ChangeNotifier {
       enemy: enemy,
       stage: _selectedStage,
       isBossStage: isBoss,
+      playerDamageMultiplier: soulDamageMult,
     );
   }
 
@@ -782,20 +784,21 @@ class GameState extends ChangeNotifier {
         _incrementWeeklyMission(WeeklyMissionID.defeatBosses);
       }
       final rewards = RewardTable.rewards(stage: stage, isBoss: isBoss);
-      goldGained = rewards.gold;
-      expGained = rewards.expPerSurvivor;
-      _save.gold += rewards.gold;
+      // Rebirth Soul upgrades scale gold/EXP payouts account-wide.
+      goldGained = _soulGold(rewards.gold);
+      expGained = _soulExp(rewards.expPerSurvivor);
+      _save.gold += goldGained;
       _save.battlePassXP += BattlePassSystem.xpGained(isBoss: isBoss);
 
       if (isPerfectClear) {
-        perfectClearBonusGold = max(1, (rewards.gold * 0.25).toInt());
+        perfectClearBonusGold = max(1, (goldGained * 0.25).toInt());
         goldGained += perfectClearBonusGold;
         _save.gold += perfectClearBonusGold;
       }
 
       final accountBefore = _save.playerLevel;
       final accountResult =
-          LevelSystem.applyExp(rewards.accountExp, level: _save.playerLevel, exp: _save.playerExp);
+          LevelSystem.applyExp(_soulExp(rewards.accountExp), level: _save.playerLevel, exp: _save.playerExp);
       _save.playerLevel = accountResult.finalLevel;
       _save.playerExp = accountResult.finalExp;
       if (accountResult.levelsGained > 0) {
@@ -810,7 +813,7 @@ class GameState extends ChangeNotifier {
         final before = _save.roster[i];
         final statsBefore = before.currentStats(definition: def, inventory: _save.inventory);
 
-        final result = LevelSystem.applyExp(rewards.expPerSurvivor, level: before.level, exp: before.exp);
+        final result = LevelSystem.applyExp(expGained, level: before.level, exp: before.exp);
         _save.roster[i] = before.copyWith(level: result.finalLevel, exp: result.finalExp);
 
         if (result.levelsGained > 0) {
@@ -924,7 +927,13 @@ class GameState extends ChangeNotifier {
       _save.arenaBonusTickets -= 1;
     }
     persist();
-    return BattleEngine(playerUnits: playerCombatants, enemy: rival, stage: floor, isBossStage: false);
+    return BattleEngine(
+      playerUnits: playerCombatants,
+      enemy: rival,
+      stage: floor,
+      isBossStage: false,
+      playerDamageMultiplier: soulDamageMult,
+    );
   }
 
   /// Applies reward changes for a finished Arena Tower fight.
@@ -944,7 +953,7 @@ class GameState extends ChangeNotifier {
       _incrementMission(MissionID.winBattle);
 
       if (isFirstClear) {
-        goldGained = ArenaSystem.firstClearGoldReward(floor);
+        goldGained = _soulGold(ArenaSystem.firstClearGoldReward(floor));
         _save.gold += goldGained;
         final item = ArenaSystem.firstClearEquipment(floor);
         _save.inventory.add(item);
@@ -952,7 +961,7 @@ class GameState extends ChangeNotifier {
         _save.arenaFloor = floor + 1;
         towerCleared = _save.arenaFloor > ArenaSystem.maxFloor;
       } else {
-        goldGained = ArenaSystem.standardGoldReward(floor);
+        goldGained = _soulGold(ArenaSystem.standardGoldReward(floor));
         _save.gold += goldGained;
         final item = ArenaSystem.standardEquipmentDrop(floor);
         if (item != null) {
@@ -978,6 +987,62 @@ class GameState extends ChangeNotifier {
     );
   }
 
+  // MARK: - Rebirth / Soul upgrades
+
+  /// See `RebirthSystem` — a Flutter-only prestige layer with no Swift
+  /// original. Rebirth resets the Arena Tower frontier in exchange for
+  /// permanent Soul Point upgrades that scale gold/EXP/damage/offline
+  /// rewards account-wide.
+  int get soulPoints => _save.soulPoints;
+  int get rebirthCount => _save.rebirthCount;
+
+  int soulUpgradeRank(SoulUpgrade u) => _save.soulUpgradeRanks[u.storageKey] ?? 0;
+
+  double get _soulGoldMult =>
+      RebirthSystem.effectMultiplier(SoulUpgrade.goldFind, soulUpgradeRank(SoulUpgrade.goldFind));
+  double get _soulExpMult =>
+      RebirthSystem.effectMultiplier(SoulUpgrade.expBoost, soulUpgradeRank(SoulUpgrade.expBoost));
+
+  /// Public — the battle engine builders fold this into player-side damage.
+  double get soulDamageMult =>
+      RebirthSystem.effectMultiplier(SoulUpgrade.damage, soulUpgradeRank(SoulUpgrade.damage));
+  double get _soulOfflineMult => RebirthSystem.effectMultiplier(
+      SoulUpgrade.offlineRewards, soulUpgradeRank(SoulUpgrade.offlineRewards));
+
+  int _soulGold(int base) => (base * _soulGoldMult).round();
+  int _soulExp(int base) => (base * _soulExpMult).round();
+
+  /// Whether a Rebirth is available right now.
+  bool get canRebirth => _save.arenaFloor >= RebirthSystem.rebirthFloorRequirement;
+
+  /// Soul Points a Rebirth performed right now would bank.
+  int get pendingRebirthSoulPoints => RebirthSystem.soulPointsForFloor(_save.arenaFloor);
+
+  /// Performs a Rebirth: banks [pendingRebirthSoulPoints], bumps the rebirth
+  /// counter, and resets the Arena Tower frontier to floor 1. No-op
+  /// (returns `false`) unless [canRebirth].
+  bool performRebirth() {
+    if (!canRebirth) return false;
+    _save.soulPoints += pendingRebirthSoulPoints;
+    _save.rebirthCount += 1;
+    _save.arenaFloor = 1;
+    persist();
+    return true;
+  }
+
+  /// Buys the next rank of [u]. Returns `false` if it's already maxed or the
+  /// player can't afford the next rank's Soul Point cost.
+  bool buySoulUpgrade(SoulUpgrade u) {
+    final current = soulUpgradeRank(u);
+    if (current >= RebirthSystem.maxRank(u)) return false;
+    final cost = RebirthSystem.costForRank(u, current + 1);
+    if (_save.soulPoints < cost) return false;
+    _save.soulPoints -= cost;
+    _save.soulUpgradeRanks[u.storageKey] = current + 1;
+    persist();
+    return true;
+  }
+
   // MARK: - Stage sweep
 
   /// A stage can be swept once it's behind the campaign frontier.
@@ -992,11 +1057,14 @@ class GameState extends ChangeNotifier {
     if (!spendEnergy(EnergySystem.stageCost(isBoss: isBoss))) return null;
     final rewards = RewardTable.rewards(stage: stage, isBoss: isBoss);
 
-    _save.gold += rewards.gold;
+    // Rebirth Soul upgrades scale gold/EXP payouts account-wide.
+    final goldGained = _soulGold(rewards.gold);
+    final expGained = _soulExp(rewards.expPerSurvivor);
+    _save.gold += goldGained;
 
     final accountBefore = _save.playerLevel;
     final accountResult =
-        LevelSystem.applyExp(rewards.accountExp, level: _save.playerLevel, exp: _save.playerExp);
+        LevelSystem.applyExp(_soulExp(rewards.accountExp), level: _save.playerLevel, exp: _save.playerExp);
     _save.playerLevel = accountResult.finalLevel;
     _save.playerExp = accountResult.finalExp;
     final accountLevelUp = accountResult.levelsGained > 0
@@ -1011,7 +1079,7 @@ class GameState extends ChangeNotifier {
       final before = _save.roster[i];
       final statsBefore = before.currentStats(definition: def, inventory: _save.inventory);
 
-      final result = LevelSystem.applyExp(rewards.expPerSurvivor, level: before.level, exp: before.exp);
+      final result = LevelSystem.applyExp(expGained, level: before.level, exp: before.exp);
       _save.roster[i] = before.copyWith(level: result.finalLevel, exp: result.finalExp);
 
       if (result.levelsGained > 0) {
@@ -1039,8 +1107,8 @@ class GameState extends ChangeNotifier {
       outcome: BattleOutcome.victory,
       stage: stage,
       wasBoss: isBoss,
-      goldGained: rewards.gold,
-      expGained: rewards.expPerSurvivor,
+      goldGained: goldGained,
+      expGained: expGained,
       levelUps: levelUps,
       droppedEquipment: droppedEquipment,
       accountLevelUp: accountLevelUp,
@@ -1368,10 +1436,13 @@ class GameState extends ChangeNotifier {
 
   // MARK: - Offline buildings
 
-  int get pendingGoldFountainReward => OfflineRewards.pendingGold(lastCollected: _save.lastGoldCollectedAt);
+  int get pendingGoldFountainReward =>
+      (OfflineRewards.pendingGold(lastCollected: _save.lastGoldCollectedAt) * _soulGoldMult * _soulOfflineMult)
+          .round();
 
   int get pendingTrainingGardenReward =>
-      OfflineRewards.pendingExp(lastCollected: _save.lastTrainingCollectedAt);
+      (OfflineRewards.pendingExp(lastCollected: _save.lastTrainingCollectedAt) * _soulExpMult * _soulOfflineMult)
+          .round();
 
   int collectGoldFountain() {
     final amount = pendingGoldFountainReward;

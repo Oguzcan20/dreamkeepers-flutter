@@ -6398,6 +6398,138 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Team Stormeye'**
   String get arenaRivalStormeye;
+
+  /// No description provided for @rebirthTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Rebirth'**
+  String get rebirthTitle;
+
+  /// No description provided for @rebirthBlurb.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset the Endless Trial tower to bank Soul Points, then spend them on permanent account-wide bonuses.'**
+  String get rebirthBlurb;
+
+  /// No description provided for @rebirthSoulPointsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Soul Points'**
+  String get rebirthSoulPointsLabel;
+
+  /// No description provided for @rebirthCountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Rebirths performed: {count}'**
+  String rebirthCountLabel(int count);
+
+  /// No description provided for @rebirthButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Rebirth now'**
+  String get rebirthButton;
+
+  /// No description provided for @rebirthGainPreview.
+  ///
+  /// In en, this message translates to:
+  /// **'This Rebirth banks +{points} Soul Points'**
+  String rebirthGainPreview(int points);
+
+  /// No description provided for @rebirthResetWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'The Trial tower resets to floor 1. Your roster, gold, gems and gear all stay.'**
+  String get rebirthResetWarning;
+
+  /// No description provided for @rebirthRequirementNotMet.
+  ///
+  /// In en, this message translates to:
+  /// **'Reach floor {floor} of the Endless Trial to unlock Rebirth.'**
+  String rebirthRequirementNotMet(int floor);
+
+  /// No description provided for @rebirthUpgradesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Soul Upgrades'**
+  String get rebirthUpgradesTitle;
+
+  /// No description provided for @rebirthUpgradeRank.
+  ///
+  /// In en, this message translates to:
+  /// **'Rank {current}/{max}'**
+  String rebirthUpgradeRank(int current, int max);
+
+  /// No description provided for @rebirthUpgradeCost.
+  ///
+  /// In en, this message translates to:
+  /// **'{cost} SP'**
+  String rebirthUpgradeCost(int cost);
+
+  /// No description provided for @rebirthMaxed.
+  ///
+  /// In en, this message translates to:
+  /// **'Maxed out'**
+  String get rebirthMaxed;
+
+  /// No description provided for @rebirthEntrySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Prestige for permanent bonuses'**
+  String get rebirthEntrySubtitle;
+
+  /// No description provided for @rebirthConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Perform Rebirth?'**
+  String get rebirthConfirmTitle;
+
+  /// No description provided for @soulUpgradeGoldFindName.
+  ///
+  /// In en, this message translates to:
+  /// **'Gold Find'**
+  String get soulUpgradeGoldFindName;
+
+  /// No description provided for @soulUpgradeGoldFindDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'+4% gold from all sources per rank'**
+  String get soulUpgradeGoldFindDetail;
+
+  /// No description provided for @soulUpgradeExpBoostName.
+  ///
+  /// In en, this message translates to:
+  /// **'EXP Boost'**
+  String get soulUpgradeExpBoostName;
+
+  /// No description provided for @soulUpgradeExpBoostDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'+4% EXP from all sources per rank'**
+  String get soulUpgradeExpBoostDetail;
+
+  /// No description provided for @soulUpgradeDamageName.
+  ///
+  /// In en, this message translates to:
+  /// **'Damage'**
+  String get soulUpgradeDamageName;
+
+  /// No description provided for @soulUpgradeDamageDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'+2% team damage per rank'**
+  String get soulUpgradeDamageDetail;
+
+  /// No description provided for @soulUpgradeOfflineName.
+  ///
+  /// In en, this message translates to:
+  /// **'Offline Rewards'**
+  String get soulUpgradeOfflineName;
+
+  /// No description provided for @soulUpgradeOfflineDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'+10% offline building rewards per rank'**
+  String get soulUpgradeOfflineDetail;
 }
 
 class _AppLocalizationsDelegate

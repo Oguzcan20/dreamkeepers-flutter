@@ -21,6 +21,7 @@ import '../../l10n/l10n.dart';
 import '../../state/game_state.dart';
 import '../../theme/sf_symbol_icons.dart';
 import '../../theme/theme.dart' as dk_theme;
+import '../rebirth/rebirth_sheet.dart';
 import '../root/app_route.dart';
 
 class ArenaView extends StatefulWidget {
@@ -116,6 +117,14 @@ class _ArenaViewState extends State<ArenaView> {
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(20, 6, 20, 0),
                     child: _progressCard(),
+                  ),
+                ),
+                AnimatedOpacity(
+                  opacity: _appeared ? 1 : 0,
+                  duration: const Duration(milliseconds: 500),
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 8, 20, 0),
+                    child: _rebirthCard(),
                   ),
                 ),
                 if (_gameState.isArenaTowerCleared)
@@ -255,6 +264,71 @@ class _ArenaViewState extends State<ArenaView> {
             ],
           ),
         ],
+      ),
+    );
+  }
+
+  void _openRebirthSheet() {
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (_) => RebirthSheet(gameState: _gameState),
+    );
+  }
+
+  /// Entry point to the Prestige / Rebirth ("Wiedergeburt") sheet — a
+  /// Flutter-only system with no Swift original. Unlocked/actionable state
+  /// is surfaced with the gold accent; otherwise it reads as a locked hint.
+  Widget _rebirthCard() {
+    final l = AppLocalizations.of(context);
+    final canRebirth = _gameState.canRebirth;
+    return GestureDetector(
+      onTap: _openRebirthSheet,
+      child: dk_theme.GlassCard(
+        child: Row(
+          children: [
+            Container(
+              width: 44,
+              height: 44,
+              decoration: BoxDecoration(
+                color: dk_theme.Theme.violet.withValues(alpha: canRebirth ? 0.35 : 0.2),
+                shape: BoxShape.circle,
+              ),
+              child: Icon(sfSymbol('flame.fill'), size: 18, color: dk_theme.Theme.violet),
+            ),
+            const SizedBox(width: 14),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(l.rebirthTitle, style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold)),
+                  const SizedBox(height: 2),
+                  Text(
+                    canRebirth
+                        ? l.rebirthGainPreview(_gameState.pendingRebirthSoulPoints)
+                        : l.rebirthEntrySubtitle,
+                    style: TextStyle(
+                      color: canRebirth ? dk_theme.Theme.gold : Colors.white.withValues(alpha: 0.6),
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(sfSymbol('flame.fill'), size: 12, color: dk_theme.Theme.violet),
+                const SizedBox(width: 5),
+                Text('${_gameState.soulPoints}',
+                    style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w600)),
+                const SizedBox(width: 6),
+                Icon(sfSymbol('chevron.right'), size: 12, color: Colors.white.withValues(alpha: 0.4)),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

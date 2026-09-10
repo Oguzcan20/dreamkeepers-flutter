@@ -169,6 +169,16 @@ class GameSave {
   /// `arenaTickets` so a day rollover never silently wastes a purchase.
   int arenaBonusTickets;
 
+  /// Prestige / Rebirth ("Wiedergeburt") — a Flutter-only system with no
+  /// Swift-original counterpart. `soulPoints` is the permanent currency
+  /// banked by each Rebirth; `soulUpgradeRanks` maps `SoulUpgrade.name` to
+  /// its purchased rank; `rebirthCount` is how many Rebirths have been
+  /// performed. All absent from older saves — backfilled to empty/zero, so
+  /// an existing player simply starts the feature from scratch.
+  int soulPoints;
+  Map<String, int> soulUpgradeRanks;
+  int rebirthCount;
+
   GameSave({
     required this.playerLevel,
     required this.playerExp,
@@ -221,7 +231,11 @@ class GameSave {
     int? arenaTickets,
     DateTime? arenaTicketDay,
     this.arenaBonusTickets = 0,
-  })  : dailyMissionSelectedIDs = dailyMissionSelectedIDs ?? [],
+    this.soulPoints = 0,
+    Map<String, int>? soulUpgradeRanks,
+    this.rebirthCount = 0,
+  })  : soulUpgradeRanks = soulUpgradeRanks ?? {},
+        dailyMissionSelectedIDs = dailyMissionSelectedIDs ?? [],
         weeklyMissionWeek = weeklyMissionWeek ?? _distantPast,
         weeklyMissionProgress = weeklyMissionProgress ?? {},
         claimedWeeklyMissionIDs = claimedWeeklyMissionIDs ?? {},
@@ -315,6 +329,9 @@ class GameSave {
         'arenaTickets': arenaTickets,
         'arenaTicketDay': _dateToJson(arenaTicketDay),
         'arenaBonusTickets': arenaBonusTickets,
+        'soulPoints': soulPoints,
+        'soulUpgradeRanks': soulUpgradeRanks,
+        'rebirthCount': rebirthCount,
       };
 
   /// Backfills missing keys with the same defaults the Swift
@@ -410,6 +427,12 @@ class GameSave {
       arenaTickets: json['arenaTickets'] as int? ?? ArenaSystem.maxTicketsPerDay,
       arenaTicketDay: _dateFromJson(json['arenaTicketDay'], _distantPast),
       arenaBonusTickets: json['arenaBonusTickets'] as int? ?? 0,
+      // Missing keys mean this save predates the Rebirth system — start the
+      // player with no Soul Points and no upgrades, same as a fresh save.
+      soulPoints: json['soulPoints'] as int? ?? 0,
+      soulUpgradeRanks:
+          (json['soulUpgradeRanks'] as Map<String, dynamic>?)?.map((k, v) => MapEntry(k, v as int)) ?? {},
+      rebirthCount: json['rebirthCount'] as int? ?? 0,
     );
   }
 }

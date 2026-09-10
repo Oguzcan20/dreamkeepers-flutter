@@ -3710,4 +3710,83 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get arenaRivalStormeye => 'Team Sturmauge';
+
+  @override
+  String get rebirthTitle => 'Wiedergeburt';
+
+  @override
+  String get rebirthBlurb =>
+      'Setze den Turm der Endlosprüfung zurück, um Seelenpunkte zu sammeln, und gib sie für dauerhafte kontoweite Boni aus.';
+
+  @override
+  String get rebirthSoulPointsLabel => 'Seelenpunkte';
+
+  @override
+  String rebirthCountLabel(int count) {
+    return 'Durchgeführte Wiedergeburten: $count';
+  }
+
+  @override
+  String get rebirthButton => 'Jetzt wiedergeboren werden';
+
+  @override
+  String rebirthGainPreview(int points) {
+    return 'Diese Wiedergeburt bringt +$points Seelenpunkte';
+  }
+
+  @override
+  String get rebirthResetWarning =>
+      'Der Prüfungsturm wird auf Etage 1 zurückgesetzt. Dein Team, Gold, Edelsteine und die Ausrüstung bleiben erhalten.';
+
+  @override
+  String rebirthRequirementNotMet(int floor) {
+    return 'Erreiche Etage $floor der Endlosprüfung, um die Wiedergeburt freizuschalten.';
+  }
+
+  @override
+  String get rebirthUpgradesTitle => 'Seelen-Verbesserungen';
+
+  @override
+  String rebirthUpgradeRank(int current, int max) {
+    return 'Rang $current/$max';
+  }
+
+  @override
+  String rebirthUpgradeCost(int cost) {
+    return '$cost SP';
+  }
+
+  @override
+  String get rebirthMaxed => 'Maximum erreicht';
+
+  @override
+  String get rebirthEntrySubtitle => 'Prestige für dauerhafte Boni';
+
+  @override
+  String get rebirthConfirmTitle => 'Wiedergeburt durchführen?';
+
+  @override
+  String get soulUpgradeGoldFindName => 'Goldfund';
+
+  @override
+  String get soulUpgradeGoldFindDetail => '+4% Gold aus allen Quellen pro Rang';
+
+  @override
+  String get soulUpgradeExpBoostName => 'EP-Schub';
+
+  @override
+  String get soulUpgradeExpBoostDetail => '+4% EP aus allen Quellen pro Rang';
+
+  @override
+  String get soulUpgradeDamageName => 'Schaden';
+
+  @override
+  String get soulUpgradeDamageDetail => '+2% Teamschaden pro Rang';
+
+  @override
+  String get soulUpgradeOfflineName => 'Offline-Belohnungen';
+
+  @override
+  String get soulUpgradeOfflineDetail =>
+      '+10% Offline-Gebäudebelohnungen pro Rang';
 }

@@ -90,6 +90,11 @@ class BattleEngine extends ChangeNotifier {
   final int stage;
   final bool isBossStage;
 
+  /// Account-wide multiplier applied to every player unit's outgoing damage
+  /// — fed by the Rebirth "Schaden" Soul upgrade (`GameState.soulDamageMult`).
+  /// `1.0` for battles built without one (tests, older call sites).
+  final double playerDamageMultiplier;
+
   /// Injected so tests can make damage deterministic; defaults to a small
   /// +/-10% swing for UI "liveliness".
   double Function() varianceProvider;
@@ -108,6 +113,7 @@ class BattleEngine extends ChangeNotifier {
     required Combatant enemy,
     required this.stage,
     required this.isBossStage,
+    this.playerDamageMultiplier = 1.0,
     double Function()? varianceProvider,
   })  : combatants = [...playerUnits, enemy],
         varianceProvider = varianceProvider ?? _defaultVariance;
@@ -189,7 +195,8 @@ class BattleEngine extends ChangeNotifier {
     double multiplier = 1.0,
   }) {
     final elementMultiplier = attacker.element.multiplier(defender.element);
-    final raw = _effectiveAttack(attacker) * elementMultiplier * multiplier -
+    final playerBonus = attacker.isPlayer ? playerDamageMultiplier : 1.0;
+    final raw = _effectiveAttack(attacker) * elementMultiplier * multiplier * playerBonus -
         defender.defense * 0.5;
     final variance = varianceProvider();
     return max(1, raw * variance);
