@@ -101,4 +101,107 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get settingsLanguageRestartBody =>
       'The game needs to restart to apply the new language. It will close now — reopen it to continue playing.';
+
+  @override
+  String get mainMenuTagline =>
+      'A cozy fantasy RPG for a few quiet minutes at a time.';
+
+  @override
+  String get mainMenuPlay => 'Play';
+
+  @override
+  String get mainMenuSettings => 'Settings';
+
+  @override
+  String get loadingHeader => 'LOADING…';
+
+  @override
+  String get loadingTipLabel => 'TIP: ';
+
+  @override
+  String get loadingAdTitle => 'Loading Ad…';
+
+  @override
+  String get loadingTip1 =>
+      'Match elements for an advantage against tough enemies.';
+
+  @override
+  String get loadingTip2 =>
+      'Fuse duplicate Dreamkeepers to raise their star rank.';
+
+  @override
+  String get loadingTip3 =>
+      'Upgrade equipment from the Inventory to boost your team\'s stats.';
+
+  @override
+  String get loadingTip4 =>
+      'Collect offline rewards from the Gold Fountain and Training Garden.';
+
+  @override
+  String get loadingTip5 => 'Complete Daily Missions for extra Gold and Gems.';
+
+  @override
+  String get loadingTip6 =>
+      'Deploy up to five Dreamkeepers per team — balance your elements.';
+
+  @override
+  String get onboardingSkip => 'Skip';
+
+  @override
+  String get onboardingNext => 'Next';
+
+  @override
+  String get onboardingLetsGo => 'Let\'s Go!';
+
+  @override
+  String get onboardingSummoningTitle => 'Summoning Shrine';
+
+  @override
+  String get onboardingSummoningBody =>
+      'Spend Dream Gems at the Summoning Shrine to recruit new Dreamkeepers. Odds are shown up front — no hidden mechanics. A 10x Summon always includes a bonus pull for free.';
+
+  @override
+  String get onboardingFusionTitle => 'Fusion';
+
+  @override
+  String get onboardingFusionBody =>
+      'Summoning a Dreamkeeper you already own doesn\'t waste it — the duplicate goes straight to your Inventory. Fuse duplicates onto that Dreamkeeper there to raise its star tier and make it stronger.';
+
+  @override
+  String get onboardingTeamTitle => 'Team';
+
+  @override
+  String get onboardingTeamBody =>
+      'Build a team from your roster in the Inventory screen. Only deployed Dreamkeepers fight in battle and train at the Training Garden — keep your best team on deck.';
+
+  @override
+  String get onboardingCampaignTitle => 'Campaign';
+
+  @override
+  String get onboardingCampaignBody =>
+      'Send your team into the Campaign to clear stages, earn gold and EXP, and defeat bosses. Boss victories recruit your next Dreamkeeper automatically.';
+
+  @override
+  String get starterElementTitle => 'Choose Olf\'s Element';
+
+  @override
+  String get starterElementSubtitle =>
+      'This sticks with him for good — pick whatever feels right.';
+
+  @override
+  String get navDreamHaven => 'Dream Haven';
+
+  @override
+  String get achievementUnlockedBanner => 'ACHIEVEMENT UNLOCKED';
+
+  @override
+  String get achievementsSheetTitle => 'Achievements';
+
+  @override
+  String achievementsUnlockedCount(int unlocked, int total) {
+    return '$unlocked/$total unlocked';
+  }
+
+  @override
+  String get cardTwinBond => 'Twin Bond';
 }

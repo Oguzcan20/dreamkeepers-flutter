@@ -101,4 +101,108 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get settingsLanguageRestartBody =>
       'Das Spiel muss neu starten, um die neue Sprache zu übernehmen. Es wird jetzt geschlossen — öffne es erneut, um weiterzuspielen.';
+
+  @override
+  String get mainMenuTagline =>
+      'Ein gemütliches Fantasy-Rollenspiel für ein paar ruhige Minuten zwischendurch.';
+
+  @override
+  String get mainMenuPlay => 'Spielen';
+
+  @override
+  String get mainMenuSettings => 'Einstellungen';
+
+  @override
+  String get loadingHeader => 'LÄDT …';
+
+  @override
+  String get loadingTipLabel => 'TIPP: ';
+
+  @override
+  String get loadingAdTitle => 'Anzeige wird geladen …';
+
+  @override
+  String get loadingTip1 =>
+      'Kombiniere Elemente für einen Vorteil gegen starke Gegner.';
+
+  @override
+  String get loadingTip2 =>
+      'Verschmilz doppelte Traumhüter, um ihren Sternerang zu erhöhen.';
+
+  @override
+  String get loadingTip3 =>
+      'Verbessere Ausrüstung im Inventar, um die Werte deines Teams zu steigern.';
+
+  @override
+  String get loadingTip4 =>
+      'Hol dir Offline-Belohnungen aus dem Goldbrunnen und dem Trainingsgarten.';
+
+  @override
+  String get loadingTip5 =>
+      'Schließe tägliche Missionen für zusätzliches Gold und Edelsteine ab.';
+
+  @override
+  String get loadingTip6 =>
+      'Setze bis zu fünf Traumhüter pro Team ein — achte auf deine Elemente.';
+
+  @override
+  String get onboardingSkip => 'Überspringen';
+
+  @override
+  String get onboardingNext => 'Weiter';
+
+  @override
+  String get onboardingLetsGo => 'Los geht\'s!';
+
+  @override
+  String get onboardingSummoningTitle => 'Beschwörungsschrein';
+
+  @override
+  String get onboardingSummoningBody =>
+      'Gib Traum-Edelsteine im Beschwörungsschrein aus, um neue Traumhüter zu rekrutieren. Die Chancen werden offen angezeigt — keine versteckten Mechaniken. Eine 10x-Beschwörung enthält immer einen Bonuszug gratis.';
+
+  @override
+  String get onboardingFusionTitle => 'Verschmelzung';
+
+  @override
+  String get onboardingFusionBody =>
+      'Einen Traumhüter zu beschwören, den du schon besitzt, ist nicht verschwendet — das Duplikat wandert direkt in dein Inventar. Verschmilz Duplikate dort mit diesem Traumhüter, um seine Sternestufe zu erhöhen und ihn stärker zu machen.';
+
+  @override
+  String get onboardingTeamTitle => 'Team';
+
+  @override
+  String get onboardingTeamBody =>
+      'Stelle im Inventar ein Team aus deinem Kader zusammen. Nur eingesetzte Traumhüter kämpfen im Kampf und trainieren im Trainingsgarten — halte dein bestes Team bereit.';
+
+  @override
+  String get onboardingCampaignTitle => 'Kampagne';
+
+  @override
+  String get onboardingCampaignBody =>
+      'Schick dein Team in die Kampagne, um Abschnitte zu bestehen, Gold und EP zu verdienen und Bosse zu besiegen. Boss-Siege rekrutieren deinen nächsten Traumhüter automatisch.';
+
+  @override
+  String get starterElementTitle => 'Wähle Olfs Element';
+
+  @override
+  String get starterElementSubtitle =>
+      'Das bleibt für immer bei ihm — nimm, was sich richtig anfühlt.';
+
+  @override
+  String get navDreamHaven => 'Traumhafen';
+
+  @override
+  String get achievementUnlockedBanner => 'ERFOLG FREIGESCHALTET';
+
+  @override
+  String get achievementsSheetTitle => 'Erfolge';
+
+  @override
+  String achievementsUnlockedCount(int unlocked, int total) {
+    return '$unlocked/$total freigeschaltet';
+  }
+
+  @override
+  String get cardTwinBond => 'Zwillingsbund';
 }

@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import '../../l10n/l10n.dart';
 import '../../theme/theme.dart' as dk_theme;
 
 /// The title screen. Mirrors `MainMenuView` (UI/MainMenu/MainMenuView.swift)
@@ -88,6 +89,7 @@ class _MainMenuViewState extends State<MainMenuView> with TickerProviderStateMix
   }
 
   Widget _ctaPanel() {
+    final l = AppLocalizations.of(context);
     return Container(
       width: 236,
       padding: const EdgeInsets.fromLTRB(20, 18, 20, 18),
@@ -106,7 +108,7 @@ class _MainMenuViewState extends State<MainMenuView> with TickerProviderStateMix
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            'A cozy fantasy RPG for a few quiet minutes at a time.',
+            l.mainMenuTagline,
             textAlign: TextAlign.center,
             maxLines: 3,
             style: TextStyle(color: Colors.white.withValues(alpha: 0.85), fontSize: 12),
@@ -143,7 +145,7 @@ class _MainMenuViewState extends State<MainMenuView> with TickerProviderStateMix
               ),
             ),
             icon: Icon(Icons.settings, size: 14, color: Colors.white.withValues(alpha: 0.7)),
-            label: Text('Settings', style: TextStyle(color: Colors.white.withValues(alpha: 0.7), fontSize: 12, fontWeight: FontWeight.w600)),
+            label: Text(l.mainMenuSettings, style: TextStyle(color: Colors.white.withValues(alpha: 0.7), fontSize: 12, fontWeight: FontWeight.w600)),
           ),
         ],
       ),
@@ -166,6 +168,7 @@ class _GlossyPlayButtonState extends State<_GlossyPlayButton> {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     return GestureDetector(
       onTapDown: (_) => setState(() => _pressed = true),
       onTapUp: (_) => setState(() => _pressed = false),
@@ -201,12 +204,12 @@ class _GlossyPlayButtonState extends State<_GlossyPlayButton> {
           ),
           child: Opacity(
             opacity: _pressed ? 0.94 : 1,
-            child: const Row(
+            child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(Icons.play_arrow, color: Colors.white),
-                SizedBox(width: 8),
-                Text('Play', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+                const Icon(Icons.play_arrow, color: Colors.white),
+                const SizedBox(width: 8),
+                Text(l.mainMenuPlay, style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
               ],
             ),
           ),

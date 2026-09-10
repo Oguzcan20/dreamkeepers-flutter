@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../l10n/l10n.dart';
 import '../../platform/consent_manager.dart';
 import '../../platform/game_services_service.dart';
 import '../../platform/google_sign_in_service.dart';
@@ -297,6 +298,7 @@ class _RootViewState extends State<RootView> {
   }
 
   Widget _homeButton() {
+    final l = AppLocalizations.of(context);
     return ClipRRect(
       key: const Key('global-home-button'),
       borderRadius: BorderRadius.circular(999),
@@ -316,8 +318,8 @@ class _RootViewState extends State<RootView> {
               children: [
                 const Icon(Icons.home, color: Colors.white, size: 14),
                 const SizedBox(width: 6),
-                const Text('Dream Haven',
-                    style: TextStyle(
+                Text(l.navDreamHaven,
+                    style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w600,
                         fontSize: 12)),
@@ -430,6 +432,7 @@ class _AchievementToastState extends State<_AchievementToast> {
   @override
   Widget build(BuildContext context) {
     final achievement = widget.achievement;
+    final l = AppLocalizations.of(context);
     return GestureDetector(
       onTap: _dismiss,
       child: AnimatedScale(
@@ -486,8 +489,8 @@ class _AchievementToastState extends State<_AchievementToast> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Text('ACHIEVEMENT UNLOCKED',
-                            style: TextStyle(
+                        Text(l.achievementUnlockedBanner,
+                            style: const TextStyle(
                                 color: dk_theme.Theme.gold,
                                 fontSize: 10,
                                 fontWeight: FontWeight.bold)),

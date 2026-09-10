@@ -35,5 +35,48 @@
     }
   },
   "settingsLanguageRestartTitle": "Restart required",
-  "settingsLanguageRestartBody": "The game needs to restart to apply the new language. It will close now — reopen it to continue playing."
+  "settingsLanguageRestartBody": "The game needs to restart to apply the new language. It will close now — reopen it to continue playing.",
+
+  "mainMenuTagline": "A cozy fantasy RPG for a few quiet minutes at a time.",
+  "mainMenuPlay": "Play",
+  "mainMenuSettings": "Settings",
+
+  "loadingHeader": "LOADING…",
+  "loadingTipLabel": "TIP: ",
+  "loadingAdTitle": "Loading Ad…",
+  "loadingTip1": "Match elements for an advantage against tough enemies.",
+  "loadingTip2": "Fuse duplicate Dreamkeepers to raise their star rank.",
+  "loadingTip3": "Upgrade equipment from the Inventory to boost your team's stats.",
+  "loadingTip4": "Collect offline rewards from the Gold Fountain and Training Garden.",
+  "loadingTip5": "Complete Daily Missions for extra Gold and Gems.",
+  "loadingTip6": "Deploy up to five Dreamkeepers per team — balance your elements.",
+
+  "onboardingSkip": "Skip",
+  "onboardingNext": "Next",
+  "onboardingLetsGo": "Let's Go!",
+  "onboardingSummoningTitle": "Summoning Shrine",
+  "onboardingSummoningBody": "Spend Dream Gems at the Summoning Shrine to recruit new Dreamkeepers. Odds are shown up front — no hidden mechanics. A 10x Summon always includes a bonus pull for free.",
+  "onboardingFusionTitle": "Fusion",
+  "onboardingFusionBody": "Summoning a Dreamkeeper you already own doesn't waste it — the duplicate goes straight to your Inventory. Fuse duplicates onto that Dreamkeeper there to raise its star tier and make it stronger.",
+  "onboardingTeamTitle": "Team",
+  "onboardingTeamBody": "Build a team from your roster in the Inventory screen. Only deployed Dreamkeepers fight in battle and train at the Training Garden — keep your best team on deck.",
+  "onboardingCampaignTitle": "Campaign",
+  "onboardingCampaignBody": "Send your team into the Campaign to clear stages, earn gold and EXP, and defeat bosses. Boss victories recruit your next Dreamkeeper automatically.",
+
+  "starterElementTitle": "Choose Olf's Element",
+  "starterElementSubtitle": "This sticks with him for good — pick whatever feels right.",
+
+  "navDreamHaven": "Dream Haven",
+
+  "achievementUnlockedBanner": "ACHIEVEMENT UNLOCKED",
+  "achievementsSheetTitle": "Achievements",
+  "achievementsUnlockedCount": "{unlocked}/{total} unlocked",
+  "@achievementsUnlockedCount": {
+    "placeholders": {
+      "unlocked": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
+
+  "cardTwinBond": "Twin Bond"
 }

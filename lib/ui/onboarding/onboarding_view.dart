@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import '../../l10n/l10n.dart';
 import '../../theme/adaptive_scale.dart';
 import '../../theme/theme.dart' as dk_theme;
 
@@ -28,43 +29,41 @@ class OnboardingView extends StatefulWidget {
 }
 
 class _OnboardingViewState extends State<OnboardingView> {
-  static final _pages = [
-    _OnboardingPage(
-      icon: Icons.auto_awesome,
-      tint: dk_theme.Theme.violet,
-      title: 'Summoning Shrine',
-      body: 'Spend Dream Gems at the Summoning Shrine to recruit new Dreamkeepers. Odds are shown up front — '
-          'no hidden mechanics. A 10x Summon always includes a bonus pull for free.',
-    ),
-    _OnboardingPage(
-      icon: Icons.star,
-      tint: dk_theme.Theme.gold,
-      title: 'Fusion',
-      body: "Summoning a Dreamkeeper you already own doesn't waste it — the duplicate goes straight to your "
-          'Inventory. Fuse duplicates onto that Dreamkeeper there to raise its star tier and make it stronger.',
-    ),
-    _OnboardingPage(
-      icon: Icons.groups,
-      tint: dk_theme.Theme.softBlue,
-      title: 'Team',
-      body: 'Build a team from your roster in the Inventory screen. Only deployed Dreamkeepers fight in battle '
-          'and train at the Training Garden — keep your best team on deck.',
-    ),
-    _OnboardingPage(
-      icon: Icons.map,
-      tint: dk_theme.Theme.violet,
-      title: 'Campaign',
-      body: 'Send your team into the Campaign to clear stages, earn gold and EXP, and defeat bosses. Boss '
-          'victories recruit your next Dreamkeeper automatically.',
-    ),
-  ];
+  static const _pageCount = 4;
+
+  List<_OnboardingPage> _pages(AppLocalizations l) => [
+        _OnboardingPage(
+          icon: Icons.auto_awesome,
+          tint: dk_theme.Theme.violet,
+          title: l.onboardingSummoningTitle,
+          body: l.onboardingSummoningBody,
+        ),
+        _OnboardingPage(
+          icon: Icons.star,
+          tint: dk_theme.Theme.gold,
+          title: l.onboardingFusionTitle,
+          body: l.onboardingFusionBody,
+        ),
+        _OnboardingPage(
+          icon: Icons.groups,
+          tint: dk_theme.Theme.softBlue,
+          title: l.onboardingTeamTitle,
+          body: l.onboardingTeamBody,
+        ),
+        _OnboardingPage(
+          icon: Icons.map,
+          tint: dk_theme.Theme.violet,
+          title: l.onboardingCampaignTitle,
+          body: l.onboardingCampaignBody,
+        ),
+      ];
 
   final _pageController = PageController();
   int _pageIndex = 0;
   bool _appeared = false;
   Timer? _finishTimer;
 
-  bool get _isLastPage => _pageIndex == _pages.length - 1;
+  bool get _isLastPage => _pageIndex == _pageCount - 1;
 
   @override
   void initState() {
@@ -96,6 +95,7 @@ class _OnboardingViewState extends State<OnboardingView> {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     return Semantics(
       container: true,
       child: Stack(
@@ -121,7 +121,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                       child: PageView(
                         controller: _pageController,
                         onPageChanged: (index) => setState(() => _pageIndex = index),
-                        children: _pages.map((page) => _OnboardingCard(page: page)).toList(),
+                        children: _pages(l).map((page) => _OnboardingCard(page: page)).toList(),
                       ),
                     ),
                     const SizedBox(height: 18),
@@ -134,7 +134,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                           if (!_isLastPage)
                             TextButton(
                               onPressed: _finish,
-                              child: Text('Skip', style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontWeight: FontWeight.w600)),
+                              child: Text(l.onboardingSkip, style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontWeight: FontWeight.w600)),
                             ),
                           const Spacer(),
                           SizedBox(
@@ -142,7 +142,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                             child: dk_theme.PrimaryButton(
                               onPressed: _next,
                               tint: dk_theme.Theme.gold,
-                              child: Text(_isLastPage ? "Let's Go!" : 'Next'),
+                              child: Text(_isLastPage ? l.onboardingLetsGo : l.onboardingNext),
                             ),
                           ),
                         ],
@@ -161,7 +161,7 @@ class _OnboardingViewState extends State<OnboardingView> {
   Widget _pageDots() {
     return Row(
       mainAxisSize: MainAxisSize.min,
-      children: List.generate(_pages.length, (index) {
+      children: List.generate(_pageCount, (index) {
         final active = index == _pageIndex;
         return AnimatedContainer(
           duration: const Duration(milliseconds: 200),

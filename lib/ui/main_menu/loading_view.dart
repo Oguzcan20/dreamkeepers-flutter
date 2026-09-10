@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import '../../l10n/l10n.dart';
 import '../../theme/theme.dart' as dk_theme;
 
 /// App-launch splash — a simulated progress bar and a random gameplay tip,
@@ -21,16 +22,18 @@ class LoadingView extends StatefulWidget {
 }
 
 class _LoadingViewState extends State<LoadingView> with SingleTickerProviderStateMixin {
-  static const _tips = [
-    'Match elements for an advantage against tough enemies.',
-    'Fuse duplicate Dreamkeepers to raise their star rank.',
-    'Upgrade equipment from the Inventory to boost your team\'s stats.',
-    'Collect offline rewards from the Gold Fountain and Training Garden.',
-    'Complete Daily Missions for extra Gold and Gems.',
-    'Deploy up to five Dreamkeepers per team — balance your elements.',
-  ];
+  // The six gameplay tips now live in the ARB files — pick one index here
+  // and resolve the localized string at build time.
+  final int _tipIndex = Random().nextInt(6);
 
-  late final String _tip = _tips[Random().nextInt(_tips.length)];
+  String _tipText(AppLocalizations l) => switch (_tipIndex) {
+        0 => l.loadingTip1,
+        1 => l.loadingTip2,
+        2 => l.loadingTip3,
+        3 => l.loadingTip4,
+        4 => l.loadingTip5,
+        _ => l.loadingTip6,
+      };
   late final AnimationController _progress;
   bool _appeared = false;
   Timer? _finishTimer;
@@ -95,6 +98,7 @@ class _LoadingViewState extends State<LoadingView> with SingleTickerProviderStat
   }
 
   Widget _footer() {
+    final l = AppLocalizations.of(context);
     return AnimatedBuilder(
       animation: _progress,
       builder: (context, _) {
@@ -105,7 +109,7 @@ class _LoadingViewState extends State<LoadingView> with SingleTickerProviderStat
             Row(
               children: [
                 Text(
-                  'LOADING…',
+                  l.loadingHeader,
                   style: TextStyle(
                     color: Colors.white.withValues(alpha: 0.9),
                     fontWeight: FontWeight.bold,
@@ -128,7 +132,7 @@ class _LoadingViewState extends State<LoadingView> with SingleTickerProviderStat
             const SizedBox(height: 8),
             _progressBar(progress),
             const SizedBox(height: 12),
-            _tipRow(),
+            _tipRow(l),
           ],
         );
       },
@@ -169,7 +173,7 @@ class _LoadingViewState extends State<LoadingView> with SingleTickerProviderStat
     );
   }
 
-  Widget _tipRow() {
+  Widget _tipRow(AppLocalizations l) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -192,8 +196,8 @@ class _LoadingViewState extends State<LoadingView> with SingleTickerProviderStat
             text: TextSpan(
               style: const TextStyle(fontSize: 13),
               children: [
-                const TextSpan(text: 'TIP: ', style: TextStyle(color: dk_theme.Theme.gold, fontWeight: FontWeight.bold)),
-                TextSpan(text: _tip, style: TextStyle(color: Colors.white.withValues(alpha: 0.85))),
+                TextSpan(text: l.loadingTipLabel, style: const TextStyle(color: dk_theme.Theme.gold, fontWeight: FontWeight.bold)),
+                TextSpan(text: _tipText(l), style: TextStyle(color: Colors.white.withValues(alpha: 0.85))),
               ],
             ),
           ),

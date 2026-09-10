@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import '../../l10n/l10n.dart';
 import '../../models/element.dart';
 import '../../theme/adaptive_scale.dart';
 import '../../theme/sf_symbol_icons.dart';
@@ -82,6 +83,7 @@ class _StarterOlfChoiceViewState extends State<StarterOlfChoiceView> {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     return Semantics(
       container: true,
       child: Stack(
@@ -100,13 +102,13 @@ class _StarterOlfChoiceViewState extends State<StarterOlfChoiceView> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Text(
-                          "Choose Olf's Element",
-                          style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+                        Text(
+                          l.starterElementTitle,
+                          style: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(height: 6),
                         Text(
-                          'This sticks with him for good — pick whatever feels right.',
+                          l.starterElementSubtitle,
                           textAlign: TextAlign.center,
                           style: TextStyle(color: Colors.white.withValues(alpha: 0.7), fontSize: 14),
                         ),

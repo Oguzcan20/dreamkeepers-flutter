@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../l10n/l10n.dart';
 import '../../models/dreamkeeper.dart';
 import '../../theme/sf_symbol_icons.dart';
 import '../../theme/theme.dart' as dk_theme;
@@ -83,7 +84,7 @@ class DreamkeeperCard extends StatelessWidget {
                   StarRow(stars: instance.stars),
                   if (twinBondActive != null) ...[
                     const SizedBox(height: 4),
-                    _twinBondPill(twinBondActive!),
+                    _twinBondPill(twinBondActive!, AppLocalizations.of(context)),
                   ],
                 ],
               ),
@@ -142,7 +143,7 @@ class DreamkeeperCard extends StatelessWidget {
     );
   }
 
-  Widget _twinBondPill(bool active) {
+  Widget _twinBondPill(bool active, AppLocalizations l) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
       decoration: BoxDecoration(
@@ -151,7 +152,7 @@ class DreamkeeperCard extends StatelessWidget {
         border: Border.all(color: active ? dk_theme.Theme.gold : Colors.white.withValues(alpha: 0.15)),
       ),
       child: Text(
-        'Twin Bond',
+        l.cardTwinBond,
         style: TextStyle(
           fontSize: 8,
           fontWeight: FontWeight.bold,

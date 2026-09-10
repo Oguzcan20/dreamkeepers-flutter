@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../l10n/l10n.dart';
 import '../../progression/achievement_system.dart';
 import '../../state/game_state.dart';
 import '../../theme/sf_symbol_icons.dart';
@@ -30,6 +31,7 @@ class AchievementsSheet extends StatelessWidget {
   }
 
   Widget _buildSheet(BuildContext context) {
+    final l = AppLocalizations.of(context);
     return DraggableScrollableSheet(
       initialChildSize: 0.9,
       minChildSize: 0.5,
@@ -49,10 +51,10 @@ class AchievementsSheet extends StatelessWidget {
                 decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.2), borderRadius: BorderRadius.circular(3)),
               ),
               const SizedBox(height: 12),
-              const Text('Achievements', style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold)),
+              Text(l.achievementsSheetTitle, style: const TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold)),
               const SizedBox(height: 4),
               Text(
-                '$_unlockedCount/${AchievementSystem.all.length} unlocked',
+                l.achievementsUnlockedCount(_unlockedCount, AchievementSystem.all.length),
                 style: TextStyle(color: Colors.white.withValues(alpha: 0.5), fontSize: 12),
               ),
               Expanded(

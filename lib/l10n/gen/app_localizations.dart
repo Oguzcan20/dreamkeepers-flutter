@@ -271,6 +271,186 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The game needs to restart to apply the new language. It will close now — reopen it to continue playing.'**
   String get settingsLanguageRestartBody;
+
+  /// No description provided for @mainMenuTagline.
+  ///
+  /// In en, this message translates to:
+  /// **'A cozy fantasy RPG for a few quiet minutes at a time.'**
+  String get mainMenuTagline;
+
+  /// No description provided for @mainMenuPlay.
+  ///
+  /// In en, this message translates to:
+  /// **'Play'**
+  String get mainMenuPlay;
+
+  /// No description provided for @mainMenuSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get mainMenuSettings;
+
+  /// No description provided for @loadingHeader.
+  ///
+  /// In en, this message translates to:
+  /// **'LOADING…'**
+  String get loadingHeader;
+
+  /// No description provided for @loadingTipLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'TIP: '**
+  String get loadingTipLabel;
+
+  /// No description provided for @loadingAdTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading Ad…'**
+  String get loadingAdTitle;
+
+  /// No description provided for @loadingTip1.
+  ///
+  /// In en, this message translates to:
+  /// **'Match elements for an advantage against tough enemies.'**
+  String get loadingTip1;
+
+  /// No description provided for @loadingTip2.
+  ///
+  /// In en, this message translates to:
+  /// **'Fuse duplicate Dreamkeepers to raise their star rank.'**
+  String get loadingTip2;
+
+  /// No description provided for @loadingTip3.
+  ///
+  /// In en, this message translates to:
+  /// **'Upgrade equipment from the Inventory to boost your team\'s stats.'**
+  String get loadingTip3;
+
+  /// No description provided for @loadingTip4.
+  ///
+  /// In en, this message translates to:
+  /// **'Collect offline rewards from the Gold Fountain and Training Garden.'**
+  String get loadingTip4;
+
+  /// No description provided for @loadingTip5.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete Daily Missions for extra Gold and Gems.'**
+  String get loadingTip5;
+
+  /// No description provided for @loadingTip6.
+  ///
+  /// In en, this message translates to:
+  /// **'Deploy up to five Dreamkeepers per team — balance your elements.'**
+  String get loadingTip6;
+
+  /// No description provided for @onboardingSkip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get onboardingSkip;
+
+  /// No description provided for @onboardingNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get onboardingNext;
+
+  /// No description provided for @onboardingLetsGo.
+  ///
+  /// In en, this message translates to:
+  /// **'Let\'s Go!'**
+  String get onboardingLetsGo;
+
+  /// No description provided for @onboardingSummoningTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Summoning Shrine'**
+  String get onboardingSummoningTitle;
+
+  /// No description provided for @onboardingSummoningBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Spend Dream Gems at the Summoning Shrine to recruit new Dreamkeepers. Odds are shown up front — no hidden mechanics. A 10x Summon always includes a bonus pull for free.'**
+  String get onboardingSummoningBody;
+
+  /// No description provided for @onboardingFusionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Fusion'**
+  String get onboardingFusionTitle;
+
+  /// No description provided for @onboardingFusionBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Summoning a Dreamkeeper you already own doesn\'t waste it — the duplicate goes straight to your Inventory. Fuse duplicates onto that Dreamkeeper there to raise its star tier and make it stronger.'**
+  String get onboardingFusionBody;
+
+  /// No description provided for @onboardingTeamTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Team'**
+  String get onboardingTeamTitle;
+
+  /// No description provided for @onboardingTeamBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Build a team from your roster in the Inventory screen. Only deployed Dreamkeepers fight in battle and train at the Training Garden — keep your best team on deck.'**
+  String get onboardingTeamBody;
+
+  /// No description provided for @onboardingCampaignTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Campaign'**
+  String get onboardingCampaignTitle;
+
+  /// No description provided for @onboardingCampaignBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Send your team into the Campaign to clear stages, earn gold and EXP, and defeat bosses. Boss victories recruit your next Dreamkeeper automatically.'**
+  String get onboardingCampaignBody;
+
+  /// No description provided for @starterElementTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose Olf\'s Element'**
+  String get starterElementTitle;
+
+  /// No description provided for @starterElementSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This sticks with him for good — pick whatever feels right.'**
+  String get starterElementSubtitle;
+
+  /// No description provided for @navDreamHaven.
+  ///
+  /// In en, this message translates to:
+  /// **'Dream Haven'**
+  String get navDreamHaven;
+
+  /// No description provided for @achievementUnlockedBanner.
+  ///
+  /// In en, this message translates to:
+  /// **'ACHIEVEMENT UNLOCKED'**
+  String get achievementUnlockedBanner;
+
+  /// No description provided for @achievementsSheetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Achievements'**
+  String get achievementsSheetTitle;
+
+  /// No description provided for @achievementsUnlockedCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{unlocked}/{total} unlocked'**
+  String achievementsUnlockedCount(int unlocked, int total);
+
+  /// No description provided for @cardTwinBond.
+  ///
+  /// In en, this message translates to:
+  /// **'Twin Bond'**
+  String get cardTwinBond;
 }
 
 class _AppLocalizationsDelegate

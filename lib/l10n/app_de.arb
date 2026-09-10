@@ -30,5 +30,42 @@
   "settingsResetBody": "Dadurch werden deine Traumhüter, dein Gold, deine Edelsteine und dein Kampagnenfortschritt gelöscht. Das lässt sich nicht rückgängig machen.",
   "settingsVersionLine": "Dreamkeepers · v{version}",
   "settingsLanguageRestartTitle": "Neustart erforderlich",
-  "settingsLanguageRestartBody": "Das Spiel muss neu starten, um die neue Sprache zu übernehmen. Es wird jetzt geschlossen — öffne es erneut, um weiterzuspielen."
+  "settingsLanguageRestartBody": "Das Spiel muss neu starten, um die neue Sprache zu übernehmen. Es wird jetzt geschlossen — öffne es erneut, um weiterzuspielen.",
+
+  "mainMenuTagline": "Ein gemütliches Fantasy-Rollenspiel für ein paar ruhige Minuten zwischendurch.",
+  "mainMenuPlay": "Spielen",
+  "mainMenuSettings": "Einstellungen",
+
+  "loadingHeader": "LÄDT …",
+  "loadingTipLabel": "TIPP: ",
+  "loadingAdTitle": "Anzeige wird geladen …",
+  "loadingTip1": "Kombiniere Elemente für einen Vorteil gegen starke Gegner.",
+  "loadingTip2": "Verschmilz doppelte Traumhüter, um ihren Sternerang zu erhöhen.",
+  "loadingTip3": "Verbessere Ausrüstung im Inventar, um die Werte deines Teams zu steigern.",
+  "loadingTip4": "Hol dir Offline-Belohnungen aus dem Goldbrunnen und dem Trainingsgarten.",
+  "loadingTip5": "Schließe tägliche Missionen für zusätzliches Gold und Edelsteine ab.",
+  "loadingTip6": "Setze bis zu fünf Traumhüter pro Team ein — achte auf deine Elemente.",
+
+  "onboardingSkip": "Überspringen",
+  "onboardingNext": "Weiter",
+  "onboardingLetsGo": "Los geht's!",
+  "onboardingSummoningTitle": "Beschwörungsschrein",
+  "onboardingSummoningBody": "Gib Traum-Edelsteine im Beschwörungsschrein aus, um neue Traumhüter zu rekrutieren. Die Chancen werden offen angezeigt — keine versteckten Mechaniken. Eine 10x-Beschwörung enthält immer einen Bonuszug gratis.",
+  "onboardingFusionTitle": "Verschmelzung",
+  "onboardingFusionBody": "Einen Traumhüter zu beschwören, den du schon besitzt, ist nicht verschwendet — das Duplikat wandert direkt in dein Inventar. Verschmilz Duplikate dort mit diesem Traumhüter, um seine Sternestufe zu erhöhen und ihn stärker zu machen.",
+  "onboardingTeamTitle": "Team",
+  "onboardingTeamBody": "Stelle im Inventar ein Team aus deinem Kader zusammen. Nur eingesetzte Traumhüter kämpfen im Kampf und trainieren im Trainingsgarten — halte dein bestes Team bereit.",
+  "onboardingCampaignTitle": "Kampagne",
+  "onboardingCampaignBody": "Schick dein Team in die Kampagne, um Abschnitte zu bestehen, Gold und EP zu verdienen und Bosse zu besiegen. Boss-Siege rekrutieren deinen nächsten Traumhüter automatisch.",
+
+  "starterElementTitle": "Wähle Olfs Element",
+  "starterElementSubtitle": "Das bleibt für immer bei ihm — nimm, was sich richtig anfühlt.",
+
+  "navDreamHaven": "Traumhafen",
+
+  "achievementUnlockedBanner": "ERFOLG FREIGESCHALTET",
+  "achievementsSheetTitle": "Erfolge",
+  "achievementsUnlockedCount": "{unlocked}/{total} freigeschaltet",
+
+  "cardTwinBond": "Zwillingsbund"
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../l10n/l10n.dart';
 import '../../state/game_state.dart';
 import '../../theme/theme.dart' as dk_theme;
 
@@ -32,19 +33,20 @@ class _InterstitialAdSheetState extends State<InterstitialAdSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     return Container(
       decoration: const BoxDecoration(gradient: dk_theme.Theme.background),
-      child: const Center(
+      child: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SizedBox(
+            const SizedBox(
               width: 40,
               height: 40,
               child: CircularProgressIndicator(color: Colors.white, strokeWidth: 3),
             ),
-            SizedBox(height: 16),
-            Text('Loading Ad…', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w600)),
+            const SizedBox(height: 16),
+            Text(l.loadingAdTitle, style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w600)),
           ],
         ),
       ),
