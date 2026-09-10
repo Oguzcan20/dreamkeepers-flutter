@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 
+import 'l10n/l10n.dart';
 import 'platform/ad_reward_service.dart';
 import 'platform/consent_manager.dart';
 import 'platform/flutter_platform_service.dart';
@@ -42,13 +44,25 @@ Future<void> main() async {
   );
   final accountState = AccountState();
   await accountState.load();
-  runApp(DreamkeepersApp(gameState: gameState, accountState: accountState));
+  // Resolve the active language once, here — the Settings language switch
+  // forces a full restart, so the locale never changes mid-session and
+  // `MaterialApp` can take a fixed `locale`. `L` gives non-widget code
+  // (notifications, reward toasts) the same strings.
+  final locale = resolvePreferredLocale(gameState.preferredLanguage);
+  await loadGlobalLocalizations(locale);
+  runApp(DreamkeepersApp(gameState: gameState, accountState: accountState, locale: locale));
 }
 
 class DreamkeepersApp extends StatelessWidget {
   final GameState gameState;
   final AccountState accountState;
-  const DreamkeepersApp({super.key, required this.gameState, required this.accountState});
+  final Locale locale;
+  const DreamkeepersApp({
+    super.key,
+    required this.gameState,
+    required this.accountState,
+    this.locale = const Locale('en'),
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +82,14 @@ class DreamkeepersApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Dreamkeepers',
         debugShowCheckedModeBanner: false,
+        locale: locale,
+        supportedLocales: AppLocalizations.supportedLocales,
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
         theme: ThemeData(
           brightness: Brightness.dark,
           scaffoldBackgroundColor: dk_theme.Theme.deepNavy,

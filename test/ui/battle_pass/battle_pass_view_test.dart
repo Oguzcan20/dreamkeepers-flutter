@@ -22,6 +22,7 @@ import 'package:dreamkeepers/progression/battle_pass_system.dart';
 import 'package:dreamkeepers/state/game_state.dart';
 import 'package:dreamkeepers/ui/root/app_route.dart';
 import 'package:dreamkeepers/ui/battle_pass/battle_pass_view.dart';
+import '../../support/test_app.dart';
 
 Future<void> _settle(WidgetTester tester, {Duration total = const Duration(milliseconds: 500)}) async {
   const step = Duration(milliseconds: 50);
@@ -48,8 +49,7 @@ Future<GameState> _pumpBattlePass(
   final gameState = await GameState.create();
   seed?.call(gameState);
   await tester.pumpWidget(
-    MaterialApp(
-      home: Scaffold(body: BattlePassView(gameState: gameState, onNavigate: onNavigate)),
+    testApp(Scaffold(body: BattlePassView(gameState: gameState, onNavigate: onNavigate)),
     ),
   );
   await _settle(tester);

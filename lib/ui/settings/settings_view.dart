@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
+import '../../l10n/l10n.dart';
 import '../../platform/game_services_service.dart';
 import '../../platform/google_sign_in_service.dart';
 import '../../platform/platform_service.dart';
@@ -44,18 +46,19 @@ class _SettingsViewState extends State<SettingsView> {
   static const _appVersion = '1.0.0 (1)';
 
   Future<void> _confirmReset() async {
+    final l = AppLocalizations.of(context);
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (dialogContext) => Theme(
         data: ThemeData.dark(),
         child: AlertDialog(
-          title: const Text('Reset all progress?'),
-          content: const Text("This deletes your Dreamkeepers, gold, gems, and campaign progress. This can't be undone."),
+          title: Text(l.settingsResetTitle),
+          content: Text(l.settingsResetBody),
           actions: [
-            TextButton(onPressed: () => Navigator.of(dialogContext).pop(false), child: const Text('Cancel')),
+            TextButton(onPressed: () => Navigator.of(dialogContext).pop(false), child: Text(l.commonCancel)),
             TextButton(
               onPressed: () => Navigator.of(dialogContext).pop(true),
-              child: const Text('Reset Progress', style: TextStyle(color: Colors.red)),
+              child: Text(l.settingsResetProgress, style: const TextStyle(color: Colors.red)),
             ),
           ],
         ),
@@ -67,8 +70,40 @@ class _SettingsViewState extends State<SettingsView> {
     }
   }
 
+  /// The language switch can't hot-swap every already-built screen and the
+  /// non-widget string caches, so it takes effect on the next launch: this
+  /// persists the choice, then closes the app so the player reopens it in
+  /// the new language.
+  Future<void> _changeLanguage(String code) async {
+    final current = resolvePreferredLocale(widget.gameState.preferredLanguage).languageCode;
+    if (current == code) return;
+    widget.gameState.playHaptic(HapticStyle.light);
+    final l = AppLocalizations.of(context);
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => Theme(
+        data: ThemeData.dark(),
+        child: AlertDialog(
+          title: Text(l.settingsLanguageRestartTitle),
+          content: Text(l.settingsLanguageRestartBody),
+          actions: [
+            TextButton(onPressed: () => Navigator.of(dialogContext).pop(false), child: Text(l.commonCancel)),
+            TextButton(onPressed: () => Navigator.of(dialogContext).pop(true), child: Text(l.commonRestartNow)),
+          ],
+        ),
+      ),
+    );
+    if (confirmed != true) return;
+    widget.gameState.setPreferredLanguage(code);
+    // `persist()` defers its write to a microtask — let it flush before the
+    // process goes away.
+    await Future<void>.delayed(const Duration(milliseconds: 200));
+    await SystemNavigator.pop();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     return Stack(
       children: [
         const dk_theme.AmbientBackground(topTint: dk_theme.Theme.softBlue, bottomTint: dk_theme.Theme.violet),
@@ -89,14 +124,14 @@ class _SettingsViewState extends State<SettingsView> {
                         const SizedBox(height: 14),
                         _toggleCard(
                           icon: 'speaker.wave.2.fill',
-                          label: 'Sound Effects',
+                          label: l.settingsSoundEffects,
                           value: widget.gameState.soundEnabled,
                           onChanged: widget.gameState.setSoundEnabled,
                         ),
                         const SizedBox(height: 14),
                         _toggleCard(
                           icon: 'hand.tap.fill',
-                          label: 'Haptics',
+                          label: l.settingsHaptics,
                           value: widget.gameState.hapticsEnabled,
                           onChanged: widget.gameState.setHapticsEnabled,
                         ),
@@ -110,7 +145,7 @@ class _SettingsViewState extends State<SettingsView> {
                         _resetButton(),
                         const SizedBox(height: 10),
                         Text(
-                          'Dreamkeepers · v$_appVersion',
+                          l.settingsVersionLine(_appVersion),
                           style: TextStyle(color: Colors.white.withValues(alpha: 0.35), fontSize: 11),
                         ),
                       ],
@@ -126,12 +161,13 @@ class _SettingsViewState extends State<SettingsView> {
   }
 
   Widget _header() {
+    final l = AppLocalizations.of(context);
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
       child: Row(
         children: [
           Semantics(
-            label: 'Back',
+            label: l.settingsBack,
             button: true,
             child: GestureDetector(
               onTap: () => widget.onNavigate(const DreamHavenRoute()),
@@ -143,7 +179,7 @@ class _SettingsViewState extends State<SettingsView> {
             ),
           ),
           const Spacer(),
-          const Text('Settings', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+          Text(l.settingsTitle, style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
           const Spacer(),
           const SizedBox(width: 40, height: 40),
         ],
@@ -152,6 +188,7 @@ class _SettingsViewState extends State<SettingsView> {
   }
 
   Widget _accountCard() {
+    final l = AppLocalizations.of(context);
     return dk_theme.GlassCard(
       child: AnimatedBuilder(
         animation: widget.accountState,
@@ -176,16 +213,16 @@ class _SettingsViewState extends State<SettingsView> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        widget.accountState.displayName ?? 'Dreamkeeper',
+                        widget.accountState.displayName ?? l.settingsDefaultPlayerName,
                         style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
                       ),
-                      Text('Signed in', style: TextStyle(color: Colors.white.withValues(alpha: 0.55), fontSize: 12)),
+                      Text(l.settingsSignedIn, style: TextStyle(color: Colors.white.withValues(alpha: 0.55), fontSize: 12)),
                     ],
                   ),
                 ),
                 TextButton(
                   onPressed: () => widget.googleSignInService.signOut(widget.accountState),
-                  child: Text('Sign Out', style: TextStyle(color: Colors.white.withValues(alpha: 0.7), fontSize: 12)),
+                  child: Text(l.settingsSignOut, style: TextStyle(color: Colors.white.withValues(alpha: 0.7), fontSize: 12)),
                 ),
               ],
             );
@@ -199,10 +236,10 @@ class _SettingsViewState extends State<SettingsView> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Account', style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600)),
+                    Text(l.settingsAccount, style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600)),
                     const SizedBox(height: 4),
                     Text(
-                      'Sign in to keep your progress recognizable across devices.',
+                      l.settingsAccountBlurb,
                       style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 12),
                     ),
                   ],
@@ -215,7 +252,7 @@ class _SettingsViewState extends State<SettingsView> {
                   padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 ),
-                child: const Text('Sign in with Google', style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w600)),
+                child: Text(l.settingsSignInWithGoogle, style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w600)),
               ),
             ],
           );
@@ -228,6 +265,7 @@ class _SettingsViewState extends State<SettingsView> {
   /// friend count is omitted (see this class's doc comment) but the
   /// signed-in/leaderboard structure otherwise matches exactly.
   Widget _gameServicesCard() {
+    final l = AppLocalizations.of(context);
     return dk_theme.GlassCard(
       child: AnimatedBuilder(
         animation: widget.gameServicesService,
@@ -241,10 +279,10 @@ class _SettingsViewState extends State<SettingsView> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Play Games', style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600)),
+                    Text(l.settingsPlayGames, style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600)),
                     const SizedBox(height: 4),
                     Text(
-                      services.isAuthenticated ? (services.displayName ?? 'Signed in') : 'Not signed in',
+                      services.isAuthenticated ? (services.displayName ?? l.settingsSignedIn) : l.settingsNotSignedIn,
                       style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 12),
                     ),
                   ],
@@ -253,12 +291,12 @@ class _SettingsViewState extends State<SettingsView> {
               if (services.isAuthenticated)
                 TextButton(
                   onPressed: () => services.showLeaderboard(GameLeaderboardService.campaignProgressID),
-                  child: Text('Leaderboard', style: TextStyle(color: dk_theme.Theme.gold, fontSize: 12, fontWeight: FontWeight.w600)),
+                  child: Text(l.settingsLeaderboard, style: TextStyle(color: dk_theme.Theme.gold, fontSize: 12, fontWeight: FontWeight.w600)),
                 )
               else
                 TextButton(
                   onPressed: services.authenticate,
-                  child: Text('Sign In', style: TextStyle(color: Colors.white.withValues(alpha: 0.7), fontSize: 12)),
+                  child: Text(l.settingsSignIn, style: TextStyle(color: Colors.white.withValues(alpha: 0.7), fontSize: 12)),
                 ),
             ],
           );
@@ -286,6 +324,7 @@ class _SettingsViewState extends State<SettingsView> {
   }
 
   Widget _notificationsCard() {
+    final l = AppLocalizations.of(context);
     return dk_theme.GlassCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -294,7 +333,7 @@ class _SettingsViewState extends State<SettingsView> {
             children: [
               Icon(sfSymbol('bell.fill'), color: Colors.white, size: 18),
               const SizedBox(width: 10),
-              const Expanded(child: Text('Notifications', style: TextStyle(color: Colors.white, fontSize: 14))),
+              Expanded(child: Text(l.settingsNotifications, style: const TextStyle(color: Colors.white, fontSize: 14))),
               Switch(
                 value: widget.gameState.notificationsEnabled,
                 // The switch shows the tapped value immediately via
@@ -313,7 +352,7 @@ class _SettingsViewState extends State<SettingsView> {
           ),
           const SizedBox(height: 6),
           Text(
-            'Get notified when the Gold Fountain or Training Garden is full, about daily missions, and when your Login Bonus is ready.',
+            l.settingsNotificationsBlurb,
             style: TextStyle(color: Colors.white.withValues(alpha: 0.5), fontSize: 11),
           ),
         ],
@@ -322,6 +361,8 @@ class _SettingsViewState extends State<SettingsView> {
   }
 
   Widget _languageCard() {
+    final l = AppLocalizations.of(context);
+    final active = resolvePreferredLocale(widget.gameState.preferredLanguage).languageCode;
     return dk_theme.GlassCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -330,7 +371,7 @@ class _SettingsViewState extends State<SettingsView> {
             children: [
               Icon(sfSymbol('globe'), color: Colors.white, size: 18),
               const SizedBox(width: 8),
-              const Text('Language', style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600)),
+              Text(l.settingsLanguage, style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600)),
             ],
           ),
           const SizedBox(height: 10),
@@ -339,22 +380,16 @@ class _SettingsViewState extends State<SettingsView> {
               Expanded(
                 child: _LanguageOptionButton(
                   title: 'Deutsch',
-                  isSelected: widget.gameState.preferredLanguage == 'de',
-                  onTap: () {
-                    widget.gameState.setPreferredLanguage('de');
-                    widget.gameState.playHaptic(HapticStyle.light);
-                  },
+                  isSelected: active == 'de',
+                  onTap: () => _changeLanguage('de'),
                 ),
               ),
               const SizedBox(width: 10),
               Expanded(
                 child: _LanguageOptionButton(
                   title: 'English',
-                  isSelected: widget.gameState.preferredLanguage != 'de',
-                  onTap: () {
-                    widget.gameState.setPreferredLanguage('en');
-                    widget.gameState.playHaptic(HapticStyle.light);
-                  },
+                  isSelected: active == 'en',
+                  onTap: () => _changeLanguage('en'),
                 ),
               ),
             ],
@@ -365,6 +400,7 @@ class _SettingsViewState extends State<SettingsView> {
   }
 
   Widget _dataCard() {
+    final l = AppLocalizations.of(context);
     return dk_theme.GlassCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -373,12 +409,12 @@ class _SettingsViewState extends State<SettingsView> {
             children: [
               Icon(sfSymbol('lock.fill'), color: Colors.white, size: 16),
               const SizedBox(width: 8),
-              const Text('Your Data', style: TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w600)),
+              Text(l.settingsYourData, style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w600)),
             ],
           ),
           const SizedBox(height: 8),
           Text(
-            "Progress is stored on this device and, when a cloud account is available, synced privately to your other devices. Dreamkeepers doesn't collect or share personal data.",
+            l.settingsYourDataBlurb,
             style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 11),
           ),
         ],
@@ -387,6 +423,7 @@ class _SettingsViewState extends State<SettingsView> {
   }
 
   Widget _resetButton() {
+    final l = AppLocalizations.of(context);
     return SizedBox(
       width: double.infinity,
       child: TextButton(
@@ -396,7 +433,7 @@ class _SettingsViewState extends State<SettingsView> {
           padding: const EdgeInsets.symmetric(vertical: 12),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
         ),
-        child: const Text('Reset Progress', style: TextStyle(color: Colors.red, fontSize: 14, fontWeight: FontWeight.w600)),
+        child: Text(l.settingsResetProgress, style: const TextStyle(color: Colors.red, fontSize: 14, fontWeight: FontWeight.w600)),
       ),
     );
   }

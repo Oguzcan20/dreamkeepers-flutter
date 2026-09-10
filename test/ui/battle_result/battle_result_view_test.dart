@@ -18,6 +18,7 @@ import 'package:dreamkeepers/models/stats.dart';
 import 'package:dreamkeepers/state/game_state.dart';
 import 'package:dreamkeepers/ui/battle_result/battle_result_view.dart';
 import 'package:dreamkeepers/ui/root/app_route.dart';
+import '../../support/test_app.dart';
 
 /// Same rationale as every other screen's `_settle`: `_StaggeredCard`'s
 /// delayed reveal and the gold/EXP `TweenAnimationBuilder` count-up never
@@ -39,7 +40,7 @@ Future<GameState> _pumpResult(
   SharedPreferences.setMockInitialValues({});
   final gameState = await GameState.create();
   await tester.pumpWidget(
-    MaterialApp(home: Scaffold(body: BattleResultView(summary: summary, gameState: gameState, onNavigate: onNavigate))),
+    testApp(Scaffold(body: BattleResultView(summary: summary, gameState: gameState, onNavigate: onNavigate))),
   );
   await _settle(tester);
   return gameState;
@@ -106,8 +107,7 @@ void main() {
       return gs;
     }();
     await tester.pumpWidget(
-      MaterialApp(
-        home: Scaffold(body: BattleResultView(summary: summary, gameState: gameState, onNavigate: (route) => lastRoute = route)),
+      testApp(Scaffold(body: BattleResultView(summary: summary, gameState: gameState, onNavigate: (route) => lastRoute = route)),
       ),
     );
     await _settle(tester);

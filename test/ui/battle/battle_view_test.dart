@@ -16,6 +16,7 @@ import 'package:dreamkeepers/models/role.dart';
 import 'package:dreamkeepers/models/skill.dart';
 import 'package:dreamkeepers/state/game_state.dart';
 import 'package:dreamkeepers/ui/battle/battle_view.dart';
+import '../../support/test_app.dart';
 
 /// `TweenAnimationBuilder`/`AnimatedContainer` effects and the shake
 /// controller never let `pumpAndSettle` converge (same rationale as every
@@ -82,7 +83,7 @@ Future<GameState> _pumpBattle(
   SharedPreferences.setMockInitialValues({});
   final gameState = await GameState.create();
   await tester.pumpWidget(
-    MaterialApp(home: Scaffold(body: BattleView(engine: engine, gameState: gameState, onFinished: onFinished))),
+    testApp(Scaffold(body: BattleView(engine: engine, gameState: gameState, onFinished: onFinished))),
   );
   await _settle(tester);
   return gameState;

@@ -1,0 +1,39 @@
+{
+  "@@locale": "en",
+
+  "commonCancel": "Cancel",
+  "commonRestartNow": "Restart Now",
+  "commonDone": "Done",
+  "commonClose": "Close",
+
+  "settingsTitle": "Settings",
+  "settingsBack": "Back",
+  "settingsSoundEffects": "Sound Effects",
+  "settingsHaptics": "Haptics",
+  "settingsNotifications": "Notifications",
+  "settingsNotificationsBlurb": "Get notified when the Gold Fountain or Training Garden is full, about daily missions, and when your Login Bonus is ready.",
+  "settingsLanguage": "Language",
+  "settingsAccount": "Account",
+  "settingsAccountBlurb": "Sign in to keep your progress recognizable across devices.",
+  "settingsSignInWithGoogle": "Sign in with Google",
+  "settingsSignOut": "Sign Out",
+  "settingsSignedIn": "Signed in",
+  "settingsDefaultPlayerName": "Dreamkeeper",
+  "settingsPlayGames": "Play Games",
+  "settingsNotSignedIn": "Not signed in",
+  "settingsLeaderboard": "Leaderboard",
+  "settingsSignIn": "Sign In",
+  "settingsYourData": "Your Data",
+  "settingsYourDataBlurb": "Progress is stored on this device and, when a cloud account is available, synced privately to your other devices. Dreamkeepers doesn't collect or share personal data.",
+  "settingsResetProgress": "Reset Progress",
+  "settingsResetTitle": "Reset all progress?",
+  "settingsResetBody": "This deletes your Dreamkeepers, gold, gems, and campaign progress. This can't be undone.",
+  "settingsVersionLine": "Dreamkeepers · v{version}",
+  "@settingsVersionLine": {
+    "placeholders": {
+      "version": { "type": "String" }
+    }
+  },
+  "settingsLanguageRestartTitle": "Restart required",
+  "settingsLanguageRestartBody": "The game needs to restart to apply the new language. It will close now — reopen it to continue playing."
+}

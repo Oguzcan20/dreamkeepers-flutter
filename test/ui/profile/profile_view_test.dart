@@ -11,6 +11,7 @@ import 'package:dreamkeepers/progression/level_system.dart';
 import 'package:dreamkeepers/state/game_state.dart';
 import 'package:dreamkeepers/ui/root/app_route.dart';
 import 'package:dreamkeepers/ui/profile/profile_view.dart';
+import '../../support/test_app.dart';
 
 /// Same rationale as every other screen's `_settle`: `GlassCard`'s
 /// `BackdropFilter` blur never lets `pumpAndSettle` see zero scheduled
@@ -33,8 +34,7 @@ Future<GameState> _pumpProfile(
   final gameState = await GameState.create();
   seed?.call(gameState);
   await tester.pumpWidget(
-    MaterialApp(
-      home: Scaffold(body: ProfileView(gameState: gameState, onNavigate: onNavigate)),
+    testApp(Scaffold(body: ProfileView(gameState: gameState, onNavigate: onNavigate)),
     ),
   );
   await _settle(tester);

@@ -13,6 +13,7 @@ import 'package:dreamkeepers/state/game_state.dart';
 import 'package:dreamkeepers/theme/theme.dart' as dk_theme;
 import 'package:dreamkeepers/ui/root/app_route.dart';
 import 'package:dreamkeepers/ui/shop/shop_view.dart';
+import '../../support/test_app.dart';
 
 /// Same rationale as every other screen's `_settle`: `SparkleField`'s
 /// looping controller and `PrimaryButton`'s press animation never let
@@ -40,7 +41,7 @@ Future<GameState> _pumpShop(
   // doesn't call `notifyListeners()` on its own (same pitfall as every
   // other screen's test helper).
   seed?.call(gameState);
-  await tester.pumpWidget(MaterialApp(home: Scaffold(body: ShopView(gameState: gameState, onNavigate: onNavigate))));
+  await tester.pumpWidget(testApp(Scaffold(body: ShopView(gameState: gameState, onNavigate: onNavigate))));
   await _settle(tester);
   return gameState;
 }

@@ -11,6 +11,7 @@ import 'package:dreamkeepers/combat/arena_system.dart';
 import 'package:dreamkeepers/state/game_state.dart';
 import 'package:dreamkeepers/ui/arena/arena_view.dart';
 import 'package:dreamkeepers/ui/root/app_route.dart';
+import '../../support/test_app.dart';
 
 /// Same rationale as `campaign_view_test.dart`'s `_settle`: the frontier
 /// floor's glow/pulse styling and the auto-scroll-to-frontier animation
@@ -35,8 +36,7 @@ Future<GameState> _pumpArena(
   // Seed *before* the first pump — same rationale as `campaign_view_test.dart`.
   seed?.call(gameState);
   await tester.pumpWidget(
-    MaterialApp(
-      home: Scaffold(
+    testApp(Scaffold(
         body: ArenaView(gameState: gameState, onNavigate: onNavigate, onFight: onFight ?? (_) {}),
       ),
     ),

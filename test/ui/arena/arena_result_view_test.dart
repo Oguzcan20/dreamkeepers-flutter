@@ -14,6 +14,7 @@ import 'package:dreamkeepers/models/stats.dart';
 import 'package:dreamkeepers/state/game_state.dart';
 import 'package:dreamkeepers/ui/arena/arena_result_view.dart';
 import 'package:dreamkeepers/ui/root/app_route.dart';
+import '../../support/test_app.dart';
 
 /// Same rationale as every other screen's `_settle`: `_StaggeredCard`'s
 /// delayed reveal never lets `pumpAndSettle` converge within a bounded
@@ -32,7 +33,7 @@ Future<void> _pumpResult(
   required ArenaBattleResultSummary summary,
   required ValueChanged<AppRoute> onNavigate,
 }) async {
-  await tester.pumpWidget(MaterialApp(home: Scaffold(body: ArenaResultView(summary: summary, onNavigate: onNavigate))));
+  await tester.pumpWidget(testApp(Scaffold(body: ArenaResultView(summary: summary, onNavigate: onNavigate))));
   await _settle(tester);
 }
 

@@ -13,6 +13,7 @@ import 'package:dreamkeepers/state/account_state.dart';
 import 'package:dreamkeepers/state/game_state.dart';
 import 'package:dreamkeepers/ui/root/app_route.dart';
 import 'package:dreamkeepers/ui/settings/settings_view.dart';
+import '../../support/test_app.dart';
 
 /// Same rationale as every other screen's `_settle`: `GlassCard`'s
 /// `BackdropFilter` blur never lets `pumpAndSettle` see zero scheduled
@@ -50,8 +51,7 @@ Future<_Pumped> _pumpSettings(
   // `notifyListeners()` the widget under test never calls on our behalf.
   seedGameServices?.call(gameServicesService);
   await tester.pumpWidget(
-    MaterialApp(
-      home: Scaffold(
+    testApp(Scaffold(
         body: SettingsView(
           gameState: gameState,
           accountState: accountState,
@@ -122,7 +122,7 @@ void main() {
     expect(pumped.gameState.notificationsEnabled, isFalse);
   });
 
-  testWidgets('a fresh save defaults to English, and Deutsch can be selected', (tester) async {
+  testWidgets('a fresh save defaults to English; picking Deutsch prompts a restart before it persists', (tester) async {
     final pumped = await _pumpSettings(tester, onNavigate: (_) {});
     expect(pumped.gameState.preferredLanguage, isNull);
 
@@ -133,13 +133,22 @@ void main() {
     await tester.tap(find.text('Deutsch'));
     await _settle(tester);
 
-    expect(pumped.gameState.preferredLanguage, 'de');
+    // The switch takes effect on the next launch, so it asks first and
+    // doesn't touch the save until confirmed.
+    expect(find.text('Restart required'), findsOneWidget);
+    expect(pumped.gameState.preferredLanguage, isNull);
 
-    await tester.ensureVisible(find.text('English'));
-    await tester.tap(find.text('English'));
+    await tester.tap(find.text('Cancel'));
+    await _settle(tester);
+    expect(pumped.gameState.preferredLanguage, isNull);
+
+    await tester.ensureVisible(find.text('Deutsch'));
+    await tester.tap(find.text('Deutsch'));
+    await _settle(tester);
+    await tester.tap(find.text('Restart Now'));
     await _settle(tester);
 
-    expect(pumped.gameState.preferredLanguage, 'en');
+    expect(pumped.gameState.preferredLanguage, 'de');
   });
 
   testWidgets('Reset Progress asks for confirmation, then wipes the save and navigates home', (tester) async {

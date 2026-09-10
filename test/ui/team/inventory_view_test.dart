@@ -20,6 +20,7 @@ import 'package:dreamkeepers/models/stats.dart';
 import 'package:dreamkeepers/state/game_state.dart';
 import 'package:dreamkeepers/ui/root/app_route.dart';
 import 'package:dreamkeepers/ui/team/inventory_view.dart';
+import '../../support/test_app.dart';
 
 /// Same rationale as root_view_test.dart's `_settle`: some card/background
 /// animations repeat indefinitely, so `pumpAndSettle` would time out.
@@ -37,7 +38,7 @@ Future<void> _settle(WidgetTester tester, {Duration total = const Duration(secon
 /// (see root_view.dart), so every standalone pump here needs one too, or
 /// widgets like `PopupMenuButton` (the sort menu) fail to find a `Material`
 /// ancestor.
-Widget _wrapped(Widget child) => MaterialApp(home: Scaffold(body: child));
+Widget _wrapped(Widget child) => testApp(Scaffold(body: child));
 
 Future<GameState> _pumpInventory(WidgetTester tester, {required ValueChanged<AppRoute> onNavigate}) async {
   SharedPreferences.setMockInitialValues({});

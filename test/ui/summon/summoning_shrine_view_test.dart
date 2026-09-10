@@ -12,6 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:dreamkeepers/state/game_state.dart';
 import 'package:dreamkeepers/ui/root/app_route.dart';
 import 'package:dreamkeepers/ui/summon/summoning_shrine_view.dart';
+import '../../support/test_app.dart';
 
 /// Same rationale as `campaign_view_test.dart`'s `_settle`: the stage/mode
 /// pulses and the multi-reveal's periodic timer never let `pumpAndSettle`
@@ -39,7 +40,7 @@ Future<GameState> _pumpSummon(
   // `campaign_view_test.dart`'s `_pumpCampaign`: a post-pump mutation of
   // `save.dreamGems` doesn't call `notifyListeners()` on its own.
   seed?.call(gameState);
-  await tester.pumpWidget(MaterialApp(home: Scaffold(body: SummoningShrineView(gameState: gameState, onNavigate: onNavigate))));
+  await tester.pumpWidget(testApp(Scaffold(body: SummoningShrineView(gameState: gameState, onNavigate: onNavigate))));
   await _settle(tester);
   return gameState;
 }

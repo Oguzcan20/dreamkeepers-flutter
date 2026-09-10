@@ -13,6 +13,7 @@ import 'package:dreamkeepers/progression/energy_system.dart';
 import 'package:dreamkeepers/state/game_state.dart';
 import 'package:dreamkeepers/ui/campaign/campaign_view.dart';
 import 'package:dreamkeepers/ui/root/app_route.dart';
+import '../../support/test_app.dart';
 
 /// Same rationale as `inventory_view_test.dart`'s `_settle`: the stage
 /// pulse (`AnimationController.repeat(reverse: true)`) on the frontier
@@ -41,7 +42,7 @@ Future<GameState> _pumpCampaign(
   // notification. Same rationale as `inventory_view_test.dart`'s
   // roster-seeding, which happens before `pumpWidget` too.
   seed?.call(gameState);
-  await tester.pumpWidget(MaterialApp(home: Scaffold(body: CampaignView(gameState: gameState, onNavigate: onNavigate))));
+  await tester.pumpWidget(testApp(Scaffold(body: CampaignView(gameState: gameState, onNavigate: onNavigate))));
   await _settle(tester);
   return gameState;
 }

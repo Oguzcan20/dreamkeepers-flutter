@@ -16,6 +16,7 @@ import 'package:dreamkeepers/state/game_state.dart';
 import 'package:dreamkeepers/ui/root/app_route.dart';
 import 'package:dreamkeepers/ui/codex/dreamkeeper_codex_view.dart';
 import 'package:dreamkeepers/ui/codex/dreamkeeper_codex_detail_view.dart';
+import '../../support/test_app.dart';
 
 Future<void> _settle(WidgetTester tester, {Duration total = const Duration(milliseconds: 500)}) async {
   const step = Duration(milliseconds: 50);
@@ -35,8 +36,7 @@ Future<GameState> _pumpCodex(
   SharedPreferences.setMockInitialValues({});
   final gameState = await GameState.create();
   await tester.pumpWidget(
-    MaterialApp(
-      home: Scaffold(body: DreamkeeperCodexView(gameState: gameState, onNavigate: onNavigate)),
+    testApp(Scaffold(body: DreamkeeperCodexView(gameState: gameState, onNavigate: onNavigate)),
     ),
   );
   await _settle(tester);

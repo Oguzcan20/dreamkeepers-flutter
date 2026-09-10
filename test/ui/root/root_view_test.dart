@@ -22,6 +22,7 @@ import 'package:dreamkeepers/platform/google_sign_in_service.dart';
 import 'package:dreamkeepers/state/account_state.dart';
 import 'package:dreamkeepers/state/game_state.dart';
 import 'package:dreamkeepers/ui/root/root_view.dart';
+import '../../support/test_app.dart';
 
 /// Advances a fixed span of fake time in small steps, instead of
 /// `pumpAndSettle`. The Watch Ad building card's ready-pulse
@@ -67,7 +68,7 @@ Future<GameState> _bootedToDreamHaven(WidgetTester tester) async {
         ChangeNotifierProvider<GameLeaderboardService>(create: (_) => GameLeaderboardService()),
         Provider<GoogleSignInService>(create: (_) => GoogleSignInService()),
       ],
-      child: const MaterialApp(home: RootView()),
+      child: testApp(const RootView()),
     ),
   );
   await tester.pump(const Duration(milliseconds: 1900));

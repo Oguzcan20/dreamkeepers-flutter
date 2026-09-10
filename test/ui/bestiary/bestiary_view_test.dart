@@ -13,6 +13,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:dreamkeepers/state/game_state.dart';
 import 'package:dreamkeepers/ui/root/app_route.dart';
 import 'package:dreamkeepers/ui/bestiary/bestiary_view.dart';
+import '../../support/test_app.dart';
 
 /// Same rationale as every other screen's `_settle`: `GlassCard`'s
 /// `BackdropFilter` blur never lets `pumpAndSettle` see zero scheduled
@@ -35,8 +36,7 @@ Future<GameState> _pumpBestiary(
   final gameState = await GameState.create();
   seed?.call(gameState);
   await tester.pumpWidget(
-    MaterialApp(
-      home: Scaffold(body: BestiaryView(gameState: gameState, onNavigate: onNavigate)),
+    testApp(Scaffold(body: BestiaryView(gameState: gameState, onNavigate: onNavigate)),
     ),
   );
   await _settle(tester);
