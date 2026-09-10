@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import '../../l10n/l10n.dart';
 import '../../platform/platform_service.dart';
 import '../../progression/offline_rewards.dart';
 import '../../state/game_state.dart';
@@ -54,6 +55,7 @@ class _TrainingGardenSheetState extends State<TrainingGardenSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     final state = widget.gameState;
     final pending = state.pendingTrainingGardenReward;
     final result = _lastResult;
@@ -68,32 +70,32 @@ class _TrainingGardenSheetState extends State<TrainingGardenSheet> {
             Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                _header(),
+                _header(l),
                 const SizedBox(height: 14),
-                _gardenCard(state, pending),
+                _gardenCard(l, state, pending),
                 if (result != null && result.levelUps.isNotEmpty) ...[
                   const SizedBox(height: 12),
-                  _levelUpsCard(result.levelUps),
+                  _levelUpsCard(l, result.levelUps),
                 ],
                 const SizedBox(height: 14),
-                _collectButton(state, pending),
+                _collectButton(l, state, pending),
               ],
             ),
             if (_showConfirmation && result != null)
-              dk_theme.CollectConfirmation(text: '+${result.expGranted} EXP', tint: dk_theme.Theme.softBlue),
+              dk_theme.CollectConfirmation(text: l.havenPlusExp(result.expGranted), tint: dk_theme.Theme.softBlue),
           ],
         ),
       ),
     );
   }
 
-  Widget _header() {
+  Widget _header(AppLocalizations l) {
     return Column(
       children: [
-        const Text('Training Garden', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
+        Text(l.navTrainingGarden, style: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
         const SizedBox(height: 4),
         Text(
-          "Grants ${OfflineRewards.expPerMinute} EXP/min to your deployed team while you're away · caps after 8h",
+          l.trainingGardenBlurb(OfflineRewards.expPerMinute),
           textAlign: TextAlign.center,
           style: TextStyle(color: Colors.white.withValues(alpha: 0.5), fontSize: 11),
         ),
@@ -101,7 +103,7 @@ class _TrainingGardenSheetState extends State<TrainingGardenSheet> {
     );
   }
 
-  Widget _gardenCard(GameState state, int pending) {
+  Widget _gardenCard(AppLocalizations l, GameState state, int pending) {
     return dk_theme.GlassCard(
       child: Row(
         children: [
@@ -121,9 +123,9 @@ class _TrainingGardenSheetState extends State<TrainingGardenSheet> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('+$pending EXP', style: const TextStyle(color: dk_theme.Theme.softBlue, fontSize: 26, fontWeight: FontWeight.w900)),
+                Text(l.trainingGardenPendingExp(pending), style: const TextStyle(color: dk_theme.Theme.softBlue, fontSize: 26, fontWeight: FontWeight.w900)),
                 Text(
-                  state.deployedTeam.isEmpty ? 'Deploy a team to put the garden to work.' : 'Ready for your deployed team',
+                  state.deployedTeam.isEmpty ? l.trainingGardenNoTeam : l.trainingGardenReady,
                   style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 12),
                 ),
               ],
@@ -134,12 +136,12 @@ class _TrainingGardenSheetState extends State<TrainingGardenSheet> {
     );
   }
 
-  Widget _levelUpsCard(List<LevelUpSummary> levelUps) {
+  Widget _levelUpsCard(AppLocalizations l, List<LevelUpSummary> levelUps) {
     return dk_theme.GlassCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Level Up!', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
+          Text(l.trainingGardenLevelUp, style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
           const SizedBox(height: 10),
           for (final levelUp in levelUps)
             Padding(
@@ -147,7 +149,7 @@ class _TrainingGardenSheetState extends State<TrainingGardenSheet> {
               child: Row(
                 children: [
                   Expanded(child: Text(levelUp.name, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600))),
-                  Text('Lv ${levelUp.oldLevel} → Lv ${levelUp.newLevel}', style: const TextStyle(color: dk_theme.Theme.gold, fontSize: 12)),
+                  Text(l.trainingGardenLevelChange(levelUp.oldLevel, levelUp.newLevel), style: const TextStyle(color: dk_theme.Theme.gold, fontSize: 12)),
                 ],
               ),
             ),
@@ -156,13 +158,13 @@ class _TrainingGardenSheetState extends State<TrainingGardenSheet> {
     );
   }
 
-  Widget _collectButton(GameState state, int pending) {
+  Widget _collectButton(AppLocalizations l, GameState state, int pending) {
     return SizedBox(
       width: double.infinity,
       child: dk_theme.PrimaryButton(
         onPressed: pending <= 0 || state.deployedTeam.isEmpty || _showConfirmation ? null : _collect,
         tint: dk_theme.Theme.softBlue,
-        child: const Text('Collect'),
+        child: Text(l.commonCollect),
       ),
     );
   }

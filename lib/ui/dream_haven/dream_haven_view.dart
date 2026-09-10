@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../l10n/l10n.dart';
 import '../../models/dreamkeeper.dart';
 import '../../progression/battle_pass_system.dart';
 import '../../state/game_state.dart';
@@ -105,6 +106,7 @@ class _DreamHavenViewState extends State<DreamHavenView> {
   // MARK: - Header
 
   Widget _header(GameState state) {
+    final l = AppLocalizations.of(context);
     return Container(
       padding: const EdgeInsets.fromLTRB(20, 12, 20, 10),
       decoration: BoxDecoration(
@@ -121,12 +123,12 @@ class _DreamHavenViewState extends State<DreamHavenView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text('Dream Haven', style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold)),
+              Text(l.navDreamHaven, style: const TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold)),
               const SizedBox(height: 2),
               GestureDetector(
                 key: const Key('dream-haven-header-profile'),
                 onTap: () => widget.onNavigate(const ProfileRoute()),
-                child: Text('Player Lv ${state.save.playerLevel}', style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 12)),
+                child: Text(l.havenPlayerLevel(state.save.playerLevel), style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 12)),
               ),
             ],
           ),
@@ -134,21 +136,21 @@ class _DreamHavenViewState extends State<DreamHavenView> {
           _iconButton(
             key: const Key('dream-haven-header-settings'),
             icon: 'gearshape.fill',
-            label: 'Settings',
+            label: l.settingsTitle,
             onTap: () => widget.onNavigate(const SettingsRoute()),
           ),
           const SizedBox(width: 8),
           _iconButton(
             key: const Key('dream-haven-header-shop'),
             icon: 'cart.fill',
-            label: 'Shop',
+            label: l.navShop,
             onTap: () => widget.onNavigate(const ShopRoute()),
           ),
           const SizedBox(width: 8),
           _iconButton(
             key: const Key('dream-haven-header-missions'),
             icon: 'flag.checkered',
-            label: 'Daily Missions',
+            label: l.navDailyMissions,
             badge: state.hasUnclaimedMissions,
             onTap: () => _openSheet((_) => MissionsSheet(gameState: state)),
           ),
@@ -156,7 +158,7 @@ class _DreamHavenViewState extends State<DreamHavenView> {
           _iconButton(
             key: const Key('dream-haven-header-loginreward'),
             icon: 'gift.fill',
-            label: 'Daily Login Bonus',
+            label: l.navDailyLoginBonus,
             badge: state.isLoginRewardAvailable,
             onTap: () => _openSheet((_) => LoginRewardSheet(gameState: state)),
           ),
@@ -197,6 +199,7 @@ class _DreamHavenViewState extends State<DreamHavenView> {
   /// Gold/Gems/Energy as one merged capsule instead of three stacked
   /// `ResourcePill`s. Mirrors `resourceBar` exactly.
   Widget _resourceBar(GameState state) {
+    final l = AppLocalizations.of(context);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 7),
       decoration: BoxDecoration(
@@ -207,11 +210,11 @@ class _DreamHavenViewState extends State<DreamHavenView> {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          _resourceItem('circle.hexagongrid.fill', '${state.save.gold}', dk_theme.Theme.gold, 'Gold'),
+          _resourceItem('circle.hexagongrid.fill', '${state.save.gold}', dk_theme.Theme.gold, l.resGold),
           _resourceDivider(),
-          _resourceItem('sparkles', '${state.save.dreamGems}', dk_theme.Theme.violet, 'Dream Gems'),
+          _resourceItem('sparkles', '${state.save.dreamGems}', dk_theme.Theme.violet, l.resDreamGems),
           _resourceDivider(),
-          _resourceItem('bolt.fill', '${state.energy}/${state.maxEnergy}', dk_theme.Theme.softBlue, 'Energy'),
+          _resourceItem('bolt.fill', '${state.energy}/${state.maxEnergy}', dk_theme.Theme.softBlue, l.resEnergy),
         ],
       ),
     );
@@ -249,6 +252,7 @@ class _DreamHavenViewState extends State<DreamHavenView> {
   }
 
   Widget _teamSnapshotCard(GameState state) {
+    final l = AppLocalizations.of(context);
     return GestureDetector(
       key: const Key('dream-haven-team-card'),
       onTap: () => widget.onNavigate(const TeamRoute()),
@@ -261,7 +265,7 @@ class _DreamHavenViewState extends State<DreamHavenView> {
               children: [
                 Icon(sfSymbol('shield.lefthalf.filled'), size: 14, color: Colors.white),
                 const SizedBox(width: 6),
-                const Text('Your Team', style: TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w600)),
+                Text(l.havenYourTeam, style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w600)),
                 const Spacer(),
                 Icon(sfSymbol('chevron.right'), size: 14, color: Colors.white.withValues(alpha: 0.35)),
               ],
@@ -274,7 +278,7 @@ class _DreamHavenViewState extends State<DreamHavenView> {
                   const SizedBox(width: 10),
                   Expanded(
                     child: Text(
-                      'No Dreamkeepers deployed yet. Tap to build your team.',
+                      l.havenNoTeam,
                       style: TextStyle(color: Colors.white.withValues(alpha: 0.65), fontSize: 11),
                     ),
                   ),
@@ -294,7 +298,7 @@ class _DreamHavenViewState extends State<DreamHavenView> {
                 children: [
                   Icon(sfSymbol('bolt.fill'), size: 10, color: dk_theme.Theme.gold),
                   const SizedBox(width: 4),
-                  Text('Team Power ${_teamPower(state)}', style: TextStyle(color: Colors.white.withValues(alpha: 0.7), fontSize: 10, fontWeight: FontWeight.w600)),
+                  Text(l.havenTeamPower(_teamPower(state)), style: TextStyle(color: Colors.white.withValues(alpha: 0.7), fontSize: 10, fontWeight: FontWeight.w600)),
                 ],
               ),
             ],
@@ -305,13 +309,14 @@ class _DreamHavenViewState extends State<DreamHavenView> {
   }
 
   Widget _battlePassBanner(GameState state) {
+    final l = AppLocalizations.of(context);
     final progress = state.battlePassProgress;
     final fraction = progress.needed > 0 ? progress.current / progress.needed : 0.0;
     return GestureDetector(
       key: const Key('dream-haven-battlepass-banner'),
       onTap: () => widget.onNavigate(const BattlePassRoute()),
       child: Semantics(
-        label: 'Season Pass, Tier ${state.battlePassTier} of ${BattlePassSystem.tierCount}',
+        label: l.havenSeasonPassSemantic(state.battlePassTier, BattlePassSystem.tierCount),
         button: true,
         child: dk_theme.GlassCard(
           child: Row(
@@ -336,8 +341,8 @@ class _DreamHavenViewState extends State<DreamHavenView> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Text('Season Pass', style: TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w600)),
-                    Text('Tier ${state.battlePassTier}/${BattlePassSystem.tierCount}', style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 10)),
+                    Text(l.havenSeasonPass, style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w600)),
+                    Text(l.havenTier(state.battlePassTier, BattlePassSystem.tierCount), style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 10)),
                     const SizedBox(height: 4),
                     ClipRRect(
                       borderRadius: BorderRadius.circular(3),
@@ -363,12 +368,13 @@ class _DreamHavenViewState extends State<DreamHavenView> {
   // MARK: - Buildings grid
 
   Widget _buildingsGrid(GameState state) {
+    final l = AppLocalizations.of(context);
     final cards = <Widget>[
       _BuildingCard(
         key: const Key('dream-haven-building-summon'),
         icon: 'sparkles',
-        name: 'Summoning Shrine',
-        status: '${state.save.dreamGems} Gems',
+        name: l.navSummoningShrine,
+        status: l.havenGemsAmount(state.save.dreamGems),
         isActive: true,
         isReady: false,
         delay: 0,
@@ -378,8 +384,8 @@ class _DreamHavenViewState extends State<DreamHavenView> {
       _BuildingCard(
         key: const Key('dream-haven-building-training'),
         icon: 'leaf.arrow.circlepath',
-        name: 'Training Garden',
-        status: state.pendingTrainingGardenReward > 0 ? '+${state.pendingTrainingGardenReward} EXP ready' : 'Tap to collect',
+        name: l.navTrainingGarden,
+        status: state.pendingTrainingGardenReward > 0 ? l.havenExpReady(state.pendingTrainingGardenReward) : l.havenTapToCollect,
         isActive: true,
         isReady: state.pendingTrainingGardenReward > 0,
         delay: 50,
@@ -388,8 +394,8 @@ class _DreamHavenViewState extends State<DreamHavenView> {
       _BuildingCard(
         key: const Key('dream-haven-building-gold'),
         icon: 'circle.hexagongrid.fill',
-        name: 'Gold Fountain',
-        status: state.pendingGoldFountainReward > 0 ? '+${state.pendingGoldFountainReward} Gold ready' : 'Tap to collect',
+        name: l.navGoldFountain,
+        status: state.pendingGoldFountainReward > 0 ? l.havenGoldReady(state.pendingGoldFountainReward) : l.havenTapToCollect,
         isActive: true,
         isReady: state.pendingGoldFountainReward > 0,
         delay: 100,
@@ -398,8 +404,8 @@ class _DreamHavenViewState extends State<DreamHavenView> {
       _BuildingCard(
         key: const Key('dream-haven-building-observatory'),
         icon: 'sparkle.magnifyingglass',
-        name: 'Dream Observatory',
-        status: '${state.bestiaryDiscoveredCount}/${state.bestiaryTotalCount} Discovered',
+        name: l.navObservatory,
+        status: l.havenDiscovered(state.bestiaryDiscoveredCount, state.bestiaryTotalCount),
         isActive: true,
         isReady: false,
         delay: 150,
@@ -408,8 +414,8 @@ class _DreamHavenViewState extends State<DreamHavenView> {
       _BuildingCard(
         key: const Key('dream-haven-building-arena'),
         icon: state.arenaTier.symbol,
-        name: 'The Endless Trial',
-        status: 'Floor ${state.arenaFloor}/${state.arenaMaxFloor}',
+        name: l.navEndlessTrial,
+        status: l.havenFloor(state.arenaFloor, state.arenaMaxFloor),
         isActive: true,
         isReady: false,
         delay: 180,
@@ -420,9 +426,13 @@ class _DreamHavenViewState extends State<DreamHavenView> {
         _BuildingCard(
           key: const Key('dream-haven-building-watchad'),
           icon: 'play.rectangle.fill',
-          name: 'Watch Ad',
-          status: '+${GameState.rewardedAdGold} Gold, +${GameState.rewardedAdGems} Gems · '
-              '${state.rewardedAdWatchesRemainingToday}/${GameState.maxRewardedAdsPerDay} today',
+          name: l.navWatchAd,
+          status: l.havenWatchAdStatus(
+            GameState.rewardedAdGold,
+            GameState.rewardedAdGems,
+            state.rewardedAdWatchesRemainingToday,
+            GameState.maxRewardedAdsPerDay,
+          ),
           isActive: true,
           isReady: true,
           delay: 200,
@@ -442,6 +452,7 @@ class _DreamHavenViewState extends State<DreamHavenView> {
   // MARK: - Footer
 
   Widget _footer(GameState state) {
+    final l = AppLocalizations.of(context);
     return Container(
       padding: const EdgeInsets.fromLTRB(20, 10, 20, 8),
       decoration: BoxDecoration(
@@ -462,7 +473,7 @@ class _DreamHavenViewState extends State<DreamHavenView> {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [Icon(sfSymbol('person.3.fill'), size: 16, color: Colors.white), const SizedBox(width: 8), const Text('Inventory')],
+                children: [Icon(sfSymbol('person.3.fill'), size: 16, color: Colors.white), const SizedBox(width: 8), Text(l.navInventory)],
               ),
             ),
           ),
@@ -475,7 +486,7 @@ class _DreamHavenViewState extends State<DreamHavenView> {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [Icon(sfSymbol('map.fill'), size: 16, color: Colors.white), const SizedBox(width: 8), const Text('Campaign')],
+                children: [Icon(sfSymbol('map.fill'), size: 16, color: Colors.white), const SizedBox(width: 8), Text(l.navCampaign)],
               ),
             ),
           ),

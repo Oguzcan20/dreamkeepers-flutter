@@ -5,6 +5,13 @@
   "commonRestartNow": "Jetzt neu starten",
   "commonDone": "Fertig",
   "commonClose": "Schließen",
+  "commonCollect": "Abholen",
+  "commonClaim": "Einlösen",
+  "commonClaimed": "Eingelöst",
+  "commonContinue": "Weiter",
+  "commonAmountGold": "{count} Gold",
+  "commonAmountGems": "{count} Edelsteine",
+  "commonCollectedExclaim": "Abgeholt!",
 
   "settingsTitle": "Einstellungen",
   "settingsBack": "Zurück",
@@ -67,5 +74,65 @@
   "achievementsSheetTitle": "Erfolge",
   "achievementsUnlockedCount": "{unlocked}/{total} freigeschaltet",
 
-  "cardTwinBond": "Zwillingsbund"
+  "cardTwinBond": "Zwillingsbund",
+
+  "navShop": "Shop",
+  "navDailyMissions": "Tägliche Missionen",
+  "navDailyLoginBonus": "Tägliche Login-Belohnung",
+  "navSummoningShrine": "Beschwörungsschrein",
+  "navTrainingGarden": "Trainingsgarten",
+  "navGoldFountain": "Goldbrunnen",
+  "navObservatory": "Traum-Observatorium",
+  "navEndlessTrial": "Die Endlose Prüfung",
+  "navWatchAd": "Anzeige ansehen",
+  "navInventory": "Inventar",
+  "navCampaign": "Kampagne",
+
+  "resGold": "Gold",
+  "resDreamGems": "Traum-Edelsteine",
+  "resEnergy": "Energie",
+
+  "havenPlayerLevel": "Spieler Lv {level}",
+  "havenYourTeam": "Dein Team",
+  "havenNoTeam": "Noch keine Traumhüter eingesetzt. Tippen, um dein Team aufzustellen.",
+  "havenTeamPower": "Teamstärke {power}",
+  "havenSeasonPass": "Season Pass",
+  "havenSeasonPassSemantic": "Season Pass, Stufe {tier} von {total}",
+  "havenTier": "Stufe {tier}/{total}",
+  "havenGemsAmount": "{count} Edelsteine",
+  "havenExpReady": "+{amount} EP bereit",
+  "havenGoldReady": "+{amount} Gold bereit",
+  "havenTapToCollect": "Zum Abholen tippen",
+  "havenDiscovered": "{count}/{total} entdeckt",
+  "havenFloor": "Etage {floor}/{max}",
+  "havenWatchAdStatus": "+{gold} Gold, +{gems} Edelsteine · {used}/{max} heute",
+
+  "havenPlusGold": "+{amount} Gold",
+  "havenPlusExp": "+{amount} EP",
+
+  "goldFountainBlurb": "Erzeugt {rate} Gold/Min, während du weg bist · Obergrenze nach 8 Std.",
+  "goldFountainReady": "Gold zum Abholen bereit",
+
+  "trainingGardenBlurb": "Gewährt deinem eingesetzten Team {rate} EP/Min, während du weg bist · Obergrenze nach 8 Std.",
+  "trainingGardenPendingExp": "+{amount} EP",
+  "trainingGardenNoTeam": "Setze ein Team ein, damit der Garten arbeitet.",
+  "trainingGardenReady": "Bereit für dein eingesetztes Team",
+  "trainingGardenLevelUp": "Stufenaufstieg!",
+  "trainingGardenLevelChange": "Lv {from} → Lv {to}",
+
+  "loginDayOfCycle": "Tag {day} von {total}",
+  "loginClaimedTomorrow": "Eingelöst — Tag {day} morgen",
+  "loginSeeYouTomorrow": "Bis morgen",
+  "loginDayLabel": "Tag {day}",
+
+  "rewardedAdClaimed": "Belohnung eingelöst!",
+  "rewardedAdNice": "Super!",
+  "rewardedAdUnavailable": "Anzeige nicht verfügbar",
+
+  "missionsTitle": "Missionen",
+  "missionsResetBlurb": "Täglich setzt jeden Tag zurück · Wöchentlich jeden Montag",
+  "missionsBattlePassBonus": "Season-Pass-Bonus",
+  "missionsWeeklyChallenge": "Wöchentliche Herausforderung",
+  "missionsWeeklyLocked": "Schalte Season Pass Premium frei, um schwerere wöchentliche Herausforderungen mit größeren Belohnungen zu erhalten.",
+  "missionsRequiresPremium": "Erfordert Premium"
 }

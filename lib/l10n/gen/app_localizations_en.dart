@@ -21,6 +21,31 @@ class AppLocalizationsEn extends AppLocalizations {
   String get commonClose => 'Close';
 
   @override
+  String get commonCollect => 'Collect';
+
+  @override
+  String get commonClaim => 'Claim';
+
+  @override
+  String get commonClaimed => 'Claimed';
+
+  @override
+  String get commonContinue => 'Continue';
+
+  @override
+  String commonAmountGold(int count) {
+    return '$count Gold';
+  }
+
+  @override
+  String commonAmountGems(int count) {
+    return '$count Gems';
+  }
+
+  @override
+  String get commonCollectedExclaim => 'Collected!';
+
+  @override
   String get settingsTitle => 'Settings';
 
   @override
@@ -204,4 +229,198 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cardTwinBond => 'Twin Bond';
+
+  @override
+  String get navShop => 'Shop';
+
+  @override
+  String get navDailyMissions => 'Daily Missions';
+
+  @override
+  String get navDailyLoginBonus => 'Daily Login Bonus';
+
+  @override
+  String get navSummoningShrine => 'Summoning Shrine';
+
+  @override
+  String get navTrainingGarden => 'Training Garden';
+
+  @override
+  String get navGoldFountain => 'Gold Fountain';
+
+  @override
+  String get navObservatory => 'Dream Observatory';
+
+  @override
+  String get navEndlessTrial => 'The Endless Trial';
+
+  @override
+  String get navWatchAd => 'Watch Ad';
+
+  @override
+  String get navInventory => 'Inventory';
+
+  @override
+  String get navCampaign => 'Campaign';
+
+  @override
+  String get resGold => 'Gold';
+
+  @override
+  String get resDreamGems => 'Dream Gems';
+
+  @override
+  String get resEnergy => 'Energy';
+
+  @override
+  String havenPlayerLevel(int level) {
+    return 'Player Lv $level';
+  }
+
+  @override
+  String get havenYourTeam => 'Your Team';
+
+  @override
+  String get havenNoTeam =>
+      'No Dreamkeepers deployed yet. Tap to build your team.';
+
+  @override
+  String havenTeamPower(int power) {
+    return 'Team Power $power';
+  }
+
+  @override
+  String get havenSeasonPass => 'Season Pass';
+
+  @override
+  String havenSeasonPassSemantic(int tier, int total) {
+    return 'Season Pass, Tier $tier of $total';
+  }
+
+  @override
+  String havenTier(int tier, int total) {
+    return 'Tier $tier/$total';
+  }
+
+  @override
+  String havenGemsAmount(int count) {
+    return '$count Gems';
+  }
+
+  @override
+  String havenExpReady(int amount) {
+    return '+$amount EXP ready';
+  }
+
+  @override
+  String havenGoldReady(int amount) {
+    return '+$amount Gold ready';
+  }
+
+  @override
+  String get havenTapToCollect => 'Tap to collect';
+
+  @override
+  String havenDiscovered(int count, int total) {
+    return '$count/$total Discovered';
+  }
+
+  @override
+  String havenFloor(int floor, int max) {
+    return 'Floor $floor/$max';
+  }
+
+  @override
+  String havenWatchAdStatus(int gold, int gems, int used, int max) {
+    return '+$gold Gold, +$gems Gems · $used/$max today';
+  }
+
+  @override
+  String havenPlusGold(int amount) {
+    return '+$amount Gold';
+  }
+
+  @override
+  String havenPlusExp(int amount) {
+    return '+$amount EXP';
+  }
+
+  @override
+  String goldFountainBlurb(int rate) {
+    return 'Generates $rate gold/min while you\'re away · caps after 8h';
+  }
+
+  @override
+  String get goldFountainReady => 'Gold ready to collect';
+
+  @override
+  String trainingGardenBlurb(int rate) {
+    return 'Grants $rate EXP/min to your deployed team while you\'re away · caps after 8h';
+  }
+
+  @override
+  String trainingGardenPendingExp(int amount) {
+    return '+$amount EXP';
+  }
+
+  @override
+  String get trainingGardenNoTeam => 'Deploy a team to put the garden to work.';
+
+  @override
+  String get trainingGardenReady => 'Ready for your deployed team';
+
+  @override
+  String get trainingGardenLevelUp => 'Level Up!';
+
+  @override
+  String trainingGardenLevelChange(int from, int to) {
+    return 'Lv $from → Lv $to';
+  }
+
+  @override
+  String loginDayOfCycle(int day, int total) {
+    return 'Day $day of $total';
+  }
+
+  @override
+  String loginClaimedTomorrow(int day) {
+    return 'Claimed — Day $day tomorrow';
+  }
+
+  @override
+  String get loginSeeYouTomorrow => 'See You Tomorrow';
+
+  @override
+  String loginDayLabel(int day) {
+    return 'Day $day';
+  }
+
+  @override
+  String get rewardedAdClaimed => 'Reward Claimed!';
+
+  @override
+  String get rewardedAdNice => 'Nice!';
+
+  @override
+  String get rewardedAdUnavailable => 'Ad Unavailable';
+
+  @override
+  String get missionsTitle => 'Missions';
+
+  @override
+  String get missionsResetBlurb =>
+      'Daily resets every day · Weekly resets every Monday';
+
+  @override
+  String get missionsBattlePassBonus => 'Battle Pass Bonus';
+
+  @override
+  String get missionsWeeklyChallenge => 'Weekly Challenge';
+
+  @override
+  String get missionsWeeklyLocked =>
+      'Unlock Battle Pass Premium to access harder weekly challenges with bigger rewards.';
+
+  @override
+  String get missionsRequiresPremium => 'Requires Premium';
 }

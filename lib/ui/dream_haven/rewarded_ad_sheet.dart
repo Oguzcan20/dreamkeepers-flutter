@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../l10n/l10n.dart';
 import '../../state/game_state.dart';
 import '../../theme/sf_symbol_icons.dart';
 import '../../theme/theme.dart' as dk_theme;
@@ -55,14 +56,15 @@ class _RewardedAdSheetState extends State<RewardedAdSheet> {
   }
 
   Widget _content(BuildContext context) {
+    final l = AppLocalizations.of(context);
     switch (_phase) {
       case _Phase.playing:
-        return const Column(
+        return Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SizedBox(width: 36, height: 36, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 3)),
-            SizedBox(height: 16),
-            Text('Loading Ad…', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600)),
+            const SizedBox(width: 36, height: 36, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 3)),
+            const SizedBox(height: 16),
+            Text(l.loadingAdTitle, style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600)),
           ],
         );
       case _Phase.rewarded:
@@ -81,7 +83,7 @@ class _RewardedAdSheetState extends State<RewardedAdSheet> {
               ],
             ),
             const SizedBox(height: 12),
-            const Text('Reward Claimed!', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+            Text(l.rewardedAdClaimed, style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
             const SizedBox(height: 12),
             Row(
               mainAxisSize: MainAxisSize.min,
@@ -101,7 +103,7 @@ class _RewardedAdSheetState extends State<RewardedAdSheet> {
               child: dk_theme.PrimaryButton(
                 tint: dk_theme.Theme.gold,
                 onPressed: () => Navigator.of(context).pop(),
-                child: const Text('Nice!'),
+                child: Text(l.rewardedAdNice),
               ),
             ),
           ],
@@ -110,14 +112,14 @@ class _RewardedAdSheetState extends State<RewardedAdSheet> {
         return Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text('Ad Unavailable', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600)),
+            Text(l.rewardedAdUnavailable, style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600)),
             const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40),
               child: dk_theme.PrimaryButton(
                 tint: Colors.white.withValues(alpha: 0.15),
                 onPressed: () => Navigator.of(context).pop(),
-                child: const Text('Close'),
+                child: Text(l.commonClose),
               ),
             ),
           ],

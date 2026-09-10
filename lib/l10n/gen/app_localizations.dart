@@ -122,6 +122,48 @@ abstract class AppLocalizations {
   /// **'Close'**
   String get commonClose;
 
+  /// No description provided for @commonCollect.
+  ///
+  /// In en, this message translates to:
+  /// **'Collect'**
+  String get commonCollect;
+
+  /// No description provided for @commonClaim.
+  ///
+  /// In en, this message translates to:
+  /// **'Claim'**
+  String get commonClaim;
+
+  /// No description provided for @commonClaimed.
+  ///
+  /// In en, this message translates to:
+  /// **'Claimed'**
+  String get commonClaimed;
+
+  /// No description provided for @commonContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get commonContinue;
+
+  /// No description provided for @commonAmountGold.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} Gold'**
+  String commonAmountGold(int count);
+
+  /// No description provided for @commonAmountGems.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} Gems'**
+  String commonAmountGems(int count);
+
+  /// No description provided for @commonCollectedExclaim.
+  ///
+  /// In en, this message translates to:
+  /// **'Collected!'**
+  String get commonCollectedExclaim;
+
   /// No description provided for @settingsTitle.
   ///
   /// In en, this message translates to:
@@ -451,6 +493,312 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Twin Bond'**
   String get cardTwinBond;
+
+  /// No description provided for @navShop.
+  ///
+  /// In en, this message translates to:
+  /// **'Shop'**
+  String get navShop;
+
+  /// No description provided for @navDailyMissions.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Missions'**
+  String get navDailyMissions;
+
+  /// No description provided for @navDailyLoginBonus.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Login Bonus'**
+  String get navDailyLoginBonus;
+
+  /// No description provided for @navSummoningShrine.
+  ///
+  /// In en, this message translates to:
+  /// **'Summoning Shrine'**
+  String get navSummoningShrine;
+
+  /// No description provided for @navTrainingGarden.
+  ///
+  /// In en, this message translates to:
+  /// **'Training Garden'**
+  String get navTrainingGarden;
+
+  /// No description provided for @navGoldFountain.
+  ///
+  /// In en, this message translates to:
+  /// **'Gold Fountain'**
+  String get navGoldFountain;
+
+  /// No description provided for @navObservatory.
+  ///
+  /// In en, this message translates to:
+  /// **'Dream Observatory'**
+  String get navObservatory;
+
+  /// No description provided for @navEndlessTrial.
+  ///
+  /// In en, this message translates to:
+  /// **'The Endless Trial'**
+  String get navEndlessTrial;
+
+  /// No description provided for @navWatchAd.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch Ad'**
+  String get navWatchAd;
+
+  /// No description provided for @navInventory.
+  ///
+  /// In en, this message translates to:
+  /// **'Inventory'**
+  String get navInventory;
+
+  /// No description provided for @navCampaign.
+  ///
+  /// In en, this message translates to:
+  /// **'Campaign'**
+  String get navCampaign;
+
+  /// No description provided for @resGold.
+  ///
+  /// In en, this message translates to:
+  /// **'Gold'**
+  String get resGold;
+
+  /// No description provided for @resDreamGems.
+  ///
+  /// In en, this message translates to:
+  /// **'Dream Gems'**
+  String get resDreamGems;
+
+  /// No description provided for @resEnergy.
+  ///
+  /// In en, this message translates to:
+  /// **'Energy'**
+  String get resEnergy;
+
+  /// No description provided for @havenPlayerLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Player Lv {level}'**
+  String havenPlayerLevel(int level);
+
+  /// No description provided for @havenYourTeam.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Team'**
+  String get havenYourTeam;
+
+  /// No description provided for @havenNoTeam.
+  ///
+  /// In en, this message translates to:
+  /// **'No Dreamkeepers deployed yet. Tap to build your team.'**
+  String get havenNoTeam;
+
+  /// No description provided for @havenTeamPower.
+  ///
+  /// In en, this message translates to:
+  /// **'Team Power {power}'**
+  String havenTeamPower(int power);
+
+  /// No description provided for @havenSeasonPass.
+  ///
+  /// In en, this message translates to:
+  /// **'Season Pass'**
+  String get havenSeasonPass;
+
+  /// No description provided for @havenSeasonPassSemantic.
+  ///
+  /// In en, this message translates to:
+  /// **'Season Pass, Tier {tier} of {total}'**
+  String havenSeasonPassSemantic(int tier, int total);
+
+  /// No description provided for @havenTier.
+  ///
+  /// In en, this message translates to:
+  /// **'Tier {tier}/{total}'**
+  String havenTier(int tier, int total);
+
+  /// No description provided for @havenGemsAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} Gems'**
+  String havenGemsAmount(int count);
+
+  /// No description provided for @havenExpReady.
+  ///
+  /// In en, this message translates to:
+  /// **'+{amount} EXP ready'**
+  String havenExpReady(int amount);
+
+  /// No description provided for @havenGoldReady.
+  ///
+  /// In en, this message translates to:
+  /// **'+{amount} Gold ready'**
+  String havenGoldReady(int amount);
+
+  /// No description provided for @havenTapToCollect.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to collect'**
+  String get havenTapToCollect;
+
+  /// No description provided for @havenDiscovered.
+  ///
+  /// In en, this message translates to:
+  /// **'{count}/{total} Discovered'**
+  String havenDiscovered(int count, int total);
+
+  /// No description provided for @havenFloor.
+  ///
+  /// In en, this message translates to:
+  /// **'Floor {floor}/{max}'**
+  String havenFloor(int floor, int max);
+
+  /// No description provided for @havenWatchAdStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'+{gold} Gold, +{gems} Gems · {used}/{max} today'**
+  String havenWatchAdStatus(int gold, int gems, int used, int max);
+
+  /// No description provided for @havenPlusGold.
+  ///
+  /// In en, this message translates to:
+  /// **'+{amount} Gold'**
+  String havenPlusGold(int amount);
+
+  /// No description provided for @havenPlusExp.
+  ///
+  /// In en, this message translates to:
+  /// **'+{amount} EXP'**
+  String havenPlusExp(int amount);
+
+  /// No description provided for @goldFountainBlurb.
+  ///
+  /// In en, this message translates to:
+  /// **'Generates {rate} gold/min while you\'re away · caps after 8h'**
+  String goldFountainBlurb(int rate);
+
+  /// No description provided for @goldFountainReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Gold ready to collect'**
+  String get goldFountainReady;
+
+  /// No description provided for @trainingGardenBlurb.
+  ///
+  /// In en, this message translates to:
+  /// **'Grants {rate} EXP/min to your deployed team while you\'re away · caps after 8h'**
+  String trainingGardenBlurb(int rate);
+
+  /// No description provided for @trainingGardenPendingExp.
+  ///
+  /// In en, this message translates to:
+  /// **'+{amount} EXP'**
+  String trainingGardenPendingExp(int amount);
+
+  /// No description provided for @trainingGardenNoTeam.
+  ///
+  /// In en, this message translates to:
+  /// **'Deploy a team to put the garden to work.'**
+  String get trainingGardenNoTeam;
+
+  /// No description provided for @trainingGardenReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready for your deployed team'**
+  String get trainingGardenReady;
+
+  /// No description provided for @trainingGardenLevelUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Level Up!'**
+  String get trainingGardenLevelUp;
+
+  /// No description provided for @trainingGardenLevelChange.
+  ///
+  /// In en, this message translates to:
+  /// **'Lv {from} → Lv {to}'**
+  String trainingGardenLevelChange(int from, int to);
+
+  /// No description provided for @loginDayOfCycle.
+  ///
+  /// In en, this message translates to:
+  /// **'Day {day} of {total}'**
+  String loginDayOfCycle(int day, int total);
+
+  /// No description provided for @loginClaimedTomorrow.
+  ///
+  /// In en, this message translates to:
+  /// **'Claimed — Day {day} tomorrow'**
+  String loginClaimedTomorrow(int day);
+
+  /// No description provided for @loginSeeYouTomorrow.
+  ///
+  /// In en, this message translates to:
+  /// **'See You Tomorrow'**
+  String get loginSeeYouTomorrow;
+
+  /// No description provided for @loginDayLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Day {day}'**
+  String loginDayLabel(int day);
+
+  /// No description provided for @rewardedAdClaimed.
+  ///
+  /// In en, this message translates to:
+  /// **'Reward Claimed!'**
+  String get rewardedAdClaimed;
+
+  /// No description provided for @rewardedAdNice.
+  ///
+  /// In en, this message translates to:
+  /// **'Nice!'**
+  String get rewardedAdNice;
+
+  /// No description provided for @rewardedAdUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Ad Unavailable'**
+  String get rewardedAdUnavailable;
+
+  /// No description provided for @missionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Missions'**
+  String get missionsTitle;
+
+  /// No description provided for @missionsResetBlurb.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily resets every day · Weekly resets every Monday'**
+  String get missionsResetBlurb;
+
+  /// No description provided for @missionsBattlePassBonus.
+  ///
+  /// In en, this message translates to:
+  /// **'Battle Pass Bonus'**
+  String get missionsBattlePassBonus;
+
+  /// No description provided for @missionsWeeklyChallenge.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly Challenge'**
+  String get missionsWeeklyChallenge;
+
+  /// No description provided for @missionsWeeklyLocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock Battle Pass Premium to access harder weekly challenges with bigger rewards.'**
+  String get missionsWeeklyLocked;
+
+  /// No description provided for @missionsRequiresPremium.
+  ///
+  /// In en, this message translates to:
+  /// **'Requires Premium'**
+  String get missionsRequiresPremium;
 }
 
 class _AppLocalizationsDelegate

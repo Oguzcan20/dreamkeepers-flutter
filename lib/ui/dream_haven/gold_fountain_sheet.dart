@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import '../../l10n/l10n.dart';
 import '../../platform/platform_service.dart';
 import '../../progression/offline_rewards.dart';
 import '../../state/game_state.dart';
@@ -51,6 +52,7 @@ class _GoldFountainSheetState extends State<GoldFountainSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     final pending = widget.gameState.pendingGoldFountainReward;
     return Container(
       padding: const EdgeInsets.all(20),
@@ -63,27 +65,28 @@ class _GoldFountainSheetState extends State<GoldFountainSheet> {
             Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                _header(),
+                _header(l),
                 const SizedBox(height: 14),
-                _fountainCard(pending),
+                _fountainCard(l, pending),
                 const SizedBox(height: 14),
-                _collectButton(pending),
+                _collectButton(l, pending),
               ],
             ),
-            if (_justCollected != null) dk_theme.CollectConfirmation(text: '+$_justCollected Gold', tint: dk_theme.Theme.gold),
+            if (_justCollected != null)
+              dk_theme.CollectConfirmation(text: l.havenPlusGold(_justCollected!), tint: dk_theme.Theme.gold),
           ],
         ),
       ),
     );
   }
 
-  Widget _header() {
+  Widget _header(AppLocalizations l) {
     return Column(
       children: [
-        const Text('Gold Fountain', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
+        Text(l.navGoldFountain, style: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
         const SizedBox(height: 4),
         Text(
-          "Generates ${OfflineRewards.goldPerMinute} gold/min while you're away · caps after 8h",
+          l.goldFountainBlurb(OfflineRewards.goldPerMinute),
           textAlign: TextAlign.center,
           style: TextStyle(color: Colors.white.withValues(alpha: 0.5), fontSize: 11),
         ),
@@ -91,7 +94,7 @@ class _GoldFountainSheetState extends State<GoldFountainSheet> {
     );
   }
 
-  Widget _fountainCard(int pending) {
+  Widget _fountainCard(AppLocalizations l, int pending) {
     return dk_theme.GlassCard(
       child: Row(
         children: [
@@ -113,7 +116,7 @@ class _GoldFountainSheetState extends State<GoldFountainSheet> {
               children: [
                 Text('+$pending', style: const TextStyle(color: dk_theme.Theme.gold, fontSize: 26, fontWeight: FontWeight.w900)),
                 Text(
-                  _justCollected != null ? 'Collected!' : 'Gold ready to collect',
+                  _justCollected != null ? l.commonCollectedExclaim : l.goldFountainReady,
                   style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 12),
                 ),
               ],
@@ -124,13 +127,13 @@ class _GoldFountainSheetState extends State<GoldFountainSheet> {
     );
   }
 
-  Widget _collectButton(int pending) {
+  Widget _collectButton(AppLocalizations l, int pending) {
     return SizedBox(
       width: double.infinity,
       child: dk_theme.PrimaryButton(
         onPressed: pending <= 0 || _justCollected != null ? null : _collect,
         tint: dk_theme.Theme.gold,
-        child: const Text('Collect'),
+        child: Text(l.commonCollect),
       ),
     );
   }

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import '../../l10n/l10n.dart';
 import '../../progression/login_reward_system.dart';
 import '../../state/game_state.dart';
 import '../../theme/sf_symbol_icons.dart';
@@ -23,8 +24,9 @@ class LoginRewardSheet extends StatelessWidget {
   int get _nextDay => gameState.nextLoginRewardDay;
   bool get _isAvailable => gameState.isLoginRewardAvailable;
 
-  String get _dayCaption =>
-      _isAvailable ? 'Day $_nextDay of ${LoginRewardSystem.cycleLength}' : 'Claimed — Day $_nextDay tomorrow';
+  String _dayCaption(AppLocalizations l) => _isAvailable
+      ? l.loginDayOfCycle(_nextDay, LoginRewardSystem.cycleLength)
+      : l.loginClaimedTomorrow(_nextDay);
 
   _LoginRewardDayState _cellState(int day) {
     if (_isAvailable) {
@@ -38,6 +40,7 @@ class LoginRewardSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     return Container(
       decoration: const BoxDecoration(gradient: dk_theme.Theme.background),
       child: SafeArea(
@@ -51,7 +54,7 @@ class LoginRewardSheet extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              _header(),
+              _header(l),
               const SizedBox(height: 18),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -82,7 +85,7 @@ class LoginRewardSheet extends StatelessWidget {
                             });
                           }
                         : null,
-                    child: Text(_isAvailable ? 'Claim' : 'See You Tomorrow'),
+                    child: Text(_isAvailable ? l.commonClaim : l.loginSeeYouTomorrow),
                   ),
                 ),
               ),
@@ -93,7 +96,7 @@ class LoginRewardSheet extends StatelessWidget {
     );
   }
 
-  Widget _header() {
+  Widget _header(AppLocalizations l) {
     return Column(
       children: [
         Stack(
@@ -108,9 +111,9 @@ class LoginRewardSheet extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 10),
-        const Text('Daily Login Bonus', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+        Text(l.navDailyLoginBonus, style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
         const SizedBox(height: 4),
-        Text(_dayCaption, style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 12)),
+        Text(_dayCaption(l), style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 12)),
       ],
     );
   }
@@ -121,10 +124,12 @@ class _DayCell extends StatelessWidget {
   final _LoginRewardDayState state;
   const _DayCell({required this.reward, required this.state});
 
-  String get _rewardCaption => reward.gems > 0 ? '${reward.gems} Gems' : '${reward.gold} Gold';
+  String _rewardCaption(AppLocalizations l) =>
+      reward.gems > 0 ? l.commonAmountGems(reward.gems) : l.commonAmountGold(reward.gold);
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     final locked = state == _LoginRewardDayState.locked;
     final claimed = state == _LoginRewardDayState.claimed;
     final current = state == _LoginRewardDayState.current;
@@ -133,7 +138,7 @@ class _DayCell extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text('Day ${reward.day}', style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 10, fontWeight: FontWeight.w600)),
+          Text(l.loginDayLabel(reward.day), style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 10, fontWeight: FontWeight.w600)),
           const SizedBox(height: 4),
           Container(
             width: 46,
@@ -154,7 +159,7 @@ class _DayCell extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            _rewardCaption,
+            _rewardCaption(l),
             style: TextStyle(color: Colors.white.withValues(alpha: locked ? 0.3 : 0.7), fontSize: 10),
           ),
         ],

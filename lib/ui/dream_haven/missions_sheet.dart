@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../l10n/l10n.dart';
 import '../../platform/platform_service.dart';
 import '../../state/game_state.dart';
 import '../../theme/sf_symbol_icons.dart';
@@ -27,6 +28,7 @@ class MissionsSheet extends StatelessWidget {
   }
 
   Widget _buildSheet(BuildContext context) {
+    final l = AppLocalizations.of(context);
     return DraggableScrollableSheet(
       initialChildSize: 0.9,
       minChildSize: 0.5,
@@ -42,10 +44,10 @@ class MissionsSheet extends StatelessWidget {
               const SizedBox(height: 8),
               Container(width: 36, height: 5, decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.2), borderRadius: BorderRadius.circular(3))),
               const SizedBox(height: 12),
-              const Text('Missions', style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold)),
+              Text(l.missionsTitle, style: const TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold)),
               const SizedBox(height: 4),
               Text(
-                'Daily resets every day · Weekly resets every Monday',
+                l.missionsResetBlurb,
                 textAlign: TextAlign.center,
                 style: TextStyle(color: Colors.white.withValues(alpha: 0.5), fontSize: 12),
               ),
@@ -54,17 +56,17 @@ class MissionsSheet extends StatelessWidget {
                   controller: scrollController,
                   padding: const EdgeInsets.fromLTRB(20, 12, 20, 24),
                   children: [
-                    _sectionHeader('Daily Missions', 'sun.max.fill'),
+                    _sectionHeader(l.navDailyMissions, 'sun.max.fill'),
                     const SizedBox(height: 10),
                     _missionGrid(_dailyMissions),
                     const SizedBox(height: 18),
-                    _sectionHeader('Battle Pass Bonus', 'rosette'),
+                    _sectionHeader(l.missionsBattlePassBonus, 'rosette'),
                     const SizedBox(height: 10),
                     _missionGrid(_bonusMissions),
                     const SizedBox(height: 18),
-                    _sectionHeader('Weekly Challenge', 'calendar'),
+                    _sectionHeader(l.missionsWeeklyChallenge, 'calendar'),
                     const SizedBox(height: 10),
-                    if (gameState.battlePassPremiumUnlocked) _weeklyMissionGrid() else _weeklyLockedCard(),
+                    if (gameState.battlePassPremiumUnlocked) _weeklyMissionGrid() else _weeklyLockedCard(l),
                   ],
                 ),
               ),
@@ -125,7 +127,7 @@ class MissionsSheet extends StatelessWidget {
     );
   }
 
-  Widget _weeklyLockedCard() {
+  Widget _weeklyLockedCard(AppLocalizations l) {
     return dk_theme.GlassCard(
       child: Row(
         children: [
@@ -133,7 +135,7 @@ class MissionsSheet extends StatelessWidget {
           const SizedBox(width: 14),
           Expanded(
             child: Text(
-              'Unlock Battle Pass Premium to access harder weekly challenges with bigger rewards.',
+              l.missionsWeeklyLocked,
               style: TextStyle(color: Colors.white.withValues(alpha: 0.65), fontSize: 12),
             ),
           ),
@@ -150,6 +152,7 @@ class _MissionRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     return Opacity(
       opacity: status.isLocked ? 0.6 : 1,
       child: dk_theme.GlassCard(
@@ -172,7 +175,7 @@ class _MissionRow extends StatelessWidget {
                     style: TextStyle(color: status.isLocked ? Colors.white.withValues(alpha: 0.4) : Colors.white, fontSize: 13, fontWeight: FontWeight.w600),
                   ),
                   if (status.isLocked)
-                    Text('Requires Premium', style: TextStyle(color: dk_theme.Theme.gold.withValues(alpha: 0.7), fontSize: 10))
+                    Text(l.missionsRequiresPremium, style: TextStyle(color: dk_theme.Theme.gold.withValues(alpha: 0.7), fontSize: 10))
                   else
                     Text('${status.progress}/${status.definition.target}', style: TextStyle(color: Colors.white.withValues(alpha: 0.55), fontSize: 11)),
                   const SizedBox(height: 4),
@@ -194,17 +197,17 @@ class _MissionRow extends StatelessWidget {
                 ],
               ),
             ),
-            _trailing(),
+            _trailing(l),
           ],
         ),
       ),
     );
   }
 
-  Widget _trailing() {
+  Widget _trailing(AppLocalizations l) {
     if (status.isLocked) return const SizedBox.shrink();
     if (status.isClaimed) {
-      return Icon(sfSymbol('checkmark.circle.fill'), color: dk_theme.Theme.gold, size: 22, semanticLabel: 'Claimed');
+      return Icon(sfSymbol('checkmark.circle.fill'), color: dk_theme.Theme.gold, size: 22, semanticLabel: l.commonClaimed);
     }
     if (status.isComplete) {
       return GestureDetector(
@@ -212,7 +215,7 @@ class _MissionRow extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
           decoration: BoxDecoration(color: dk_theme.Theme.gold.withValues(alpha: 0.35), borderRadius: BorderRadius.circular(999)),
-          child: const Text('Claim', style: TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.w600)),
+          child: Text(l.commonClaim, style: const TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.w600)),
         ),
       );
     }
@@ -234,6 +237,7 @@ class _WeeklyMissionRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     return dk_theme.GlassCard(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -267,14 +271,14 @@ class _WeeklyMissionRow extends StatelessWidget {
             ),
           ),
           if (status.isClaimed)
-            Icon(sfSymbol('checkmark.circle.fill'), color: dk_theme.Theme.gold, size: 22, semanticLabel: 'Claimed')
+            Icon(sfSymbol('checkmark.circle.fill'), color: dk_theme.Theme.gold, size: 22, semanticLabel: l.commonClaimed)
           else if (status.isComplete)
             GestureDetector(
               onTap: onClaim,
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(color: dk_theme.Theme.gold.withValues(alpha: 0.35), borderRadius: BorderRadius.circular(999)),
-                child: const Text('Claim', style: TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.w600)),
+                child: Text(l.commonClaim, style: const TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.w600)),
               ),
             )
           else
