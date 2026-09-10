@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 import '../../data/world_catalog.dart';
+import '../../l10n/l10n.dart';
 import '../../models/world.dart';
 import '../../platform/platform_service.dart';
 import '../../progression/energy_system.dart';
@@ -61,30 +62,31 @@ class _CampaignViewState extends State<CampaignView> {
   /// `EnergySystem.stageCost`), so this is purely "watch it happen" vs.
   /// "skip straight to the payout".
   Future<void> _showStageChoiceDialog(int stage) async {
+    final l = AppLocalizations.of(context);
     final cost = EnergySystem.stageCost(isBoss: stage % World.stagesPerWorld == 0);
     await showDialog<void>(
       context: context,
       builder: (dialogContext) => Theme(
         data: ThemeData.dark(),
         child: AlertDialog(
-          title: Text('Stage $stage — already cleared'),
-          content: const Text('Replay the battle for the same rewards, or skip straight to the payout.'),
+          title: Text(l.campaignStageClearedTitle(stage)),
+          content: Text(l.campaignStageClearedBody),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.of(dialogContext).pop();
                 _fight(stage);
               },
-              child: Text('Fight ($cost Energy)'),
+              child: Text(l.campaignFightCost(cost)),
             ),
             TextButton(
               onPressed: () {
                 Navigator.of(dialogContext).pop();
                 _sweep(stage);
               },
-              child: Text('Sweep — Instant Clear ($cost Energy)'),
+              child: Text(l.campaignSweepCost(cost)),
             ),
-            TextButton(onPressed: () => Navigator.of(dialogContext).pop(), child: const Text('Cancel')),
+            TextButton(onPressed: () => Navigator.of(dialogContext).pop(), child: Text(l.commonCancel)),
           ],
         ),
       ),
@@ -119,14 +121,15 @@ class _CampaignViewState extends State<CampaignView> {
   }
 
   Future<void> _showInsufficientEnergyDialog(int stage) async {
+    final l = AppLocalizations.of(context);
     final cost = EnergySystem.stageCost(isBoss: stage % World.stagesPerWorld == 0);
     await showDialog<void>(
       context: context,
       builder: (dialogContext) => Theme(
         data: ThemeData.dark(),
         child: AlertDialog(
-          title: const Text('Not Enough Energy'),
-          content: Text('This stage costs $cost Energy. You have ${_gameState.energy}/${_gameState.maxEnergy}.'),
+          title: Text(l.campaignNotEnoughEnergyTitle),
+          content: Text(l.campaignNotEnoughEnergyBody(cost, _gameState.energy, _gameState.maxEnergy)),
           actions: [
             if (_gameState.canRefillEnergyWithGems)
               TextButton(
@@ -135,9 +138,9 @@ class _CampaignViewState extends State<CampaignView> {
                   _gameState.refillEnergyWithGems();
                   _gameState.playHaptic(HapticStyle.light);
                 },
-                child: Text('Refill for ${_gameState.nextEnergyRefillGemCost} Gems'),
+                child: Text(l.campaignRefillForGems(_gameState.nextEnergyRefillGemCost)),
               ),
-            TextButton(onPressed: () => Navigator.of(dialogContext).pop(), child: const Text('OK')),
+            TextButton(onPressed: () => Navigator.of(dialogContext).pop(), child: Text(l.commonOk)),
           ],
         ),
       ),
@@ -146,6 +149,7 @@ class _CampaignViewState extends State<CampaignView> {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     return Stack(
       children: [
         const dk_theme.AmbientBackground(topTint: dk_theme.Theme.violet, bottomTint: dk_theme.Theme.softBlue),
@@ -157,7 +161,7 @@ class _CampaignViewState extends State<CampaignView> {
               duration: const Duration(milliseconds: 500),
               child: Column(
                 children: [
-                  _header(),
+                  _header(l),
                   Expanded(
                     child: SingleChildScrollView(
                       // Bottom pad clears the floating home button in the
@@ -175,7 +179,7 @@ class _CampaignViewState extends State<CampaignView> {
                           if (_gameState.isCampaignComplete)
                             dk_theme.GlassCard(
                               child: Text(
-                                "You've cleared every known dream. More worlds are on the way.",
+                                l.campaignComplete,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(color: Colors.white.withValues(alpha: 0.75), fontSize: 14),
                               ),
@@ -194,13 +198,13 @@ class _CampaignViewState extends State<CampaignView> {
             top: 74,
             left: 0,
             right: 0,
-            child: IgnorePointer(child: Center(child: _SweepToast(result: _sweepResult!))),
+            child: IgnorePointer(child: Center(child: _SweepToast(result: _sweepResult!, l: l))),
           ),
       ],
     );
   }
 
-  Widget _header() {
+  Widget _header(AppLocalizations l) {
     return Container(
       height: 64,
       clipBehavior: Clip.hardEdge,
@@ -227,11 +231,11 @@ class _CampaignViewState extends State<CampaignView> {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               children: [
-                _iconButton(icon: 'chevron.left', label: 'Back', onTap: () => widget.onNavigate(const DreamHavenRoute())),
+                _iconButton(icon: 'chevron.left', label: l.commonBack, onTap: () => widget.onNavigate(const DreamHavenRoute())),
                 const Spacer(),
-                const Text('Campaign', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+                Text(l.navCampaign, style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
                 const Spacer(),
-                _energyPill(),
+                _energyPill(l),
               ],
             ),
           ),
@@ -258,9 +262,9 @@ class _CampaignViewState extends State<CampaignView> {
   /// Same Energy readout as the Dream Haven header, mirrored here so the
   /// player can see at a glance whether they can afford the next stage
   /// without backing out of Campaign.
-  Widget _energyPill() {
+  Widget _energyPill(AppLocalizations l) {
     return Semantics(
-      label: 'Energy ${_gameState.energy} of ${_gameState.maxEnergy}',
+      label: l.campaignEnergySemantic(_gameState.energy, _gameState.maxEnergy),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
         decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.12), borderRadius: BorderRadius.circular(999)),
@@ -447,16 +451,17 @@ class _StageNodeState extends State<_StageNode> with SingleTickerProviderStateMi
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context);
     final locked = widget.state == _StageState.locked;
     // A bare `Button` in SwiftUI reads just the glyph inside to VoiceOver
     // ("lock", "checkmark", or a bare number) — not enough to tell stages
     // apart. Speak the stage number, boss status and progress state
     // explicitly instead.
-    final label = (widget.isBoss ? 'Boss Stage ${widget.stage}' : 'Stage ${widget.stage}') +
+    final label = (widget.isBoss ? l.campaignBossStageLabel(widget.stage) : l.campaignStageLabel(widget.stage)) +
         (widget.state == _StageState.locked
-            ? ', locked'
+            ? l.campaignStageLockedSuffix
             : widget.state == _StageState.cleared
-                ? ', cleared'
+                ? l.campaignStageClearedSuffix
                 : '');
     return Semantics(
       label: label,
@@ -539,8 +544,9 @@ class _StageNodeState extends State<_StageNode> with SingleTickerProviderStateMi
 /// another screen to sit through.
 class _SweepToast extends StatelessWidget {
   final BattleResultSummary result;
+  final AppLocalizations l;
 
-  const _SweepToast({required this.result});
+  const _SweepToast({required this.result, required this.l});
 
   @override
   Widget build(BuildContext context) {
@@ -558,10 +564,10 @@ class _SweepToast extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text('Stage ${result.stage} swept', style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w600)),
+                Text(l.campaignStageSwept(result.stage), style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w600)),
                 const SizedBox(height: 2),
                 Text(
-                  '+${result.goldGained} Gold · +${result.expGained} EXP',
+                  l.campaignSweepPayout(result.goldGained, result.expGained),
                   style: TextStyle(color: Colors.white.withValues(alpha: 0.7), fontSize: 11),
                 ),
               ],

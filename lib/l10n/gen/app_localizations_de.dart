@@ -36,6 +36,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get commonBack => 'Zurück';
 
   @override
+  String get commonOk => 'OK';
+
+  @override
   String commonAmountGold(int count) {
     return '$count Gold';
   }
@@ -450,5 +453,72 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String shopTicketsGranted(int count) {
     return '+$count Tickets';
+  }
+
+  @override
+  String campaignStageLabel(int stage) {
+    return 'Abschnitt $stage';
+  }
+
+  @override
+  String campaignBossStageLabel(int stage) {
+    return 'Boss-Abschnitt $stage';
+  }
+
+  @override
+  String get campaignStageLockedSuffix => ', gesperrt';
+
+  @override
+  String get campaignStageClearedSuffix => ', abgeschlossen';
+
+  @override
+  String campaignStageClearedTitle(int stage) {
+    return 'Abschnitt $stage — bereits abgeschlossen';
+  }
+
+  @override
+  String get campaignStageClearedBody =>
+      'Wiederhole den Kampf für dieselben Belohnungen oder springe direkt zur Auszahlung.';
+
+  @override
+  String campaignFightCost(int cost) {
+    return 'Kämpfen ($cost Energie)';
+  }
+
+  @override
+  String campaignSweepCost(int cost) {
+    return 'Sofort räumen ($cost Energie)';
+  }
+
+  @override
+  String get campaignNotEnoughEnergyTitle => 'Nicht genug Energie';
+
+  @override
+  String campaignNotEnoughEnergyBody(int cost, int current, int max) {
+    return 'Dieser Abschnitt kostet $cost Energie. Du hast $current/$max.';
+  }
+
+  @override
+  String campaignRefillForGems(int count) {
+    return 'Für $count Edelsteine auffüllen';
+  }
+
+  @override
+  String get campaignComplete =>
+      'Du hast jeden bekannten Traum bezwungen. Weitere Welten folgen bald.';
+
+  @override
+  String campaignEnergySemantic(int current, int max) {
+    return 'Energie $current von $max';
+  }
+
+  @override
+  String campaignStageSwept(int stage) {
+    return 'Abschnitt $stage geräumt';
+  }
+
+  @override
+  String campaignSweepPayout(int gold, int exp) {
+    return '+$gold Gold · +$exp EP';
   }
 }

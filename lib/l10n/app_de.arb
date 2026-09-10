@@ -10,6 +10,7 @@
   "commonClaimed": "Eingelöst",
   "commonContinue": "Weiter",
   "commonBack": "Zurück",
+  "commonOk": "OK",
   "commonAmountGold": "{count} Gold",
   "commonAmountGems": "{count} Edelsteine",
   "commonCollectedExclaim": "Abgeholt!",
@@ -143,5 +144,21 @@
   "shopAdded": "Hinzugefügt!",
   "shopTrialTickets": "Prüfungs-Tickets",
   "shopGoldExchange": "Goldtausch",
-  "shopTicketsGranted": "+{count} Tickets"
+  "shopTicketsGranted": "+{count} Tickets",
+
+  "campaignStageLabel": "Abschnitt {stage}",
+  "campaignBossStageLabel": "Boss-Abschnitt {stage}",
+  "campaignStageLockedSuffix": ", gesperrt",
+  "campaignStageClearedSuffix": ", abgeschlossen",
+  "campaignStageClearedTitle": "Abschnitt {stage} — bereits abgeschlossen",
+  "campaignStageClearedBody": "Wiederhole den Kampf für dieselben Belohnungen oder springe direkt zur Auszahlung.",
+  "campaignFightCost": "Kämpfen ({cost} Energie)",
+  "campaignSweepCost": "Sofort räumen ({cost} Energie)",
+  "campaignNotEnoughEnergyTitle": "Nicht genug Energie",
+  "campaignNotEnoughEnergyBody": "Dieser Abschnitt kostet {cost} Energie. Du hast {current}/{max}.",
+  "campaignRefillForGems": "Für {count} Edelsteine auffüllen",
+  "campaignComplete": "Du hast jeden bekannten Traum bezwungen. Weitere Welten folgen bald.",
+  "campaignEnergySemantic": "Energie {current} von {max}",
+  "campaignStageSwept": "Abschnitt {stage} geräumt",
+  "campaignSweepPayout": "+{gold} Gold · +{exp} EP"
 }

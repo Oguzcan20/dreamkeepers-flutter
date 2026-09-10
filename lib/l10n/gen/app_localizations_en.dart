@@ -36,6 +36,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get commonBack => 'Back';
 
   @override
+  String get commonOk => 'OK';
+
+  @override
   String commonAmountGold(int count) {
     return '$count Gold';
   }
@@ -448,5 +451,72 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String shopTicketsGranted(int count) {
     return '+$count Tickets';
+  }
+
+  @override
+  String campaignStageLabel(int stage) {
+    return 'Stage $stage';
+  }
+
+  @override
+  String campaignBossStageLabel(int stage) {
+    return 'Boss Stage $stage';
+  }
+
+  @override
+  String get campaignStageLockedSuffix => ', locked';
+
+  @override
+  String get campaignStageClearedSuffix => ', cleared';
+
+  @override
+  String campaignStageClearedTitle(int stage) {
+    return 'Stage $stage — already cleared';
+  }
+
+  @override
+  String get campaignStageClearedBody =>
+      'Replay the battle for the same rewards, or skip straight to the payout.';
+
+  @override
+  String campaignFightCost(int cost) {
+    return 'Fight ($cost Energy)';
+  }
+
+  @override
+  String campaignSweepCost(int cost) {
+    return 'Sweep — Instant Clear ($cost Energy)';
+  }
+
+  @override
+  String get campaignNotEnoughEnergyTitle => 'Not Enough Energy';
+
+  @override
+  String campaignNotEnoughEnergyBody(int cost, int current, int max) {
+    return 'This stage costs $cost Energy. You have $current/$max.';
+  }
+
+  @override
+  String campaignRefillForGems(int count) {
+    return 'Refill for $count Gems';
+  }
+
+  @override
+  String get campaignComplete =>
+      'You\'ve cleared every known dream. More worlds are on the way.';
+
+  @override
+  String campaignEnergySemantic(int current, int max) {
+    return 'Energy $current of $max';
+  }
+
+  @override
+  String campaignStageSwept(int stage) {
+    return 'Stage $stage swept';
+  }
+
+  @override
+  String campaignSweepPayout(int gold, int exp) {
+    return '+$gold Gold · +$exp EXP';
   }
 }

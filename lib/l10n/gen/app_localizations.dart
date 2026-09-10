@@ -152,6 +152,12 @@ abstract class AppLocalizations {
   /// **'Back'**
   String get commonBack;
 
+  /// No description provided for @commonOk.
+  ///
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get commonOk;
+
   /// No description provided for @commonAmountGold.
   ///
   /// In en, this message translates to:
@@ -847,6 +853,96 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'+{count} Tickets'**
   String shopTicketsGranted(int count);
+
+  /// No description provided for @campaignStageLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Stage {stage}'**
+  String campaignStageLabel(int stage);
+
+  /// No description provided for @campaignBossStageLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Boss Stage {stage}'**
+  String campaignBossStageLabel(int stage);
+
+  /// No description provided for @campaignStageLockedSuffix.
+  ///
+  /// In en, this message translates to:
+  /// **', locked'**
+  String get campaignStageLockedSuffix;
+
+  /// No description provided for @campaignStageClearedSuffix.
+  ///
+  /// In en, this message translates to:
+  /// **', cleared'**
+  String get campaignStageClearedSuffix;
+
+  /// No description provided for @campaignStageClearedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Stage {stage} — already cleared'**
+  String campaignStageClearedTitle(int stage);
+
+  /// No description provided for @campaignStageClearedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Replay the battle for the same rewards, or skip straight to the payout.'**
+  String get campaignStageClearedBody;
+
+  /// No description provided for @campaignFightCost.
+  ///
+  /// In en, this message translates to:
+  /// **'Fight ({cost} Energy)'**
+  String campaignFightCost(int cost);
+
+  /// No description provided for @campaignSweepCost.
+  ///
+  /// In en, this message translates to:
+  /// **'Sweep — Instant Clear ({cost} Energy)'**
+  String campaignSweepCost(int cost);
+
+  /// No description provided for @campaignNotEnoughEnergyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Not Enough Energy'**
+  String get campaignNotEnoughEnergyTitle;
+
+  /// No description provided for @campaignNotEnoughEnergyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This stage costs {cost} Energy. You have {current}/{max}.'**
+  String campaignNotEnoughEnergyBody(int cost, int current, int max);
+
+  /// No description provided for @campaignRefillForGems.
+  ///
+  /// In en, this message translates to:
+  /// **'Refill for {count} Gems'**
+  String campaignRefillForGems(int count);
+
+  /// No description provided for @campaignComplete.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve cleared every known dream. More worlds are on the way.'**
+  String get campaignComplete;
+
+  /// No description provided for @campaignEnergySemantic.
+  ///
+  /// In en, this message translates to:
+  /// **'Energy {current} of {max}'**
+  String campaignEnergySemantic(int current, int max);
+
+  /// No description provided for @campaignStageSwept.
+  ///
+  /// In en, this message translates to:
+  /// **'Stage {stage} swept'**
+  String campaignStageSwept(int stage);
+
+  /// No description provided for @campaignSweepPayout.
+  ///
+  /// In en, this message translates to:
+  /// **'+{gold} Gold · +{exp} EXP'**
+  String campaignSweepPayout(int gold, int exp);
 }
 
 class _AppLocalizationsDelegate
