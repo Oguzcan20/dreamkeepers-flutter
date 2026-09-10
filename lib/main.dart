@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import 'platform/ad_reward_service.dart';
 import 'platform/consent_manager.dart';
+import 'platform/flutter_platform_service.dart';
 import 'platform/game_services_service.dart';
 import 'platform/google_sign_in_service.dart';
 import 'platform/interstitial_ad_service.dart';
@@ -26,6 +27,7 @@ Future<void> main() async {
   // Play-Console-product caveats until real Android IDs replace them.
   await MobileAds.instance.initialize();
   final gameState = await GameState.create(
+    platform: FlutterPlatformService(),
     adService: AdMobRewardService(),
     interstitialAdService: AdMobInterstitialAdService(),
     purchaseService: GooglePlayPurchaseService(),

@@ -3,8 +3,10 @@ enum HapticStyle { light, success, warning, levelUp }
 
 /// UI/gameplay sound cues (spec: Button Click, Level Up, Loot, Summon, Skill,
 /// Ultimate, Boss, Reward). Mirrors PlatformService.swift's `SoundEffect`
-/// exactly.
-enum SoundEffect { buttonTap, levelUp, loot, summon, skill, ultimate, bossEncounter, reward }
+/// exactly. The battle cues (`skill`, `ultimate`, `bossEncounter`,
+/// `bossVictory`) are backed by real composed audio files in `assets/audio/`
+/// when a `FlutterPlatformService` is wired in — see that class.
+enum SoundEffect { buttonTap, levelUp, loot, summon, skill, ultimate, bossEncounter, bossVictory, reward }
 
 /// Lets `GameState.playHaptic` fire a matching sound automatically at every
 /// existing haptic call site, instead of doubling up every call site by

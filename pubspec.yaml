@@ -42,6 +42,7 @@ dependencies:
   in_app_purchase: ^3.2.3
   games_services: ^5.0.0
   google_sign_in: 6.3.0
+  audioplayers: ^6.6.0
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +71,11 @@ flutter:
   # platform parity — see lib/theme/theme.dart and lib/theme/art_manifest.dart.
   assets:
     - assets/art/
+    # Composed cinematic battle cues (boss encounter/victory, Ultimate,
+    # Active Skill), mirrored from the iOS build — see
+    # lib/platform/flutter_platform_service.dart. Generated procedurally by
+    # scripts/synth_battle_audio.py in the iOS repo (no third-party samples).
+    - assets/audio/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

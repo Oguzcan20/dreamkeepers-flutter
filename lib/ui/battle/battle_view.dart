@@ -217,6 +217,9 @@ class _BattleViewState extends State<BattleView> with SingleTickerProviderStateM
       if (_engine.outcome != null && !_showOutcomeOverlay) {
         _timer?.cancel();
         _gameState.playHaptic(_engine.outcome == BattleOutcome.victory ? HapticStyle.success : HapticStyle.warning);
+        if (_engine.outcome == BattleOutcome.victory && _engine.isBossStage) {
+          _gameState.playSound(SoundEffect.bossVictory);
+        }
         setState(() => _showOutcomeOverlay = true);
       }
     });
