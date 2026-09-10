@@ -106,6 +106,10 @@ class BattleResultView extends StatelessWidget {
           stagger(_perfectClearBanner()),
           const SizedBox(height: 14),
         ],
+        if (summary.completedWorldNumber != null) ...[
+          stagger(_worldCompletedBanner(summary.completedWorldNumber!)),
+          const SizedBox(height: 14),
+        ],
         IntrinsicHeight(
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -155,6 +159,37 @@ class BattleResultView extends StatelessWidget {
           _CountUpRow(icon: 'paid', tint: dk_theme.Theme.gold, label: 'Gold', value: summary.goldGained),
           const SizedBox(height: 8),
           _CountUpRow(icon: 'star.circle.fill', tint: dk_theme.Theme.softBlue, label: 'EXP', value: summary.expGained),
+          if (summary.gemsGained > 0) ...[
+            const SizedBox(height: 8),
+            _CountUpRow(icon: 'sparkles', tint: dk_theme.Theme.violet, label: 'Dream Gems', value: summary.gemsGained),
+          ],
+        ],
+      ),
+    );
+  }
+
+  /// Called out the same way `_perfectClearBanner` is — a whole World just
+  /// got cleared for the first time, which is rarer and more significant
+  /// than a single stage win, so it gets its own banner above the reward
+  /// tiles rather than blending into the gem count alone.
+  Widget _worldCompletedBanner(int worldNumber) {
+    return dk_theme.GlassCard(
+      child: Row(
+        children: [
+          Icon(sfSymbol('sparkles'), color: dk_theme.Theme.violet, size: 22),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text('World $worldNumber Completed!',
+                    style: TextStyle(color: dk_theme.Theme.violet, fontWeight: FontWeight.bold, fontSize: 14)),
+                Text('+${summary.gemsGained} Dream Gems',
+                    style: TextStyle(color: Colors.white.withValues(alpha: 0.65), fontSize: 12)),
+              ],
+            ),
+          ),
         ],
       ),
     );

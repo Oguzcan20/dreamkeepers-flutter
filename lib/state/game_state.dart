@@ -143,6 +143,13 @@ class BattleResultSummary {
   final bool isPerfectClear;
   final int perfectClearBonusGold;
 
+  /// Dream Gems from `WorldClearRewardSystem` — non-zero only the instant a
+  /// World's boss is cleared for the first time.
+  final int gemsGained;
+  /// Non-null exactly when `gemsGained` was just paid out — the World that
+  /// was just completed.
+  final int? completedWorldNumber;
+
   const BattleResultSummary({
     required this.outcome,
     required this.stage,
@@ -155,6 +162,8 @@ class BattleResultSummary {
     this.accountLevelUp,
     this.isPerfectClear = false,
     this.perfectClearBonusGold = 0,
+    this.gemsGained = 0,
+    this.completedWorldNumber,
   });
 }
 
@@ -745,6 +754,8 @@ class GameState extends ChangeNotifier {
     EquipmentItem? droppedEquipment;
     AccountLevelUp? accountLevelUp;
     var perfectClearBonusGold = 0;
+    var gemsGained = 0;
+    int? completedWorldNumber;
     final isPerfectClear = outcome == BattleOutcome.victory &&
         engine.playerUnits.isNotEmpty &&
         engine.playerUnits.every((u) => u.currentHP >= u.maxHP);
@@ -820,6 +831,15 @@ class GameState extends ChangeNotifier {
 
         if (isBoss) {
           newRecruit = _grantNextRecruitIfAvailable();
+
+          // A whole World's worth of stages just got cleared for the first
+          // time — pay out the Dream Gems bonus on top of the recruit.
+          // Every 5th completed World pays the bigger milestone amount
+          // instead of the standard one.
+          final worldNumber = WorldCatalog.world(stage).id;
+          gemsGained = WorldClearRewardSystem.gems(forCompletedWorld: worldNumber);
+          _save.dreamGems += gemsGained;
+          completedWorldNumber = worldNumber;
         }
       }
     }
@@ -838,6 +858,8 @@ class GameState extends ChangeNotifier {
       accountLevelUp: accountLevelUp,
       isPerfectClear: isPerfectClear,
       perfectClearBonusGold: perfectClearBonusGold,
+      gemsGained: gemsGained,
+      completedWorldNumber: completedWorldNumber,
     );
   }
 

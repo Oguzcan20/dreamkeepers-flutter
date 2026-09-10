@@ -15,6 +15,7 @@ import 'package:dreamkeepers/persistence/game_save.dart';
 import 'package:dreamkeepers/persistence/save_system.dart';
 import 'package:dreamkeepers/progression/energy_system.dart';
 import 'package:dreamkeepers/progression/level_system.dart';
+import 'package:dreamkeepers/progression/rewards.dart';
 import 'package:dreamkeepers/progression/star_fusion_system.dart';
 import 'package:dreamkeepers/progression/summon_system.dart';
 import 'package:dreamkeepers/state/game_state.dart';
@@ -207,6 +208,91 @@ void main() {
       if (result.outcome == BattleOutcome.defeat) {
         expect(state.currentStage, 30);
       }
+    });
+  });
+
+  group('World clear gems', () {
+    test('standard worlds pay 50 gems', () {
+      // Worlds 1-4 each pay the standard amount.
+      for (var world = 1; world <= 4; world++) {
+        expect(WorldClearRewardSystem.gems(forCompletedWorld: world), 50, reason: 'World $world');
+      }
+      // Worlds 6-9 pay the standard amount again, after the World 5 spike.
+      for (var world = 6; world <= 9; world++) {
+        expect(WorldClearRewardSystem.gems(forCompletedWorld: world), 50, reason: 'World $world');
+      }
+    });
+
+    test('every 5th world pays the milestone amount instead', () {
+      // Never additive — the milestone amount replaces the standard one on
+      // that world only, it isn't 50 + 100.
+      expect(WorldClearRewardSystem.gems(forCompletedWorld: 5), 100);
+      expect(WorldClearRewardSystem.gems(forCompletedWorld: 10), 100);
+      expect(WorldClearRewardSystem.gems(forCompletedWorld: 15), 100);
+      expect(WorldClearRewardSystem.gems(forCompletedWorld: 20), 100);
+    });
+
+    test('non-boss stage clears grant no gems', () async {
+      final state = await _freshState();
+      final summary = _winCurrentStage(state);
+
+      expect(summary.gemsGained, 0);
+      expect(summary.completedWorldNumber, isNull);
+    });
+
+    test('first boss clear grants the standard gems and reports the completed world', () async {
+      final state = await _freshState();
+      // `GameState.create` seeds a starting Dream Gems balance, so every
+      // assertion here is relative to that baseline rather than assuming
+      // the save starts at zero.
+      final startingGems = state.save.dreamGems;
+      // World 1 is stages 1-5 — clear the first four non-boss stages to put
+      // the frontier at the boss stage, matching how the campaign is
+      // actually played rather than jumping straight to stage 5.
+      for (var i = 0; i < 4; i++) {
+        _winCurrentStage(state);
+      }
+      expect(state.save.dreamGems, startingGems, reason: 'Non-boss clears must not grant World-clear gems');
+
+      final summary = _winCurrentStage(state, isBossStage: true);
+
+      expect(summary.gemsGained, 50);
+      expect(summary.completedWorldNumber, 1);
+      expect(state.save.dreamGems, startingGems + 50);
+    });
+
+    test('replaying an already-cleared boss never re-grants gems', () async {
+      final state = await _freshState();
+      final startingGems = state.save.dreamGems;
+      for (var i = 0; i < 4; i++) {
+        _winCurrentStage(state);
+      }
+      _winCurrentStage(state, isBossStage: true);
+      expect(state.save.dreamGems, startingGems + 50);
+
+      // The frontier has moved on to stage 6 — sweeping stage 5 again is a
+      // replay, same `wasFrontierClear` gate the recruit grant already
+      // relies on, and must not pay out a second time.
+      final replaySummary = state.sweepStage(5);
+
+      expect(replaySummary, isNotNull);
+      expect(replaySummary!.gemsGained, 0);
+      expect(replaySummary.completedWorldNumber, isNull);
+      expect(state.save.dreamGems, startingGems + 50);
+    });
+
+    test('fifth world boss clear grants the milestone amount', () async {
+      final state = await _freshState();
+      final startingGems = state.save.dreamGems;
+      // Fast-forward straight to World 5's boss frontier (stage 25) rather
+      // than clearing 24 stages one at a time.
+      state.debugSeedStage(25);
+
+      final summary = _winCurrentStage(state, isBossStage: true);
+
+      expect(summary.gemsGained, 100);
+      expect(summary.completedWorldNumber, 5);
+      expect(state.save.dreamGems, startingGems + 100);
     });
   });
 

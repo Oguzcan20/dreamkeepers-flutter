@@ -36,3 +36,21 @@ class RewardTable {
     );
   }
 }
+
+/// Dream Gems granted the first time a World's boss is cleared (see
+/// `GameState.applyBattleResult`'s `wasFrontierClear` guard — replaying an
+/// already-cleared boss never re-grants this, same rule as the recruit
+/// grant). Every 5th completed World pays a bigger one-time bonus instead of
+/// the standard amount: worlds 1-4 pay 50, world 5 pays 100, worlds 6-9 pay
+/// 50 again, world 10 pays 100, and so on — never additive with the
+/// standard amount, just a bigger flat payout on the milestone world.
+/// Mirrors GameCore/Progression/Rewards.swift's WorldClearRewardSystem
+/// exactly.
+class WorldClearRewardSystem {
+  static const int standardGems = 50;
+  static const int milestoneGems = 100;
+  static const int milestoneInterval = 5;
+
+  static int gems({required int forCompletedWorld}) =>
+      forCompletedWorld % milestoneInterval == 0 ? milestoneGems : standardGems;
+}
