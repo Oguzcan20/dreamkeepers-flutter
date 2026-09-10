@@ -4430,6 +4430,1266 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Elyndor, the Dreaming God'**
   String get world30Boss;
+
+  /// No description provided for @monBrambleStalker.
+  ///
+  /// In en, this message translates to:
+  /// **'Bramble Stalker'**
+  String get monBrambleStalker;
+
+  /// No description provided for @monBrambleStalkerLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Creeps through the tall grass, thorns bristling at the first sign of a footstep.'**
+  String get monBrambleStalkerLore;
+
+  /// No description provided for @monDustWisp.
+  ///
+  /// In en, this message translates to:
+  /// **'Dust Wisp'**
+  String get monDustWisp;
+
+  /// No description provided for @monDustWispLore.
+  ///
+  /// In en, this message translates to:
+  /// **'A loose knot of drifting pollen and static, harmless until it swarms.'**
+  String get monDustWispLore;
+
+  /// No description provided for @monMeadowSprite.
+  ///
+  /// In en, this message translates to:
+  /// **'Meadow Sprite'**
+  String get monMeadowSprite;
+
+  /// No description provided for @monMeadowSpriteLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Small, quick, and fiercely territorial over its patch of clover.'**
+  String get monMeadowSpriteLore;
+
+  /// No description provided for @monSunpetalGuardian.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunpetal Guardian'**
+  String get monSunpetalGuardian;
+
+  /// No description provided for @monSunpetalGuardianLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Blooms once at dawn and stands watch over the meadow until dusk.'**
+  String get monSunpetalGuardianLore;
+
+  /// No description provided for @monGloomHound.
+  ///
+  /// In en, this message translates to:
+  /// **'Gloom Hound'**
+  String get monGloomHound;
+
+  /// No description provided for @monGloomHoundLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Hunts in the space between shadows, never quite where you last saw it.'**
+  String get monGloomHoundLore;
+
+  /// No description provided for @monHollowShade.
+  ///
+  /// In en, this message translates to:
+  /// **'Hollow Shade'**
+  String get monHollowShade;
+
+  /// No description provided for @monHollowShadeLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Wears the shape of a forgotten dream, hollow at the center.'**
+  String get monHollowShadeLore;
+
+  /// No description provided for @monNightWisp.
+  ///
+  /// In en, this message translates to:
+  /// **'Night Wisp'**
+  String get monNightWisp;
+
+  /// No description provided for @monNightWispLore.
+  ///
+  /// In en, this message translates to:
+  /// **'A cold ember of moonlight that flickers whenever it\'s watched.'**
+  String get monNightWispLore;
+
+  /// No description provided for @monThornbackProwler.
+  ///
+  /// In en, this message translates to:
+  /// **'Thornback Prowler'**
+  String get monThornbackProwler;
+
+  /// No description provided for @monThornbackProwlerLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Silent on the forest floor, its spines the only warning it gives.'**
+  String get monThornbackProwlerLore;
+
+  /// No description provided for @monRiftCrawler.
+  ///
+  /// In en, this message translates to:
+  /// **'Rift Crawler'**
+  String get monRiftCrawler;
+
+  /// No description provided for @monRiftCrawlerLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Skitters along cracks in the cavern walls where light doesn\'t quite reach.'**
+  String get monRiftCrawlerLore;
+
+  /// No description provided for @monFrostWisp.
+  ///
+  /// In en, this message translates to:
+  /// **'Frost Wisp'**
+  String get monFrostWisp;
+
+  /// No description provided for @monFrostWispLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Breathes out a thin, glittering cold that clings to whatever it touches.'**
+  String get monFrostWispLore;
+
+  /// No description provided for @monCavernSerpent.
+  ///
+  /// In en, this message translates to:
+  /// **'Cavern Serpent'**
+  String get monCavernSerpent;
+
+  /// No description provided for @monCavernSerpentLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Coils through the underground tides, patient and impossibly long.'**
+  String get monCavernSerpentLore;
+
+  /// No description provided for @monCrystalWisp.
+  ///
+  /// In en, this message translates to:
+  /// **'Crystal Wisp'**
+  String get monCrystalWisp;
+
+  /// No description provided for @monCrystalWispLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Refracts every sound in the cavern into a faint, discordant chime.'**
+  String get monCrystalWispLore;
+
+  /// No description provided for @monStarfang.
+  ///
+  /// In en, this message translates to:
+  /// **'Starfang'**
+  String get monStarfang;
+
+  /// No description provided for @monStarfangLore.
+  ///
+  /// In en, this message translates to:
+  /// **'A shard of an old star given teeth, prowling the meteor fields.'**
+  String get monStarfangLore;
+
+  /// No description provided for @monCometpaw.
+  ///
+  /// In en, this message translates to:
+  /// **'Cometpaw'**
+  String get monCometpaw;
+
+  /// No description provided for @monCometpawLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Leaves a trail of dying light with every leap between floating peaks.'**
+  String get monCometpawLore;
+
+  /// No description provided for @monAstralwing.
+  ///
+  /// In en, this message translates to:
+  /// **'Astralwing'**
+  String get monAstralwing;
+
+  /// No description provided for @monAstralwingLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Circles the star temple ruins on wings woven from old constellations.'**
+  String get monAstralwingLore;
+
+  /// No description provided for @monStardustling.
+  ///
+  /// In en, this message translates to:
+  /// **'Stardustling'**
+  String get monStardustling;
+
+  /// No description provided for @monStardustlingLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Small and glittering, it scatters into motes when startled.'**
+  String get monStardustlingLore;
+
+  /// No description provided for @monCosmobite.
+  ///
+  /// In en, this message translates to:
+  /// **'Cosmobite'**
+  String get monCosmobite;
+
+  /// No description provided for @monCosmobiteLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Its bite carries a cold, distant chill from beyond the sky.'**
+  String get monCosmobiteLore;
+
+  /// No description provided for @monNebulaclaw.
+  ///
+  /// In en, this message translates to:
+  /// **'Nebulaclaw'**
+  String get monNebulaclaw;
+
+  /// No description provided for @monNebulaclawLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Claws wreathed in drifting cosmic haze, silent as vacuum.'**
+  String get monNebulaclawLore;
+
+  /// No description provided for @monStarhorn.
+  ///
+  /// In en, this message translates to:
+  /// **'Starhorn'**
+  String get monStarhorn;
+
+  /// No description provided for @monStarhornLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Charges the crystal spires of Starfall Peaks head-first.'**
+  String get monStarhornLore;
+
+  /// No description provided for @monCometscale.
+  ///
+  /// In en, this message translates to:
+  /// **'Cometscale'**
+  String get monCometscale;
+
+  /// No description provided for @monCometscaleLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Scales that shed light long after the creature has moved on.'**
+  String get monCometscaleLore;
+
+  /// No description provided for @monMoonfang.
+  ///
+  /// In en, this message translates to:
+  /// **'Moonfang'**
+  String get monMoonfang;
+
+  /// No description provided for @monMoonfangLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Wanders the broken buildings, howling at a moon no one else remembers.'**
+  String get monMoonfangLore;
+
+  /// No description provided for @monDuskhorn.
+  ///
+  /// In en, this message translates to:
+  /// **'Duskhorn'**
+  String get monDuskhorn;
+
+  /// No description provided for @monDuskhornLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Charges out of the dense fog before its silhouette ever resolves.'**
+  String get monDuskhornLore;
+
+  /// No description provided for @monNightclaw.
+  ///
+  /// In en, this message translates to:
+  /// **'Nightclaw'**
+  String get monNightclaw;
+
+  /// No description provided for @monNightclawLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Claws that leave no mark, only the memory of having been cut.'**
+  String get monNightclawLore;
+
+  /// No description provided for @monShadowtail.
+  ///
+  /// In en, this message translates to:
+  /// **'Shadowtail'**
+  String get monShadowtail;
+
+  /// No description provided for @monShadowtailLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Its tail lags a full second behind the rest of its body.'**
+  String get monShadowtailLore;
+
+  /// No description provided for @monEclipsepaw.
+  ///
+  /// In en, this message translates to:
+  /// **'Eclipsepaw'**
+  String get monEclipsepaw;
+
+  /// No description provided for @monEclipsepawLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Steps between floating ruin-fragments as if they were solid ground.'**
+  String get monEclipsepawLore;
+
+  /// No description provided for @monDreamstalker.
+  ///
+  /// In en, this message translates to:
+  /// **'Dreamstalker'**
+  String get monDreamstalker;
+
+  /// No description provided for @monDreamstalkerLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Follows dreamers through the fog long after they\'ve woken.'**
+  String get monDreamstalkerLore;
+
+  /// No description provided for @monMoonscale.
+  ///
+  /// In en, this message translates to:
+  /// **'Moonscale'**
+  String get monMoonscale;
+
+  /// No description provided for @monMoonscaleLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Scales that dim and brighten with a moon phase all their own.'**
+  String get monMoonscaleLore;
+
+  /// No description provided for @monGloomfang.
+  ///
+  /// In en, this message translates to:
+  /// **'Gloomfang'**
+  String get monGloomfang;
+
+  /// No description provided for @monGloomfangLore.
+  ///
+  /// In en, this message translates to:
+  /// **'A last echo of the dream this ruined city used to be.'**
+  String get monGloomfangLore;
+
+  /// No description provided for @monCinderfang.
+  ///
+  /// In en, this message translates to:
+  /// **'Cinderfang'**
+  String get monCinderfang;
+
+  /// No description provided for @monCinderfangLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Prowls the ash fields, jaws glowing faintly with banked heat.'**
+  String get monCinderfangLore;
+
+  /// No description provided for @monAshclaw.
+  ///
+  /// In en, this message translates to:
+  /// **'Ashclaw'**
+  String get monAshclaw;
+
+  /// No description provided for @monAshclawLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Leaves smoldering prints across the black volcanic rock.'**
+  String get monAshclawLore;
+
+  /// No description provided for @monFlamehorn.
+  ///
+  /// In en, this message translates to:
+  /// **'Flamehorn'**
+  String get monFlamehorn;
+
+  /// No description provided for @monFlamehornLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Charges lava lakes head-on without slowing.'**
+  String get monFlamehornLore;
+
+  /// No description provided for @monScorchling.
+  ///
+  /// In en, this message translates to:
+  /// **'Scorchling'**
+  String get monScorchling;
+
+  /// No description provided for @monScorchlingLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Small, quick, and always a little too close to catching fire.'**
+  String get monScorchlingLore;
+
+  /// No description provided for @monEmbermaw.
+  ///
+  /// In en, this message translates to:
+  /// **'Embermaw'**
+  String get monEmbermaw;
+
+  /// No description provided for @monEmbermawLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Its bite carries the heat of a coal that never quite cools.'**
+  String get monEmbermawLore;
+
+  /// No description provided for @monBlazetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Blazetail'**
+  String get monBlazetail;
+
+  /// No description provided for @monBlazetailLore.
+  ///
+  /// In en, this message translates to:
+  /// **'A whip-crack tail that leaves a line of fire in the ash.'**
+  String get monBlazetailLore;
+
+  /// No description provided for @monMagmabite.
+  ///
+  /// In en, this message translates to:
+  /// **'Magmabite'**
+  String get monMagmabite;
+
+  /// No description provided for @monMagmabiteLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Bites clean through cooled rock crust in search of the wastes\' heat.'**
+  String get monMagmabiteLore;
+
+  /// No description provided for @monCharhound.
+  ///
+  /// In en, this message translates to:
+  /// **'Charhound'**
+  String get monCharhound;
+
+  /// No description provided for @monCharhoundLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Hunts in the choking ash clouds by scent alone.'**
+  String get monCharhoundLore;
+
+  /// No description provided for @monPyrewing.
+  ///
+  /// In en, this message translates to:
+  /// **'Pyrewing'**
+  String get monPyrewing;
+
+  /// No description provided for @monPyrewingLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Circles the burning ruins on wings of drifting ember.'**
+  String get monPyrewingLore;
+
+  /// No description provided for @monInferclaw.
+  ///
+  /// In en, this message translates to:
+  /// **'Inferclaw'**
+  String get monInferclaw;
+
+  /// No description provided for @monInferclawLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Claws still hot from the lava lake it just crawled out of.'**
+  String get monInferclawLore;
+
+  /// No description provided for @monCoalback.
+  ///
+  /// In en, this message translates to:
+  /// **'Coalback'**
+  String get monCoalback;
+
+  /// No description provided for @monCoalbackLore.
+  ///
+  /// In en, this message translates to:
+  /// **'A ridged spine that glows brighter the angrier it gets.'**
+  String get monCoalbackLore;
+
+  /// No description provided for @monSearscale.
+  ///
+  /// In en, this message translates to:
+  /// **'Searscale'**
+  String get monSearscale;
+
+  /// No description provided for @monSearscaleLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Scales that scald anything that gets too close.'**
+  String get monSearscaleLore;
+
+  /// No description provided for @monFlarefang.
+  ///
+  /// In en, this message translates to:
+  /// **'Flarefang'**
+  String get monFlarefang;
+
+  /// No description provided for @monFlarefangLore.
+  ///
+  /// In en, this message translates to:
+  /// **'A sudden burst of light and teeth from the ash cloud.'**
+  String get monFlarefangLore;
+
+  /// No description provided for @monBurnpaw.
+  ///
+  /// In en, this message translates to:
+  /// **'Burnpaw'**
+  String get monBurnpaw;
+
+  /// No description provided for @monBurnpawLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Leaves scorched pawprints wherever it walks.'**
+  String get monBurnpawLore;
+
+  /// No description provided for @monIgnisprite.
+  ///
+  /// In en, this message translates to:
+  /// **'Ignisprite'**
+  String get monIgnisprite;
+
+  /// No description provided for @monIgnispriteLore.
+  ///
+  /// In en, this message translates to:
+  /// **'A tiny fire-spirit born from a stray cinder off Ignivar\'s own flame.'**
+  String get monIgnispriteLore;
+
+  /// No description provided for @monAshenox.
+  ///
+  /// In en, this message translates to:
+  /// **'Ashenox'**
+  String get monAshenox;
+
+  /// No description provided for @monAshenoxLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Wears a coat of drifting ash over skin still smoldering beneath.'**
+  String get monAshenoxLore;
+
+  /// No description provided for @monMistfin.
+  ///
+  /// In en, this message translates to:
+  /// **'Mistfin'**
+  String get monMistfin;
+
+  /// No description provided for @monMistfinLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Slips through the coral forest wrapped in a veil of cold mist.'**
+  String get monMistfinLore;
+
+  /// No description provided for @monTideclaw.
+  ///
+  /// In en, this message translates to:
+  /// **'Tideclaw'**
+  String get monTideclaw;
+
+  /// No description provided for @monTideclawLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Claws that pull with the force of a rising tide.'**
+  String get monTideclawLore;
+
+  /// No description provided for @monRipplefang.
+  ///
+  /// In en, this message translates to:
+  /// **'Ripplefang'**
+  String get monRipplefang;
+
+  /// No description provided for @monRipplefangLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Every bite sends a ring of current rippling outward.'**
+  String get monRipplefangLore;
+
+  /// No description provided for @monAquabite.
+  ///
+  /// In en, this message translates to:
+  /// **'Aquabite'**
+  String get monAquabite;
+
+  /// No description provided for @monAquabiteLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Small and quick, darting between sunken temple pillars.'**
+  String get monAquabiteLore;
+
+  /// No description provided for @monWavepup.
+  ///
+  /// In en, this message translates to:
+  /// **'Wavepup'**
+  String get monWavepup;
+
+  /// No description provided for @monWavepupLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Young and playful, riding the abyss\'s slow deep currents.'**
+  String get monWavepupLore;
+
+  /// No description provided for @monRainscale.
+  ///
+  /// In en, this message translates to:
+  /// **'Rainscale'**
+  String get monRainscale;
+
+  /// No description provided for @monRainscaleLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Scales that weep a constant, cold trickle of seawater.'**
+  String get monRainscaleLore;
+
+  /// No description provided for @monDeepfin.
+  ///
+  /// In en, this message translates to:
+  /// **'Deepfin'**
+  String get monDeepfin;
+
+  /// No description provided for @monDeepfinLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Never surfaces — the trench is the only home it has known.'**
+  String get monDeepfinLore;
+
+  /// No description provided for @monBrookling.
+  ///
+  /// In en, this message translates to:
+  /// **'Brookling'**
+  String get monBrookling;
+
+  /// No description provided for @monBrooklingLore.
+  ///
+  /// In en, this message translates to:
+  /// **'A trickle of a creature that pools into something larger when threatened.'**
+  String get monBrooklingLore;
+
+  /// No description provided for @monFrostgill.
+  ///
+  /// In en, this message translates to:
+  /// **'Frostgill'**
+  String get monFrostgill;
+
+  /// No description provided for @monFrostgillLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Gills that chill the water for a body length in every direction.'**
+  String get monFrostgillLore;
+
+  /// No description provided for @monStormfin.
+  ///
+  /// In en, this message translates to:
+  /// **'Stormfin'**
+  String get monStormfin;
+
+  /// No description provided for @monStormfinLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Churns the water into a squall wherever it swims.'**
+  String get monStormfinLore;
+
+  /// No description provided for @monPearlmaw.
+  ///
+  /// In en, this message translates to:
+  /// **'Pearlmaw'**
+  String get monPearlmaw;
+
+  /// No description provided for @monPearlmawLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Its jaw glints with a lifetime of swallowed pearls.'**
+  String get monPearlmawLore;
+
+  /// No description provided for @monSplashpaw.
+  ///
+  /// In en, this message translates to:
+  /// **'Splashpaw'**
+  String get monSplashpaw;
+
+  /// No description provided for @monSplashpawLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Bounds along the sunken temple floor in bursts of current.'**
+  String get monSplashpawLore;
+
+  /// No description provided for @monDrownscale.
+  ///
+  /// In en, this message translates to:
+  /// **'Drownscale'**
+  String get monDrownscale;
+
+  /// No description provided for @monDrownscaleLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Legend says it once pulled an entire temple beneath the waves.'**
+  String get monDrownscaleLore;
+
+  /// No description provided for @monRiverfang.
+  ///
+  /// In en, this message translates to:
+  /// **'Riverfang'**
+  String get monRiverfang;
+
+  /// No description provided for @monRiverfangLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Older than the abyss itself, or so the coral forest tells it.'**
+  String get monRiverfangLore;
+
+  /// No description provided for @monMistcrawler.
+  ///
+  /// In en, this message translates to:
+  /// **'Mistcrawler'**
+  String get monMistcrawler;
+
+  /// No description provided for @monMistcrawlerLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Crawls along the trench floor where no light has ever reached.'**
+  String get monMistcrawlerLore;
+
+  /// No description provided for @monAbyssfin.
+  ///
+  /// In en, this message translates to:
+  /// **'Abyssfin'**
+  String get monAbyssfin;
+
+  /// No description provided for @monAbyssfinLore.
+  ///
+  /// In en, this message translates to:
+  /// **'The deepest-dwelling of Thalassor\'s countless subjects.'**
+  String get monAbyssfinLore;
+
+  /// No description provided for @monThornpaw.
+  ///
+  /// In en, this message translates to:
+  /// **'Thornpaw'**
+  String get monThornpaw;
+
+  /// No description provided for @monThornpawLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Pads silently through root tunnels wider than any road.'**
+  String get monThornpawLore;
+
+  /// No description provided for @monMossfang.
+  ///
+  /// In en, this message translates to:
+  /// **'Mossfang'**
+  String get monMossfang;
+
+  /// No description provided for @monMossfangLore.
+  ///
+  /// In en, this message translates to:
+  /// **'So thickly covered in moss it looks like part of the jungle floor.'**
+  String get monMossfangLore;
+
+  /// No description provided for @monLeafling.
+  ///
+  /// In en, this message translates to:
+  /// **'Leafling'**
+  String get monLeafling;
+
+  /// No description provided for @monLeaflingLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Small and quick, camouflaged among the oversized canopy.'**
+  String get monLeaflingLore;
+
+  /// No description provided for @monRootclaw.
+  ///
+  /// In en, this message translates to:
+  /// **'Rootclaw'**
+  String get monRootclaw;
+
+  /// No description provided for @monRootclawLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Claws grown from a root that never stopped reaching.'**
+  String get monRootclawLore;
+
+  /// No description provided for @monVinebeast.
+  ///
+  /// In en, this message translates to:
+  /// **'Vinebeast'**
+  String get monVinebeast;
+
+  /// No description provided for @monVinebeastLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Trails living vine behind it as it moves through the undergrowth.'**
+  String get monVinebeastLore;
+
+  /// No description provided for @monBloomtail.
+  ///
+  /// In en, this message translates to:
+  /// **'Bloomtail'**
+  String get monBloomtail;
+
+  /// No description provided for @monBloomtailLore.
+  ///
+  /// In en, this message translates to:
+  /// **'A flowering tail that opens only when it senses a threat.'**
+  String get monBloomtailLore;
+
+  /// No description provided for @monPetalhorn.
+  ///
+  /// In en, this message translates to:
+  /// **'Petalhorn'**
+  String get monPetalhorn;
+
+  /// No description provided for @monPetalhornLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Charges beneath an oversized, brilliantly colored bloom.'**
+  String get monPetalhornLore;
+
+  /// No description provided for @monBarkhide.
+  ///
+  /// In en, this message translates to:
+  /// **'Barkhide'**
+  String get monBarkhide;
+
+  /// No description provided for @monBarkhideLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Skin as tough and gnarled as the jungle\'s oldest trees.'**
+  String get monBarkhideLore;
+
+  /// No description provided for @monSporeling.
+  ///
+  /// In en, this message translates to:
+  /// **'Sporeling'**
+  String get monSporeling;
+
+  /// No description provided for @monSporelingLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Releases a faint cloud of spores whenever it\'s startled.'**
+  String get monSporelingLore;
+
+  /// No description provided for @monWildthorn.
+  ///
+  /// In en, this message translates to:
+  /// **'Wildthorn'**
+  String get monWildthorn;
+
+  /// No description provided for @monWildthornLore.
+  ///
+  /// In en, this message translates to:
+  /// **'A tangle of thorn and muscle native only to Eternal Bloom.'**
+  String get monWildthornLore;
+
+  /// No description provided for @monFernfang.
+  ///
+  /// In en, this message translates to:
+  /// **'Fernfang'**
+  String get monFernfang;
+
+  /// No description provided for @monFernfangLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Bites through the thick canopy vines with practiced ease.'**
+  String get monFernfangLore;
+
+  /// No description provided for @monBrambleback.
+  ///
+  /// In en, this message translates to:
+  /// **'Brambleback'**
+  String get monBrambleback;
+
+  /// No description provided for @monBramblebackLore.
+  ///
+  /// In en, this message translates to:
+  /// **'A spine of interlocking brambles no predator wants to test.'**
+  String get monBramblebackLore;
+
+  /// No description provided for @monRootmaw.
+  ///
+  /// In en, this message translates to:
+  /// **'Rootmaw'**
+  String get monRootmaw;
+
+  /// No description provided for @monRootmawLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Waits beneath the tunnel floor for something to walk overhead.'**
+  String get monRootmawLore;
+
+  /// No description provided for @monSeedlingBeast.
+  ///
+  /// In en, this message translates to:
+  /// **'Seedling Beast'**
+  String get monSeedlingBeast;
+
+  /// No description provided for @monSeedlingBeastLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Young, but already larger than most fully grown Bloom creatures.'**
+  String get monSeedlingBeastLore;
+
+  /// No description provided for @monIvyclaw.
+  ///
+  /// In en, this message translates to:
+  /// **'Ivyclaw'**
+  String get monIvyclaw;
+
+  /// No description provided for @monIvyclawLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Ivy grows over its claws between meals, then sheds when it hunts.'**
+  String get monIvyclawLore;
+
+  /// No description provided for @monThornbloom.
+  ///
+  /// In en, this message translates to:
+  /// **'Thornbloom'**
+  String get monThornbloom;
+
+  /// No description provided for @monThornbloomLore.
+  ///
+  /// In en, this message translates to:
+  /// **'The jungle\'s oldest bloom given claws, close kin to Verdantor.'**
+  String get monThornbloomLore;
+
+  /// No description provided for @monNightshade.
+  ///
+  /// In en, this message translates to:
+  /// **'Nightshade'**
+  String get monNightshade;
+
+  /// No description provided for @monNightshadeLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Grows only where Noctyra\'s permanent eclipse falls darkest.'**
+  String get monNightshadeLore;
+
+  /// No description provided for @monLunawing.
+  ///
+  /// In en, this message translates to:
+  /// **'Lunawing'**
+  String get monLunawing;
+
+  /// No description provided for @monLunawingLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Circles the watching moon on wings that never cast a shadow.'**
+  String get monLunawingLore;
+
+  /// No description provided for @monDarkpelt.
+  ///
+  /// In en, this message translates to:
+  /// **'Darkpelt'**
+  String get monDarkpelt;
+
+  /// No description provided for @monDarkpeltLore.
+  ///
+  /// In en, this message translates to:
+  /// **'A coat so black it swallows the eclipse\'s faint light entirely.'**
+  String get monDarkpeltLore;
+
+  /// No description provided for @monCrescentclaw.
+  ///
+  /// In en, this message translates to:
+  /// **'Crescentclaw'**
+  String get monCrescentclaw;
+
+  /// No description provided for @monCrescentclawLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Claws curved like the sliver of moon this realm never quite sees.'**
+  String get monCrescentclawLore;
+
+  /// No description provided for @monVoidpaw.
+  ///
+  /// In en, this message translates to:
+  /// **'Voidpaw'**
+  String get monVoidpaw;
+
+  /// No description provided for @monVoidpawLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Steps leave no print — the eclipse realm forgets it was ever there.'**
+  String get monVoidpawLore;
+
+  /// No description provided for @monDuskscale.
+  ///
+  /// In en, this message translates to:
+  /// **'Duskscale'**
+  String get monDuskscale;
+
+  /// No description provided for @monDuskscaleLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Scales caught permanently between day and night.'**
+  String get monDuskscaleLore;
+
+  /// No description provided for @monNightmareBeast.
+  ///
+  /// In en, this message translates to:
+  /// **'Nightmare Beast'**
+  String get monNightmareBeast;
+
+  /// No description provided for @monNightmareBeastLore.
+  ///
+  /// In en, this message translates to:
+  /// **'One of Noctyra\'s own court, given form from the realm\'s endless dark.'**
+  String get monNightmareBeastLore;
+
+  /// No description provided for @monGalaxipaw.
+  ///
+  /// In en, this message translates to:
+  /// **'Galaxipaw'**
+  String get monGalaxipaw;
+
+  /// No description provided for @monGalaxipawLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Each pawprint briefly holds a swirl of tiny stars.'**
+  String get monGalaxipawLore;
+
+  /// No description provided for @monMeteorfang.
+  ///
+  /// In en, this message translates to:
+  /// **'Meteorfang'**
+  String get monMeteorfang;
+
+  /// No description provided for @monMeteorfangLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Fell to the cosmic islands still burning at the edges.'**
+  String get monMeteorfangLore;
+
+  /// No description provided for @monCelestling.
+  ///
+  /// In en, this message translates to:
+  /// **'Celestling'**
+  String get monCelestling;
+
+  /// No description provided for @monCelestlingLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Small, but drawn from the same light as Elyndor itself.'**
+  String get monCelestlingLore;
+
+  /// No description provided for @monVoidstar.
+  ///
+  /// In en, this message translates to:
+  /// **'Voidstar'**
+  String get monVoidstar;
+
+  /// No description provided for @monVoidstarLore.
+  ///
+  /// In en, this message translates to:
+  /// **'A star gone dark, still pulling everything nearby toward it.'**
+  String get monVoidstarLore;
+
+  /// No description provided for @monNebulabeast.
+  ///
+  /// In en, this message translates to:
+  /// **'Nebulabeast'**
+  String get monNebulabeast;
+
+  /// No description provided for @monNebulabeastLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Drifts between the starlit temples wrapped in cosmic haze.'**
+  String get monNebulabeastLore;
+
+  /// No description provided for @monStarlightClaw.
+  ///
+  /// In en, this message translates to:
+  /// **'Starlight Claw'**
+  String get monStarlightClaw;
+
+  /// No description provided for @monStarlightClawLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Claws that glow with borrowed light from a galaxy long gone.'**
+  String get monStarlightClawLore;
+
+  /// No description provided for @monAstralmaw.
+  ///
+  /// In en, this message translates to:
+  /// **'Astralmaw'**
+  String get monAstralmaw;
+
+  /// No description provided for @monAstralmawLore.
+  ///
+  /// In en, this message translates to:
+  /// **'Guards the center of the Dream realm alongside its sovereign.'**
+  String get monAstralmawLore;
+
+  /// No description provided for @monBoss1Ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Unraveling Bloom'**
+  String get monBoss1Ult;
+
+  /// No description provided for @monBoss1UltDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'The meadow itself lashes out in bloom and fire.'**
+  String get monBoss1UltDesc;
+
+  /// No description provided for @monBoss1Lore.
+  ///
+  /// In en, this message translates to:
+  /// **'Once the meadow\'s oldest bloom, now unraveling into thorn and flame with every dream it consumes.'**
+  String get monBoss1Lore;
+
+  /// No description provided for @monBoss2Ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Nightmare Grasp'**
+  String get monBoss2Ult;
+
+  /// No description provided for @monBoss2UltDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Shadows claw in from every direction at once.'**
+  String get monBoss2UltDesc;
+
+  /// No description provided for @monBoss2Lore.
+  ///
+  /// In en, this message translates to:
+  /// **'Keeper of the forest\'s deepest gloom, it grows more furious the closer it comes to falling.'**
+  String get monBoss2Lore;
+
+  /// No description provided for @monBoss3Ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Sentinel\'s Judgment'**
+  String get monBoss3Ult;
+
+  /// No description provided for @monBoss3UltDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A crushing wave of crystallized force.'**
+  String get monBoss3UltDesc;
+
+  /// No description provided for @monBoss3Lore.
+  ///
+  /// In en, this message translates to:
+  /// **'A living crystal grown around a dream too heavy to wake from, shielded on every side.'**
+  String get monBoss3Lore;
+
+  /// No description provided for @monBoss4Ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Starfall Cataclysm'**
+  String get monBoss4Ult;
+
+  /// No description provided for @monBoss4UltDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A meteor storm crashes down from the shattered sky.'**
+  String get monBoss4UltDesc;
+
+  /// No description provided for @monBoss4Lore.
+  ///
+  /// In en, this message translates to:
+  /// **'A star that fell from the heavens eons ago, still burning with the light of its old sky.'**
+  String get monBoss4Lore;
+
+  /// No description provided for @monBoss5Ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Nightmare Feast'**
+  String get monBoss5Ult;
+
+  /// No description provided for @monBoss5UltDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Consumes the last of its prey\'s waking thoughts.'**
+  String get monBoss5UltDesc;
+
+  /// No description provided for @monBoss5Lore.
+  ///
+  /// In en, this message translates to:
+  /// **'An ancient thing that feeds on forgotten dreams, growing fatter with every one it swallows.'**
+  String get monBoss5Lore;
+
+  /// No description provided for @monBoss6Ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Ashfall Reckoning'**
+  String get monBoss6Ult;
+
+  /// No description provided for @monBoss6UltDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A tidal wave of molten rock and cinder.'**
+  String get monBoss6UltDesc;
+
+  /// No description provided for @monBoss6Lore.
+  ///
+  /// In en, this message translates to:
+  /// **'A titan of fire that slept beneath the wastes for a thousand years, now awake and furious.'**
+  String get monBoss6Lore;
+
+  /// No description provided for @monBoss7Ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Abyssal Tide'**
+  String get monBoss7Ult;
+
+  /// No description provided for @monBoss7UltDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A crushing wave from the deepest trench.'**
+  String get monBoss7UltDesc;
+
+  /// No description provided for @monBoss7Lore.
+  ///
+  /// In en, this message translates to:
+  /// **'Ruler of the deepest trench in the Tidal Abyss, its court are things that never see the surface.'**
+  String get monBoss7Lore;
+
+  /// No description provided for @monBoss8Ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Rootbound Judgment'**
+  String get monBoss8Ult;
+
+  /// No description provided for @monBoss8UltDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'The forest floor erupts in thorn and vine.'**
+  String get monBoss8UltDesc;
+
+  /// No description provided for @monBoss8Lore.
+  ///
+  /// In en, this message translates to:
+  /// **'A root older than the forest itself, slumbering beneath Eternal Bloom since before memory.'**
+  String get monBoss8Lore;
+
+  /// No description provided for @monBoss9Ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Eclipse Reign'**
+  String get monBoss9Ult;
+
+  /// No description provided for @monBoss9UltDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Shadow and light strike as one.'**
+  String get monBoss9UltDesc;
+
+  /// No description provided for @monBoss9Lore.
+  ///
+  /// In en, this message translates to:
+  /// **'Sovereign of the permanent eclipse, she rules the realm equally in shadow and stolen light.'**
+  String get monBoss9Lore;
+
+  /// No description provided for @monBoss10Ult.
+  ///
+  /// In en, this message translates to:
+  /// **'Sovereign\'s Dominion'**
+  String get monBoss10Ult;
+
+  /// No description provided for @monBoss10UltDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Every star in the sky answers its call at once.'**
+  String get monBoss10UltDesc;
+
+  /// No description provided for @monBoss10Lore.
+  ///
+  /// In en, this message translates to:
+  /// **'Ruler of the highest dream, and the last, greatest guardian the Dreamkeepers must face.'**
+  String get monBoss10Lore;
 }
 
 class _AppLocalizationsDelegate

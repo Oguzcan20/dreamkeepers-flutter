@@ -2559,4 +2559,741 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get world30Boss => 'Elyndor, der Träumende Gott';
+
+  @override
+  String get monBrambleStalker => 'Dornenpirscher';
+
+  @override
+  String get monBrambleStalkerLore =>
+      'Kriecht durchs hohe Gras, Dornen gesträubt beim ersten Anzeichen eines Schritts.';
+
+  @override
+  String get monDustWisp => 'Staubwisp';
+
+  @override
+  String get monDustWispLore =>
+      'Ein loser Knoten aus treibendem Pollen und Statik, harmlos bis er schwärmt.';
+
+  @override
+  String get monMeadowSprite => 'Wiesenkobold';
+
+  @override
+  String get monMeadowSpriteLore =>
+      'Klein, schnell und heftig territorial über seinem Kleefleck.';
+
+  @override
+  String get monSunpetalGuardian => 'Sonnenblüten-Wächter';
+
+  @override
+  String get monSunpetalGuardianLore =>
+      'Blüht einmal im Morgengrauen und hält Wache über die Wiese bis zur Dämmerung.';
+
+  @override
+  String get monGloomHound => 'Düsterhund';
+
+  @override
+  String get monGloomHoundLore =>
+      'Jagt im Raum zwischen den Schatten, nie ganz dort, wo du es zuletzt sahst.';
+
+  @override
+  String get monHollowShade => 'Hohler Schatten';
+
+  @override
+  String get monHollowShadeLore =>
+      'Trägt die Gestalt eines vergessenen Traums, hohl im Kern.';
+
+  @override
+  String get monNightWisp => 'Nachtwisp';
+
+  @override
+  String get monNightWispLore =>
+      'Eine kalte Glut aus Mondlicht, die flackert, sobald man sie ansieht.';
+
+  @override
+  String get monThornbackProwler => 'Dornrücken-Schleicher';
+
+  @override
+  String get monThornbackProwlerLore =>
+      'Lautlos auf dem Waldboden, seine Stacheln die einzige Warnung.';
+
+  @override
+  String get monRiftCrawler => 'Spaltkriecher';
+
+  @override
+  String get monRiftCrawlerLore =>
+      'Huscht entlang der Risse in den Höhlenwänden, wo das Licht nicht ganz hinreicht.';
+
+  @override
+  String get monFrostWisp => 'Frostwisp';
+
+  @override
+  String get monFrostWispLore =>
+      'Haucht eine dünne, glitzernde Kälte aus, die an allem haftet, was sie berührt.';
+
+  @override
+  String get monCavernSerpent => 'Höhlenschlange';
+
+  @override
+  String get monCavernSerpentLore =>
+      'Windet sich durch die unterirdischen Gezeiten, geduldig und unmöglich lang.';
+
+  @override
+  String get monCrystalWisp => 'Kristallwisp';
+
+  @override
+  String get monCrystalWispLore =>
+      'Bricht jeden Laut in der Höhle in ein leises, missklingendes Läuten.';
+
+  @override
+  String get monStarfang => 'Sternzahn';
+
+  @override
+  String get monStarfangLore =>
+      'Ein Splitter eines alten Sterns mit Zähnen, der die Meteoritenfelder durchstreift.';
+
+  @override
+  String get monCometpaw => 'Kometenpfote';
+
+  @override
+  String get monCometpawLore =>
+      'Hinterlässt mit jedem Sprung zwischen schwebenden Gipfeln eine Spur sterbenden Lichts.';
+
+  @override
+  String get monAstralwing => 'Astralschwinge';
+
+  @override
+  String get monAstralwingLore =>
+      'Umkreist die Ruinen des Sternentempels auf Flügeln aus alten Sternbildern.';
+
+  @override
+  String get monStardustling => 'Sternenstäubling';
+
+  @override
+  String get monStardustlingLore =>
+      'Klein und glitzernd, zerstiebt es in Funken, wenn es erschreckt wird.';
+
+  @override
+  String get monCosmobite => 'Kosmobiss';
+
+  @override
+  String get monCosmobiteLore =>
+      'Sein Biss trägt eine kalte, ferne Kühle von jenseits des Himmels.';
+
+  @override
+  String get monNebulaclaw => 'Nebelklaue';
+
+  @override
+  String get monNebulaclawLore =>
+      'Klauen umhüllt von treibendem kosmischem Dunst, lautlos wie das Vakuum.';
+
+  @override
+  String get monStarhorn => 'Sternhorn';
+
+  @override
+  String get monStarhornLore =>
+      'Rammt die Kristallspitzen der Sternenfall-Gipfel mit dem Kopf voran.';
+
+  @override
+  String get monCometscale => 'Kometenschuppe';
+
+  @override
+  String get monCometscaleLore =>
+      'Schuppen, die noch lange Licht abgeben, nachdem das Wesen weitergezogen ist.';
+
+  @override
+  String get monMoonfang => 'Mondzahn';
+
+  @override
+  String get monMoonfangLore =>
+      'Wandert durch die zerbrochenen Gebäude und heult einen Mond an, an den sich sonst niemand erinnert.';
+
+  @override
+  String get monDuskhorn => 'Dämmerhorn';
+
+  @override
+  String get monDuskhornLore =>
+      'Stürmt aus dem dichten Nebel, bevor seine Silhouette je klar wird.';
+
+  @override
+  String get monNightclaw => 'Nachtklaue';
+
+  @override
+  String get monNightclawLore =>
+      'Klauen, die keine Spur hinterlassen, nur die Erinnerung ans Geschnittenwerden.';
+
+  @override
+  String get monShadowtail => 'Schattenschweif';
+
+  @override
+  String get monShadowtailLore =>
+      'Sein Schweif hinkt dem Rest seines Körpers eine ganze Sekunde hinterher.';
+
+  @override
+  String get monEclipsepaw => 'Finsternispfote';
+
+  @override
+  String get monEclipsepawLore =>
+      'Schreitet zwischen schwebenden Ruinenbrocken, als wären sie fester Boden.';
+
+  @override
+  String get monDreamstalker => 'Traumpirscher';
+
+  @override
+  String get monDreamstalkerLore =>
+      'Folgt Träumern durch den Nebel, lange nachdem sie erwacht sind.';
+
+  @override
+  String get monMoonscale => 'Mondschuppe';
+
+  @override
+  String get monMoonscaleLore =>
+      'Schuppen, die mit einer eigenen Mondphase verblassen und aufleuchten.';
+
+  @override
+  String get monGloomfang => 'Düsterzahn';
+
+  @override
+  String get monGloomfangLore =>
+      'Ein letztes Echo des Traums, der diese zerstörte Stadt einst war.';
+
+  @override
+  String get monCinderfang => 'Aschezahn';
+
+  @override
+  String get monCinderfangLore =>
+      'Durchstreift die Aschefelder, die Kiefer glimmen schwach von gestauter Hitze.';
+
+  @override
+  String get monAshclaw => 'Ascheklaue';
+
+  @override
+  String get monAshclawLore =>
+      'Hinterlässt schwelende Abdrücke über dem schwarzen Vulkangestein.';
+
+  @override
+  String get monFlamehorn => 'Flammenhorn';
+
+  @override
+  String get monFlamehornLore =>
+      'Stürmt Lavaseen frontal an, ohne langsamer zu werden.';
+
+  @override
+  String get monScorchling => 'Sengling';
+
+  @override
+  String get monScorchlingLore =>
+      'Klein, schnell und immer ein wenig zu nah dran, Feuer zu fangen.';
+
+  @override
+  String get monEmbermaw => 'Glutrachen';
+
+  @override
+  String get monEmbermawLore =>
+      'Sein Biss trägt die Hitze einer Kohle, die nie ganz abkühlt.';
+
+  @override
+  String get monBlazetail => 'Lohschweif';
+
+  @override
+  String get monBlazetailLore =>
+      'Ein peitschender Schweif, der eine Feuerlinie in der Asche hinterlässt.';
+
+  @override
+  String get monMagmabite => 'Magmabiss';
+
+  @override
+  String get monMagmabiteLore =>
+      'Beißt sich glatt durch abgekühlte Gesteinskruste auf der Suche nach der Hitze des Ödlands.';
+
+  @override
+  String get monCharhound => 'Kohlehund';
+
+  @override
+  String get monCharhoundLore =>
+      'Jagt in den erstickenden Aschewolken allein nach Geruch.';
+
+  @override
+  String get monPyrewing => 'Scheiterschwinge';
+
+  @override
+  String get monPyrewingLore =>
+      'Umkreist die brennenden Ruinen auf Flügeln aus treibender Glut.';
+
+  @override
+  String get monInferclaw => 'Infernoklaue';
+
+  @override
+  String get monInferclawLore =>
+      'Klauen noch heiß vom Lavasee, aus dem es gerade gekrochen ist.';
+
+  @override
+  String get monCoalback => 'Kohlerücken';
+
+  @override
+  String get monCoalbackLore =>
+      'Ein gezackter Kamm, der heller glüht, je wütender es wird.';
+
+  @override
+  String get monSearscale => 'Brandschuppe';
+
+  @override
+  String get monSearscaleLore =>
+      'Schuppen, die alles verbrühen, was zu nahe kommt.';
+
+  @override
+  String get monFlarefang => 'Flammenzahn';
+
+  @override
+  String get monFlarefangLore =>
+      'Ein plötzlicher Ausbruch aus Licht und Zähnen aus der Aschewolke.';
+
+  @override
+  String get monBurnpaw => 'Brandpfote';
+
+  @override
+  String get monBurnpawLore =>
+      'Hinterlässt versengte Pfotenabdrücke, wohin es auch geht.';
+
+  @override
+  String get monIgnisprite => 'Ignikobold';
+
+  @override
+  String get monIgnispriteLore =>
+      'Ein winziger Feuergeist, geboren aus einem verirrten Funken von Ignivars eigener Flamme.';
+
+  @override
+  String get monAshenox => 'Aschenox';
+
+  @override
+  String get monAshenoxLore =>
+      'Trägt einen Mantel aus treibender Asche über Haut, die darunter noch schwelt.';
+
+  @override
+  String get monMistfin => 'Nebelflosse';
+
+  @override
+  String get monMistfinLore =>
+      'Gleitet durch den Korallenwald, gehüllt in einen Schleier aus kaltem Nebel.';
+
+  @override
+  String get monTideclaw => 'Gezeitenklaue';
+
+  @override
+  String get monTideclawLore =>
+      'Klauen, die mit der Kraft einer steigenden Flut ziehen.';
+
+  @override
+  String get monRipplefang => 'Kräuselzahn';
+
+  @override
+  String get monRipplefangLore =>
+      'Jeder Biss sendet einen Ring aus Strömung nach außen.';
+
+  @override
+  String get monAquabite => 'Aquabiss';
+
+  @override
+  String get monAquabiteLore =>
+      'Klein und schnell, huscht zwischen den Säulen versunkener Tempel hindurch.';
+
+  @override
+  String get monWavepup => 'Wellenwelpe';
+
+  @override
+  String get monWavepupLore =>
+      'Jung und verspielt, reitet die langsamen Tiefenströmungen des Abgrunds.';
+
+  @override
+  String get monRainscale => 'Regenschuppe';
+
+  @override
+  String get monRainscaleLore =>
+      'Schuppen, die ein stetes, kaltes Rinnsal Meerwasser weinen.';
+
+  @override
+  String get monDeepfin => 'Tiefenflosse';
+
+  @override
+  String get monDeepfinLore =>
+      'Taucht nie auf — der Graben ist das einzige Zuhause, das es kennt.';
+
+  @override
+  String get monBrookling => 'Bächling';
+
+  @override
+  String get monBrooklingLore =>
+      'Ein Rinnsal von einem Wesen, das sich zu etwas Größerem sammelt, wenn es bedroht wird.';
+
+  @override
+  String get monFrostgill => 'Frostkieme';
+
+  @override
+  String get monFrostgillLore =>
+      'Kiemen, die das Wasser eine Körperlänge weit in jede Richtung kühlen.';
+
+  @override
+  String get monStormfin => 'Sturmflosse';
+
+  @override
+  String get monStormfinLore =>
+      'Wühlt das Wasser zu einer Bö auf, wohin es auch schwimmt.';
+
+  @override
+  String get monPearlmaw => 'Perlrachen';
+
+  @override
+  String get monPearlmawLore =>
+      'Sein Kiefer glänzt von einem Leben voll verschluckter Perlen.';
+
+  @override
+  String get monSplashpaw => 'Spritzpfote';
+
+  @override
+  String get monSplashpawLore =>
+      'Hüpft in Strömungsstößen über den Boden des versunkenen Tempels.';
+
+  @override
+  String get monDrownscale => 'Ertrinkschuppe';
+
+  @override
+  String get monDrownscaleLore =>
+      'Die Legende sagt, es zog einst einen ganzen Tempel unter die Wellen.';
+
+  @override
+  String get monRiverfang => 'Flusszahn';
+
+  @override
+  String get monRiverfangLore =>
+      'Älter als der Abgrund selbst, so erzählt es der Korallenwald.';
+
+  @override
+  String get monMistcrawler => 'Nebelkriecher';
+
+  @override
+  String get monMistcrawlerLore =>
+      'Kriecht über den Grabenboden, wo nie Licht hingelangt ist.';
+
+  @override
+  String get monAbyssfin => 'Abgrundflosse';
+
+  @override
+  String get monAbyssfinLore =>
+      'Der am tiefsten lebende von Thalassors zahllosen Untertanen.';
+
+  @override
+  String get monThornpaw => 'Dornpfote';
+
+  @override
+  String get monThornpawLore =>
+      'Schreitet lautlos durch Wurzeltunnel, breiter als jede Straße.';
+
+  @override
+  String get monMossfang => 'Mooszahn';
+
+  @override
+  String get monMossfangLore =>
+      'So dicht mit Moos bedeckt, dass es wie ein Teil des Dschungelbodens aussieht.';
+
+  @override
+  String get monLeafling => 'Blattling';
+
+  @override
+  String get monLeaflingLore =>
+      'Klein und schnell, getarnt im überdimensionalen Blätterdach.';
+
+  @override
+  String get monRootclaw => 'Wurzelklaue';
+
+  @override
+  String get monRootclawLore =>
+      'Klauen, gewachsen aus einer Wurzel, die nie aufhörte zu greifen.';
+
+  @override
+  String get monVinebeast => 'Rankenbestie';
+
+  @override
+  String get monVinebeastLore =>
+      'Zieht lebende Ranken hinter sich her, während es durchs Unterholz zieht.';
+
+  @override
+  String get monBloomtail => 'Blütenschweif';
+
+  @override
+  String get monBloomtailLore =>
+      'Ein blühender Schweif, der sich nur öffnet, wenn er eine Bedrohung wittert.';
+
+  @override
+  String get monPetalhorn => 'Blütenblatthorn';
+
+  @override
+  String get monPetalhornLore =>
+      'Stürmt unter einer überdimensionalen, leuchtend bunten Blüte an.';
+
+  @override
+  String get monBarkhide => 'Rindenhaut';
+
+  @override
+  String get monBarkhideLore =>
+      'Haut so zäh und knorrig wie die ältesten Bäume des Dschungels.';
+
+  @override
+  String get monSporeling => 'Sporling';
+
+  @override
+  String get monSporelingLore =>
+      'Setzt eine feine Sporenwolke frei, sobald es erschreckt wird.';
+
+  @override
+  String get monWildthorn => 'Wilddorn';
+
+  @override
+  String get monWildthornLore =>
+      'Ein Gewirr aus Dorn und Muskel, heimisch nur in der Ewigen Blüte.';
+
+  @override
+  String get monFernfang => 'Farnzahn';
+
+  @override
+  String get monFernfangLore =>
+      'Beißt sich mit geübter Leichtigkeit durch die dicken Ranken des Blätterdachs.';
+
+  @override
+  String get monBrambleback => 'Dornrücken';
+
+  @override
+  String get monBramblebackLore =>
+      'Ein Kamm aus ineinander verzahnten Dornen, den kein Räuber testen will.';
+
+  @override
+  String get monRootmaw => 'Wurzelrachen';
+
+  @override
+  String get monRootmawLore =>
+      'Wartet unter dem Tunnelboden darauf, dass etwas darüber läuft.';
+
+  @override
+  String get monSeedlingBeast => 'Keimlingsbestie';
+
+  @override
+  String get monSeedlingBeastLore =>
+      'Jung, aber schon größer als die meisten ausgewachsenen Blüte-Geschöpfe.';
+
+  @override
+  String get monIvyclaw => 'Efeuklaue';
+
+  @override
+  String get monIvyclawLore =>
+      'Efeu wächst zwischen den Mahlzeiten über seine Klauen und fällt ab, wenn es jagt.';
+
+  @override
+  String get monThornbloom => 'Dornblüte';
+
+  @override
+  String get monThornbloomLore =>
+      'Die älteste Blüte des Dschungels mit Klauen, nahe verwandt mit Verdantor.';
+
+  @override
+  String get monNightshade => 'Nachtschatten';
+
+  @override
+  String get monNightshadeLore =>
+      'Wächst nur dort, wo Noctyras ewige Finsternis am dunkelsten fällt.';
+
+  @override
+  String get monLunawing => 'Lunaschwinge';
+
+  @override
+  String get monLunawingLore =>
+      'Umkreist den wachenden Mond auf Flügeln, die nie einen Schatten werfen.';
+
+  @override
+  String get monDarkpelt => 'Dunkelpelz';
+
+  @override
+  String get monDarkpeltLore =>
+      'Ein Fell so schwarz, dass es das schwache Licht der Finsternis ganz verschluckt.';
+
+  @override
+  String get monCrescentclaw => 'Sichelklaue';
+
+  @override
+  String get monCrescentclawLore =>
+      'Klauen gebogen wie die Mondsichel, die dieses Reich nie ganz zu sehen bekommt.';
+
+  @override
+  String get monVoidpaw => 'Leerepfote';
+
+  @override
+  String get monVoidpawLore =>
+      'Schritte hinterlassen keine Spur — das Finsternisreich vergisst, dass es je da war.';
+
+  @override
+  String get monDuskscale => 'Dämmerschuppe';
+
+  @override
+  String get monDuskscaleLore =>
+      'Schuppen, für immer gefangen zwischen Tag und Nacht.';
+
+  @override
+  String get monNightmareBeast => 'Albtraumbestie';
+
+  @override
+  String get monNightmareBeastLore =>
+      'Eine von Noctyras eigenem Hofstaat, geformt aus der endlosen Dunkelheit des Reichs.';
+
+  @override
+  String get monGalaxipaw => 'Galaxiepfote';
+
+  @override
+  String get monGalaxipawLore =>
+      'Jeder Pfotenabdruck hält kurz einen Wirbel winziger Sterne.';
+
+  @override
+  String get monMeteorfang => 'Meteorzahn';
+
+  @override
+  String get monMeteorfangLore =>
+      'Fiel auf die kosmischen Inseln, an den Rändern noch brennend.';
+
+  @override
+  String get monCelestling => 'Himmling';
+
+  @override
+  String get monCelestlingLore =>
+      'Klein, aber aus demselben Licht geschöpft wie Elyndor selbst.';
+
+  @override
+  String get monVoidstar => 'Leerestern';
+
+  @override
+  String get monVoidstarLore =>
+      'Ein erloschener Stern, der noch alles in seiner Nähe zu sich zieht.';
+
+  @override
+  String get monNebulabeast => 'Nebelbestie';
+
+  @override
+  String get monNebulabeastLore =>
+      'Treibt zwischen den sternenbeschienenen Tempeln, gehüllt in kosmischen Dunst.';
+
+  @override
+  String get monStarlightClaw => 'Sternenlichtklaue';
+
+  @override
+  String get monStarlightClawLore =>
+      'Klauen, die mit geliehenem Licht einer längst vergangenen Galaxie glühen.';
+
+  @override
+  String get monAstralmaw => 'Astralrachen';
+
+  @override
+  String get monAstralmawLore =>
+      'Bewacht das Zentrum des Traumreichs an der Seite seines Herrschers.';
+
+  @override
+  String get monBoss1Ult => 'Entwirrende Blüte';
+
+  @override
+  String get monBoss1UltDesc =>
+      'Die Wiese selbst schlägt in Blüte und Feuer aus.';
+
+  @override
+  String get monBoss1Lore =>
+      'Einst die älteste Blüte der Wiese, entwirrt sie sich nun mit jedem Traum, den sie verschlingt, zu Dorn und Flamme.';
+
+  @override
+  String get monBoss2Ult => 'Albtraumgriff';
+
+  @override
+  String get monBoss2UltDesc =>
+      'Schatten greifen aus allen Richtungen zugleich.';
+
+  @override
+  String get monBoss2Lore =>
+      'Hüter der tiefsten Düsternis des Waldes, wird es umso wütender, je näher es dem Fallen kommt.';
+
+  @override
+  String get monBoss3Ult => 'Urteil des Wächters';
+
+  @override
+  String get monBoss3UltDesc => 'Eine zermalmende Woge kristallisierter Wucht.';
+
+  @override
+  String get monBoss3Lore =>
+      'Ein lebender Kristall, gewachsen um einen Traum, zu schwer, um daraus zu erwachen, von allen Seiten geschützt.';
+
+  @override
+  String get monBoss4Ult => 'Sternenfall-Kataklysmus';
+
+  @override
+  String get monBoss4UltDesc =>
+      'Ein Meteoritensturm kracht aus dem zersplitterten Himmel herab.';
+
+  @override
+  String get monBoss4Lore =>
+      'Ein Stern, der vor Äonen vom Himmel fiel und noch mit dem Licht seines alten Himmels brennt.';
+
+  @override
+  String get monBoss5Ult => 'Albtraum-Festmahl';
+
+  @override
+  String get monBoss5UltDesc =>
+      'Verschlingt die letzten wachen Gedanken seiner Beute.';
+
+  @override
+  String get monBoss5Lore =>
+      'Ein uraltes Wesen, das sich von vergessenen Träumen nährt und mit jedem, den es verschluckt, feister wird.';
+
+  @override
+  String get monBoss6Ult => 'Aschefall-Abrechnung';
+
+  @override
+  String get monBoss6UltDesc =>
+      'Eine Flutwelle aus geschmolzenem Gestein und Glut.';
+
+  @override
+  String get monBoss6Lore =>
+      'Ein Titan aus Feuer, der tausend Jahre unter dem Ödland schlief, nun wach und rasend.';
+
+  @override
+  String get monBoss7Ult => 'Abgrundflut';
+
+  @override
+  String get monBoss7UltDesc =>
+      'Eine zermalmende Woge aus dem tiefsten Graben.';
+
+  @override
+  String get monBoss7Lore =>
+      'Herrscher des tiefsten Grabens im Gezeitenabgrund, sein Hofstaat sind Wesen, die nie die Oberfläche sehen.';
+
+  @override
+  String get monBoss8Ult => 'Wurzelgebundenes Urteil';
+
+  @override
+  String get monBoss8UltDesc => 'Der Waldboden bricht in Dorn und Ranke auf.';
+
+  @override
+  String get monBoss8Lore =>
+      'Eine Wurzel älter als der Wald selbst, schlummernd unter der Ewigen Blüte seit vor aller Erinnerung.';
+
+  @override
+  String get monBoss9Ult => 'Herrschaft der Finsternis';
+
+  @override
+  String get monBoss9UltDesc => 'Schatten und Licht schlagen als eins zu.';
+
+  @override
+  String get monBoss9Lore =>
+      'Herrscherin der ewigen Finsternis, sie regiert das Reich zu gleichen Teilen in Schatten und gestohlenem Licht.';
+
+  @override
+  String get monBoss10Ult => 'Herrschaft des Souveräns';
+
+  @override
+  String get monBoss10UltDesc =>
+      'Jeder Stern am Himmel folgt seinem Ruf zugleich.';
+
+  @override
+  String get monBoss10Lore =>
+      'Herrscher des höchsten Traums und der letzte, größte Wächter, dem die Traumhüter gegenübertreten müssen.';
 }
