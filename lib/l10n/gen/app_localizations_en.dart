@@ -2242,4 +2242,301 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get dk_olf_ultimate_passDesc =>
       'Somehow, against all odds, this Olf turned out unfairly strong.';
+
+  @override
+  String get world1Name => 'Whispering Meadow';
+
+  @override
+  String get world1Desc =>
+      'A quiet, sunlit field where the first dreams take root.';
+
+  @override
+  String get world1Boss => 'The Unraveling';
+
+  @override
+  String get world2Name => 'Moonlit Forest';
+
+  @override
+  String get world2Desc => 'A dark wood lit only by luminous, dreaming flora.';
+
+  @override
+  String get world2Boss => 'Nightmare Warden';
+
+  @override
+  String get world3Name => 'Crystal Caverns';
+
+  @override
+  String get world3Desc => 'Frozen tides given form beneath the waking world.';
+
+  @override
+  String get world3Boss => 'Crystal Sentinel';
+
+  @override
+  String get world4Name => 'Starfall Peaks';
+
+  @override
+  String get world4Desc =>
+      'Floating mountains and meteor fields around an ancient star temple.';
+
+  @override
+  String get world4Boss => 'Aetherion, the Fallen Star';
+
+  @override
+  String get world5Name => 'The Forgotten Dream';
+
+  @override
+  String get world5Desc =>
+      'Broken buildings and floating ruins lost in a surreal, dense fog.';
+
+  @override
+  String get world5Boss => 'Morvane, Dream Eater';
+
+  @override
+  String get world6Name => 'Emberheart Wastes';
+
+  @override
+  String get world6Desc =>
+      'Vast volcanoes and lakes of lava beneath a sky choked with ash.';
+
+  @override
+  String get world6Boss => 'Ignivar, Lord of Ash';
+
+  @override
+  String get world7Name => 'Tidal Abyss';
+
+  @override
+  String get world7Desc =>
+      'Sunken temples and coral forests deep in a trench no light reaches.';
+
+  @override
+  String get world7Boss => 'Thalassor, Abyssal King';
+
+  @override
+  String get world8Name => 'Eternal Bloom';
+
+  @override
+  String get world8Desc =>
+      'A colossal magical jungle of root tunnels and glowing, oversized flora.';
+
+  @override
+  String get world8Boss => 'Verdantor, Ancient Root';
+
+  @override
+  String get world9Name => 'Realm of Eclipse';
+
+  @override
+  String get world9Desc =>
+      'A land locked in permanent eclipse beneath a vast, watching moon.';
+
+  @override
+  String get world9Boss => 'Noctyra, Queen of Night';
+
+  @override
+  String get world10Name => 'Celestial Dream';
+
+  @override
+  String get world10Desc =>
+      'Cosmic islands and starlit temples at the very center of the Dream realm.';
+
+  @override
+  String get world10Boss => 'Elyndor, The Dream Sovereign';
+
+  @override
+  String get world11Name => 'Echoing Meadow';
+
+  @override
+  String get world11Desc =>
+      'The Whispering Meadow dreams itself again — the same creatures returned, grown feral and strong.';
+
+  @override
+  String get world11Boss => 'The Unraveling, Awakened';
+
+  @override
+  String get world12Name => 'Shadowed Forest';
+
+  @override
+  String get world12Desc =>
+      'A darker echo of the Moonlit Forest, where old nightmares have grown teeth.';
+
+  @override
+  String get world12Boss => 'Nightmare Warden, Reborn';
+
+  @override
+  String get world13Name => 'Deep Crystal Caverns';
+
+  @override
+  String get world13Desc =>
+      'The Crystal Caverns run deeper now, and the cold within has sharpened.';
+
+  @override
+  String get world13Boss => 'Crystal Sentinel, Unbroken';
+
+  @override
+  String get world14Name => 'Starfall Reignited';
+
+  @override
+  String get world14Desc =>
+      'The meteor fields of Starfall Peaks blaze again, brighter and far more dangerous.';
+
+  @override
+  String get world14Boss => 'Aetherion, the Star Undying';
+
+  @override
+  String get world15Name => 'Dream Beyond Forgetting';
+
+  @override
+  String get world15Desc =>
+      'The Forgotten Dream loops back on itself, its fog thicker than before.';
+
+  @override
+  String get world15Boss => 'Morvane, the Endless Hunger';
+
+  @override
+  String get world16Name => 'Emberheart Inferno';
+
+  @override
+  String get world16Desc =>
+      'The wastes burn hotter still, and the ash titans return renewed.';
+
+  @override
+  String get world16Boss => 'Ignivar, Lord of the Deep Ash';
+
+  @override
+  String get world17Name => 'The Abyss Unbound';
+
+  @override
+  String get world17Desc =>
+      'The Tidal Abyss opens wider, and its oldest depths stir once more.';
+
+  @override
+  String get world17Boss => 'Thalassor, the Endless Tide';
+
+  @override
+  String get world18Name => 'Bloom Everlasting';
+
+  @override
+  String get world18Desc =>
+      'Eternal Bloom grows without end, its roots stronger than any dreamer remembers.';
+
+  @override
+  String get world18Boss => 'Verdantor, the Root Eternal';
+
+  @override
+  String get world19Name => 'Eclipse Undying';
+
+  @override
+  String get world19Desc =>
+      'The Realm of Eclipse falls dark again, and its court has grown far more fierce.';
+
+  @override
+  String get world19Boss => 'Noctyra, the Endless Night';
+
+  @override
+  String get world20Name => 'Celestial Requiem';
+
+  @override
+  String get world20Desc =>
+      'The Celestial Dream sings once more, its cosmic guardians returned in greater strength.';
+
+  @override
+  String get world20Boss => 'Elyndor, the Last Sovereign';
+
+  @override
+  String get world21Name => 'Meadow\'s Final Dream';
+
+  @override
+  String get world21Desc =>
+      'A third dreaming of the meadow, wilder and far harder to wake from.';
+
+  @override
+  String get world21Boss => 'The Unraveling, Eternal';
+
+  @override
+  String get world22Name => 'The Last Moonlit Forest';
+
+  @override
+  String get world22Desc =>
+      'The forest dreams a final time, its shadows deeper than any before.';
+
+  @override
+  String get world22Boss => 'Nightmare Warden, Undying';
+
+  @override
+  String get world23Name => 'Caverns of Endless Crystal';
+
+  @override
+  String get world23Desc =>
+      'The caverns crystallize further still, hardening into something almost eternal.';
+
+  @override
+  String get world23Boss => 'Crystal Sentinel, Absolute';
+
+  @override
+  String get world24Name => 'Starfall\'s End';
+
+  @override
+  String get world24Desc =>
+      'The star temple\'s final fall, brighter and more violent than the sky can hold.';
+
+  @override
+  String get world24Boss => 'Aetherion, the Fallen Sun';
+
+  @override
+  String get world25Name => 'The Dream That Never Wakes';
+
+  @override
+  String get world25Desc =>
+      'The Forgotten Dream folds in on itself one last time, and nothing wakes from it easily.';
+
+  @override
+  String get world25Boss => 'Morvane, the Final Hunger';
+
+  @override
+  String get world26Name => 'Emberheart\'s Last Fire';
+
+  @override
+  String get world26Desc =>
+      'The wastes\' final blaze, hot enough to reshape the ash fields entirely.';
+
+  @override
+  String get world26Boss => 'Ignivar, the Last Ember';
+
+  @override
+  String get world27Name => 'The Abyss Eternal';
+
+  @override
+  String get world27Desc =>
+      'The trench has no bottom left to find, and what lives there has waited a long time.';
+
+  @override
+  String get world27Boss => 'Thalassor, Sovereign of the Deep';
+
+  @override
+  String get world28Name => 'The Bloom That Never Fades';
+
+  @override
+  String get world28Desc => 'Eternal Bloom reaches its final, endless growth.';
+
+  @override
+  String get world28Boss => 'Verdantor, the World Tree\'s Heart';
+
+  @override
+  String get world29Name => 'The Eclipse Absolute';
+
+  @override
+  String get world29Desc =>
+      'Darkness reaches its final form, and its ruler has never been stronger.';
+
+  @override
+  String get world29Boss => 'Noctyra, Empress of Shadow';
+
+  @override
+  String get world30Name => 'The Final Dream';
+
+  @override
+  String get world30Desc =>
+      'The last dream the Dreamkeepers will ever need to wake from.';
+
+  @override
+  String get world30Boss => 'Elyndor, the Dreaming God';
 }

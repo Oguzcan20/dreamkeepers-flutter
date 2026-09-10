@@ -2259,4 +2259,304 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get dk_olf_ultimate_passDesc =>
       'Irgendwie, allen Widrigkeiten zum Trotz, wurde dieser Olf unfair stark.';
+
+  @override
+  String get world1Name => 'Flüsternde Wiese';
+
+  @override
+  String get world1Desc =>
+      'Ein stilles, sonniges Feld, wo die ersten Träume Wurzeln schlagen.';
+
+  @override
+  String get world1Boss => 'Die Entwirrung';
+
+  @override
+  String get world2Name => 'Mondbeschienener Wald';
+
+  @override
+  String get world2Desc =>
+      'Ein dunkler Wald, nur erhellt von leuchtender, träumender Flora.';
+
+  @override
+  String get world2Boss => 'Albtraumwächter';
+
+  @override
+  String get world3Name => 'Kristallhöhlen';
+
+  @override
+  String get world3Desc =>
+      'Gefrorene Gezeiten, die unter der wachen Welt Gestalt annehmen.';
+
+  @override
+  String get world3Boss => 'Kristallwächter';
+
+  @override
+  String get world4Name => 'Sternenfall-Gipfel';
+
+  @override
+  String get world4Desc =>
+      'Schwebende Berge und Meteoritenfelder um einen uralten Sternentempel.';
+
+  @override
+  String get world4Boss => 'Aetherion, der Gefallene Stern';
+
+  @override
+  String get world5Name => 'Der Vergessene Traum';
+
+  @override
+  String get world5Desc =>
+      'Zerbrochene Gebäude und schwebende Ruinen, verloren in surrealem, dichtem Nebel.';
+
+  @override
+  String get world5Boss => 'Morvane, Traumfresser';
+
+  @override
+  String get world6Name => 'Glutherz-Ödland';
+
+  @override
+  String get world6Desc =>
+      'Weite Vulkane und Lavaseen unter einem von Asche erstickten Himmel.';
+
+  @override
+  String get world6Boss => 'Ignivar, Herr der Asche';
+
+  @override
+  String get world7Name => 'Gezeitenabgrund';
+
+  @override
+  String get world7Desc =>
+      'Versunkene Tempel und Korallenwälder tief in einem Graben, den kein Licht erreicht.';
+
+  @override
+  String get world7Boss => 'Thalassor, Abgrundkönig';
+
+  @override
+  String get world8Name => 'Ewige Blüte';
+
+  @override
+  String get world8Desc =>
+      'Ein kolossaler magischer Dschungel aus Wurzeltunneln und leuchtender, überdimensionaler Flora.';
+
+  @override
+  String get world8Boss => 'Verdantor, Uralte Wurzel';
+
+  @override
+  String get world9Name => 'Reich der Finsternis';
+
+  @override
+  String get world9Desc =>
+      'Ein Land in ewiger Finsternis unter einem gewaltigen, wachenden Mond.';
+
+  @override
+  String get world9Boss => 'Noctyra, Königin der Nacht';
+
+  @override
+  String get world10Name => 'Himmlischer Traum';
+
+  @override
+  String get world10Desc =>
+      'Kosmische Inseln und sternenbeschienene Tempel im Zentrum des Traumreichs.';
+
+  @override
+  String get world10Boss => 'Elyndor, der Traumherrscher';
+
+  @override
+  String get world11Name => 'Widerhallende Wiese';
+
+  @override
+  String get world11Desc =>
+      'Die Flüsternde Wiese träumt sich erneut — dieselben Geschöpfe zurück, wild und stark geworden.';
+
+  @override
+  String get world11Boss => 'Die Entwirrung, Erwacht';
+
+  @override
+  String get world12Name => 'Beschatteter Wald';
+
+  @override
+  String get world12Desc =>
+      'Ein dunkleres Echo des Mondbeschienenen Waldes, wo alte Albträume Zähne bekommen haben.';
+
+  @override
+  String get world12Boss => 'Albtraumwächter, Wiedergeboren';
+
+  @override
+  String get world13Name => 'Tiefe Kristallhöhlen';
+
+  @override
+  String get world13Desc =>
+      'Die Kristallhöhlen reichen nun tiefer, und die Kälte darin ist schärfer geworden.';
+
+  @override
+  String get world13Boss => 'Kristallwächter, Ungebrochen';
+
+  @override
+  String get world14Name => 'Sternenfall Entfacht';
+
+  @override
+  String get world14Desc =>
+      'Die Meteoritenfelder der Sternenfall-Gipfel lodern erneut, heller und weit gefährlicher.';
+
+  @override
+  String get world14Boss => 'Aetherion, der Unsterbliche Stern';
+
+  @override
+  String get world15Name => 'Traum jenseits des Vergessens';
+
+  @override
+  String get world15Desc =>
+      'Der Vergessene Traum schließt sich zur Schleife, sein Nebel dichter als zuvor.';
+
+  @override
+  String get world15Boss => 'Morvane, der Endlose Hunger';
+
+  @override
+  String get world16Name => 'Glutherz-Inferno';
+
+  @override
+  String get world16Desc =>
+      'Das Ödland brennt noch heißer, und die Aschetitanen kehren erneuert zurück.';
+
+  @override
+  String get world16Boss => 'Ignivar, Herr der Tiefen Asche';
+
+  @override
+  String get world17Name => 'Der Entfesselte Abgrund';
+
+  @override
+  String get world17Desc =>
+      'Der Gezeitenabgrund öffnet sich weiter, und seine ältesten Tiefen regen sich erneut.';
+
+  @override
+  String get world17Boss => 'Thalassor, die Endlose Flut';
+
+  @override
+  String get world18Name => 'Immerwährende Blüte';
+
+  @override
+  String get world18Desc =>
+      'Die Ewige Blüte wächst ohne Ende, ihre Wurzeln stärker, als sich ein Träumer erinnert.';
+
+  @override
+  String get world18Boss => 'Verdantor, die Ewige Wurzel';
+
+  @override
+  String get world19Name => 'Unsterbliche Finsternis';
+
+  @override
+  String get world19Desc =>
+      'Das Reich der Finsternis wird erneut dunkel, und sein Hofstaat ist weit grimmiger geworden.';
+
+  @override
+  String get world19Boss => 'Noctyra, die Endlose Nacht';
+
+  @override
+  String get world20Name => 'Himmlisches Requiem';
+
+  @override
+  String get world20Desc =>
+      'Der Himmlische Traum singt erneut, seine kosmischen Wächter mit größerer Stärke zurück.';
+
+  @override
+  String get world20Boss => 'Elyndor, der Letzte Herrscher';
+
+  @override
+  String get world21Name => 'Der Letzte Traum der Wiese';
+
+  @override
+  String get world21Desc =>
+      'Ein drittes Träumen der Wiese, wilder und weit schwerer, daraus zu erwachen.';
+
+  @override
+  String get world21Boss => 'Die Entwirrung, Ewig';
+
+  @override
+  String get world22Name => 'Der Letzte Mondbeschienene Wald';
+
+  @override
+  String get world22Desc =>
+      'Der Wald träumt ein letztes Mal, seine Schatten tiefer als je zuvor.';
+
+  @override
+  String get world22Boss => 'Albtraumwächter, Unsterblich';
+
+  @override
+  String get world23Name => 'Höhlen des Endlosen Kristalls';
+
+  @override
+  String get world23Desc =>
+      'Die Höhlen kristallisieren noch weiter und erhärten zu etwas fast Ewigem.';
+
+  @override
+  String get world23Boss => 'Kristallwächter, Absolut';
+
+  @override
+  String get world24Name => 'Sternenfalls Ende';
+
+  @override
+  String get world24Desc =>
+      'Der letzte Sturz des Sternentempels, heller und heftiger, als der Himmel fassen kann.';
+
+  @override
+  String get world24Boss => 'Aetherion, die Gefallene Sonne';
+
+  @override
+  String get world25Name => 'Der Traum, der nie erwacht';
+
+  @override
+  String get world25Desc =>
+      'Der Vergessene Traum faltet sich ein letztes Mal in sich selbst, und nichts erwacht daraus leicht.';
+
+  @override
+  String get world25Boss => 'Morvane, der Letzte Hunger';
+
+  @override
+  String get world26Name => 'Glutherz\' Letztes Feuer';
+
+  @override
+  String get world26Desc =>
+      'Der letzte Brand des Ödlands, heiß genug, um die Aschefelder gänzlich neu zu formen.';
+
+  @override
+  String get world26Boss => 'Ignivar, die Letzte Glut';
+
+  @override
+  String get world27Name => 'Der Ewige Abgrund';
+
+  @override
+  String get world27Desc =>
+      'Der Graben hat keinen Grund mehr zu finden, und was dort lebt, hat lange gewartet.';
+
+  @override
+  String get world27Boss => 'Thalassor, Herrscher der Tiefe';
+
+  @override
+  String get world28Name => 'Die Blüte, die nie verwelkt';
+
+  @override
+  String get world28Desc =>
+      'Die Ewige Blüte erreicht ihr letztes, endloses Wachstum.';
+
+  @override
+  String get world28Boss => 'Verdantor, das Herz des Weltenbaums';
+
+  @override
+  String get world29Name => 'Die Absolute Finsternis';
+
+  @override
+  String get world29Desc =>
+      'Die Dunkelheit erreicht ihre endgültige Form, und ihre Herrscherin war nie stärker.';
+
+  @override
+  String get world29Boss => 'Noctyra, Kaiserin der Schatten';
+
+  @override
+  String get world30Name => 'Der Letzte Traum';
+
+  @override
+  String get world30Desc =>
+      'Der letzte Traum, aus dem die Traumhüter je erwachen müssen.';
+
+  @override
+  String get world30Boss => 'Elyndor, der Träumende Gott';
 }

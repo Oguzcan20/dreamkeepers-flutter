@@ -3890,6 +3890,546 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Somehow, against all odds, this Olf turned out unfairly strong.'**
   String get dk_olf_ultimate_passDesc;
+
+  /// No description provided for @world1Name.
+  ///
+  /// In en, this message translates to:
+  /// **'Whispering Meadow'**
+  String get world1Name;
+
+  /// No description provided for @world1Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'A quiet, sunlit field where the first dreams take root.'**
+  String get world1Desc;
+
+  /// No description provided for @world1Boss.
+  ///
+  /// In en, this message translates to:
+  /// **'The Unraveling'**
+  String get world1Boss;
+
+  /// No description provided for @world2Name.
+  ///
+  /// In en, this message translates to:
+  /// **'Moonlit Forest'**
+  String get world2Name;
+
+  /// No description provided for @world2Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'A dark wood lit only by luminous, dreaming flora.'**
+  String get world2Desc;
+
+  /// No description provided for @world2Boss.
+  ///
+  /// In en, this message translates to:
+  /// **'Nightmare Warden'**
+  String get world2Boss;
+
+  /// No description provided for @world3Name.
+  ///
+  /// In en, this message translates to:
+  /// **'Crystal Caverns'**
+  String get world3Name;
+
+  /// No description provided for @world3Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Frozen tides given form beneath the waking world.'**
+  String get world3Desc;
+
+  /// No description provided for @world3Boss.
+  ///
+  /// In en, this message translates to:
+  /// **'Crystal Sentinel'**
+  String get world3Boss;
+
+  /// No description provided for @world4Name.
+  ///
+  /// In en, this message translates to:
+  /// **'Starfall Peaks'**
+  String get world4Name;
+
+  /// No description provided for @world4Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Floating mountains and meteor fields around an ancient star temple.'**
+  String get world4Desc;
+
+  /// No description provided for @world4Boss.
+  ///
+  /// In en, this message translates to:
+  /// **'Aetherion, the Fallen Star'**
+  String get world4Boss;
+
+  /// No description provided for @world5Name.
+  ///
+  /// In en, this message translates to:
+  /// **'The Forgotten Dream'**
+  String get world5Name;
+
+  /// No description provided for @world5Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Broken buildings and floating ruins lost in a surreal, dense fog.'**
+  String get world5Desc;
+
+  /// No description provided for @world5Boss.
+  ///
+  /// In en, this message translates to:
+  /// **'Morvane, Dream Eater'**
+  String get world5Boss;
+
+  /// No description provided for @world6Name.
+  ///
+  /// In en, this message translates to:
+  /// **'Emberheart Wastes'**
+  String get world6Name;
+
+  /// No description provided for @world6Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Vast volcanoes and lakes of lava beneath a sky choked with ash.'**
+  String get world6Desc;
+
+  /// No description provided for @world6Boss.
+  ///
+  /// In en, this message translates to:
+  /// **'Ignivar, Lord of Ash'**
+  String get world6Boss;
+
+  /// No description provided for @world7Name.
+  ///
+  /// In en, this message translates to:
+  /// **'Tidal Abyss'**
+  String get world7Name;
+
+  /// No description provided for @world7Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunken temples and coral forests deep in a trench no light reaches.'**
+  String get world7Desc;
+
+  /// No description provided for @world7Boss.
+  ///
+  /// In en, this message translates to:
+  /// **'Thalassor, Abyssal King'**
+  String get world7Boss;
+
+  /// No description provided for @world8Name.
+  ///
+  /// In en, this message translates to:
+  /// **'Eternal Bloom'**
+  String get world8Name;
+
+  /// No description provided for @world8Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'A colossal magical jungle of root tunnels and glowing, oversized flora.'**
+  String get world8Desc;
+
+  /// No description provided for @world8Boss.
+  ///
+  /// In en, this message translates to:
+  /// **'Verdantor, Ancient Root'**
+  String get world8Boss;
+
+  /// No description provided for @world9Name.
+  ///
+  /// In en, this message translates to:
+  /// **'Realm of Eclipse'**
+  String get world9Name;
+
+  /// No description provided for @world9Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'A land locked in permanent eclipse beneath a vast, watching moon.'**
+  String get world9Desc;
+
+  /// No description provided for @world9Boss.
+  ///
+  /// In en, this message translates to:
+  /// **'Noctyra, Queen of Night'**
+  String get world9Boss;
+
+  /// No description provided for @world10Name.
+  ///
+  /// In en, this message translates to:
+  /// **'Celestial Dream'**
+  String get world10Name;
+
+  /// No description provided for @world10Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Cosmic islands and starlit temples at the very center of the Dream realm.'**
+  String get world10Desc;
+
+  /// No description provided for @world10Boss.
+  ///
+  /// In en, this message translates to:
+  /// **'Elyndor, The Dream Sovereign'**
+  String get world10Boss;
+
+  /// No description provided for @world11Name.
+  ///
+  /// In en, this message translates to:
+  /// **'Echoing Meadow'**
+  String get world11Name;
+
+  /// No description provided for @world11Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'The Whispering Meadow dreams itself again — the same creatures returned, grown feral and strong.'**
+  String get world11Desc;
+
+  /// No description provided for @world11Boss.
+  ///
+  /// In en, this message translates to:
+  /// **'The Unraveling, Awakened'**
+  String get world11Boss;
+
+  /// No description provided for @world12Name.
+  ///
+  /// In en, this message translates to:
+  /// **'Shadowed Forest'**
+  String get world12Name;
+
+  /// No description provided for @world12Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'A darker echo of the Moonlit Forest, where old nightmares have grown teeth.'**
+  String get world12Desc;
+
+  /// No description provided for @world12Boss.
+  ///
+  /// In en, this message translates to:
+  /// **'Nightmare Warden, Reborn'**
+  String get world12Boss;
+
+  /// No description provided for @world13Name.
+  ///
+  /// In en, this message translates to:
+  /// **'Deep Crystal Caverns'**
+  String get world13Name;
+
+  /// No description provided for @world13Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'The Crystal Caverns run deeper now, and the cold within has sharpened.'**
+  String get world13Desc;
+
+  /// No description provided for @world13Boss.
+  ///
+  /// In en, this message translates to:
+  /// **'Crystal Sentinel, Unbroken'**
+  String get world13Boss;
+
+  /// No description provided for @world14Name.
+  ///
+  /// In en, this message translates to:
+  /// **'Starfall Reignited'**
+  String get world14Name;
+
+  /// No description provided for @world14Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'The meteor fields of Starfall Peaks blaze again, brighter and far more dangerous.'**
+  String get world14Desc;
+
+  /// No description provided for @world14Boss.
+  ///
+  /// In en, this message translates to:
+  /// **'Aetherion, the Star Undying'**
+  String get world14Boss;
+
+  /// No description provided for @world15Name.
+  ///
+  /// In en, this message translates to:
+  /// **'Dream Beyond Forgetting'**
+  String get world15Name;
+
+  /// No description provided for @world15Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'The Forgotten Dream loops back on itself, its fog thicker than before.'**
+  String get world15Desc;
+
+  /// No description provided for @world15Boss.
+  ///
+  /// In en, this message translates to:
+  /// **'Morvane, the Endless Hunger'**
+  String get world15Boss;
+
+  /// No description provided for @world16Name.
+  ///
+  /// In en, this message translates to:
+  /// **'Emberheart Inferno'**
+  String get world16Name;
+
+  /// No description provided for @world16Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'The wastes burn hotter still, and the ash titans return renewed.'**
+  String get world16Desc;
+
+  /// No description provided for @world16Boss.
+  ///
+  /// In en, this message translates to:
+  /// **'Ignivar, Lord of the Deep Ash'**
+  String get world16Boss;
+
+  /// No description provided for @world17Name.
+  ///
+  /// In en, this message translates to:
+  /// **'The Abyss Unbound'**
+  String get world17Name;
+
+  /// No description provided for @world17Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'The Tidal Abyss opens wider, and its oldest depths stir once more.'**
+  String get world17Desc;
+
+  /// No description provided for @world17Boss.
+  ///
+  /// In en, this message translates to:
+  /// **'Thalassor, the Endless Tide'**
+  String get world17Boss;
+
+  /// No description provided for @world18Name.
+  ///
+  /// In en, this message translates to:
+  /// **'Bloom Everlasting'**
+  String get world18Name;
+
+  /// No description provided for @world18Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Eternal Bloom grows without end, its roots stronger than any dreamer remembers.'**
+  String get world18Desc;
+
+  /// No description provided for @world18Boss.
+  ///
+  /// In en, this message translates to:
+  /// **'Verdantor, the Root Eternal'**
+  String get world18Boss;
+
+  /// No description provided for @world19Name.
+  ///
+  /// In en, this message translates to:
+  /// **'Eclipse Undying'**
+  String get world19Name;
+
+  /// No description provided for @world19Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'The Realm of Eclipse falls dark again, and its court has grown far more fierce.'**
+  String get world19Desc;
+
+  /// No description provided for @world19Boss.
+  ///
+  /// In en, this message translates to:
+  /// **'Noctyra, the Endless Night'**
+  String get world19Boss;
+
+  /// No description provided for @world20Name.
+  ///
+  /// In en, this message translates to:
+  /// **'Celestial Requiem'**
+  String get world20Name;
+
+  /// No description provided for @world20Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'The Celestial Dream sings once more, its cosmic guardians returned in greater strength.'**
+  String get world20Desc;
+
+  /// No description provided for @world20Boss.
+  ///
+  /// In en, this message translates to:
+  /// **'Elyndor, the Last Sovereign'**
+  String get world20Boss;
+
+  /// No description provided for @world21Name.
+  ///
+  /// In en, this message translates to:
+  /// **'Meadow\'s Final Dream'**
+  String get world21Name;
+
+  /// No description provided for @world21Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'A third dreaming of the meadow, wilder and far harder to wake from.'**
+  String get world21Desc;
+
+  /// No description provided for @world21Boss.
+  ///
+  /// In en, this message translates to:
+  /// **'The Unraveling, Eternal'**
+  String get world21Boss;
+
+  /// No description provided for @world22Name.
+  ///
+  /// In en, this message translates to:
+  /// **'The Last Moonlit Forest'**
+  String get world22Name;
+
+  /// No description provided for @world22Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'The forest dreams a final time, its shadows deeper than any before.'**
+  String get world22Desc;
+
+  /// No description provided for @world22Boss.
+  ///
+  /// In en, this message translates to:
+  /// **'Nightmare Warden, Undying'**
+  String get world22Boss;
+
+  /// No description provided for @world23Name.
+  ///
+  /// In en, this message translates to:
+  /// **'Caverns of Endless Crystal'**
+  String get world23Name;
+
+  /// No description provided for @world23Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'The caverns crystallize further still, hardening into something almost eternal.'**
+  String get world23Desc;
+
+  /// No description provided for @world23Boss.
+  ///
+  /// In en, this message translates to:
+  /// **'Crystal Sentinel, Absolute'**
+  String get world23Boss;
+
+  /// No description provided for @world24Name.
+  ///
+  /// In en, this message translates to:
+  /// **'Starfall\'s End'**
+  String get world24Name;
+
+  /// No description provided for @world24Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'The star temple\'s final fall, brighter and more violent than the sky can hold.'**
+  String get world24Desc;
+
+  /// No description provided for @world24Boss.
+  ///
+  /// In en, this message translates to:
+  /// **'Aetherion, the Fallen Sun'**
+  String get world24Boss;
+
+  /// No description provided for @world25Name.
+  ///
+  /// In en, this message translates to:
+  /// **'The Dream That Never Wakes'**
+  String get world25Name;
+
+  /// No description provided for @world25Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'The Forgotten Dream folds in on itself one last time, and nothing wakes from it easily.'**
+  String get world25Desc;
+
+  /// No description provided for @world25Boss.
+  ///
+  /// In en, this message translates to:
+  /// **'Morvane, the Final Hunger'**
+  String get world25Boss;
+
+  /// No description provided for @world26Name.
+  ///
+  /// In en, this message translates to:
+  /// **'Emberheart\'s Last Fire'**
+  String get world26Name;
+
+  /// No description provided for @world26Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'The wastes\' final blaze, hot enough to reshape the ash fields entirely.'**
+  String get world26Desc;
+
+  /// No description provided for @world26Boss.
+  ///
+  /// In en, this message translates to:
+  /// **'Ignivar, the Last Ember'**
+  String get world26Boss;
+
+  /// No description provided for @world27Name.
+  ///
+  /// In en, this message translates to:
+  /// **'The Abyss Eternal'**
+  String get world27Name;
+
+  /// No description provided for @world27Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'The trench has no bottom left to find, and what lives there has waited a long time.'**
+  String get world27Desc;
+
+  /// No description provided for @world27Boss.
+  ///
+  /// In en, this message translates to:
+  /// **'Thalassor, Sovereign of the Deep'**
+  String get world27Boss;
+
+  /// No description provided for @world28Name.
+  ///
+  /// In en, this message translates to:
+  /// **'The Bloom That Never Fades'**
+  String get world28Name;
+
+  /// No description provided for @world28Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Eternal Bloom reaches its final, endless growth.'**
+  String get world28Desc;
+
+  /// No description provided for @world28Boss.
+  ///
+  /// In en, this message translates to:
+  /// **'Verdantor, the World Tree\'s Heart'**
+  String get world28Boss;
+
+  /// No description provided for @world29Name.
+  ///
+  /// In en, this message translates to:
+  /// **'The Eclipse Absolute'**
+  String get world29Name;
+
+  /// No description provided for @world29Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Darkness reaches its final form, and its ruler has never been stronger.'**
+  String get world29Desc;
+
+  /// No description provided for @world29Boss.
+  ///
+  /// In en, this message translates to:
+  /// **'Noctyra, Empress of Shadow'**
+  String get world29Boss;
+
+  /// No description provided for @world30Name.
+  ///
+  /// In en, this message translates to:
+  /// **'The Final Dream'**
+  String get world30Name;
+
+  /// No description provided for @world30Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'The last dream the Dreamkeepers will ever need to wake from.'**
+  String get world30Desc;
+
+  /// No description provided for @world30Boss.
+  ///
+  /// In en, this message translates to:
+  /// **'Elyndor, the Dreaming God'**
+  String get world30Boss;
 }
 
 class _AppLocalizationsDelegate
