@@ -121,8 +121,8 @@ class ShopCatalog {
     ShopItem(
       id: 'arena_tickets_small',
       kind: ShopItemKind.arenaTicketPack,
-      name: 'Arena Ticket Pack',
-      description: '5 extra Arena Tower attempts, on top of your free daily tickets.',
+      name: 'Trial Ticket Pack',
+      description: '5 extra Endless Trial attempts, on top of your free daily tickets.',
       priceLabel: r'$1.99',
       icon: 'ticket.fill',
       gemCost: 0,
@@ -134,8 +134,8 @@ class ShopCatalog {
     ShopItem(
       id: 'arena_tickets_large',
       kind: ShopItemKind.arenaTicketPack,
-      name: 'Arena Ticket Bundle',
-      description: '15 extra Arena Tower attempts — better value for a serious climb.',
+      name: 'Trial Ticket Bundle',
+      description: '15 extra Endless Trial attempts — better value for a serious climb.',
       priceLabel: r'$4.99',
       icon: 'ticket.fill',
       gemCost: 0,

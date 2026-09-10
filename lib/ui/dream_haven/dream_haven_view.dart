@@ -408,7 +408,7 @@ class _DreamHavenViewState extends State<DreamHavenView> {
       _BuildingCard(
         key: const Key('dream-haven-building-arena'),
         icon: state.arenaTier.symbol,
-        name: 'Arena',
+        name: 'The Endless Trial',
         status: 'Floor ${state.arenaFloor}/${state.arenaMaxFloor}',
         isActive: true,
         isReady: false,

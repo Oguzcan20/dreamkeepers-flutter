@@ -68,7 +68,7 @@ void main() {
     expect(find.text('${gameState.save.gold}'), findsOneWidget);
     expect(find.text('${gameState.save.dreamGems}'), findsOneWidget);
     expect(find.text('Dream Gems'), findsOneWidget); // Gem pack section title.
-    expect(find.text('Arena Tickets'), findsOneWidget);
+    expect(find.text('Trial Tickets'), findsOneWidget);
     expect(find.text('Gold Exchange'), findsOneWidget);
     // A brand new save hasn't claimed either one-time offer yet.
     expect(find.text('Dreamkeeper Starter Pack'), findsOneWidget);
@@ -155,7 +155,7 @@ void main() {
     final gameState = await _pumpShop(tester, onNavigate: (_) {});
     final before = gameState.arenaBonusTickets;
 
-    await _buyCard(tester, 'Arena Ticket Pack', r'$1.99');
+    await _buyCard(tester, 'Trial Ticket Pack', r'$1.99');
 
     expect(gameState.arenaBonusTickets, before + 5);
   });

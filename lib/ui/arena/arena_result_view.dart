@@ -85,7 +85,7 @@ class ArenaResultView extends StatelessWidget {
     return _glowCard(
       icon: 'crown.fill',
       title: 'Tower Cleared!',
-      subtitle: "You've conquered all 100 floors of the Arena Tower.",
+      subtitle: "You've conquered all 100 floors of the Endless Trial.",
     );
   }
 

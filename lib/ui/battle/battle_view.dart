@@ -253,7 +253,7 @@ class _BattleViewState extends State<BattleView> with SingleTickerProviderStateM
   }
 
   String _stageLabel() {
-    if (widget.arenaFloor != null) return 'Arena · Floor ${widget.arenaFloor}';
+    if (widget.arenaFloor != null) return 'Endless Trial · Floor ${widget.arenaFloor}';
     final world = WorldCatalog.world(_engine.stage);
     final stageInWorld = _engine.stage - world.firstStage + 1;
     if (_engine.isBossStage) return '${world.name} · Boss';

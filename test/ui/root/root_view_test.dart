@@ -158,8 +158,8 @@ void main() {
     await _tapAndReturnToRealScreen(tester, const Key('dream-haven-building-observatory'), 'Dream Observatory');
     // `ArenaView` is a real screen now too (not a `_ComingSoonScreen`), and
     // (matching Swift) isn't on the global-home-button exclusion list —
-    // its own header reads "Arena", not "Arena Tower".
-    await _tapAndReturnToRealScreen(tester, const Key('dream-haven-building-arena'), 'Arena');
+    // its own header reads "The Endless Trial", not "Arena".
+    await _tapAndReturnToRealScreen(tester, const Key('dream-haven-building-arena'), 'The Endless Trial');
     // `SettingsView` is a real screen now too (not a `_ComingSoonScreen`),
     // and (matching Swift) isn't on the global-home-button exclusion list.
     await _tapAndReturnToRealScreen(tester, const Key('dream-haven-header-settings'), 'Settings');
@@ -266,7 +266,7 @@ void main() {
 
     await tester.tap(find.byKey(const Key('dream-haven-building-arena')));
     await _settle(tester);
-    expect(find.text('Arena'), findsOneWidget);
+    expect(find.text('The Endless Trial'), findsOneWidget);
 
     // A brand new save starts with a deployed starter and a full ticket
     // allowance, so floor 1 is unlocked and affordable with no dialog.
@@ -276,7 +276,7 @@ void main() {
     // Arena Battle reuses the shared `BattleView`, which (like Campaign's
     // `BattleRoute`) sits on the `showsGlobalHomeButton` exclusion list.
     expect(find.byKey(const Key('global-home-button')), findsNothing);
-    expect(find.textContaining('Arena'), findsWidgets);
+    expect(find.textContaining('Endless Trial'), findsWidgets);
 
     var resolved = false;
     for (var i = 0; i < 200 && !resolved; i++) {

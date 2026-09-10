@@ -296,7 +296,7 @@ void main() {
     });
   });
 
-  group('Arena Tower', () {
+  group('Endless Trial', () {
     test('winning floor 1 for the first time advances arenaFloor and pays gold', () async {
       final state = await _freshState();
       final engine = state.makeArenaBattleEngine(1);

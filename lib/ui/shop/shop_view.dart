@@ -316,7 +316,7 @@ class _ShopViewState extends State<ShopView> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('Arena Tickets', style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold)),
+        const Text('Trial Tickets', style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold)),
         const SizedBox(height: 10),
         for (final item in ShopCatalog.arenaTicketPacks) ...[
           _TicketPackRow(item: item, justPurchased: _justPurchasedID == item.id, onBuy: () => _buy(item)),

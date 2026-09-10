@@ -69,11 +69,11 @@ class _ArenaViewState extends State<ArenaView> {
 
   void _attemptFight(int floor) {
     if (_gameState.deployedTeam.isEmpty) {
-      _showAlert('No team deployed', 'Deploy a team before entering the Arena.');
+      _showAlert('No team deployed', 'Deploy a team before entering the Endless Trial.');
       return;
     }
     if (!_gameState.canAffordArenaBattle()) {
-      _showAlert('No Arena Tickets Left', "You've used all your Arena attempts for today. Come back tomorrow!");
+      _showAlert('No Trial Tickets Left', "You've used all your Endless Trial attempts for today. Come back tomorrow!");
       return;
     }
     widget.onFight(floor);
@@ -177,7 +177,7 @@ class _ArenaViewState extends State<ArenaView> {
             ),
           ),
           const Spacer(),
-          const Text('Arena', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+          const Text('The Endless Trial', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
           const Spacer(),
           const SizedBox(width: 40, height: 40),
         ],
@@ -214,7 +214,7 @@ class _ArenaViewState extends State<ArenaView> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Semantics(
-                label: '${_gameState.arenaTicketsRemainingToday} of ${ArenaSystem.maxTicketsPerDay} Arena tickets remaining today',
+                label: '${_gameState.arenaTicketsRemainingToday} of ${ArenaSystem.maxTicketsPerDay} Trial tickets remaining today',
                 child: ExcludeSemantics(
                   child: Row(
                     mainAxisSize: MainAxisSize.min,

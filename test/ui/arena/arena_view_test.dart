@@ -49,7 +49,7 @@ void main() {
   testWidgets('shows the header, progress card, and floor list', (tester) async {
     final gameState = await _pumpArena(tester, onNavigate: (_) {});
 
-    expect(find.text('Arena'), findsOneWidget);
+    expect(find.text('The Endless Trial'), findsOneWidget);
     expect(find.text(gameState.arenaTier.displayName), findsOneWidget);
     expect(find.textContaining('Floor 1'), findsWidgets);
     // All 100 floors are always rendered, not just the unlocked ones (see
@@ -129,7 +129,7 @@ void main() {
     await tester.tap(find.bySemanticsLabel('Floor 1'));
     await _settle(tester);
 
-    expect(find.text('No Arena Tickets Left'), findsOneWidget);
+    expect(find.text('No Trial Tickets Left'), findsOneWidget);
     expect(foughtFloor, isNull);
   });
 
