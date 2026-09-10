@@ -11,12 +11,13 @@ import 'platform_service.dart';
 /// a separate piece of work); this class only fills in the two seams the
 /// game actually leans on for feel — `playHaptic` and `playSound`.
 ///
-/// The battle cues (`attack`, `skill`, `ultimate`, `bossEncounter`,
-/// `bossVictory`) are the real composed WAVs in `assets/audio/`, mirrored
-/// from the iOS build — `attack`/`skill` deliberately tiny and quiet (they
-/// fire on every hit / skill tap), the boss cues short dramatic stings.
-/// Every other `SoundEffect` is intentionally silent here (iOS renders
-/// those via tiny system sounds that have no Android equivalent).
+/// All the composed WAVs in `assets/audio/` are mirrored from the iOS
+/// build: the battle cues (`attack`, `skill`, `ultimate`, `bossEncounter`,
+/// `bossVictory`) plus the general UI cues (`summon`, `levelUp`, `reward`,
+/// `buttonTap`) that iOS used to render as bare system beeps. `attack`,
+/// `skill` and `buttonTap` are deliberately tiny/quiet (they fire
+/// constantly); the boss cues are short dramatic stings. `loot` has no
+/// call site in the game, so it stays silent here.
 class FlutterPlatformService extends NoopPlatformService {
   FlutterPlatformService() {
     // SFX should mix under the player's own music, not seize audio focus.
@@ -34,6 +35,10 @@ class FlutterPlatformService extends NoopPlatformService {
     SoundEffect.ultimate: 'audio/ultimate.wav',
     SoundEffect.skill: 'audio/skill.wav',
     SoundEffect.attack: 'audio/attack.wav',
+    SoundEffect.summon: 'audio/summon.wav',
+    SoundEffect.levelUp: 'audio/level_up.wav',
+    SoundEffect.reward: 'audio/reward.wav',
+    SoundEffect.buttonTap: 'audio/button_tap.wav',
   };
 
   static double _volume(SoundEffect e) {
@@ -44,10 +49,18 @@ class FlutterPlatformService extends NoopPlatformService {
         return 0.85;
       case SoundEffect.ultimate:
         return 0.9;
+      case SoundEffect.levelUp:
+        return 0.8;
+      case SoundEffect.summon:
+        return 0.7;
+      case SoundEffect.reward:
+        return 0.6;
       case SoundEffect.skill:
         return 0.5;
       case SoundEffect.attack:
         return 0.32;
+      case SoundEffect.buttonTap:
+        return 0.25;
       default:
         return 0.8;
     }
