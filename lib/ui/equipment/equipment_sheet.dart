@@ -64,27 +64,43 @@ class _EquipmentSheetState extends State<EquipmentSheet> {
             if (instance != null && definition != null)
               AnimatedBuilder(
                 animation: widget.gameState,
-                builder: (context, _) => SingleChildScrollView(
-                  padding: const EdgeInsets.all(20),
-                  child: LayoutBuilder(
-                    builder: (context, constraints) {
-                      final narrow = constraints.maxWidth < 560;
-                      final left = _leftColumn(instance: instance, definition: definition);
-                      final right = _rightColumn(instance: instance, definition: definition);
-                      if (narrow) {
-                        return Column(children: [left, const SizedBox(height: 20), right]);
-                      }
-                      return Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(child: left),
-                          const SizedBox(width: 16),
-                          Expanded(child: right),
-                        ],
-                      );
-                    },
-                  ),
-                ),
+                builder: (context, _) {
+                  // Re-read the instance on every notification — `equip`,
+                  // `unequip`, upgrades and fusion all replace the roster
+                  // entry, so the copy captured in `build()` goes stale and
+                  // the slot rows / stats would show the pre-change state
+                  // until the sheet is reopened.
+                  final live = _instance;
+                  final liveDefinition =
+                      live == null ? null : widget.gameState.definition(live);
+                  if (live == null || liveDefinition == null) {
+                    return const SizedBox.shrink();
+                  }
+                  return SingleChildScrollView(
+                    padding: const EdgeInsets.all(20),
+                    child: LayoutBuilder(
+                      builder: (context, constraints) {
+                        final narrow = constraints.maxWidth < 560;
+                        final left = _leftColumn(
+                            instance: live, definition: liveDefinition);
+                        final right = _rightColumn(
+                            instance: live, definition: liveDefinition);
+                        if (narrow) {
+                          return Column(
+                              children: [left, const SizedBox(height: 20), right]);
+                        }
+                        return Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(child: left),
+                            const SizedBox(width: 16),
+                            Expanded(child: right),
+                          ],
+                        );
+                      },
+                    ),
+                  );
+                },
               ),
           ],
         ),
@@ -371,38 +387,51 @@ class _SlotRow extends StatelessWidget {
     showModalBottomSheet(
       context: context,
       backgroundColor: dk_theme.Theme.deepNavy,
+      // Swift presents this as a native `Menu` popover, which scrolls itself
+      // and never clips. A default (non-scroll-controlled) bottom sheet is
+      // capped near half the screen height — in landscape that hides the
+      // lower rows of a long item list with no way to reach them. Cap the
+      // height explicitly and let the list scroll inside it instead.
+      isScrollControlled: true,
       builder: (context) {
         return SafeArea(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              if (equipped != null)
-                ListTile(
-                  leading: const Icon(Icons.close, color: Colors.redAccent),
-                  title: const Text('Unequip', style: TextStyle(color: Colors.redAccent)),
-                  onTap: () {
-                    gameState.unequip(slot, instance);
-                    gameState.playHaptic(HapticStyle.light);
-                    Navigator.of(context).pop();
-                  },
-                ),
-              if (available.isEmpty)
-                Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Text('No items in inventory', style: TextStyle(color: Colors.white.withValues(alpha: 0.6))),
-                )
-              else
-                ...available.map(
-                  (item) => ListTile(
-                    title: Text('${item.name} (${item.rarity.displayName})', style: const TextStyle(color: Colors.white)),
-                    onTap: () {
-                      gameState.equip(item, instance);
-                      gameState.playHaptic(HapticStyle.light);
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                ),
-            ],
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              maxHeight: MediaQuery.of(context).size.height * 0.7,
+            ),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (equipped != null)
+                    ListTile(
+                      leading: const Icon(Icons.close, color: Colors.redAccent),
+                      title: const Text('Unequip', style: TextStyle(color: Colors.redAccent)),
+                      onTap: () {
+                        gameState.unequip(slot, instance);
+                        gameState.playHaptic(HapticStyle.light);
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  if (available.isEmpty)
+                    Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Text('No items in inventory', style: TextStyle(color: Colors.white.withValues(alpha: 0.6))),
+                    )
+                  else
+                    ...available.map(
+                      (item) => ListTile(
+                        title: Text('${item.name} (${item.rarity.displayName})', style: const TextStyle(color: Colors.white)),
+                        onTap: () {
+                          gameState.equip(item, instance);
+                          gameState.playHaptic(HapticStyle.light);
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ),
+                ],
+              ),
+            ),
           ),
         );
       },

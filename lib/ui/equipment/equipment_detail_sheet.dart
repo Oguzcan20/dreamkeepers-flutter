@@ -57,27 +57,36 @@ class _EquipmentDetailSheetState extends State<EquipmentDetailSheet> {
             if (item != null)
               AnimatedBuilder(
                 animation: widget.gameState,
-                builder: (context, _) => SingleChildScrollView(
-                  padding: const EdgeInsets.all(20),
-                  child: LayoutBuilder(
-                    builder: (context, constraints) {
-                      final narrow = constraints.maxWidth < 560;
-                      final left = _leftColumn(item: item);
-                      final right = _rightColumn(item: item);
-                      if (narrow) {
-                        return Column(children: [left, const SizedBox(height: 20), right]);
-                      }
-                      return Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(child: left),
-                          const SizedBox(width: 16),
-                          Expanded(child: right),
-                        ],
-                      );
-                    },
-                  ),
-                ),
+                builder: (context, _) {
+                  // Re-read the item on every notification — upgrade and
+                  // fusion replace the inventory entry, so the copy captured
+                  // in `build()` goes stale and the stats / level would show
+                  // the pre-change state until the sheet is reopened.
+                  final live = _item;
+                  if (live == null) return const SizedBox.shrink();
+                  return SingleChildScrollView(
+                    padding: const EdgeInsets.all(20),
+                    child: LayoutBuilder(
+                      builder: (context, constraints) {
+                        final narrow = constraints.maxWidth < 560;
+                        final left = _leftColumn(item: live);
+                        final right = _rightColumn(item: live);
+                        if (narrow) {
+                          return Column(
+                              children: [left, const SizedBox(height: 20), right]);
+                        }
+                        return Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(child: left),
+                            const SizedBox(width: 16),
+                            Expanded(child: right),
+                          ],
+                        );
+                      },
+                    ),
+                  );
+                },
               ),
           ],
         ),
