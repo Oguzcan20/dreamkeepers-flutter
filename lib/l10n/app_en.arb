@@ -456,5 +456,15 @@
   "slotWeapon": "Weapon",
   "slotCharm": "Charm",
   "slotCloak": "Cloak",
-  "slotRing": "Ring"
+  "slotRing": "Ring",
+  "arenaTierBronze": "Bronze",
+  "arenaTierSilver": "Silver",
+  "arenaTierGold": "Gold",
+  "arenaTierPlatinum": "Platinum",
+  "arenaTierDiamond": "Diamond",
+  "arenaZoneBronze": "Bronze Halls",
+  "arenaZoneSilver": "Silver Vault",
+  "arenaZoneGold": "Gold Sanctum",
+  "arenaZonePlatinum": "Platinum Ascent",
+  "arenaZoneDiamond": "Diamond Summit"
 }

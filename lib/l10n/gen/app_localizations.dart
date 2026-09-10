@@ -2084,6 +2084,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Ring'**
   String get slotRing;
+
+  /// No description provided for @arenaTierBronze.
+  ///
+  /// In en, this message translates to:
+  /// **'Bronze'**
+  String get arenaTierBronze;
+
+  /// No description provided for @arenaTierSilver.
+  ///
+  /// In en, this message translates to:
+  /// **'Silver'**
+  String get arenaTierSilver;
+
+  /// No description provided for @arenaTierGold.
+  ///
+  /// In en, this message translates to:
+  /// **'Gold'**
+  String get arenaTierGold;
+
+  /// No description provided for @arenaTierPlatinum.
+  ///
+  /// In en, this message translates to:
+  /// **'Platinum'**
+  String get arenaTierPlatinum;
+
+  /// No description provided for @arenaTierDiamond.
+  ///
+  /// In en, this message translates to:
+  /// **'Diamond'**
+  String get arenaTierDiamond;
+
+  /// No description provided for @arenaZoneBronze.
+  ///
+  /// In en, this message translates to:
+  /// **'Bronze Halls'**
+  String get arenaZoneBronze;
+
+  /// No description provided for @arenaZoneSilver.
+  ///
+  /// In en, this message translates to:
+  /// **'Silver Vault'**
+  String get arenaZoneSilver;
+
+  /// No description provided for @arenaZoneGold.
+  ///
+  /// In en, this message translates to:
+  /// **'Gold Sanctum'**
+  String get arenaZoneGold;
+
+  /// No description provided for @arenaZonePlatinum.
+  ///
+  /// In en, this message translates to:
+  /// **'Platinum Ascent'**
+  String get arenaZonePlatinum;
+
+  /// No description provided for @arenaZoneDiamond.
+  ///
+  /// In en, this message translates to:
+  /// **'Diamond Summit'**
+  String get arenaZoneDiamond;
 }
 
 class _AppLocalizationsDelegate

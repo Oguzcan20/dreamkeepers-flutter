@@ -1217,4 +1217,34 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get slotRing => 'Ring';
+
+  @override
+  String get arenaTierBronze => 'Bronze';
+
+  @override
+  String get arenaTierSilver => 'Silber';
+
+  @override
+  String get arenaTierGold => 'Gold';
+
+  @override
+  String get arenaTierPlatinum => 'Platin';
+
+  @override
+  String get arenaTierDiamond => 'Diamant';
+
+  @override
+  String get arenaZoneBronze => 'Bronzehallen';
+
+  @override
+  String get arenaZoneSilver => 'Silberkammer';
+
+  @override
+  String get arenaZoneGold => 'Goldsanktum';
+
+  @override
+  String get arenaZonePlatinum => 'Platinaufstieg';
+
+  @override
+  String get arenaZoneDiamond => 'Diamantgipfel';
 }

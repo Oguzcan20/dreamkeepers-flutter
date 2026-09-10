@@ -1,6 +1,7 @@
 import 'package:uuid/uuid.dart';
 
 import '../data/dreamkeeper_catalog.dart';
+import '../l10n/l10n.dart';
 import '../models/equipment.dart';
 import '../models/rarity.dart';
 import '../progression/equipment_factory.dart';
@@ -59,15 +60,15 @@ enum ArenaTier implements Comparable<ArenaTier> {
   String get displayName {
     switch (this) {
       case ArenaTier.bronze:
-        return 'Bronze';
+        return L.arenaTierBronze;
       case ArenaTier.silver:
-        return 'Silver';
+        return L.arenaTierSilver;
       case ArenaTier.gold:
-        return 'Gold';
+        return L.arenaTierGold;
       case ArenaTier.platinum:
-        return 'Platinum';
+        return L.arenaTierPlatinum;
       case ArenaTier.diamond:
-        return 'Diamond';
+        return L.arenaTierDiamond;
     }
   }
 
@@ -110,15 +111,15 @@ enum ArenaTier implements Comparable<ArenaTier> {
   String get zoneName {
     switch (this) {
       case ArenaTier.bronze:
-        return 'Bronze Halls';
+        return L.arenaZoneBronze;
       case ArenaTier.silver:
-        return 'Silver Vault';
+        return L.arenaZoneSilver;
       case ArenaTier.gold:
-        return 'Gold Sanctum';
+        return L.arenaZoneGold;
       case ArenaTier.platinum:
-        return 'Platinum Ascent';
+        return L.arenaZonePlatinum;
       case ArenaTier.diamond:
-        return 'Diamond Summit';
+        return L.arenaZoneDiamond;
     }
   }
 }

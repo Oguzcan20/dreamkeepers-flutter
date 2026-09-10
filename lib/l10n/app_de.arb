@@ -364,5 +364,15 @@
   "slotWeapon": "Waffe",
   "slotCharm": "Talisman",
   "slotCloak": "Umhang",
-  "slotRing": "Ring"
+  "slotRing": "Ring",
+  "arenaTierBronze": "Bronze",
+  "arenaTierSilver": "Silber",
+  "arenaTierGold": "Gold",
+  "arenaTierPlatinum": "Platin",
+  "arenaTierDiamond": "Diamant",
+  "arenaZoneBronze": "Bronzehallen",
+  "arenaZoneSilver": "Silberkammer",
+  "arenaZoneGold": "Goldsanktum",
+  "arenaZonePlatinum": "Platinaufstieg",
+  "arenaZoneDiamond": "Diamantgipfel"
 }
