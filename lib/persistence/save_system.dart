@@ -19,6 +19,23 @@ abstract class SaveSystem {
 class LocalSaveStore implements SaveSystem {
   static const _key = 'dreamkeepers.save.json';
 
+  /// Reads just the persisted `preferredLanguage` from the raw save, without
+  /// decoding the whole `GameSave`. `main()` needs the active locale set on
+  /// the global `L` *before* it builds `GameState` — the localized catalogs
+  /// (`DreamkeeperCatalog.starter` and friends) read `L` the first time they
+  /// are touched, which happens inside `GameState.create`. Returns `null`
+  /// for a missing or unreadable save, or a save with no stored preference.
+  static Future<String?> readPreferredLanguage() async {
+    final prefs = await SharedPreferences.getInstance();
+    final raw = prefs.getString(_key);
+    if (raw == null) return null;
+    try {
+      return (jsonDecode(raw) as Map<String, dynamic>)['preferredLanguage'] as String?;
+    } catch (_) {
+      return null;
+    }
+  }
+
   @override
   Future<GameSave?> load() async {
     final prefs = await SharedPreferences.getInstance();

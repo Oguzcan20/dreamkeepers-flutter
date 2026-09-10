@@ -5,6 +5,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 
 import 'l10n/l10n.dart';
+import 'persistence/save_system.dart';
 import 'platform/ad_reward_service.dart';
 import 'platform/consent_manager.dart';
 import 'platform/flutter_platform_service.dart';
@@ -36,6 +37,15 @@ Future<void> main() async {
   // `GooglePlayPurchaseService`'s doc comments for the test-ad-unit and
   // Play-Console-product caveats until real Android IDs replace them.
   await MobileAds.instance.initialize();
+  // Resolve the active language and prime the global `L` *before* building
+  // `GameState` — `GameState.create` touches the localized catalogs
+  // (`DreamkeeperCatalog.starter` and friends), which read `L` on first
+  // access. The Settings language switch forces a full restart, so the
+  // locale never changes mid-session and `MaterialApp` can take a fixed
+  // `locale`. `L` gives non-widget code (notifications, reward toasts,
+  // catalogs) the same strings.
+  final locale = resolvePreferredLocale(await LocalSaveStore.readPreferredLanguage());
+  await loadGlobalLocalizations(locale);
   final gameState = await GameState.create(
     platform: FlutterPlatformService(),
     adService: AdMobRewardService(),
@@ -44,12 +54,6 @@ Future<void> main() async {
   );
   final accountState = AccountState();
   await accountState.load();
-  // Resolve the active language once, here — the Settings language switch
-  // forces a full restart, so the locale never changes mid-session and
-  // `MaterialApp` can take a fixed `locale`. `L` gives non-widget code
-  // (notifications, reward toasts) the same strings.
-  final locale = resolvePreferredLocale(gameState.preferredLanguage);
-  await loadGlobalLocalizations(locale);
   runApp(DreamkeepersApp(gameState: gameState, accountState: accountState, locale: locale));
 }
 
