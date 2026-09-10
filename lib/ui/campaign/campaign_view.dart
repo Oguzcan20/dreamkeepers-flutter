@@ -160,7 +160,10 @@ class _CampaignViewState extends State<CampaignView> {
                   _header(),
                   Expanded(
                     child: SingleChildScrollView(
-                      padding: const EdgeInsets.fromLTRB(20, 14, 20, 40),
+                      // Bottom pad clears the floating home button in the
+                      // bottom-left corner (RootView only reserves ~56 of
+                      // outer clearance now — see `_homeButtonClearance`).
+                      padding: const EdgeInsets.fromLTRB(20, 14, 20, 76),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [

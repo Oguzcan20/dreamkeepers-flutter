@@ -329,4 +329,25 @@ void main() {
     await _settle(tester);
     expect(find.text('Training Garden'), findsNWidgets(2));
   });
+
+  // The Swift original never handles a hardware/gesture back (iOS has none).
+  // `RootView`'s `PopScope` is the Android-only addition: without it the
+  // default `canPop: true` sends every back press straight to the launcher.
+  testWidgets('Android system back walks sub-screen -> Dream Haven -> Main Menu instead of leaving', (tester) async {
+    await _bootedToDreamHaven(tester);
+
+    await tester.tap(find.byKey(const Key('dream-haven-header-settings')));
+    await _settle(tester);
+    expect(find.text('Settings'), findsOneWidget);
+
+    // Back from any sub-screen -> Dream Haven.
+    await tester.binding.handlePopRoute();
+    await _settle(tester);
+    expect(find.text('Dream Haven'), findsOneWidget);
+
+    // Back from Dream Haven -> Main Menu (not app exit).
+    await tester.binding.handlePopRoute();
+    await _settle(tester);
+    expect(find.text('Play'), findsOneWidget);
+  });
 }

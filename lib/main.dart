@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 
@@ -21,6 +22,13 @@ import 'ui/root/root_view.dart';
 /// required before any async work runs ahead of `runApp`.
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // Landscape-only, matching the iOS original (Resources/Info.plist ships
+  // just LandscapeLeft/LandscapeRight). Every screen is laid out against a
+  // wide, short reference size; portrait overflows.
+  await SystemChrome.setPreferredOrientations(const [
+    DeviceOrientation.landscapeLeft,
+    DeviceOrientation.landscapeRight,
+  ]);
   // Real AdMob/Play Billing services, not the Mock* ones — see
   // `AdMobRewardService`/`AdMobInterstitialAdService`/
   // `GooglePlayPurchaseService`'s doc comments for the test-ad-unit and

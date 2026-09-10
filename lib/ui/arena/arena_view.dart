@@ -131,7 +131,10 @@ class _ArenaViewState extends State<ArenaView> {
                     duration: const Duration(milliseconds: 500),
                     child: SingleChildScrollView(
                       controller: _scrollController,
-                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+                      // Bottom pad clears the floating home button in the
+                      // bottom-left corner (RootView only reserves ~56 of
+                      // outer clearance now — see `_homeButtonClearance`).
+                      padding: const EdgeInsets.fromLTRB(20, 14, 20, 76),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         // Diamond (top, hardest) down to Bronze (bottom, floor

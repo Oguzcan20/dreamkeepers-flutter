@@ -610,8 +610,36 @@ class _CombatantBanner extends StatelessWidget {
     );
   }
 
+  /// Portrait art lookup name — `portraitOverrideName` when set (Arena
+  /// rivals), otherwise the combatant's own display name. Mirrors Swift's
+  /// `CombatantBanner.portraitLookupName`.
+  String get _portraitLookupName => combatant.portraitOverrideName ?? combatant.name;
+
+  /// Checks both namespaces: an Arena rival's override names a real
+  /// Dreamkeeper, ordinary enemies only ever have `Monster_` art. No name
+  /// exists in both catalogs, so this is unambiguous.
+  bool get _hasPortraitArt =>
+      dk_theme.DreamkeeperArt.hasArt(_portraitLookupName) || dk_theme.MonsterArt.hasArt(_portraitLookupName);
+
+  String get _portraitAssetName => dk_theme.DreamkeeperArt.hasArt(_portraitLookupName)
+      ? dk_theme.DreamkeeperArt.assetName(_portraitLookupName)
+      : dk_theme.MonsterArt.assetName(_portraitLookupName);
+
   Widget _portrait() {
     final tint = combatant.isBoss ? Colors.red : combatant.element.color;
+    if (_hasPortraitArt) {
+      return Container(
+        width: _portraitSize,
+        height: _portraitSize,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: Border.all(color: tint.withValues(alpha: 0.6), width: combatant.isBoss ? 3 : 2),
+          boxShadow: [BoxShadow(color: tint.withValues(alpha: 0.5), blurRadius: 14)],
+        ),
+        clipBehavior: Clip.antiAlias,
+        child: Image.asset(_portraitAssetName, fit: BoxFit.cover),
+      );
+    }
     return Container(
       width: _portraitSize,
       height: _portraitSize,
@@ -697,18 +725,33 @@ class _PartyMemberTile extends StatelessWidget {
                 alignment: Alignment.center,
                 clipBehavior: Clip.none,
                 children: [
-                  Container(
-                    width: _portraitSize,
-                    height: _portraitSize,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: combatant.isAlive ? combatant.element.color.withValues(alpha: 0.35) : Colors.white.withValues(alpha: 0.05),
-                      border: Border.all(color: combatant.element.color.withValues(alpha: 0.5), width: 1.5),
+                  if (dk_theme.DreamkeeperArt.hasArt(combatant.name))
+                    Opacity(
+                      opacity: combatant.isAlive ? 1 : 0.35,
+                      child: Container(
+                        width: _portraitSize,
+                        height: _portraitSize,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(color: combatant.element.color.withValues(alpha: 0.5), width: 1.5),
+                        ),
+                        clipBehavior: Clip.antiAlias,
+                        child: Image.asset(dk_theme.DreamkeeperArt.assetName(combatant.name), fit: BoxFit.cover),
+                      ),
+                    )
+                  else
+                    Container(
+                      width: _portraitSize,
+                      height: _portraitSize,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: combatant.isAlive ? combatant.element.color.withValues(alpha: 0.35) : Colors.white.withValues(alpha: 0.05),
+                        border: Border.all(color: combatant.element.color.withValues(alpha: 0.5), width: 1.5),
+                      ),
+                      alignment: Alignment.center,
+                      child: Icon(sfSymbol(combatant.role.symbol),
+                          size: _portraitSize * 0.4, color: combatant.isAlive ? Colors.white : Colors.white.withValues(alpha: 0.3)),
                     ),
-                    alignment: Alignment.center,
-                    child: Icon(sfSymbol(combatant.role.symbol),
-                        size: _portraitSize * 0.4, color: combatant.isAlive ? Colors.white : Colors.white.withValues(alpha: 0.3)),
-                  ),
                   if (isAttacker)
                     TweenAnimationBuilder<double>(
                       key: ValueKey('atk-${hit.id}'),
@@ -922,7 +965,10 @@ class _UltimateShowcaseOverlay extends StatelessWidget {
               boxShadow: [BoxShadow(color: combatant.element.color.withValues(alpha: 0.7), blurRadius: 30)],
             ),
             alignment: Alignment.center,
-            child: Icon(sfSymbol(combatant.role.symbol), size: 60, color: Colors.white),
+            clipBehavior: Clip.antiAlias,
+            child: dk_theme.DreamkeeperArt.hasArt(combatant.name)
+                ? Image.asset(dk_theme.DreamkeeperArt.assetName(combatant.name), fit: BoxFit.cover)
+                : Icon(sfSymbol(combatant.role.symbol), size: 60, color: Colors.white),
           ),
         ),
       ),

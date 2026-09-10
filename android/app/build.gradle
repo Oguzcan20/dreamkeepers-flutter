@@ -40,7 +40,7 @@ android {
         // google_mobile_ads requires 23+ (Android 6.0) — flutter.minSdkVersion
         // (21) is too low for it. 23 still covers effectively all active
         // devices per Google's own distribution stats.
-        minSdk = 23
+        minSdkVersion = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName

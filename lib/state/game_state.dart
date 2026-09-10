@@ -391,6 +391,13 @@ class GameState extends ChangeNotifier {
   /// partial progress toward the next tick. A no-op whenever there's
   /// nothing to apply, so read-time callers never write (and thus never
   /// `notifyListeners()`) unless something actually changed.
+  ///
+  /// Uses `_persistDeferringNotifyDuringBuild()` because the `energy` /
+  /// `secondsUntilNextEnergy` getters that call this are read straight from
+  /// widget `build()` (e.g. `DreamHavenView._resourceBar`), and a
+  /// synchronous `notifyListeners()` there trips Flutter's "setState() or
+  /// markNeedsBuild() called during build" assertion — same reasoning as
+  /// `_ensureMissionsCurrent`.
   void _refreshEnergy() {
     if (_save.energy >= EnergySystem.maxEnergy) return;
     final elapsed = DateTime.now().difference(_save.lastEnergyUpdateAt).inSeconds;
@@ -399,7 +406,7 @@ class GameState extends ChangeNotifier {
     _save.energy = min(EnergySystem.maxEnergy, _save.energy + ticks);
     _save.lastEnergyUpdateAt = _save.lastEnergyUpdateAt
         .add(Duration(seconds: ticks * EnergySystem.regenIntervalSeconds));
-    persist();
+    _persistDeferringNotifyDuringBuild();
   }
 
   /// Tops energy up without exceeding the cap — used by mission/login

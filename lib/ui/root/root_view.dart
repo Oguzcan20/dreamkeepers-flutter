@@ -90,7 +90,8 @@ class _RootViewState extends State<RootView> {
     // rides along right after since both are launch-time, non-interactive
     // background checks with nothing else in this app depending on their
     // ordering relative to each other.
-    WidgetsBinding.instance.addPostFrameCallback((_) => _requestConsentAndSilentSignInOnce());
+    WidgetsBinding.instance
+        .addPostFrameCallback((_) => _requestConsentAndSilentSignInOnce());
   }
 
   Future<void> _requestConsentAndSilentSignInOnce() async {
@@ -98,7 +99,9 @@ class _RootViewState extends State<RootView> {
     _hasRequestedConsent = true;
     await _consentService.requestConsentIfNeeded();
     if (!mounted) return;
-    await context.read<GoogleSignInService>().signInSilentlyIfAvailable(context.read<AccountState>());
+    await context
+        .read<GoogleSignInService>()
+        .signInSilentlyIfAvailable(context.read<AccountState>());
   }
 
   void _maybeAuthenticateGameServices() {
@@ -113,11 +116,14 @@ class _RootViewState extends State<RootView> {
   /// single input either trigger ultimately needs, and
   /// `GameLeaderboardService.submitCampaignProgress` already dedupes
   /// identical resubmissions, so one guarded call site covers both cases.
-  void _maybeSubmitLeaderboard(GameState state, GameServicesService gameServices) {
+  void _maybeSubmitLeaderboard(
+      GameState state, GameServicesService gameServices) {
     if (!gameServices.isAuthenticated) return;
     if (_lastSubmittedLeaderboardStage == state.currentStage) return;
     _lastSubmittedLeaderboardStage = state.currentStage;
-    context.read<GameLeaderboardService>().submitCampaignProgress(state.currentStage);
+    context
+        .read<GameLeaderboardService>()
+        .submitCampaignProgress(state.currentStage);
   }
 
   bool get _showsGlobalHomeButton => switch (_route) {
@@ -133,28 +139,47 @@ class _RootViewState extends State<RootView> {
         _ => true,
       };
 
-  // 165 exists to keep a screen's own bottom-docked action bar clear of the
-  // floating home button — `CampaignRoute`/`ArenaRoute` both anchor a CTA
-  // bar to the true bottom of the screen. Every other screen that shows the
-  // home button (`TeamRoute`, `ShopRoute`, `SettingsRoute`,
-  // `ObservatoryRoute`, `BattlePassRoute`, `ProfileRoute`) has no competing
-  // bottom bar, so it only needs enough clearance for the home button's own
-  // footprint — same as `ProfileRoute` already got. The full 165 on a
-  // screen that doesn't need it wastes a third of this app's tight
-  // landscape vertical budget on some devices: on a Pixel 6-class Android
-  // emulator (411 logical px tall in landscape) it once squeezed
-  // `InventoryView`'s roster grid down to a 5.4px-tall `Expanded` — no
-  // overflow, no exception, just an invisible grid (caught via
-  // `LayoutBuilder`-logged constraints while diagnosing a "roster renders
-  // blank" report).
-  double get _homeButtonClearance => switch (_route) {
-        CampaignRoute() || ArenaRoute() => 165,
-        _ => 56,
-      };
+  // The floating home button lives in the bottom-left corner, so every
+  // screen that shows it only needs enough clearance for the button's own
+  // footprint (~48px + margin). Swift reserves 165 here for its *scrollable*
+  // screens, but Swift does it with `.safeAreaInset(edge: .bottom)`, which
+  // leaves the scroll view full height and just adds a bottom content inset
+  // so the last card can still scroll clear of the button. Flutter has no
+  // direct equivalent — this clearance is applied as an outer `Padding`
+  // (see `build`), which *hard-shrinks* the screen's box. At 165 on a
+  // Pixel 6-class emulator (411 logical px tall in landscape) that ate a
+  // third of the height: it once squeezed `InventoryView`'s roster grid to
+  // a 5.4px `Expanded`, and it clipped `CampaignView`/`ArenaView`'s scroll
+  // viewport to ~158px (world card cut through the stage nodes, dead space
+  // below). Neither of those screens has a bottom-docked action bar, so 56
+  // is enough for all of them; each scrolling screen pads its own scroll
+  // content at the bottom instead so the last card clears the button.
+  double get _homeButtonClearance => 56;
 
   void _navigate(AppRoute destination) {
     setState(() => _route = destination);
     _maybeAuthenticateGameServices();
+  }
+
+  /// Android hardware/gesture back. The Swift original never handles this —
+  /// iOS has no system back button — so this whole path is Android-only, and
+  /// it deliberately does NOT try to be a real navigation stack (there
+  /// isn't one: `_route` is a flat enum and `_navigate` just replaces it).
+  /// Instead it maps back to the one destination each screen's own UI would
+  /// send the player: sub-screens and battle/result screens to Dream Haven,
+  /// Dream Haven to the Main Menu, and only the Main Menu lets the event
+  /// through so the OS closes the app. Without this, `PopScope`'s default
+  /// (`canPop: true`) means every back press from anywhere exits straight to
+  /// the launcher.
+  bool get _systemBackClosesApp => _route is MainMenuRoute;
+
+  void _handleSystemBack() {
+    final destination = switch (_route) {
+      MainMenuRoute() => null,
+      DreamHavenRoute() => const MainMenuRoute(),
+      _ => const DreamHavenRoute(),
+    };
+    if (destination != null) _navigate(destination);
   }
 
   void _maybeShowInterstitial(GameState state) {
@@ -184,7 +209,9 @@ class _RootViewState extends State<RootView> {
     // fired it — re-runs this check, mirroring the Swift `.onChange`.
     _maybeSubmitLeaderboard(state, context.watch<GameServicesService>());
 
-    if (!_achievementCheckScheduled && _activeAchievementPopup == null && state.pendingAchievements.isNotEmpty) {
+    if (!_achievementCheckScheduled &&
+        _activeAchievementPopup == null &&
+        state.pendingAchievements.isNotEmpty) {
       _achievementCheckScheduled = true;
       WidgetsBinding.instance.addPostFrameCallback((_) {
         _achievementCheckScheduled = false;
@@ -192,67 +219,79 @@ class _RootViewState extends State<RootView> {
       });
     }
 
-    return Scaffold(
-      body: Stack(
-        children: [
-          Container(decoration: const BoxDecoration(gradient: dk_theme.Theme.background)),
+    return PopScope(
+      canPop: _systemBackClosesApp,
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop) return;
+        _handleSystemBack();
+      },
+      child: Scaffold(
+        body: Stack(
+          children: [
+            Container(
+                decoration:
+                    const BoxDecoration(gradient: dk_theme.Theme.background)),
 
-          if (_isLoading)
-            LoadingView(onFinished: () => setState(() => _isLoading = false))
-          else
-            Padding(
-              padding: EdgeInsets.only(bottom: _showsGlobalHomeButton ? _homeButtonClearance : 0),
-              child: _currentScreen(state),
-            ),
+            if (_isLoading)
+              LoadingView(onFinished: () => setState(() => _isLoading = false))
+            else
+              Padding(
+                padding: EdgeInsets.only(
+                    bottom: _showsGlobalHomeButton ? _homeButtonClearance : 0),
+                child: _currentScreen(state),
+              ),
 
-          // Shown once, the first time a new save actually reaches Dream
-          // Haven — not on the Main Menu, so it doesn't compete with the
-          // Play button, and not before, since `GameSave.newGame` already
-          // deploys a starter Dreamkeeper without any tutorial needed to
-          // get there.
-          if (_route is DreamHavenRoute && !state.hasSeenOnboarding)
-            OnboardingView(onFinish: state.completeOnboarding),
+            // Shown once, the first time a new save actually reaches Dream
+            // Haven — not on the Main Menu, so it doesn't compete with the
+            // Play button, and not before, since `GameSave.newGame` already
+            // deploys a starter Dreamkeeper without any tutorial needed to
+            // get there.
+            if (_route is DreamHavenRoute && !state.hasSeenOnboarding)
+              OnboardingView(onFinish: state.completeOnboarding),
 
-          // Right after onboarding finishes — locks in the starter Olf's
-          // element (or, via the secret hold-on-Ember gesture, Ultimate
-          // Olf). `needsStarterOlfChoice` is naturally false for saves
-          // from before this feature existed, so it never appears for them.
-          if (_route is DreamHavenRoute && state.hasSeenOnboarding && state.needsStarterOlfChoice)
-            StarterOlfChoiceView(onChoose: state.chooseStarterOlf),
+            // Right after onboarding finishes — locks in the starter Olf's
+            // element (or, via the secret hold-on-Ember gesture, Ultimate
+            // Olf). `needsStarterOlfChoice` is naturally false for saves
+            // from before this feature existed, so it never appears for them.
+            if (_route is DreamHavenRoute &&
+                state.hasSeenOnboarding &&
+                state.needsStarterOlfChoice)
+              StarterOlfChoiceView(onChoose: state.chooseStarterOlf),
 
-          if (_activeAchievementPopup != null)
-            Align(
-              alignment: Alignment.topCenter,
-              child: SafeArea(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: _AchievementToast(
-                    achievement: _activeAchievementPopup!,
-                    onDismiss: () => _dismissAchievementPopup(state),
+            if (_activeAchievementPopup != null)
+              Align(
+                alignment: Alignment.topCenter,
+                child: SafeArea(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: _AchievementToast(
+                      achievement: _activeAchievementPopup!,
+                      onDismiss: () => _dismissAchievementPopup(state),
+                    ),
                   ),
                 ),
               ),
-            ),
 
-          if (_showsGlobalHomeButton)
-            Align(
-              alignment: Alignment.bottomLeft,
-              child: SafeArea(
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20, bottom: 14),
-                  child: _homeButton(),
+            if (_showsGlobalHomeButton)
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: SafeArea(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20, bottom: 14),
+                    child: _homeButton(),
+                  ),
                 ),
               ),
-            ),
 
-          if (_showInterstitial)
-            Positioned.fill(
-              child: InterstitialAdSheet(
-                gameState: state,
-                onFinished: () => setState(() => _showInterstitial = false),
+            if (_showInterstitial)
+              Positioned.fill(
+                child: InterstitialAdSheet(
+                  gameState: state,
+                  onFinished: () => setState(() => _showInterstitial = false),
+                ),
               ),
-            ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -277,7 +316,11 @@ class _RootViewState extends State<RootView> {
               children: [
                 const Icon(Icons.home, color: Colors.white, size: 14),
                 const SizedBox(width: 6),
-                const Text('Dream Haven', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 12)),
+                const Text('Dream Haven',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 12)),
               ],
             ),
           ),
@@ -292,7 +335,8 @@ class _RootViewState extends State<RootView> {
           onPlay: () => _navigate(const DreamHavenRoute()),
           onSettings: () => _navigate(const SettingsRoute()),
         ),
-      DreamHavenRoute() => DreamHavenView(gameState: state, onNavigate: _navigate),
+      DreamHavenRoute() =>
+        DreamHavenView(gameState: state, onNavigate: _navigate),
       // `BattleScreen` owns its own `BattleEngine` (built once in
       // `initState`) — a fresh `BattleScreen` instance is created here every
       // time `_route` becomes `BattleRoute()` again (including "Next
@@ -312,7 +356,8 @@ class _RootViewState extends State<RootView> {
         ),
       TeamRoute() => InventoryView(gameState: state, onNavigate: _navigate),
       CampaignRoute() => CampaignView(gameState: state, onNavigate: _navigate),
-      SummonRoute() => SummoningShrineView(gameState: state, onNavigate: _navigate),
+      SummonRoute() =>
+        SummoningShrineView(gameState: state, onNavigate: _navigate),
       ShopRoute() => ShopView(gameState: state, onNavigate: _navigate),
       SettingsRoute() => SettingsView(
           gameState: state,
@@ -322,16 +367,21 @@ class _RootViewState extends State<RootView> {
           onNavigate: _navigate,
         ),
       ProfileRoute() => ProfileView(gameState: state, onNavigate: _navigate),
-      ObservatoryRoute() => BestiaryView(gameState: state, onNavigate: _navigate),
-      BattlePassRoute() => BattlePassView(gameState: state, onNavigate: _navigate),
-      CodexRoute() => DreamkeeperCodexView(gameState: state, onNavigate: _navigate),
+      ObservatoryRoute() =>
+        BestiaryView(gameState: state, onNavigate: _navigate),
+      BattlePassRoute() =>
+        BattlePassView(gameState: state, onNavigate: _navigate),
+      CodexRoute() =>
+        DreamkeeperCodexView(gameState: state, onNavigate: _navigate),
       ArenaRoute() => ArenaView(
           gameState: state,
           onNavigate: _navigate,
           onFight: (floor) => _navigate(ArenaBattleRoute(floor)),
         ),
-      ArenaBattleRoute(:final floor) => ArenaBattleScreen(gameState: state, floor: floor, onNavigate: _navigate),
-      ArenaResultRoute(:final summary) => ArenaResultView(summary: summary, onNavigate: _navigate),
+      ArenaBattleRoute(:final floor) => ArenaBattleScreen(
+          gameState: state, floor: floor, onNavigate: _navigate),
+      ArenaResultRoute(:final summary) =>
+        ArenaResultView(summary: summary, onNavigate: _navigate),
     };
   }
 }
@@ -396,8 +446,15 @@ class _AchievementToastState extends State<_AchievementToast> {
               decoration: BoxDecoration(
                 color: Colors.black.withValues(alpha: 0.5),
                 borderRadius: BorderRadius.circular(18),
-                border: Border.all(color: dk_theme.Theme.gold.withValues(alpha: 0.6), width: 1.5),
-                boxShadow: [BoxShadow(color: dk_theme.Theme.gold.withValues(alpha: 0.35), blurRadius: 16, offset: const Offset(0, 6))],
+                border: Border.all(
+                    color: dk_theme.Theme.gold.withValues(alpha: 0.6),
+                    width: 1.5),
+                boxShadow: [
+                  BoxShadow(
+                      color: dk_theme.Theme.gold.withValues(alpha: 0.35),
+                      blurRadius: 16,
+                      offset: const Offset(0, 6))
+                ],
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -411,10 +468,16 @@ class _AchievementToastState extends State<_AchievementToast> {
                         decoration: BoxDecoration(
                           color: dk_theme.Theme.gold.withValues(alpha: 0.3),
                           shape: BoxShape.circle,
-                          boxShadow: [BoxShadow(color: dk_theme.Theme.gold.withValues(alpha: 0.7), blurRadius: 12)],
+                          boxShadow: [
+                            BoxShadow(
+                                color:
+                                    dk_theme.Theme.gold.withValues(alpha: 0.7),
+                                blurRadius: 12)
+                          ],
                         ),
                       ),
-                      Icon(sfSymbol(achievement.icon), color: dk_theme.Theme.gold, size: 22),
+                      Icon(sfSymbol(achievement.icon),
+                          color: dk_theme.Theme.gold, size: 22),
                     ],
                   ),
                   const SizedBox(width: 14),
@@ -423,11 +486,21 @@ class _AchievementToastState extends State<_AchievementToast> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Text('ACHIEVEMENT UNLOCKED', style: TextStyle(color: dk_theme.Theme.gold, fontSize: 10, fontWeight: FontWeight.bold)),
-                        Text(achievement.title, style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold)),
+                        const Text('ACHIEVEMENT UNLOCKED',
+                            style: TextStyle(
+                                color: dk_theme.Theme.gold,
+                                fontSize: 10,
+                                fontWeight: FontWeight.bold)),
+                        Text(achievement.title,
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold)),
                         Text(
                           achievement.detail,
-                          style: TextStyle(color: Colors.white.withValues(alpha: 0.65), fontSize: 11),
+                          style: TextStyle(
+                              color: Colors.white.withValues(alpha: 0.65),
+                              fontSize: 11),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                         ),

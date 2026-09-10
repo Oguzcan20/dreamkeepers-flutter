@@ -214,13 +214,25 @@ class BattleResultView extends StatelessWidget {
     return dk_theme.GlassCard(
       child: Row(
         children: [
-          Container(
-            width: 44,
-            height: 44,
-            decoration: BoxDecoration(shape: BoxShape.circle, color: item.rarity.primaryColor.withValues(alpha: 0.3)),
-            alignment: Alignment.center,
-            child: Icon(sfSymbol(item.slot.symbol), color: item.rarity.primaryColor, size: 20),
-          ),
+          if (dk_theme.ItemArt.hasArt(item.name))
+            Container(
+              width: 44,
+              height: 44,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(color: item.rarity.primaryColor, width: 2.5),
+              ),
+              clipBehavior: Clip.antiAlias,
+              child: Image.asset(dk_theme.ItemArt.assetName(item.name), fit: BoxFit.cover),
+            )
+          else
+            Container(
+              width: 44,
+              height: 44,
+              decoration: BoxDecoration(shape: BoxShape.circle, color: item.rarity.primaryColor.withValues(alpha: 0.3)),
+              alignment: Alignment.center,
+              child: Icon(sfSymbol(item.slot.symbol), color: item.rarity.primaryColor, size: 20),
+            ),
           const SizedBox(width: 12),
           Expanded(
             child: Column(
@@ -265,13 +277,25 @@ class BattleResultView extends StatelessWidget {
     return dk_theme.GlassCard(
       child: Row(
         children: [
-          Container(
-            width: 48,
-            height: 48,
-            decoration: BoxDecoration(shape: BoxShape.circle, color: definition.rarity.primaryColor.withValues(alpha: 0.35)),
-            alignment: Alignment.center,
-            child: Icon(sfSymbol(definition.symbol as String), color: Colors.white, size: 22),
-          ),
+          if (dk_theme.DreamkeeperArt.hasArt(definition.name as String))
+            Container(
+              width: 48,
+              height: 48,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(color: definition.rarity.primaryColor, width: 2),
+              ),
+              clipBehavior: Clip.antiAlias,
+              child: Image.asset(dk_theme.DreamkeeperArt.assetName(definition.name as String), fit: BoxFit.cover),
+            )
+          else
+            Container(
+              width: 48,
+              height: 48,
+              decoration: BoxDecoration(shape: BoxShape.circle, color: definition.rarity.primaryColor.withValues(alpha: 0.35)),
+              alignment: Alignment.center,
+              child: Icon(sfSymbol(definition.symbol as String), color: Colors.white, size: 22),
+            ),
           const SizedBox(width: 12),
           Expanded(
             child: Column(

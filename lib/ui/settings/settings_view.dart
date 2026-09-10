@@ -279,7 +279,7 @@ class _SettingsViewState extends State<SettingsView> {
           Icon(sfSymbol(icon), color: Colors.white, size: 18),
           const SizedBox(width: 10),
           Expanded(child: Text(label, style: const TextStyle(color: Colors.white, fontSize: 14))),
-          Switch(value: value, onChanged: onChanged, activeColor: dk_theme.Theme.violet),
+          Switch(value: value, onChanged: onChanged, activeThumbColor: dk_theme.Theme.violet),
         ],
       ),
     );
@@ -307,7 +307,7 @@ class _SettingsViewState extends State<SettingsView> {
                   await widget.gameState.setNotificationsEnabled(enabled);
                   if (mounted) setState(() {});
                 },
-                activeColor: dk_theme.Theme.violet,
+                activeThumbColor: dk_theme.Theme.violet,
               ),
             ],
           ),

@@ -169,9 +169,9 @@ class _InventoryViewState extends State<InventoryView> {
             child: Column(
               children: [
                 _header(),
-                const SizedBox(height: 12),
+                const SizedBox(height: 8),
                 _picker(),
-                const SizedBox(height: 12),
+                const SizedBox(height: 8),
                 Expanded(child: _tab == _Tab.dreamkeepers ? _dreamkeepersTab() : _itemsTab()),
               ],
             ),
@@ -244,31 +244,33 @@ class _InventoryViewState extends State<InventoryView> {
   // MARK: - Dreamkeepers tab
 
   Widget _dreamkeepersTab() {
+    // Swift pins `teamPicker` and the controls row above a *vertically*
+    // scrolling grid. Swift is not landscape-locked; this app is, and on a
+    // ~411 logical-px tall landscape phone the fixed chrome (header +
+    // segmented picker + team picker + controls) leaves under one 158px card
+    // row of vertical space — a vertical grid clipped every card to just the
+    // portrait plus a sliver of the name, at rest, before any scroll.
+    //
+    // A single horizontally-scrolling strip is the landscape-native answer:
+    // the team picker and controls stay pinned (as in Swift), each card is
+    // shown whole (scaled down by `FittedBox` if the strip is shorter than
+    // the card's intrinsic height rather than clipped), and the roster is
+    // small enough (a full collection is 32) that horizontal paging reads
+    // fine — the sort controls just above reorder the strip.
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         _teamPicker(),
         Padding(
-          // Trimmed from the original 14px top gap — on a landscape phone
-          // (this app is landscape-locked) the vertical budget above the
-          // grid is tight enough that `_teamPicker`'s fixed 56px plus this
-          // padding could overflow the Column by a few pixels on shorter
-          // landscape heights (caught on the Android emulator; the extra
-          // couple of points of headroom this saves costs nothing visually).
           padding: const EdgeInsets.fromLTRB(20, 8, 20, 0),
           child: _sellMode ? _sellBar() : _controlsRow(),
         ),
         Expanded(
-          child: GridView.builder(
-            padding: const EdgeInsets.all(20),
-            // A fixed `mainAxisExtent` (rather than `childAspectRatio`) keeps
-            // every card's height constant regardless of how evenly 96px
-            // columns divide the available width — with an aspect ratio,
-            // a narrower-than-max leftover column width shrinks the row
-            // height too, and `DreamkeeperCard`'s content (fixed-size
-            // portrait, two-line name, level, star row, optional Twin Bond
-            // pill) no longer fits, overflowing the card.
-            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 96, mainAxisSpacing: 14, crossAxisSpacing: 14, mainAxisExtent: 158),
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
             itemCount: _sortedRoster.length,
+            separatorBuilder: (context, index) => const SizedBox(width: 14),
             itemBuilder: (context, index) {
               final instance = _sortedRoster[index];
               final definition = _gameState.definition(instance);
@@ -276,13 +278,25 @@ class _InventoryViewState extends State<InventoryView> {
               final twinBondActive = TwinBond.isBondCharacter(instance.definitionID)
                   ? TwinBond.isActive(_gameState.deployedTeam.map((d) => d.definitionID))
                   : null;
-              return DreamkeeperCard(
-                definition: definition,
-                instance: instance,
-                isDeployed: _gameState.isDeployed(instance),
-                isSelectedForSale: _sellMode ? _selectedForSale.contains(instance.id) : null,
-                twinBondActive: twinBondActive,
-                onTap: () => _sellMode ? _toggleSaleSelection(instance) : _openEquipmentSheet(instance),
+              // The pinned chrome (header + segmented picker + team picker +
+              // controls) leaves well under one full `DreamkeeperCard` (~141px
+              // intrinsic) of vertical room on a ~411 logical-px landscape
+              // phone, so an un-scaled card overflows the strip. `FittedBox`
+              // renders the card at natural size then scales it *down* to the
+              // strip height — never up — so on a taller display it looks
+              // identical and on this one it shrinks proportionally instead of
+              // clipping the name and stars.
+              return FittedBox(
+                fit: BoxFit.scaleDown,
+                alignment: Alignment.topCenter,
+                child: DreamkeeperCard(
+                  definition: definition,
+                  instance: instance,
+                  isDeployed: _gameState.isDeployed(instance),
+                  isSelectedForSale: _sellMode ? _selectedForSale.contains(instance.id) : null,
+                  twinBondActive: twinBondActive,
+                  onTap: () => _sellMode ? _toggleSaleSelection(instance) : _openEquipmentSheet(instance),
+                ),
               );
             },
           ),
@@ -403,7 +417,7 @@ class _InventoryViewState extends State<InventoryView> {
 
   Widget _teamPicker() {
     return SizedBox(
-      height: 56,
+      height: 48,
       child: ListView(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -567,7 +581,7 @@ class _TeamChip extends StatelessWidget {
       child: GestureDetector(
         onTap: onTap,
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
           decoration: BoxDecoration(
             color: isActive ? dk_theme.Theme.violet.withValues(alpha: 0.35) : Colors.white.withValues(alpha: 0.06),
             borderRadius: BorderRadius.circular(999),
