@@ -149,7 +149,7 @@ class _EquipmentSheetState extends State<EquipmentSheet> {
   }
 
   Widget _header({required DreamkeeperDefinition definition, required DreamkeeperInstance instance}) {
-    final hasArt = dk_theme.DreamkeeperArt.hasArt(definition.name);
+    final hasArt = dk_theme.DreamkeeperArt.hasArt(definition.artName);
     return Column(
       children: [
         Container(
@@ -158,7 +158,7 @@ class _EquipmentSheetState extends State<EquipmentSheet> {
           decoration: BoxDecoration(shape: BoxShape.circle, gradient: hasArt ? null : definition.rarity.gradient),
           alignment: Alignment.center,
           child: hasArt
-              ? ClipOval(child: Image.asset(dk_theme.DreamkeeperArt.assetName(definition.name), width: 72, height: 72, fit: BoxFit.cover))
+              ? ClipOval(child: Image.asset(dk_theme.DreamkeeperArt.assetName(definition.artName), width: 72, height: 72, fit: BoxFit.cover))
               : Icon(sfSymbol(definition.symbol), size: 30, color: Colors.white),
         ),
         const SizedBox(height: 8),

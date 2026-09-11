@@ -60,8 +60,8 @@ class ItemArt {
 /// missing art.
 class ArenaArt {
   static const _lookup = _ArtLookup('ArenaTower_');
-  static String assetName(ArenaTier tier) => _lookup.assetName(tier.displayName);
-  static bool hasArt(ArenaTier tier) => _lookup.hasArt(tier.displayName);
+  static String assetName(ArenaTier tier) => _lookup.assetName(tier.artName);
+  static bool hasArt(ArenaTier tier) => _lookup.hasArt(tier.artName);
 }
 
 /// The app's singleton banner/icon images — not per-entry like the lookups

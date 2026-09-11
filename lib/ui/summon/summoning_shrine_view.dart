@@ -64,8 +64,8 @@ class _PullDisplay {
         rarity: result.definition.rarity,
         subtitle: result.isNew ? l.summonNew : l.summonDuplicate,
         symbol: result.definition.symbol,
-        artAssetName: dk_theme.DreamkeeperArt.hasArt(result.definition.name)
-            ? dk_theme.DreamkeeperArt.assetName(result.definition.name)
+        artAssetName: dk_theme.DreamkeeperArt.hasArt(result.definition.artName)
+            ? dk_theme.DreamkeeperArt.assetName(result.definition.artName)
             : null,
       );
 

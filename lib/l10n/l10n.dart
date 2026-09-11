@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'gen/app_localizations.dart';
+import 'gen/app_localizations_en.dart';
 
 export 'gen/app_localizations.dart';
 
@@ -17,6 +18,19 @@ const List<Locale> kSupportedLocales = [Locale('en'), Locale('de')];
 /// language change forces a full app restart (see `SettingsView`), so the
 /// value here stays correct for the whole life of the process.
 late AppLocalizations L;
+
+/// Always-English translations, regardless of the player's chosen language.
+/// Hand-illustrated art (`assets/art/`) is bundled and named once, in
+/// English, at authoring time — it never gets a per-locale re-shoot. So
+/// every catalog entry keeps a second, locale-invariant `artName` resolved
+/// through this instance instead of `L`, and every `DreamkeeperArt`/
+/// `MonsterArt`/`ArenaArt` lookup (directly, or via `Combatant.
+/// portraitOverrideName`) must use that `artName`, never the localized
+/// `name` — otherwise every entry whose translated name differs from its
+/// English one (most of them, once a non-English locale is active) silently
+/// loses its art to the icon-badge fallback.
+// ignore: non_constant_identifier_names
+final AppLocalizations LEn = AppLocalizationsEn();
 
 /// Resolves the stored `preferredLanguage` ("de" / "en" / null) to a
 /// concrete [Locale]. `null` means "follow the device language" (mirrors

@@ -297,7 +297,7 @@ class _CodexCard extends StatelessWidget {
 
   const _CodexCard({required this.definition, required this.isOwned, required this.maxStars});
 
-  bool get _hasArt => dk_theme.DreamkeeperArt.hasArt(definition.name);
+  bool get _hasArt => dk_theme.DreamkeeperArt.hasArt(definition.artName);
 
   @override
   Widget build(BuildContext context) {
@@ -321,7 +321,7 @@ class _CodexCard extends StatelessWidget {
                   opacity: isOwned ? 1 : 0.7,
                   child: _hasArt
                       ? ClipOval(
-                          child: Image.asset(dk_theme.DreamkeeperArt.assetName(definition.name), width: 68, height: 68, fit: BoxFit.cover),
+                          child: Image.asset(dk_theme.DreamkeeperArt.assetName(definition.artName), width: 68, height: 68, fit: BoxFit.cover),
                         )
                       : Container(
                           decoration: BoxDecoration(shape: BoxShape.circle, gradient: definition.rarity.gradient),

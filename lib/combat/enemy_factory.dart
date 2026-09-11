@@ -48,6 +48,10 @@ class EnemyFactory {
     final bossScale = isBoss ? 1.6 : 1.0;
 
     final String name;
+    // Locale-invariant English counterpart of `name`, fed to
+    // `Combatant.portraitOverrideName` so `MonsterArt` lookup keeps working
+    // outside English — see `LEn` in `l10n.dart`.
+    final String artName;
     final String symbol;
     final Role role;
     final GameElement element;
@@ -58,6 +62,7 @@ class EnemyFactory {
     if (isBoss) {
       final boss = MonsterCatalog.boss(world.id);
       name = world.bossName;
+      artName = world.artBossName;
       symbol = boss.symbol;
       role = Role.tank;
       element = world.elementBias[stage % world.elementBias.length];
@@ -67,6 +72,7 @@ class EnemyFactory {
     } else {
       final monster = MonsterCatalog.regularMonster(world.id, stage);
       name = monster.name;
+      artName = monster.artName;
       symbol = monster.symbol;
       role = monster.role;
       element = world.elementBias[stage % world.elementBias.length];
@@ -92,6 +98,7 @@ class EnemyFactory {
       symbol: symbol,
       mechanic: mechanic,
       shieldCharges: mechanic == BossMechanic.shield ? 3 : 0,
+      portraitOverrideName: artName,
     );
   }
 }

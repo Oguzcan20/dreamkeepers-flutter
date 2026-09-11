@@ -41,7 +41,7 @@ class DreamkeeperCard extends StatelessWidget {
     this.onTap,
   });
 
-  bool get _hasArt => dk_theme.DreamkeeperArt.hasArt(definition.name);
+  bool get _hasArt => dk_theme.DreamkeeperArt.hasArt(definition.artName);
 
   @override
   Widget build(BuildContext context) {
@@ -127,7 +127,7 @@ class DreamkeeperCard extends StatelessWidget {
           ),
           alignment: Alignment.center,
           child: _hasArt
-              ? ClipOval(child: Image.asset(dk_theme.DreamkeeperArt.assetName(definition.name), width: 64, height: 64, fit: BoxFit.cover))
+              ? ClipOval(child: Image.asset(dk_theme.DreamkeeperArt.assetName(definition.artName), width: 64, height: 64, fit: BoxFit.cover))
               : Icon(sfSymbol(definition.symbol), size: 26, color: Colors.white),
         ),
         Positioned(

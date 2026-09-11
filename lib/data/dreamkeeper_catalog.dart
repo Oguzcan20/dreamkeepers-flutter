@@ -22,6 +22,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "ember_fox",
       name: L.dk_ember_fox_name,
+      artName: LEn.dk_ember_fox_name,
       element: GameElement.ember,
       role: Role.damage,
       rarity: Rarity.rare,
@@ -36,6 +37,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "moon_hare",
       name: L.dk_moon_hare_name,
+      artName: LEn.dk_moon_hare_name,
       element: GameElement.lunar,
       role: Role.healer,
       rarity: Rarity.rare,
@@ -50,6 +52,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "forest_spirit",
       name: L.dk_forest_spirit_name,
+      artName: LEn.dk_forest_spirit_name,
       element: GameElement.bloom,
       role: Role.support,
       rarity: Rarity.uncommon,
@@ -64,6 +67,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "crystal_golem",
       name: L.dk_crystal_golem_name,
+      artName: LEn.dk_crystal_golem_name,
       element: GameElement.tide,
       role: Role.tank,
       rarity: Rarity.epic,
@@ -78,6 +82,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "star_wolf",
       name: L.dk_star_wolf_name,
+      artName: LEn.dk_star_wolf_name,
       element: GameElement.astral,
       role: Role.control,
       rarity: Rarity.epic,
@@ -92,6 +97,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "thorn_viper",
       name: L.dk_thorn_viper_name,
+      artName: LEn.dk_thorn_viper_name,
       element: GameElement.bloom,
       role: Role.damage,
       rarity: Rarity.rare,
@@ -106,6 +112,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "tide_serpent",
       name: L.dk_tide_serpent_name,
+      artName: LEn.dk_tide_serpent_name,
       element: GameElement.tide,
       role: Role.damage,
       rarity: Rarity.uncommon,
@@ -120,6 +127,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "ember_phoenix",
       name: L.dk_ember_phoenix_name,
+      artName: LEn.dk_ember_phoenix_name,
       element: GameElement.ember,
       role: Role.healer,
       rarity: Rarity.legendary,
@@ -134,6 +142,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "lunar_owl",
       name: L.dk_lunar_owl_name,
+      artName: LEn.dk_lunar_owl_name,
       element: GameElement.lunar,
       role: Role.control,
       rarity: Rarity.epic,
@@ -148,6 +157,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "astral_sentinel",
       name: L.dk_astral_sentinel_name,
+      artName: LEn.dk_astral_sentinel_name,
       element: GameElement.astral,
       role: Role.tank,
       rarity: Rarity.epic,
@@ -162,6 +172,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "coral_warden",
       name: L.dk_coral_warden_name,
+      artName: LEn.dk_coral_warden_name,
       element: GameElement.tide,
       role: Role.support,
       rarity: Rarity.uncommon,
@@ -176,6 +187,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "cinder_sprite",
       name: L.dk_cinder_sprite_name,
+      artName: LEn.dk_cinder_sprite_name,
       element: GameElement.ember,
       role: Role.support,
       rarity: Rarity.uncommon,
@@ -190,6 +202,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "flicker_pup",
       name: L.dk_flicker_pup_name,
+      artName: LEn.dk_flicker_pup_name,
       element: GameElement.ember,
       role: Role.damage,
       rarity: Rarity.common,
@@ -204,6 +217,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "ripple_minnow",
       name: L.dk_ripple_minnow_name,
+      artName: LEn.dk_ripple_minnow_name,
       element: GameElement.tide,
       role: Role.support,
       rarity: Rarity.common,
@@ -218,6 +232,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "sprout_cub",
       name: L.dk_sprout_cub_name,
+      artName: LEn.dk_sprout_cub_name,
       element: GameElement.bloom,
       role: Role.tank,
       rarity: Rarity.common,
@@ -232,6 +247,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "nightling",
       name: L.dk_nightling_name,
+      artName: LEn.dk_nightling_name,
       element: GameElement.lunar,
       role: Role.control,
       rarity: Rarity.common,
@@ -246,6 +262,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "stardust_moth",
       name: L.dk_stardust_moth_name,
+      artName: LEn.dk_stardust_moth_name,
       element: GameElement.astral,
       role: Role.healer,
       rarity: Rarity.common,
@@ -260,6 +277,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "cinder_badger",
       name: L.dk_cinder_badger_name,
+      artName: LEn.dk_cinder_badger_name,
       element: GameElement.ember,
       role: Role.tank,
       rarity: Rarity.uncommon,
@@ -274,6 +292,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "pearl_otter",
       name: L.dk_pearl_otter_name,
+      artName: LEn.dk_pearl_otter_name,
       element: GameElement.tide,
       role: Role.healer,
       rarity: Rarity.uncommon,
@@ -288,6 +307,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "comet_fox",
       name: L.dk_comet_fox_name,
+      artName: LEn.dk_comet_fox_name,
       element: GameElement.astral,
       role: Role.damage,
       rarity: Rarity.uncommon,
@@ -302,6 +322,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "bramble_lynx",
       name: L.dk_bramble_lynx_name,
+      artName: LEn.dk_bramble_lynx_name,
       element: GameElement.bloom,
       role: Role.control,
       rarity: Rarity.rare,
@@ -316,6 +337,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "shade_panther",
       name: L.dk_shade_panther_name,
+      artName: LEn.dk_shade_panther_name,
       element: GameElement.lunar,
       role: Role.damage,
       rarity: Rarity.rare,
@@ -330,6 +352,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "nova_falcon",
       name: L.dk_nova_falcon_name,
+      artName: LEn.dk_nova_falcon_name,
       element: GameElement.astral,
       role: Role.control,
       rarity: Rarity.rare,
@@ -344,6 +367,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "magma_titan",
       name: L.dk_magma_titan_name,
+      artName: LEn.dk_magma_titan_name,
       element: GameElement.ember,
       role: Role.tank,
       rarity: Rarity.epic,
@@ -358,6 +382,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "verdant_stag",
       name: L.dk_verdant_stag_name,
+      artName: LEn.dk_verdant_stag_name,
       element: GameElement.bloom,
       role: Role.support,
       rarity: Rarity.epic,
@@ -372,6 +397,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "abyssal_kraken",
       name: L.dk_abyssal_kraken_name,
+      artName: LEn.dk_abyssal_kraken_name,
       element: GameElement.tide,
       role: Role.damage,
       rarity: Rarity.epic,
@@ -386,6 +412,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "leviathan_queen",
       name: L.dk_leviathan_queen_name,
+      artName: LEn.dk_leviathan_queen_name,
       element: GameElement.tide,
       role: Role.tank,
       rarity: Rarity.legendary,
@@ -400,6 +427,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "world_tree_warden",
       name: L.dk_world_tree_warden_name,
+      artName: LEn.dk_world_tree_warden_name,
       element: GameElement.bloom,
       role: Role.healer,
       rarity: Rarity.legendary,
@@ -414,6 +442,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "celestial_dragon",
       name: L.dk_celestial_dragon_name,
+      artName: LEn.dk_celestial_dragon_name,
       element: GameElement.astral,
       role: Role.damage,
       rarity: Rarity.mythic,
@@ -428,6 +457,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "eclipse_empress",
       name: L.dk_eclipse_empress_name,
+      artName: LEn.dk_eclipse_empress_name,
       element: GameElement.lunar,
       role: Role.control,
       rarity: Rarity.mythic,
@@ -442,6 +472,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "igo",
       name: L.dk_igo_name,
+      artName: LEn.dk_igo_name,
       element: GameElement.tide,
       role: Role.guardian,
       rarity: Rarity.exclusive,
@@ -456,6 +487,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "ames",
       name: L.dk_ames_name,
+      artName: LEn.dk_ames_name,
       element: GameElement.ember,
       role: Role.damage,
       rarity: Rarity.exclusive,
@@ -476,6 +508,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "olf_ember",
       name: L.dk_olf_name,
+      artName: LEn.dk_olf_name,
       element: GameElement.ember,
       role: Role.damage,
       rarity: Rarity.common,
@@ -491,6 +524,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "olf_tide",
       name: L.dk_olf_name,
+      artName: LEn.dk_olf_name,
       element: GameElement.tide,
       role: Role.damage,
       rarity: Rarity.common,
@@ -506,6 +540,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "olf_bloom",
       name: L.dk_olf_name,
+      artName: LEn.dk_olf_name,
       element: GameElement.bloom,
       role: Role.damage,
       rarity: Rarity.common,
@@ -521,6 +556,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "olf_lunar",
       name: L.dk_olf_name,
+      artName: LEn.dk_olf_name,
       element: GameElement.lunar,
       role: Role.damage,
       rarity: Rarity.common,
@@ -536,6 +572,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "olf_astral",
       name: L.dk_olf_name,
+      artName: LEn.dk_olf_name,
       element: GameElement.astral,
       role: Role.damage,
       rarity: Rarity.common,
@@ -555,6 +592,7 @@ class DreamkeeperCatalog {
     DreamkeeperDefinition(
       id: "olf_ultimate",
       name: L.dk_olf_name,
+      artName: LEn.dk_olf_name,
       element: GameElement.ember,
       role: Role.damage,
       rarity: Rarity.rare,

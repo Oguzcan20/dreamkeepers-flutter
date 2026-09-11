@@ -17,6 +17,7 @@ class WorldCatalog {
       accentColor: Color.fromRGBO(115, 199, 102, 1),
       elementBias: [GameElement.bloom, GameElement.ember],
       bossName: L.world1Boss,
+      artBossName: LEn.world1Boss,
     ),
     World(
       id: 2,
@@ -25,6 +26,7 @@ class WorldCatalog {
       accentColor: Color.fromRGBO(140, 128, 217, 1),
       elementBias: [GameElement.lunar, GameElement.astral],
       bossName: L.world2Boss,
+      artBossName: LEn.world2Boss,
     ),
     World(
       id: 3,
@@ -33,6 +35,7 @@ class WorldCatalog {
       accentColor: Color.fromRGBO(89, 166, 230, 1),
       elementBias: [GameElement.tide, GameElement.astral],
       bossName: L.world3Boss,
+      artBossName: LEn.world3Boss,
     ),
     World(
       id: 4,
@@ -40,7 +43,8 @@ class WorldCatalog {
       description: L.world4Desc,
       accentColor: Color.fromRGBO(191, 173, 242, 1),
       elementBias: [GameElement.astral],
-      bossName: L.world4Boss, difficultyMultiplier: 1.15,
+      bossName: L.world4Boss,
+      artBossName: LEn.world4Boss, difficultyMultiplier: 1.15,
     ),
     World(
       id: 5,
@@ -48,7 +52,8 @@ class WorldCatalog {
       description: L.world5Desc,
       accentColor: Color.fromRGBO(128, 122, 158, 1),
       elementBias: [GameElement.lunar],
-      bossName: L.world5Boss, difficultyMultiplier: 1.15,
+      bossName: L.world5Boss,
+      artBossName: LEn.world5Boss, difficultyMultiplier: 1.15,
     ),
     World(
       id: 6,
@@ -56,7 +61,8 @@ class WorldCatalog {
       description: L.world6Desc,
       accentColor: Color.fromRGBO(217, 82, 51, 1),
       elementBias: [GameElement.ember],
-      bossName: L.world6Boss, difficultyMultiplier: 1.35,
+      bossName: L.world6Boss,
+      artBossName: LEn.world6Boss, difficultyMultiplier: 1.35,
     ),
     World(
       id: 7,
@@ -64,7 +70,8 @@ class WorldCatalog {
       description: L.world7Desc,
       accentColor: Color.fromRGBO(38, 115, 140, 1),
       elementBias: [GameElement.tide],
-      bossName: L.world7Boss, difficultyMultiplier: 1.35,
+      bossName: L.world7Boss,
+      artBossName: LEn.world7Boss, difficultyMultiplier: 1.35,
     ),
     World(
       id: 8,
@@ -72,7 +79,8 @@ class WorldCatalog {
       description: L.world8Desc,
       accentColor: Color.fromRGBO(76, 178, 89, 1),
       elementBias: [GameElement.bloom],
-      bossName: L.world8Boss, difficultyMultiplier: 1.55,
+      bossName: L.world8Boss,
+      artBossName: LEn.world8Boss, difficultyMultiplier: 1.55,
     ),
     World(
       id: 9,
@@ -80,7 +88,8 @@ class WorldCatalog {
       description: L.world9Desc,
       accentColor: Color.fromRGBO(71, 56, 102, 1),
       elementBias: [GameElement.lunar],
-      bossName: L.world9Boss, difficultyMultiplier: 1.8,
+      bossName: L.world9Boss,
+      artBossName: LEn.world9Boss, difficultyMultiplier: 1.8,
     ),
     World(
       id: 10,
@@ -88,7 +97,8 @@ class WorldCatalog {
       description: L.world10Desc,
       accentColor: Color.fromRGBO(242, 217, 140, 1),
       elementBias: [GameElement.astral],
-      bossName: L.world10Boss, difficultyMultiplier: 2.1,
+      bossName: L.world10Boss,
+      artBossName: LEn.world10Boss, difficultyMultiplier: 2.1,
     ),
     World(
       id: 11,
@@ -96,7 +106,8 @@ class WorldCatalog {
       description: L.world11Desc,
       accentColor: Color.fromRGBO(94, 163, 84, 1),
       elementBias: [GameElement.bloom, GameElement.ember],
-      bossName: L.world11Boss, difficultyMultiplier: 2.2,
+      bossName: L.world11Boss,
+      artBossName: LEn.world11Boss, difficultyMultiplier: 2.2,
     ),
     World(
       id: 12,
@@ -104,7 +115,8 @@ class WorldCatalog {
       description: L.world12Desc,
       accentColor: Color.fromRGBO(115, 105, 178, 1),
       elementBias: [GameElement.lunar, GameElement.astral],
-      bossName: L.world12Boss, difficultyMultiplier: 2.2,
+      bossName: L.world12Boss,
+      artBossName: LEn.world12Boss, difficultyMultiplier: 2.2,
     ),
     World(
       id: 13,
@@ -112,7 +124,8 @@ class WorldCatalog {
       description: L.world13Desc,
       accentColor: Color.fromRGBO(74, 135, 189, 1),
       elementBias: [GameElement.tide, GameElement.astral],
-      bossName: L.world13Boss, difficultyMultiplier: 2.3,
+      bossName: L.world13Boss,
+      artBossName: LEn.world13Boss, difficultyMultiplier: 2.3,
     ),
     World(
       id: 14,
@@ -120,7 +133,8 @@ class WorldCatalog {
       description: L.world14Desc,
       accentColor: Color.fromRGBO(158, 143, 199, 1),
       elementBias: [GameElement.astral],
-      bossName: L.world14Boss, difficultyMultiplier: 2.3,
+      bossName: L.world14Boss,
+      artBossName: LEn.world14Boss, difficultyMultiplier: 2.3,
     ),
     World(
       id: 15,
@@ -128,7 +142,8 @@ class WorldCatalog {
       description: L.world15Desc,
       accentColor: Color.fromRGBO(105, 99, 130, 1),
       elementBias: [GameElement.lunar],
-      bossName: L.world15Boss, difficultyMultiplier: 2.4,
+      bossName: L.world15Boss,
+      artBossName: LEn.world15Boss, difficultyMultiplier: 2.4,
     ),
     World(
       id: 16,
@@ -136,7 +151,8 @@ class WorldCatalog {
       description: L.world16Desc,
       accentColor: Color.fromRGBO(178, 66, 41, 1),
       elementBias: [GameElement.ember],
-      bossName: L.world16Boss, difficultyMultiplier: 2.4,
+      bossName: L.world16Boss,
+      artBossName: LEn.world16Boss, difficultyMultiplier: 2.4,
     ),
     World(
       id: 17,
@@ -144,7 +160,8 @@ class WorldCatalog {
       description: L.world17Desc,
       accentColor: Color.fromRGBO(31, 94, 115, 1),
       elementBias: [GameElement.tide],
-      bossName: L.world17Boss, difficultyMultiplier: 2.5,
+      bossName: L.world17Boss,
+      artBossName: LEn.world17Boss, difficultyMultiplier: 2.5,
     ),
     World(
       id: 18,
@@ -152,7 +169,8 @@ class WorldCatalog {
       description: L.world18Desc,
       accentColor: Color.fromRGBO(64, 145, 74, 1),
       elementBias: [GameElement.bloom],
-      bossName: L.world18Boss, difficultyMultiplier: 2.6,
+      bossName: L.world18Boss,
+      artBossName: LEn.world18Boss, difficultyMultiplier: 2.6,
     ),
     World(
       id: 19,
@@ -160,7 +178,8 @@ class WorldCatalog {
       description: L.world19Desc,
       accentColor: Color.fromRGBO(59, 46, 84, 1),
       elementBias: [GameElement.lunar],
-      bossName: L.world19Boss, difficultyMultiplier: 2.7,
+      bossName: L.world19Boss,
+      artBossName: LEn.world19Boss, difficultyMultiplier: 2.7,
     ),
     World(
       id: 20,
@@ -168,7 +187,8 @@ class WorldCatalog {
       description: L.world20Desc,
       accentColor: Color.fromRGBO(199, 178, 115, 1),
       elementBias: [GameElement.astral],
-      bossName: L.world20Boss, difficultyMultiplier: 2.8,
+      bossName: L.world20Boss,
+      artBossName: LEn.world20Boss, difficultyMultiplier: 2.8,
     ),
     World(
       id: 21,
@@ -176,7 +196,8 @@ class WorldCatalog {
       description: L.world21Desc,
       accentColor: Color.fromRGBO(74, 128, 66, 1),
       elementBias: [GameElement.bloom, GameElement.ember],
-      bossName: L.world21Boss, difficultyMultiplier: 2.85,
+      bossName: L.world21Boss,
+      artBossName: LEn.world21Boss, difficultyMultiplier: 2.85,
     ),
     World(
       id: 22,
@@ -184,7 +205,8 @@ class WorldCatalog {
       description: L.world22Desc,
       accentColor: Color.fromRGBO(89, 82, 138, 1),
       elementBias: [GameElement.lunar, GameElement.astral],
-      bossName: L.world22Boss, difficultyMultiplier: 2.9,
+      bossName: L.world22Boss,
+      artBossName: LEn.world22Boss, difficultyMultiplier: 2.9,
     ),
     World(
       id: 23,
@@ -192,7 +214,8 @@ class WorldCatalog {
       description: L.world23Desc,
       accentColor: Color.fromRGBO(56, 107, 148, 1),
       elementBias: [GameElement.tide, GameElement.astral],
-      bossName: L.world23Boss, difficultyMultiplier: 2.9,
+      bossName: L.world23Boss,
+      artBossName: LEn.world23Boss, difficultyMultiplier: 2.9,
     ),
     World(
       id: 24,
@@ -200,7 +223,8 @@ class WorldCatalog {
       description: L.world24Desc,
       accentColor: Color.fromRGBO(122, 112, 156, 1),
       elementBias: [GameElement.astral],
-      bossName: L.world24Boss, difficultyMultiplier: 3.0,
+      bossName: L.world24Boss,
+      artBossName: LEn.world24Boss, difficultyMultiplier: 3.0,
     ),
     World(
       id: 25,
@@ -208,7 +232,8 @@ class WorldCatalog {
       description: L.world25Desc,
       accentColor: Color.fromRGBO(82, 79, 102, 1),
       elementBias: [GameElement.lunar],
-      bossName: L.world25Boss, difficultyMultiplier: 3.0,
+      bossName: L.world25Boss,
+      artBossName: LEn.world25Boss, difficultyMultiplier: 3.0,
     ),
     World(
       id: 26,
@@ -216,7 +241,8 @@ class WorldCatalog {
       description: L.world26Desc,
       accentColor: Color.fromRGBO(138, 51, 33, 1),
       elementBias: [GameElement.ember],
-      bossName: L.world26Boss, difficultyMultiplier: 3.1,
+      bossName: L.world26Boss,
+      artBossName: LEn.world26Boss, difficultyMultiplier: 3.1,
     ),
     World(
       id: 27,
@@ -224,7 +250,8 @@ class WorldCatalog {
       description: L.world27Desc,
       accentColor: Color.fromRGBO(26, 74, 89, 1),
       elementBias: [GameElement.tide],
-      bossName: L.world27Boss, difficultyMultiplier: 3.1,
+      bossName: L.world27Boss,
+      artBossName: LEn.world27Boss, difficultyMultiplier: 3.1,
     ),
     World(
       id: 28,
@@ -232,7 +259,8 @@ class WorldCatalog {
       description: L.world28Desc,
       accentColor: Color.fromRGBO(48, 115, 56, 1),
       elementBias: [GameElement.bloom],
-      bossName: L.world28Boss, difficultyMultiplier: 3.2,
+      bossName: L.world28Boss,
+      artBossName: LEn.world28Boss, difficultyMultiplier: 3.2,
     ),
     World(
       id: 29,
@@ -240,7 +268,8 @@ class WorldCatalog {
       description: L.world29Desc,
       accentColor: Color.fromRGBO(46, 36, 66, 1),
       elementBias: [GameElement.lunar],
-      bossName: L.world29Boss, difficultyMultiplier: 3.2,
+      bossName: L.world29Boss,
+      artBossName: LEn.world29Boss, difficultyMultiplier: 3.2,
     ),
     World(
       id: 30,
@@ -248,7 +277,8 @@ class WorldCatalog {
       description: L.world30Desc,
       accentColor: Color.fromRGBO(156, 138, 89, 1),
       elementBias: [GameElement.astral],
-      bossName: L.world30Boss, difficultyMultiplier: 3.3,
+      bossName: L.world30Boss,
+      artBossName: LEn.world30Boss, difficultyMultiplier: 3.3,
     ),
   ];
 

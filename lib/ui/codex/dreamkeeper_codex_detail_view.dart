@@ -38,7 +38,7 @@ class DreamkeeperCodexDetailView extends StatelessWidget {
     required this.onClose,
   });
 
-  bool get _hasArt => dk_theme.DreamkeeperArt.hasArt(definition.name);
+  bool get _hasArt => dk_theme.DreamkeeperArt.hasArt(definition.artName);
 
   /// Reference ranges pulled from the whole catalog so every stat bar reads
   /// relative to the strongest Dreamkeeper in the game, not some arbitrary
@@ -165,7 +165,7 @@ class DreamkeeperCodexDetailView extends StatelessWidget {
               ),
               _hasArt
                   ? ClipOval(
-                      child: Image.asset(dk_theme.DreamkeeperArt.assetName(definition.name), width: 132, height: 132, fit: BoxFit.cover),
+                      child: Image.asset(dk_theme.DreamkeeperArt.assetName(definition.artName), width: 132, height: 132, fit: BoxFit.cover),
                     )
                   : Container(
                       width: 132,

@@ -249,7 +249,7 @@ class _FusionPickerViewState extends State<FusionPickerView> {
   }
 
   Widget _header({required DreamkeeperInstance target, required DreamkeeperDefinition definition}) {
-    final hasArt = dk_theme.DreamkeeperArt.hasArt(definition.name);
+    final hasArt = dk_theme.DreamkeeperArt.hasArt(definition.artName);
     return Column(
       children: [
         Container(
@@ -258,7 +258,7 @@ class _FusionPickerViewState extends State<FusionPickerView> {
           decoration: BoxDecoration(shape: BoxShape.circle, gradient: hasArt ? null : definition.rarity.gradient),
           alignment: Alignment.center,
           child: hasArt
-              ? ClipOval(child: Image.asset(dk_theme.DreamkeeperArt.assetName(definition.name), width: 64, height: 64, fit: BoxFit.cover))
+              ? ClipOval(child: Image.asset(dk_theme.DreamkeeperArt.assetName(definition.artName), width: 64, height: 64, fit: BoxFit.cover))
               : Icon(sfSymbol(definition.symbol), size: 26, color: Colors.white),
         ),
         const SizedBox(height: 8),
@@ -374,7 +374,7 @@ class _StarUpShowcaseState extends State<_StarUpShowcase> with SingleTickerProvi
     final data = widget.data;
     final definition = data.definition;
     const portraitSize = 170.0;
-    final hasArt = dk_theme.DreamkeeperArt.hasArt(definition.name);
+    final hasArt = dk_theme.DreamkeeperArt.hasArt(definition.artName);
 
     return GestureDetector(
       onTap: widget.onDismiss,
@@ -411,7 +411,7 @@ class _StarUpShowcaseState extends State<_StarUpShowcase> with SingleTickerProvi
                   ),
                   alignment: Alignment.center,
                   child: hasArt
-                      ? ClipOval(child: Image.asset(dk_theme.DreamkeeperArt.assetName(definition.name), width: portraitSize, height: portraitSize, fit: BoxFit.cover))
+                      ? ClipOval(child: Image.asset(dk_theme.DreamkeeperArt.assetName(definition.artName), width: portraitSize, height: portraitSize, fit: BoxFit.cover))
                       : Icon(sfSymbol(definition.symbol), size: portraitSize * 0.4, color: Colors.white),
                 ),
                 const SizedBox(height: 14),
@@ -472,7 +472,7 @@ class _DuplicatePickerCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final hasArt = dk_theme.DreamkeeperArt.hasArt(definition.name);
+    final hasArt = dk_theme.DreamkeeperArt.hasArt(definition.artName);
     return GestureDetector(
       onTap: onTap,
       child: Semantics(
@@ -496,7 +496,7 @@ class _DuplicatePickerCard extends StatelessWidget {
                     decoration: BoxDecoration(shape: BoxShape.circle, gradient: hasArt ? null : definition.rarity.gradient),
                     alignment: Alignment.center,
                     child: hasArt
-                        ? ClipOval(child: Image.asset(dk_theme.DreamkeeperArt.assetName(definition.name), width: 48, height: 48, fit: BoxFit.cover))
+                        ? ClipOval(child: Image.asset(dk_theme.DreamkeeperArt.assetName(definition.artName), width: 48, height: 48, fit: BoxFit.cover))
                         : Icon(sfSymbol(definition.symbol), size: 20, color: Colors.white),
                   ),
                   if (isSelected)

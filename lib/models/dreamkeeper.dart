@@ -17,6 +17,12 @@ const _uuid = Uuid();
 class DreamkeeperDefinition {
   final String id;
   final String name;
+
+  /// Locale-invariant English counterpart of [name], for `DreamkeeperArt`
+  /// lookups — see `LEn` in `l10n.dart`. `Dreamkeeper_<Name>.jpg` art is
+  /// authored once in English, so looking it up with the localized [name]
+  /// silently fails outside English.
+  final String artName;
   final GameElement element;
   final Role role;
   final Rarity rarity;
@@ -48,6 +54,7 @@ class DreamkeeperDefinition {
   const DreamkeeperDefinition({
     required this.id,
     required this.name,
+    required this.artName,
     required this.element,
     required this.role,
     required this.rarity,

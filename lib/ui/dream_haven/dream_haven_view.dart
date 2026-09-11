@@ -516,7 +516,7 @@ class _TeamAvatar extends StatelessWidget {
   final DreamkeeperDefinition definition;
   const _TeamAvatar({required this.definition});
 
-  bool get _hasArt => dk_theme.DreamkeeperArt.hasArt(definition.name);
+  bool get _hasArt => dk_theme.DreamkeeperArt.hasArt(definition.artName);
 
   @override
   Widget build(BuildContext context) {
@@ -533,7 +533,7 @@ class _TeamAvatar extends StatelessWidget {
       ),
       alignment: Alignment.center,
       child: _hasArt
-          ? ClipOval(child: Image.asset(dk_theme.DreamkeeperArt.assetName(definition.name), width: 38, height: 38, fit: BoxFit.cover))
+          ? ClipOval(child: Image.asset(dk_theme.DreamkeeperArt.assetName(definition.artName), width: 38, height: 38, fit: BoxFit.cover))
           : Icon(sfSymbol(definition.symbol), size: 15, color: Colors.white),
     );
   }

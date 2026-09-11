@@ -279,7 +279,7 @@ class BattleResultView extends StatelessWidget {
     return dk_theme.GlassCard(
       child: Row(
         children: [
-          if (dk_theme.DreamkeeperArt.hasArt(definition.name as String))
+          if (dk_theme.DreamkeeperArt.hasArt(definition.artName as String))
             Container(
               width: 48,
               height: 48,
@@ -288,7 +288,7 @@ class BattleResultView extends StatelessWidget {
                 border: Border.all(color: definition.rarity.primaryColor, width: 2),
               ),
               clipBehavior: Clip.antiAlias,
-              child: Image.asset(dk_theme.DreamkeeperArt.assetName(definition.name as String), fit: BoxFit.cover),
+              child: Image.asset(dk_theme.DreamkeeperArt.assetName(definition.artName as String), fit: BoxFit.cover),
             )
           else
             Container(

@@ -72,6 +72,26 @@ enum ArenaTier implements Comparable<ArenaTier> {
     }
   }
 
+  /// Locale-invariant English counterpart of [displayName], for `ArenaArt`
+  /// lookups — see `LEn` in `l10n.dart`. `ArenaTower_<Name>.jpg` art is
+  /// authored once in English ("Silver"/"Platinum"/"Diamond" all translate
+  /// to different German words), so looking it up with [displayName]
+  /// silently fails outside English.
+  String get artName {
+    switch (this) {
+      case ArenaTier.bronze:
+        return LEn.arenaTierBronze;
+      case ArenaTier.silver:
+        return LEn.arenaTierSilver;
+      case ArenaTier.gold:
+        return LEn.arenaTierGold;
+      case ArenaTier.platinum:
+        return LEn.arenaTierPlatinum;
+      case ArenaTier.diamond:
+        return LEn.arenaTierDiamond;
+    }
+  }
+
   String get symbol {
     switch (this) {
       case ArenaTier.bronze:
@@ -238,8 +258,10 @@ class ArenaSystem {
       symbol: def.symbol,
       // Show the real Dreamkeeper portrait this rival's stats/kit are
       // borrowed from, instead of the flavor team name never matching any
-      // imageset — see `Combatant.portraitOverrideName`.
-      portraitOverrideName: def.name,
+      // imageset — see `Combatant.portraitOverrideName`. `def.artName`, not
+      // `def.name`: the override only reaches `DreamkeeperArt`, whose
+      // `.jpg`s are named in English regardless of the active locale.
+      portraitOverrideName: def.artName,
     );
   }
 

@@ -756,6 +756,7 @@ class GameState extends ChangeNotifier {
         activeSkill: def.activeSkill,
         reviveHPFraction: def.passive.reviveHPFraction,
         lowHPAttackBonus: def.passive.lowHPAttackBonus,
+        portraitOverrideName: def.artName,
       ));
     }
     return result;

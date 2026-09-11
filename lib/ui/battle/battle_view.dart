@@ -794,7 +794,7 @@ class _PartyMemberTile extends StatelessWidget {
                 alignment: Alignment.center,
                 clipBehavior: Clip.none,
                 children: [
-                  if (dk_theme.DreamkeeperArt.hasArt(combatant.name))
+                  if (dk_theme.DreamkeeperArt.hasArt(combatant.portraitOverrideName ?? combatant.name))
                     Opacity(
                       opacity: combatant.isAlive ? 1 : 0.35,
                       child: Container(
@@ -805,7 +805,10 @@ class _PartyMemberTile extends StatelessWidget {
                           border: Border.all(color: combatant.element.color.withValues(alpha: 0.5), width: 1.5),
                         ),
                         clipBehavior: Clip.antiAlias,
-                        child: Image.asset(dk_theme.DreamkeeperArt.assetName(combatant.name), fit: BoxFit.cover),
+                        child: Image.asset(
+                          dk_theme.DreamkeeperArt.assetName(combatant.portraitOverrideName ?? combatant.name),
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     )
                   else
@@ -1035,8 +1038,8 @@ class _UltimateShowcaseOverlay extends StatelessWidget {
             ),
             alignment: Alignment.center,
             clipBehavior: Clip.antiAlias,
-            child: dk_theme.DreamkeeperArt.hasArt(combatant.name)
-                ? Image.asset(dk_theme.DreamkeeperArt.assetName(combatant.name), fit: BoxFit.cover)
+            child: dk_theme.DreamkeeperArt.hasArt(combatant.portraitOverrideName ?? combatant.name)
+                ? Image.asset(dk_theme.DreamkeeperArt.assetName(combatant.portraitOverrideName ?? combatant.name), fit: BoxFit.cover)
                 : Icon(sfSymbol(combatant.role.symbol), size: 60, color: Colors.white),
           ),
         ),

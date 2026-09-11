@@ -16,6 +16,13 @@ class World {
   final List<GameElement> elementBias;
   final String bossName;
 
+  /// Locale-invariant English counterpart of [bossName], for `MonsterArt`
+  /// lookups (via `Combatant.portraitOverrideName`) — see `LEn` in
+  /// `l10n.dart`. `Monster_<Name>.jpg` art is authored once in English, so
+  /// looking it up with the localized [bossName] silently fails outside
+  /// English.
+  final String artBossName;
+
   /// Extra stat multiplier stacked on top of the linear per-stage curve —
   /// creates a felt jump between difficulty tiers instead of pure smooth
   /// growth.
@@ -28,6 +35,7 @@ class World {
     required this.accentColor,
     required this.elementBias,
     required this.bossName,
+    required this.artBossName,
     this.difficultyMultiplier = 1.0,
   });
 
