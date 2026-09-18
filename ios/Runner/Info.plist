@@ -42,5 +42,16 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<!-- REVERSED_CLIENT_ID from ios/Runner/GoogleService-Info.plist — required
+	     redirect URI for google_sign_in's iOS auth flow (GoogleSignInService). -->
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.471762271230-21vav4qnaltos7ab28j696n2374kmboo</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>
