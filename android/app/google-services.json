@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "471762271230",
+    "project_id": "dreamkeepers-292f4",
+    "storage_bucket": "dreamkeepers-292f4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:471762271230:android:82faa27fe091bd93509eaf",
+        "android_client_info": {
+          "package_name": "com.dreamhaven.dreamkeepers"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsmH_tkehkm9dQgQpWeJYv_4YcDw1iQCI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
