@@ -1788,6 +1788,16 @@ class GameState extends ChangeNotifier {
     return true;
   }
 
+  /// Grants currency directly, outside the `ShopItem`/`purchase()` flow —
+  /// used by promo-code redemption (`PromoCodeService`) and the
+  /// friend-referral reward (`FriendsService`), neither of which is a shop
+  /// line item.
+  void grantCurrency({int gold = 0, int dreamGems = 0}) {
+    _save.gold += gold;
+    _save.dreamGems += dreamGems;
+    persist();
+  }
+
   /// The real entry point for every real-money `ShopItem` — charges
   /// through `_purchaseService` first and only calls `purchase(_)` to
   /// grant the reward once the billing SDK reports a verified transaction.

@@ -43,36 +43,44 @@ class LoginRewardSheet extends StatelessWidget {
     final l = AppLocalizations.of(context);
     return Container(
       decoration: const BoxDecoration(gradient: dk_theme.Theme.background),
+      // `showModalBottomSheet(isScrollControlled: true)` lets this sheet grow
+      // up to the screen height, but with the Claim button living inside the
+      // same `SingleChildScrollView` as the 7-day grid, a short landscape
+      // screen (or a larger system text size) pushed the button below the
+      // fold — reachable only by scrolling, which reads as broken on a
+      // "collect your reward" screen. Capping the sheet at a fixed fraction
+      // of the screen and pinning the button *outside* the scrollable area
+      // (only the grid scrolls, if it even needs to) keeps Claim on-screen
+      // and tappable the instant the sheet opens.
       child: SafeArea(
         top: false,
-        // A plain `Column` here would overflow on shorter screens (or with
-        // larger system text sizes) since `showModalBottomSheet` caps this
-        // sheet's height well short of the content's natural size —
-        // `SingleChildScrollView` lets it scroll instead of clipping.
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.only(top: 22, bottom: 24),
+        child: ConstrainedBox(
+          constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.88),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              const SizedBox(height: 22),
               _header(l),
               const SizedBox(height: 18),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: GridView.count(
-                  crossAxisCount: 4,
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 12,
-                  childAspectRatio: 0.85,
-                  children: [
-                    for (final reward in LoginRewardSystem.days) _DayCell(reward: reward, state: _cellState(reward.day)),
-                  ],
+              Flexible(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: GridView.count(
+                    crossAxisCount: 4,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 12,
+                    childAspectRatio: 0.85,
+                    children: [
+                      for (final reward in LoginRewardSystem.days) _DayCell(reward: reward, state: _cellState(reward.day)),
+                    ],
+                  ),
                 ),
               ),
-              const SizedBox(height: 18),
+              const SizedBox(height: 14),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
                 child: SizedBox(
                   width: double.infinity,
                   child: dk_theme.PrimaryButton(

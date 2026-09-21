@@ -20,7 +20,9 @@ import 'package:dreamkeepers/models/element.dart';
 import 'package:dreamkeepers/platform/game_services_service.dart';
 import 'package:dreamkeepers/platform/google_sign_in_service.dart';
 import 'package:dreamkeepers/state/account_state.dart';
+import 'package:dreamkeepers/state/friends_service.dart';
 import 'package:dreamkeepers/state/game_state.dart';
+import 'package:dreamkeepers/state/promo_code_service.dart';
 import 'package:dreamkeepers/ui/root/root_view.dart';
 import '../../support/test_app.dart';
 
@@ -67,6 +69,11 @@ Future<GameState> _bootedToDreamHaven(WidgetTester tester) async {
         ChangeNotifierProvider<GameServicesService>(create: (_) => GameServicesService()),
         ChangeNotifierProvider<GameLeaderboardService>(create: (_) => GameLeaderboardService()),
         Provider<GoogleSignInService>(create: (_) => GoogleSignInService()),
+        // RootView also unconditionally starts FriendsService on launch
+        // (`_maybeStartFriendsService`) and Settings now needs
+        // PromoCodeService — see main.dart's real provider list.
+        ChangeNotifierProvider<FriendsService>(create: (_) => FriendsService()),
+        ChangeNotifierProvider<PromoCodeService>(create: (_) => PromoCodeService()),
       ],
       child: testApp(const RootView()),
     ),

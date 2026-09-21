@@ -11,6 +11,7 @@ import 'package:dreamkeepers/platform/game_services_service.dart';
 import 'package:dreamkeepers/platform/google_sign_in_service.dart';
 import 'package:dreamkeepers/state/account_state.dart';
 import 'package:dreamkeepers/state/game_state.dart';
+import 'package:dreamkeepers/state/promo_code_service.dart';
 import 'package:dreamkeepers/ui/root/app_route.dart';
 import 'package:dreamkeepers/ui/settings/settings_view.dart';
 import '../../support/test_app.dart';
@@ -57,6 +58,8 @@ Future<_Pumped> _pumpSettings(
           accountState: accountState,
           gameServicesService: gameServicesService,
           googleSignInService: GoogleSignInService(),
+          promoCodeService: PromoCodeService(),
+          returnRoute: const DreamHavenRoute(),
           onNavigate: onNavigate,
         ),
       ),

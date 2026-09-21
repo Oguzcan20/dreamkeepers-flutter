@@ -7,21 +7,27 @@ import '../../platform/google_sign_in_service.dart';
 import '../../platform/platform_service.dart';
 import '../../state/account_state.dart';
 import '../../state/game_state.dart';
+import '../../state/promo_code_service.dart';
 import '../../theme/sf_symbol_icons.dart';
 import '../../theme/theme.dart' as dk_theme;
 import '../root/app_route.dart';
 
 /// Settings screen: account (Google Sign-In) + Play Games cards,
-/// audio/haptics/notification toggles, language switch, data-privacy note,
-/// and a destructive reset-progress action. Mirrors UI/Settings/SettingsView.swift
-/// — `gameCenterCard` is now `_gameServicesCard()` below, its one deliberate
-/// difference being no friend count (the `games_services` package exposes
-/// no equivalent API; see `GameServicesService`'s doc comment).
+/// audio/haptics/notification toggles, language switch, promo-code
+/// redemption, data-privacy note, and a destructive reset-progress action.
+/// Mirrors UI/Settings/SettingsView.swift — `gameCenterCard` is now
+/// `_gameServicesCard()` below, its one deliberate difference being no
+/// friend count (the `games_services` package exposes no equivalent API;
+/// see `GameServicesService`'s doc comment). Promo codes have no Swift
+/// counterpart yet — see `PromoCodeService`'s doc comment for the Firestore
+/// schema a developer edits in the Console to create one.
 class SettingsView extends StatefulWidget {
   final GameState gameState;
   final AccountState accountState;
   final GameServicesService gameServicesService;
   final GoogleSignInService googleSignInService;
+  final PromoCodeService promoCodeService;
+  final AppRoute returnRoute;
   final ValueChanged<AppRoute> onNavigate;
 
   const SettingsView({
@@ -30,6 +36,8 @@ class SettingsView extends StatefulWidget {
     required this.accountState,
     required this.gameServicesService,
     required this.googleSignInService,
+    required this.promoCodeService,
+    required this.returnRoute,
     required this.onNavigate,
   });
 
@@ -44,6 +52,33 @@ class _SettingsViewState extends State<SettingsView> {
   // this is a small manually-kept literal rather than adding a whole
   // package for one label. Bump this alongside `pubspec.yaml`'s `version:`.
   static const _appVersion = '1.0.0 (1)';
+
+  final _promoCodeController = TextEditingController();
+  String? _promoCodeSuccessMessage;
+
+  @override
+  void dispose() {
+    _promoCodeController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _redeemPromoCode() async {
+    final code = _promoCodeController.text;
+    if (code.trim().isEmpty) return;
+    FocusScope.of(context).unfocus();
+    setState(() => _promoCodeSuccessMessage = null);
+    final reward = await widget.promoCodeService.redeem(code);
+    if (!mounted) return;
+    if (reward != null) {
+      widget.gameState.grantCurrency(gold: reward.gold, dreamGems: reward.dreamGems);
+      _promoCodeController.clear();
+      setState(() {
+        _promoCodeSuccessMessage = AppLocalizations.of(context).settingsPromoCodeSuccess(reward.gold, reward.dreamGems);
+      });
+    } else {
+      setState(() {});
+    }
+  }
 
   Future<void> _confirmReset() async {
     final l = AppLocalizations.of(context);
@@ -140,6 +175,8 @@ class _SettingsViewState extends State<SettingsView> {
                         const SizedBox(height: 14),
                         _languageCard(),
                         const SizedBox(height: 14),
+                        _promoCodeCard(),
+                        const SizedBox(height: 14),
                         _dataCard(),
                         const SizedBox(height: 14),
                         _resetButton(),
@@ -170,7 +207,7 @@ class _SettingsViewState extends State<SettingsView> {
             label: l.settingsBack,
             button: true,
             child: GestureDetector(
-              onTap: () => widget.onNavigate(const DreamHavenRoute()),
+              onTap: () => widget.onNavigate(widget.returnRoute),
               child: Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.08), shape: BoxShape.circle),
@@ -394,6 +431,77 @@ class _SettingsViewState extends State<SettingsView> {
               ),
             ],
           ),
+        ],
+      ),
+    );
+  }
+
+  Widget _promoCodeCard() {
+    final l = AppLocalizations.of(context);
+    final promoCodeService = widget.promoCodeService;
+    return dk_theme.GlassCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            children: [
+              Icon(sfSymbol('gift.fill'), color: Colors.white, size: 18),
+              const SizedBox(width: 10),
+              Text(l.settingsPromoCode, style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600)),
+            ],
+          ),
+          const SizedBox(height: 6),
+          Text(l.settingsPromoCodeBlurb, style: TextStyle(color: Colors.white.withValues(alpha: 0.5), fontSize: 11)),
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: _promoCodeController,
+                  textCapitalization: TextCapitalization.characters,
+                  onChanged: (_) => setState(() {}),
+                  style: const TextStyle(color: Colors.white, fontSize: 14),
+                  decoration: InputDecoration(
+                    hintText: l.settingsPromoCodeHint,
+                    hintStyle: TextStyle(color: Colors.white.withValues(alpha: 0.35)),
+                    filled: true,
+                    fillColor: Colors.white.withValues(alpha: 0.06),
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 10),
+              GestureDetector(
+                onTap: _promoCodeController.text.trim().isNotEmpty && !promoCodeService.isRedeeming ? _redeemPromoCode : null,
+                child: Container(
+                  height: 40,
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: _promoCodeController.text.trim().isNotEmpty ? dk_theme.Theme.violet : Colors.white.withValues(alpha: 0.08),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: promoCodeService.isRedeeming
+                      ? const SizedBox(
+                          width: 18,
+                          height: 18,
+                          child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
+                        )
+                      : Text(l.settingsPromoCodeRedeem, style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600)),
+                ),
+              ),
+            ],
+          ),
+          if (promoCodeService.lastError != null) ...[
+            const SizedBox(height: 8),
+            Text(promoCodeService.lastError!, style: TextStyle(color: Colors.red.withValues(alpha: 0.85), fontSize: 12)),
+          ],
+          if (_promoCodeSuccessMessage != null) ...[
+            const SizedBox(height: 8),
+            Text(_promoCodeSuccessMessage!, style: const TextStyle(color: dk_theme.Theme.gold, fontSize: 12, fontWeight: FontWeight.w600)),
+          ],
         ],
       ),
     );

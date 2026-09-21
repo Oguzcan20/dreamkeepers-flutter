@@ -219,11 +219,35 @@ class AppLocalizationsEn extends AppLocalizations {
       'Send your team into the Campaign to clear stages, earn gold and EXP, and defeat bosses. Boss victories recruit your next Dreamkeeper automatically.';
 
   @override
-  String get starterElementTitle => 'Choose Olf\'s Element';
+  String get starterElementTitle => 'PICK HIS ELEMENT';
 
   @override
   String get starterElementSubtitle =>
-      'This sticks with him for good — pick whatever feels right.';
+      'Every Dreamkeeper bonds with a dreamwalker sooner or later — but Olf came to you unclaimed, before Dream Haven even opened its gates. The element you choose now will shape him for as long as he walks beside you.';
+
+  @override
+  String get starterElementEyebrow => 'THE FIRST BOND';
+
+  @override
+  String get starterElementHeroTitle => 'Olf Has Chosen You';
+
+  @override
+  String get starterElementPermanentNote => 'This choice is permanent.';
+
+  @override
+  String get starterRevealSecretUnlocked => 'SECRET UNLOCKED';
+
+  @override
+  String get starterRevealBondSealed => 'BOND SEALED';
+
+  @override
+  String get starterRevealUltimateTitle => 'A Different Kind of Olf...';
+
+  @override
+  String get starterRevealNormalTitle => 'Olf Has Joined You!';
+
+  @override
+  String get starterRevealTapToContinue => 'Tap anywhere to continue';
 
   @override
   String get navDreamHaven => 'Dream Haven';
@@ -437,6 +461,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get missionsRequiresPremium => 'Requires Premium';
 
   @override
+  String get shopSpecialOffers => 'Special Offers';
+
+  @override
   String get shopBadgePopular => 'Popular';
 
   @override
@@ -458,6 +485,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String shopTicketsGranted(int count) {
     return '+$count Tickets';
   }
+
+  @override
+  String get shopTabOffers => 'Offers';
+
+  @override
+  String get shopTabGems => 'Gems';
+
+  @override
+  String get shopTabTicketsGold => 'Tickets & Gold';
+
+  @override
+  String get shopNoOffers => 'No special offers right now — check back soon.';
 
   @override
   String campaignStageLabel(int stage) {
@@ -736,6 +775,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get summonTapToRevealAll => 'Tap to reveal all';
+
+  @override
+  String get summonTapToContinue => 'Tap to continue';
+
+  @override
+  String get summonTapPortraitForInfo => 'Tap for details';
 
   @override
   String get bestiaryNotEncountered => 'Not yet encountered.';
@@ -3854,5 +3899,28 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String havenDungeonKeys(int remaining, int max) {
     return '$remaining/$max keys';
+  }
+
+  @override
+  String get settingsPromoCode => 'Promo Code';
+
+  @override
+  String get settingsPromoCodeBlurb =>
+      'Have a gift code? Redeem it here for a one-time reward.';
+
+  @override
+  String get settingsPromoCodeHint => 'Enter code';
+
+  @override
+  String get settingsPromoCodeRedeem => 'Redeem';
+
+  @override
+  String settingsPromoCodeSuccess(int gold, int gems) {
+    return 'Redeemed! +$gold Gold, +$gems Dream Gems.';
+  }
+
+  @override
+  String friendsReferralRewardReceived(int gold, int gems) {
+    return 'A friend used your code! +$gold Gold, +$gems Dream Gems.';
   }
 }

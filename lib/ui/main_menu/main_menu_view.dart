@@ -5,18 +5,10 @@ import 'package:flutter/material.dart';
 import '../../l10n/l10n.dart';
 import '../../theme/theme.dart' as dk_theme;
 
-/// The title screen. Mirrors `MainMenuView` (UI/MainMenu/MainMenuView.swift)
-/// exactly, including the `DreamHavenBanner` key-art image behind the CTA
-/// panel, letterboxed under a dark gradient scrim for legibility.
+/// The title screen: the `DreamHavenBanner` key-art image full-bleed behind
+/// the CTA panel, under a dark gradient scrim for legibility.
 /// `MenuSparkleField` (a busier, upward-drifting sibling of
 /// `AmbientBackground`'s own `SparkleField`) sits on top of the scrim.
-///
-/// The banner uses `BoxFit.contain`, not `cover` — matching Swift's
-/// `.aspectRatio(contentMode: .fit)`. The landscape frame (~2.17:1) is far
-/// wider than the 552×396 source art, so `cover` scaled it up and cropped
-/// the top, clipping the baked-in "DREAMKEEPERS" wordmark; `contain`
-/// letterboxes it into `RootView`'s shared background gradient instead, with
-/// the whole wordmark visible.
 class MainMenuView extends StatefulWidget {
   final VoidCallback onPlay;
   final VoidCallback onSettings;
@@ -53,7 +45,9 @@ class _MainMenuViewState extends State<MainMenuView> with TickerProviderStateMix
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Positioned.fill(child: Image.asset(dk_theme.SingletonArt.dreamHavenBanner, fit: BoxFit.contain)),
+        Positioned.fill(
+          child: Image.asset(dk_theme.SingletonArt.dreamHavenBanner, fit: BoxFit.cover, alignment: const Alignment(0, -0.6)),
+        ),
         Positioned.fill(
           child: DecoratedBox(
             decoration: BoxDecoration(

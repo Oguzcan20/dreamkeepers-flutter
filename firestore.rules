@@ -1,0 +1,83 @@
+rules_version = '2';
+
+// Dreamkeepers Firestore security rules.
+//
+// Not deployed by Claude — there's no Firebase CLI on this machine and no
+// `functions/` project in this repo. Apply this by hand:
+// Firebase Console -> dreamkeepers-292f4 -> Firestore Database -> Rules ->
+// paste this file's contents -> Publish.
+//
+// Without these rules, the project runs on whatever default rules the
+// Firestore database was created with (commonly fully open "test mode",
+// which lets anyone read/write every document with the Firebase JS/REST
+// API directly, no app required). Publishing this file is what actually
+// enforces the one-time-per-account promo code / referral guarantees the
+// client code assumes.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    // players/{uid} — one profile per Firebase Auth uid (anonymous, or
+    // linked to Google Sign-In). See FriendsService/PromoCodeService.
+    match /players/{uid} {
+      allow read: if signedIn();
+
+      // The owner can create/update their own profile freely.
+      allow create, update: if isOwner(uid);
+
+      // A signed-in player may ALSO update exactly these two fields on
+      // someone else's profile — the two effects `FriendsService.addFriend`
+      // writes onto the *referrer's* doc in the same batch as its own
+      // (mutual friend-add + queuing their referral reward). Every other
+      // field on another player's profile stays read-only to them.
+      allow update: if signedIn() && !isOwner(uid)
+        && request.resource.data.diff(resource.data).affectedKeys()
+             .hasOnly(['friendIDs', 'pendingReferralRewardCount']);
+
+      allow delete: if false;
+    }
+
+    // friendCodes/{code} -> { playerID } — the code-to-uid lookup table.
+    match /friendCodes/{code} {
+      allow read: if signedIn();
+      // Only the player who owns that uid may claim a code for themselves,
+      // and only once (the doc not already existing is enforced by
+      // `create` semantics).
+      allow create: if signedIn() && request.resource.data.playerID == request.auth.uid;
+      allow update, delete: if false;
+    }
+
+    // promoCodes/{code} — developer-configured gift codes. Created and
+    // edited ONLY via the Firebase Console (see PromoCodeService's doc
+    // comment for the field schema). The app is only ever allowed to bump
+    // `redemptionCount` by exactly 1 per redemption, and only while the
+    // code is still active and under its cap — everything else about a
+    // code (whether it's active, its reward amounts, its cap) is
+    // read-only from the client.
+    match /promoCodes/{code} {
+      allow read: if signedIn();
+      allow create, delete: if false;
+      allow update: if signedIn()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['redemptionCount'])
+        && request.resource.data.redemptionCount == resource.data.redemptionCount + 1
+        && resource.data.active == true
+        && (resource.data.maxRedemptions == 0 || resource.data.redemptionCount < resource.data.maxRedemptions);
+    }
+
+    // promoRedemptions/{code}_{uid} — existence alone means "already
+    // redeemed". A player may create only their OWN marker (id must end
+    // with their uid) and it can never be edited or removed afterward.
+    match /promoRedemptions/{redemptionId} {
+      allow read: if signedIn();
+      allow create: if signedIn() && redemptionId.matches('.*_' + request.auth.uid + '$');
+      allow update, delete: if false;
+    }
+  }
+}

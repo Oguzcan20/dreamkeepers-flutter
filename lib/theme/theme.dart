@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -75,6 +76,19 @@ class SingletonArt {
   static const String chestClosed = 'assets/art/ChestClosed.png';
   static const String chestOpen = 'assets/art/ChestOpen.png';
   static const String dreamHavenBanner = 'assets/art/DreamHavenBanner.jpg';
+  static const String loadingBanner = 'assets/art/LoadingBanner.jpg';
+}
+
+/// Per-world Campaign card backdrop art (`WorldBanner_<n>`). Only worlds
+/// 1-10 have their own painting — worlds 11-30 are the same 10 locations
+/// "dreamed again" with the same monster rosters (see `WorldCatalog`'s doc
+/// comment), so they reuse the same 10 backgrounds on a repeating cycle
+/// instead of needing 30 unique paintings.
+class WorldArt {
+  static String assetName(int worldID) {
+    final base = ((worldID - 1) % 10) + 1;
+    return 'assets/art/WorldBanner_$base.jpg';
+  }
 }
 
 /// App-wide palette and shared visual language. Mirrors UI/Shared/Theme.swift
@@ -108,7 +122,8 @@ class Theme {
 /// `BackdropFilter` + a translucent fill reproduces the same frosted look).
 class GlassCard extends StatelessWidget {
   final Widget child;
-  const GlassCard({super.key, required this.child});
+  final EdgeInsetsGeometry padding;
+  const GlassCard({super.key, required this.child, this.padding = const EdgeInsets.all(16)});
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +132,7 @@ class GlassCard extends StatelessWidget {
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
         child: Container(
-          padding: const EdgeInsets.all(16),
+          padding: padding,
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [Colors.white.withValues(alpha: 0.09), Colors.transparent],
@@ -155,8 +170,15 @@ class PrimaryButton extends StatefulWidget {
   final Widget child;
   final VoidCallback? onPressed;
   final Color tint;
+  final EdgeInsetsGeometry padding;
 
-  const PrimaryButton({super.key, required this.child, required this.onPressed, this.tint = Theme.violet});
+  const PrimaryButton({
+    super.key,
+    required this.child,
+    required this.onPressed,
+    this.tint = Theme.violet,
+    this.padding = const EdgeInsets.symmetric(vertical: 14),
+  });
 
   @override
   State<PrimaryButton> createState() => _PrimaryButtonState();
@@ -182,7 +204,7 @@ class _PrimaryButtonState extends State<PrimaryButton> {
           duration: const Duration(milliseconds: 120),
           child: Container(
             width: double.infinity,
-            padding: const EdgeInsets.symmetric(vertical: 14),
+            padding: widget.padding,
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [widget.tint.withValues(alpha: 0.85), widget.tint.withValues(alpha: 0.55)],
@@ -380,6 +402,119 @@ class _SparkleFieldState extends State<SparkleField> with SingleTickerProviderSt
                 }).toList(),
               );
             },
+          );
+        },
+      ),
+    );
+  }
+}
+
+/// A slim rounded "banked toward next star" progress bar — shared by the
+/// compact `_FusionCard` variants and the full-screen fusion pickers so all
+/// four places read as one consistent visual language.
+class FusionProgressBar extends StatelessWidget {
+  final int current;
+  final int total;
+  final Color color;
+  final double height;
+
+  const FusionProgressBar({
+    super.key,
+    required this.current,
+    required this.total,
+    this.color = Theme.gold,
+    this.height = 6,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final fraction = total == 0 ? 1.0 : (current / total).clamp(0, 1).toDouble();
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return ClipRRect(
+          borderRadius: BorderRadius.circular(999),
+          child: Stack(
+            children: [
+              Container(height: height, color: Colors.white.withValues(alpha: 0.08)),
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 250),
+                curve: Curves.easeOut,
+                height: height,
+                width: constraints.maxWidth * fraction,
+                color: color,
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
+
+/// A handful of small dots radiating outward from the center and fading —
+/// a lightweight one-shot flourish for confirm-style moments (mirrors the
+/// summoning shrine's private burst effect, generalized for reuse). Plays
+/// once on mount; give it a fresh `key` to replay it.
+class BurstParticles extends StatefulWidget {
+  final Color color;
+  final int count;
+  final double spread;
+  final Duration duration;
+
+  const BurstParticles({
+    super.key,
+    required this.color,
+    this.count = 14,
+    this.spread = 60,
+    this.duration = const Duration(milliseconds: 650),
+  });
+
+  @override
+  State<BurstParticles> createState() => _BurstParticlesState();
+}
+
+class _BurstParticlesState extends State<BurstParticles> with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+  late final List<double> _angles;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(vsync: this, duration: widget.duration)..forward();
+    _angles = List.generate(widget.count, (i) => (2 * math.pi * i) / widget.count);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return IgnorePointer(
+      child: AnimatedBuilder(
+        animation: _controller,
+        builder: (context, _) {
+          final t = Curves.easeOut.transform(_controller.value);
+          final distance = widget.spread * t;
+          final opacity = (1 - t).clamp(0.0, 1.0);
+          return Stack(
+            alignment: Alignment.center,
+            children: [
+              for (final angle in _angles)
+                Transform.translate(
+                  offset: Offset(math.cos(angle) * distance, math.sin(angle) * distance),
+                  child: Opacity(
+                    opacity: opacity,
+                    child: Container(
+                      width: 5,
+                      height: 5,
+                      decoration: BoxDecoration(color: widget.color, shape: BoxShape.circle),
+                    ),
+                  ),
+                ),
+            ],
           );
         },
       ),

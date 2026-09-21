@@ -10,7 +10,9 @@ import '../../platform/game_services_service.dart';
 import '../../platform/google_sign_in_service.dart';
 import '../../progression/achievement_system.dart';
 import '../../state/account_state.dart';
+import '../../state/friends_service.dart';
 import '../../state/game_state.dart';
+import '../../state/promo_code_service.dart';
 import '../../theme/sf_symbol_icons.dart';
 import '../../theme/theme.dart' as dk_theme;
 import '../arena/arena_result_view.dart';
@@ -28,6 +30,7 @@ import '../main_menu/loading_view.dart';
 import '../main_menu/main_menu_view.dart';
 import '../onboarding/onboarding_view.dart';
 import '../onboarding/starter_olf_choice_view.dart';
+import '../profile/friends_view.dart';
 import '../profile/profile_view.dart';
 import '../settings/settings_view.dart';
 import '../shop/shop_view.dart';
@@ -35,6 +38,7 @@ import '../summon/summoning_shrine_view.dart';
 import '../team/inventory_view.dart';
 import 'app_route.dart';
 import 'interstitial_ad_sheet.dart';
+import 'portal_transition.dart';
 
 /// App root: owns navigation between every top-level screen, the
 /// once-per-launch onboarding overlay, achievement toasts, interstitial ad
@@ -70,6 +74,10 @@ class RootView extends StatefulWidget {
 class _RootViewState extends State<RootView> {
   bool _isLoading = true;
   AppRoute _route = const MainMenuRoute();
+  // Bumped on every `_navigate` call (even to the same route type again,
+  // e.g. "Next Battle") so `PortalSwitcher` always sees a new key and plays
+  // its transition, instead of only reacting to a route *type* change.
+  int _routeGeneration = 0;
   Achievement? _activeAchievementPopup;
   bool _achievementCheckScheduled = false;
   bool _showInterstitial = false;
@@ -81,6 +89,9 @@ class _RootViewState extends State<RootView> {
   bool _hasRequestedGameServicesAuth = false;
   bool _hasRequestedConsent = false;
   int? _lastSubmittedLeaderboardStage;
+  bool _hasStartedFriendsService = false;
+  int? _lastFriendsProgressLevel;
+  int? _lastFriendsProgressStage;
   late final ConsentService _consentService;
 
   @override
@@ -95,6 +106,63 @@ class _RootViewState extends State<RootView> {
     // ordering relative to each other.
     WidgetsBinding.instance
         .addPostFrameCallback((_) => _requestConsentAndSilentSignInOnce());
+  }
+
+  /// Mirrors `RootView.swift`'s `.onAppear { friendsService.start(...) }` —
+  /// unconditional (unlike Play Games auth, no Main-Menu gate) but only
+  /// fired once per launch.
+  void _maybeStartFriendsService(GameState state) {
+    if (_hasStartedFriendsService) return;
+    _hasStartedFriendsService = true;
+    // Deferred a frame: `FriendsService.start()` can call `notifyListeners()`
+    // before its first `await` (e.g. `FirebaseFirestore.instance` throwing
+    // synchronously when Firebase isn't configured, as in widget tests),
+    // which would otherwise be a "setState during build" violation since
+    // this is invoked directly from `build()`.
+    final level = state.save.playerLevel;
+    final stage = state.currentStage;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      context.read<FriendsService>().start(playerLevel: level, currentStage: stage);
+    });
+  }
+
+  /// Mirrors the two `.onChange(of: gameState.currentStage / .playerLevel)`
+  /// handlers that call `friendsService.updateMyProgress` — collapsed into
+  /// one dedup-by-comparison call site, the same pattern
+  /// `_maybeSubmitLeaderboard` already uses for the leaderboard submission.
+  void _maybeUpdateFriendsProgress(GameState state) {
+    final level = state.save.playerLevel;
+    final stage = state.currentStage;
+    if (_lastFriendsProgressLevel == level && _lastFriendsProgressStage == stage) return;
+    _lastFriendsProgressLevel = level;
+    _lastFriendsProgressStage = stage;
+    context.read<FriendsService>().updateMyProgress(playerLevel: level, currentStage: stage);
+  }
+
+  /// Pays out a referral reward this account earned as the *referrer* while
+  /// it wasn't around to be credited immediately (see
+  /// `FriendsService.addFriend`'s doc comment) — queued server-side, picked
+  /// up here the moment `FriendsService` notices it on this launch's
+  /// profile load, granted locally via `GameState`, then cleared so it
+  /// can't be granted twice on the next rebuild. Deferred a frame (same
+  /// reasoning as `_showNextAchievementPopup`'s `addPostFrameCallback`):
+  /// `GameState.grantCurrency` synchronously calls `notifyListeners`, which
+  /// must not happen while this very build — already watching `GameState`
+  /// — is still in progress.
+  void _maybeClaimReferralReward(FriendsService friendsService) {
+    final gold = friendsService.claimedReferralRewardGold;
+    final gems = friendsService.claimedReferralRewardGems;
+    if (gold == null && gems == null) return;
+    friendsService.consumeClaimedReferralReward();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      context.read<GameState>().grantCurrency(gold: gold ?? 0, dreamGems: gems ?? 0);
+      final l = AppLocalizations.of(context);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(l.friendsReferralRewardReceived(gold ?? 0, gems ?? 0))),
+      );
+    });
   }
 
   Future<void> _requestConsentAndSilentSignInOnce() async {
@@ -162,7 +230,10 @@ class _RootViewState extends State<RootView> {
   double get _homeButtonClearance => 56;
 
   void _navigate(AppRoute destination) {
-    setState(() => _route = destination);
+    setState(() {
+      _route = destination;
+      _routeGeneration++;
+    });
     _maybeAuthenticateGameServices();
   }
 
@@ -182,6 +253,7 @@ class _RootViewState extends State<RootView> {
     final destination = switch (_route) {
       MainMenuRoute() => null,
       DreamHavenRoute() => const MainMenuRoute(),
+      SettingsRoute(:final returnTo) => returnTo,
       _ => const DreamHavenRoute(),
     };
     if (destination != null) _navigate(destination);
@@ -213,6 +285,9 @@ class _RootViewState extends State<RootView> {
     // Play Games sign-in Future completing after `_maybeAuthenticateGameServices`
     // fired it — re-runs this check, mirroring the Swift `.onChange`.
     _maybeSubmitLeaderboard(state, context.watch<GameServicesService>());
+    _maybeStartFriendsService(state);
+    _maybeUpdateFriendsProgress(state);
+    _maybeClaimReferralReward(context.watch<FriendsService>());
 
     if (!_achievementCheckScheduled &&
         _activeAchievementPopup == null &&
@@ -243,7 +318,7 @@ class _RootViewState extends State<RootView> {
               Padding(
                 padding: EdgeInsets.only(
                     bottom: _showsGlobalHomeButton ? _homeButtonClearance : 0),
-                child: _currentScreen(state),
+                child: PortalSwitcher(routeKey: _routeGeneration, child: _currentScreen(state)),
               ),
 
             // Shown once, the first time a new save actually reaches Dream
@@ -339,7 +414,7 @@ class _RootViewState extends State<RootView> {
     return switch (_route) {
       MainMenuRoute() => MainMenuView(
           onPlay: () => _navigate(const DreamHavenRoute()),
-          onSettings: () => _navigate(const SettingsRoute()),
+          onSettings: () => _navigate(const SettingsRoute(returnTo: MainMenuRoute())),
         ),
       DreamHavenRoute() =>
         DreamHavenView(gameState: state, onNavigate: _navigate),
@@ -365,14 +440,21 @@ class _RootViewState extends State<RootView> {
       SummonRoute() =>
         SummoningShrineView(gameState: state, onNavigate: _navigate),
       ShopRoute() => ShopView(gameState: state, onNavigate: _navigate),
-      SettingsRoute() => SettingsView(
+      SettingsRoute(:final returnTo) => SettingsView(
           gameState: state,
           accountState: context.watch<AccountState>(),
           gameServicesService: context.watch<GameServicesService>(),
           googleSignInService: context.read<GoogleSignInService>(),
+          promoCodeService: context.watch<PromoCodeService>(),
+          returnRoute: returnTo,
           onNavigate: _navigate,
         ),
       ProfileRoute() => ProfileView(gameState: state, onNavigate: _navigate),
+      FriendsRoute() => FriendsView(
+          gameState: state,
+          friendsService: context.watch<FriendsService>(),
+          onNavigate: _navigate,
+        ),
       ObservatoryRoute() =>
         BestiaryView(gameState: state, onNavigate: _navigate),
       BattlePassRoute() =>

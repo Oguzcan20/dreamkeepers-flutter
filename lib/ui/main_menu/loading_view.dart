@@ -63,7 +63,9 @@ class _LoadingViewState extends State<LoadingView> with SingleTickerProviderStat
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Positioned.fill(child: Image.asset(dk_theme.SingletonArt.dreamHavenBanner, fit: BoxFit.cover)),
+        Positioned.fill(
+          child: Image.asset(dk_theme.SingletonArt.loadingBanner, fit: BoxFit.cover, alignment: const Alignment(0, -0.6)),
+        ),
         Positioned.fill(
           child: DecoratedBox(
             decoration: BoxDecoration(

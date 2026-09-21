@@ -153,16 +153,17 @@ class _CampaignViewState extends State<CampaignView> {
     return Stack(
       children: [
         const dk_theme.AmbientBackground(topTint: dk_theme.Theme.violet, bottomTint: dk_theme.Theme.softBlue),
-        SafeArea(
-          child: AnimatedBuilder(
-            animation: _gameState,
-            builder: (context, _) => AnimatedOpacity(
-              opacity: _appeared ? 1 : 0,
-              duration: const Duration(milliseconds: 500),
-              child: Column(
-                children: [
-                  _header(l),
-                  Expanded(
+        AnimatedBuilder(
+          animation: _gameState,
+          builder: (context, _) => AnimatedOpacity(
+            opacity: _appeared ? 1 : 0,
+            duration: const Duration(milliseconds: 500),
+            child: Column(
+              children: [
+                _header(l),
+                Expanded(
+                  child: SafeArea(
+                    top: false,
                     child: SingleChildScrollView(
                       // Bottom pad clears the floating home button in the
                       // bottom-left corner (RootView only reserves ~56 of
@@ -188,8 +189,8 @@ class _CampaignViewState extends State<CampaignView> {
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
@@ -204,6 +205,10 @@ class _CampaignViewState extends State<CampaignView> {
     );
   }
 
+  /// The banner image/gradient spans the full device width, edge to edge —
+  /// only the row of buttons/text inside gets safe-area padding (via the
+  /// inner `SafeArea`), so the sensor-housing safe zone on a landscape
+  /// iPhone doesn't cut the bar short and leave a bare seam next to it.
   Widget _header(AppLocalizations l) {
     return Container(
       height: 64,
@@ -227,16 +232,19 @@ class _CampaignViewState extends State<CampaignView> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Row(
-              children: [
-                _iconButton(icon: 'chevron.left', label: l.commonBack, onTap: () => widget.onNavigate(const DreamHavenRoute())),
-                const Spacer(),
-                Text(l.navCampaign, style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
-                const Spacer(),
-                _energyPill(l),
-              ],
+          SafeArea(
+            bottom: false,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                children: [
+                  _iconButton(icon: 'chevron.left', label: l.commonBack, onTap: () => widget.onNavigate(const DreamHavenRoute())),
+                  const Spacer(),
+                  Text(l.navCampaign, style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+                  const Spacer(),
+                  _energyPill(l),
+                ],
+              ),
             ),
           ),
         ],
@@ -303,66 +311,82 @@ class _WorldSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final accent = world.accentColor;
-    // Same accented-card language as the Shop's starter/VIP cards (tinted
-    // glow + matching stroke), keyed to each world's own accent so the map
-    // reads as thirty distinct places rather than identical cards with
-    // different text.
+    // Each card is backed by that world's own painted background (the same
+    // art used cyclically across its "dreamed again" repeats, see
+    // `WorldArt`), with an accent-tinted scrim so the map reads as thirty
+    // distinct places rather than identical cards with different text.
     return Container(
+      clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(dk_theme.Theme.cornerRadius),
-        gradient: RadialGradient(
-          colors: [accent.withValues(alpha: 0.22), Colors.transparent],
-          center: Alignment.topRight,
-          radius: 1.3,
-        ),
         border: Border.all(color: accent.withValues(alpha: 0.4), width: 1.25),
         boxShadow: [BoxShadow(color: accent.withValues(alpha: 0.2), blurRadius: 10, offset: const Offset(0, 3))],
       ),
-      child: dk_theme.GlassCard(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
+      child: Stack(
+        fit: StackFit.passthrough,
+        children: [
+          Positioned.fill(
+            child: Image.asset(dk_theme.WorldArt.assetName(world.id), fit: BoxFit.cover),
+          ),
+          Positioned.fill(
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [accent.withValues(alpha: 0.28), dk_theme.Theme.deepNavy.withValues(alpha: 0.82)],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(world.name, style: const TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w600)),
-                      const SizedBox(height: 4),
-                      Text(world.description, style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 11)),
-                    ],
-                  ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(world.name, style: const TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w600)),
+                          const SizedBox(height: 4),
+                          Text(world.description, style: TextStyle(color: Colors.white.withValues(alpha: 0.7), fontSize: 11)),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(color: accent.withValues(alpha: 0.25), shape: BoxShape.circle),
+                      child: Icon(
+                        sfSymbol(world.elementBias.isNotEmpty ? world.elementBias.first.symbol : 'sparkles'),
+                        size: 18,
+                        color: accent,
+                      ),
+                    ),
+                  ],
                 ),
-                Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(color: accent.withValues(alpha: 0.15), shape: BoxShape.circle),
-                  child: Icon(
-                    sfSymbol(world.elementBias.isNotEmpty ? world.elementBias.first.symbol : 'sparkles'),
-                    size: 18,
-                    color: accent,
-                  ),
+                const SizedBox(height: 14),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    for (var stage = world.firstStage; stage <= world.lastStage; stage++)
+                      _StageNode(
+                        stage: stage,
+                        isBoss: stage == world.lastStage,
+                        accent: accent,
+                        state: _stateFor(stage),
+                        isSweepable: gameState.canSweepStage(stage),
+                        onTap: () => onTapStage(stage),
+                      ),
+                  ],
                 ),
               ],
             ),
-            const SizedBox(height: 14),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                for (var stage = world.firstStage; stage <= world.lastStage; stage++)
-                  _StageNode(
-                    stage: stage,
-                    isBoss: stage == world.lastStage,
-                    accent: accent,
-                    state: _stateFor(stage),
-                    isSweepable: gameState.canSweepStage(stage),
-                    onTap: () => onTapStage(stage),
-                  ),
-              ],
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

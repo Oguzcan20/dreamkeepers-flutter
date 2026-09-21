@@ -64,7 +64,7 @@ class _ProfileViewState extends State<ProfileView> {
                         const SizedBox(width: 16),
                         Expanded(child: _statsGrid(l)),
                       ],
-                    ).adaptiveScale(reference: const Size(600, 220), maxScale: 1.4),
+                    ).adaptiveScale(reference: const Size(600, 220)),
                   ),
                 ),
               ),
@@ -95,7 +95,18 @@ class _ProfileViewState extends State<ProfileView> {
           const Spacer(),
           Text(l.profileTitle, style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
           const Spacer(),
-          const SizedBox(width: 40, height: 40),
+          Semantics(
+            label: 'Friends',
+            button: true,
+            child: GestureDetector(
+              onTap: () => widget.onNavigate(const FriendsRoute()),
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.08), shape: BoxShape.circle),
+                child: Icon(sfSymbol('person.2.fill'), color: Colors.white, size: 20),
+              ),
+            ),
+          ),
         ],
       ),
     );

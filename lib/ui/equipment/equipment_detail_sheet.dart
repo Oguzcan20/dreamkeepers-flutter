@@ -44,13 +44,10 @@ class _EquipmentDetailSheetState extends State<EquipmentDetailSheet> {
           elevation: 0,
           centerTitle: true,
           title: Text(item?.name ?? l.eqItemFallback, style: const TextStyle(color: Colors.white)),
-          // Default `leadingWidth` is `kToolbarHeight` (56) — too narrow for
-          // the "Done" label + `TextButton` padding, which wrapped it to
-          // "Don\ne" on the landscape layout.
-          leadingWidth: 80,
-          leading: TextButton(
+          leading: IconButton(
+            icon: Icon(sfSymbol('xmark'), color: Colors.white, size: 18),
+            tooltip: l.commonDone,
             onPressed: () => Navigator.of(context).pop(),
-            child: Text(l.commonDone, style: const TextStyle(color: Colors.white)),
           ),
         ),
         body: Stack(
@@ -240,41 +237,36 @@ class _FusionCard extends StatelessWidget {
     final current = _currentItem;
     if (current == null) return const SizedBox.shrink();
     final cost = gameState.nextFusionCostForItem(current);
+    final duplicates = gameState.duplicatesOfItem(current);
     return dk_theme.GlassCard(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
       child: Column(
         children: [
           Row(
             children: [
               StarRow(stars: current.stars, size: 14),
               const Spacer(),
-              Icon(sfSymbol('hammer.fill'), color: dk_theme.Theme.gold, size: 18),
+              Icon(sfSymbol('hammer.fill'), color: dk_theme.Theme.gold, size: 16),
             ],
           ),
           const SizedBox(height: 10),
           if (cost == null)
             Text(l.eqMaxStars, style: TextStyle(color: dk_theme.Theme.gold, fontSize: 11, fontWeight: FontWeight.w600))
-          else
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    l.eqFusionProgress(current.fusionProgress, cost, gameState.duplicatesOfItem(current).length),
-                    style: TextStyle(color: Colors.white.withValues(alpha: 0.65), fontSize: 11),
-                  ),
-                ),
-                // See `PrimaryButton`'s doc comment (theme.dart) — it always
-                // forces `width: double.infinity`, so a Row placement needs
-                // a fixed-width wrapper.
-                SizedBox(
-                  width: 130,
-                  child: dk_theme.PrimaryButton(
-                    tint: dk_theme.Theme.gold,
-                    onPressed: gameState.duplicatesOfItem(current).isEmpty ? null : () => _openPicker(context),
-                    child: Text(l.eqFuseToStar(current.stars + 1)),
-                  ),
-                ),
-              ],
+          else ...[
+            Text(
+              l.eqFusionProgress(current.fusionProgress, cost, duplicates.length),
+              style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 11),
             ),
+            const SizedBox(height: 8),
+            dk_theme.FusionProgressBar(current: current.fusionProgress, total: cost),
+            const SizedBox(height: 12),
+            dk_theme.PrimaryButton(
+              tint: dk_theme.Theme.gold,
+              padding: const EdgeInsets.symmetric(vertical: 9),
+              onPressed: duplicates.isEmpty ? null : () => _openPicker(context),
+              child: Text(l.eqFuseToStar(current.stars + 1), style: const TextStyle(fontSize: 12)),
+            ),
+          ],
         ],
       ),
     );

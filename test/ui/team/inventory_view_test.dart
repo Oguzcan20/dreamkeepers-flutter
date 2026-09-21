@@ -60,11 +60,11 @@ void main() {
     await _settle(tester);
 
     // EquipmentSheet is a full-screen push, not a route change tracked by
-    // `onNavigate` — its own "Done" button pops it, `lastRoute` stays null.
+    // `onNavigate` — its own close (X) button pops it, `lastRoute` stays null.
     expect(find.text('Bench'), findsOneWidget); // The starter starts deployed.
     expect(lastRoute, isNull);
 
-    await tester.tap(find.text('Done'));
+    await tester.tap(find.byTooltip('Done'));
     await _settle(tester);
     expect(find.text('Inventory'), findsOneWidget);
   });
@@ -122,7 +122,7 @@ void main() {
 
     // EquipmentDetailSheet re-shows the item's name in its own AppBar title.
     expect(find.text('Test Blade'), findsWidgets);
-    expect(find.text('Done'), findsOneWidget);
+    expect(find.byTooltip('Done'), findsOneWidget);
   });
 
   testWidgets('sell mode selects a benched duplicate and sells it via the confirmation dialog', (tester) async {

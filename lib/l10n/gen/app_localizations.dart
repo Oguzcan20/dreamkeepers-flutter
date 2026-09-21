@@ -479,14 +479,62 @@ abstract class AppLocalizations {
   /// No description provided for @starterElementTitle.
   ///
   /// In en, this message translates to:
-  /// **'Choose Olf\'s Element'**
+  /// **'PICK HIS ELEMENT'**
   String get starterElementTitle;
 
   /// No description provided for @starterElementSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'This sticks with him for good — pick whatever feels right.'**
+  /// **'Every Dreamkeeper bonds with a dreamwalker sooner or later — but Olf came to you unclaimed, before Dream Haven even opened its gates. The element you choose now will shape him for as long as he walks beside you.'**
   String get starterElementSubtitle;
+
+  /// No description provided for @starterElementEyebrow.
+  ///
+  /// In en, this message translates to:
+  /// **'THE FIRST BOND'**
+  String get starterElementEyebrow;
+
+  /// No description provided for @starterElementHeroTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Olf Has Chosen You'**
+  String get starterElementHeroTitle;
+
+  /// No description provided for @starterElementPermanentNote.
+  ///
+  /// In en, this message translates to:
+  /// **'This choice is permanent.'**
+  String get starterElementPermanentNote;
+
+  /// No description provided for @starterRevealSecretUnlocked.
+  ///
+  /// In en, this message translates to:
+  /// **'SECRET UNLOCKED'**
+  String get starterRevealSecretUnlocked;
+
+  /// No description provided for @starterRevealBondSealed.
+  ///
+  /// In en, this message translates to:
+  /// **'BOND SEALED'**
+  String get starterRevealBondSealed;
+
+  /// No description provided for @starterRevealUltimateTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A Different Kind of Olf...'**
+  String get starterRevealUltimateTitle;
+
+  /// No description provided for @starterRevealNormalTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Olf Has Joined You!'**
+  String get starterRevealNormalTitle;
+
+  /// No description provided for @starterRevealTapToContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap anywhere to continue'**
+  String get starterRevealTapToContinue;
 
   /// No description provided for @navDreamHaven.
   ///
@@ -824,6 +872,12 @@ abstract class AppLocalizations {
   /// **'Requires Premium'**
   String get missionsRequiresPremium;
 
+  /// No description provided for @shopSpecialOffers.
+  ///
+  /// In en, this message translates to:
+  /// **'Special Offers'**
+  String get shopSpecialOffers;
+
   /// No description provided for @shopBadgePopular.
   ///
   /// In en, this message translates to:
@@ -865,6 +919,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'+{count} Tickets'**
   String shopTicketsGranted(int count);
+
+  /// No description provided for @shopTabOffers.
+  ///
+  /// In en, this message translates to:
+  /// **'Offers'**
+  String get shopTabOffers;
+
+  /// No description provided for @shopTabGems.
+  ///
+  /// In en, this message translates to:
+  /// **'Gems'**
+  String get shopTabGems;
+
+  /// No description provided for @shopTabTicketsGold.
+  ///
+  /// In en, this message translates to:
+  /// **'Tickets & Gold'**
+  String get shopTabTicketsGold;
+
+  /// No description provided for @shopNoOffers.
+  ///
+  /// In en, this message translates to:
+  /// **'No special offers right now — check back soon.'**
+  String get shopNoOffers;
 
   /// No description provided for @campaignStageLabel.
   ///
@@ -1280,6 +1358,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Tap to reveal all'**
   String get summonTapToRevealAll;
+
+  /// No description provided for @summonTapToContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to continue'**
+  String get summonTapToContinue;
+
+  /// No description provided for @summonTapPortraitForInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap for details'**
+  String get summonTapPortraitForInfo;
 
   /// No description provided for @bestiaryNotEncountered.
   ///
@@ -6686,6 +6776,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{remaining}/{max} keys'**
   String havenDungeonKeys(int remaining, int max);
+
+  /// No description provided for @settingsPromoCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Promo Code'**
+  String get settingsPromoCode;
+
+  /// No description provided for @settingsPromoCodeBlurb.
+  ///
+  /// In en, this message translates to:
+  /// **'Have a gift code? Redeem it here for a one-time reward.'**
+  String get settingsPromoCodeBlurb;
+
+  /// No description provided for @settingsPromoCodeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter code'**
+  String get settingsPromoCodeHint;
+
+  /// No description provided for @settingsPromoCodeRedeem.
+  ///
+  /// In en, this message translates to:
+  /// **'Redeem'**
+  String get settingsPromoCodeRedeem;
+
+  /// No description provided for @settingsPromoCodeSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Redeemed! +{gold} Gold, +{gems} Dream Gems.'**
+  String settingsPromoCodeSuccess(int gold, int gems);
+
+  /// No description provided for @friendsReferralRewardReceived.
+  ///
+  /// In en, this message translates to:
+  /// **'A friend used your code! +{gold} Gold, +{gems} Dream Gems.'**
+  String friendsReferralRewardReceived(int gold, int gems);
 }
 
 class _AppLocalizationsDelegate

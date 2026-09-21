@@ -212,24 +212,24 @@ class _ArenaViewState extends State<ArenaView> {
     final l = AppLocalizations.of(context);
     final tier = _gameState.arenaTier;
     return dk_theme.GlassCard(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
       child: Row(
         children: [
           Container(
-            width: 48,
-            height: 48,
-            decoration: BoxDecoration(color: dk_theme.Theme.gold.withValues(alpha: 0.25), shape: BoxShape.circle),
-            child: Icon(sfSymbol(tier.symbol), size: 20, color: dk_theme.Theme.gold),
+            width: 36,
+            height: 36,
+            decoration: BoxDecoration(color: dk_theme.Theme.gold.withValues(alpha: 0.2), shape: BoxShape.circle),
+            child: Icon(sfSymbol(tier.symbol), size: 16, color: dk_theme.Theme.gold),
           ),
-          const SizedBox(width: 14),
+          const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(tier.displayName, style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold)),
-                const SizedBox(height: 2),
+                Text(tier.displayName, style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.bold)),
                 Text(
                   l.arenaFloorProgress(_gameState.arenaFloor.clamp(0, _gameState.arenaMaxFloor), _gameState.arenaMaxFloor),
-                  style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 12),
+                  style: TextStyle(color: Colors.white.withValues(alpha: 0.5), fontSize: 11),
                 ),
               ],
             ),
@@ -243,23 +243,20 @@ class _ArenaViewState extends State<ArenaView> {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(sfSymbol('ticket.fill'), size: 12, color: dk_theme.Theme.softBlue),
+                      Icon(sfSymbol('ticket.fill'), size: 11, color: dk_theme.Theme.softBlue.withValues(alpha: 0.8)),
                       const SizedBox(width: 5),
                       Text(
                         '${_gameState.arenaTicketsRemainingToday}/${ArenaSystem.maxTicketsPerDay}',
-                        style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w600),
+                        style: const TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.w600),
                       ),
                     ],
                   ),
                 ),
               ),
               if (_gameState.arenaBonusTickets > 0)
-                Padding(
-                  padding: const EdgeInsets.only(top: 2),
-                  child: Text(
-                    l.arenaBonusTickets(_gameState.arenaBonusTickets),
-                    style: TextStyle(color: dk_theme.Theme.softBlue.withValues(alpha: 0.85), fontSize: 11, fontWeight: FontWeight.w600),
-                  ),
+                Text(
+                  l.arenaBonusTickets(_gameState.arenaBonusTickets),
+                  style: TextStyle(color: dk_theme.Theme.softBlue.withValues(alpha: 0.7), fontSize: 10, fontWeight: FontWeight.w600),
                 ),
             ],
           ),
@@ -286,32 +283,34 @@ class _ArenaViewState extends State<ArenaView> {
     return GestureDetector(
       onTap: _openRebirthSheet,
       child: dk_theme.GlassCard(
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
         child: Row(
           children: [
             Container(
-              width: 44,
-              height: 44,
+              width: 34,
+              height: 34,
               decoration: BoxDecoration(
-                color: dk_theme.Theme.violet.withValues(alpha: canRebirth ? 0.35 : 0.2),
+                color: dk_theme.Theme.violet.withValues(alpha: canRebirth ? 0.3 : 0.15),
                 shape: BoxShape.circle,
               ),
-              child: Icon(sfSymbol('flame.fill'), size: 18, color: dk_theme.Theme.violet),
+              child: Icon(sfSymbol('flame.fill'), size: 15, color: dk_theme.Theme.violet.withValues(alpha: canRebirth ? 1 : 0.7)),
             ),
-            const SizedBox(width: 14),
+            const SizedBox(width: 12),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(l.rebirthTitle, style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold)),
-                  const SizedBox(height: 2),
+                  Text(l.rebirthTitle, style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.bold)),
                   Text(
                     canRebirth
                         ? l.rebirthGainPreview(_gameState.pendingRebirthSoulPoints)
                         : l.rebirthEntrySubtitle,
                     style: TextStyle(
-                      color: canRebirth ? dk_theme.Theme.gold : Colors.white.withValues(alpha: 0.6),
-                      fontSize: 12,
+                      color: canRebirth ? dk_theme.Theme.gold.withValues(alpha: 0.85) : Colors.white.withValues(alpha: 0.45),
+                      fontSize: 11,
                     ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ],
               ),
@@ -319,12 +318,12 @@ class _ArenaViewState extends State<ArenaView> {
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(sfSymbol('flame.fill'), size: 12, color: dk_theme.Theme.violet),
+                Icon(sfSymbol('flame.fill'), size: 11, color: dk_theme.Theme.violet.withValues(alpha: 0.8)),
                 const SizedBox(width: 5),
                 Text('${_gameState.soulPoints}',
-                    style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w600)),
+                    style: const TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.w600)),
                 const SizedBox(width: 6),
-                Icon(sfSymbol('chevron.right'), size: 12, color: Colors.white.withValues(alpha: 0.4)),
+                Icon(sfSymbol('chevron.right'), size: 11, color: Colors.white.withValues(alpha: 0.35)),
               ],
             ),
           ],
@@ -422,55 +421,43 @@ class _TowerZoneBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 96,
+      height: 56,
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(dk_theme.Theme.cornerRadius),
-        border: Border.all(color: Colors.white.withValues(alpha: 0.18)),
-        boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.3), blurRadius: 8, offset: const Offset(0, 4))],
+        border: Border.all(color: Colors.white.withValues(alpha: 0.12)),
       ),
       child: Stack(
-        alignment: Alignment.bottomLeft,
+        alignment: Alignment.centerLeft,
         children: [
           if (dk_theme.ArenaArt.hasArt(tier))
             Positioned.fill(child: Image.asset(dk_theme.ArenaArt.assetName(tier), fit: BoxFit.cover)),
           Positioned.fill(
             child: DecoratedBox(
               decoration: BoxDecoration(
-                gradient: dk_theme.ArenaArt.hasArt(tier)
-                    ? LinearGradient(
-                        colors: [_tierGradient.colors.first.withValues(alpha: 0.55), _tierGradient.colors.last.withValues(alpha: 0.75)],
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                      )
-                    : _tierGradient,
+                gradient: LinearGradient(
+                  colors: [_tierGradient.colors.first.withValues(alpha: 0.65), _tierGradient.colors.last.withValues(alpha: 0.85)],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(12),
+            padding: const EdgeInsets.symmetric(horizontal: 12),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Container(
-                  width: 38,
-                  height: 38,
-                  decoration: BoxDecoration(color: Colors.black.withValues(alpha: 0.35), shape: BoxShape.circle),
-                  child: Icon(sfSymbol(tier.symbol), size: 16, color: Colors.white),
+                Icon(sfSymbol(tier.symbol), size: 14, color: Colors.white.withValues(alpha: 0.9)),
+                const SizedBox(width: 8),
+                Text(
+                  tier.zoneName,
+                  style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w800),
                 ),
-                const SizedBox(width: 10),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      tier.zoneName,
-                      style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w900),
-                    ),
-                    Text(
-                      AppLocalizations.of(context).arenaFloorsRange(tier.floorRange.$1, tier.floorRange.$2),
-                      style: TextStyle(color: Colors.white.withValues(alpha: 0.8), fontSize: 11, fontWeight: FontWeight.w600),
-                    ),
-                  ],
+                const SizedBox(width: 8),
+                Text(
+                  AppLocalizations.of(context).arenaFloorsRange(tier.floorRange.$1, tier.floorRange.$2),
+                  style: TextStyle(color: Colors.white.withValues(alpha: 0.7), fontSize: 11, fontWeight: FontWeight.w600),
                 ),
               ],
             ),
@@ -502,126 +489,130 @@ class _ArenaFloorRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context);
-    final definition = _isUnlocked ? gameState.catalog.definition(_opponent.definitionID) : null;
-    return Opacity(
-      opacity: _isUnlocked ? 1 : 0.6,
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(dk_theme.Theme.cornerRadius),
-          border: Border.all(color: _isFrontier ? dk_theme.Theme.gold.withValues(alpha: 0.55) : Colors.transparent, width: 1.5),
+    // A locked, non-milestone floor collapses to a slim placeholder instead
+    // of the full card below — with 96 of the tower's 100 floors
+    // non-milestone, rendering every one of them at full detail (opponent,
+    // reward preview, button) before the player can even fight them buried
+    // the handful of rows that actually matter — the current frontier and
+    // already-cleared floors — in a wall of near-identical cards. Milestone
+    // floors (every 25th, legendary reward) keep the full card as a teaser.
+    if (!_isUnlocked && !_isMilestone) return _lockedFiller(l);
+    // Full-detail floors (frontier, cleared, milestones) share the locked
+    // filler's plain, unblurred `Container` chrome rather than `GlassCard` —
+    // the goal is a calm, uniform list where the bold floor number is the
+    // one thing that stands out per row, not a wall of colorful badges,
+    // rarity-gradient avatars, and opponent names competing for attention.
+    return Container(
+      height: 52,
+      padding: const EdgeInsets.symmetric(horizontal: 14),
+      decoration: BoxDecoration(
+        color: Colors.white.withValues(alpha: _isUnlocked ? 0.045 : 0.02),
+        borderRadius: BorderRadius.circular(dk_theme.Theme.cornerRadius),
+        border: Border.all(
+          color: _isFrontier ? dk_theme.Theme.gold.withValues(alpha: 0.5) : Colors.white.withValues(alpha: 0.07),
+          width: _isFrontier ? 1.5 : 1,
         ),
-        child: dk_theme.GlassCard(
-          child: Row(
-            children: [
-              Container(
-                width: 46,
-                height: 46,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  gradient: _isUnlocked ? definition?.rarity.gradient : null,
-                  color: _isUnlocked ? (definition == null ? dk_theme.Theme.violet.withValues(alpha: 0.35) : null) : Colors.white.withValues(alpha: 0.06),
-                ),
-                child: !_isUnlocked
-                    ? Icon(sfSymbol('lock.fill'), size: 16, color: Colors.white.withValues(alpha: 0.35))
-                    : (definition != null ? Icon(sfSymbol(definition.symbol), size: 18, color: Colors.white) : null),
-              ),
-              const SizedBox(width: 14),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+      ),
+      child: Opacity(
+        opacity: _isUnlocked ? 1 : 0.6,
+        child: Row(
+          children: [
+            // Excluded from semantics: it's purely decorative next to the
+            // Fight/Farm button below, which already announces
+            // "Floor $floor" as its own accessible label.
+            Expanded(
+              child: ExcludeSemantics(
+                child: Row(
                   children: [
-                    // Excluded from semantics: it's purely decorative next to
-                    // the Fight/Farm button below, which already announces
-                    // "Floor $floor" as its own accessible label — without
-                    // this, VoiceOver would hit the same "Floor N" twice per
-                    // row (once here, once on the button).
-                    ExcludeSemantics(
-                      child: Row(
-                        children: [
-                          Text(
-                            l.arenaFloorLabel(floor),
-                            style: TextStyle(
-                              color: _isUnlocked ? Colors.white : Colors.white.withValues(alpha: 0.4),
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          if (_isMilestone && !_isCleared) ...[
-                            const SizedBox(width: 6),
-                            Icon(sfSymbol('sparkles'), size: 11, color: dk_theme.Theme.gold),
-                          ],
-                          if (_isCleared) ...[
-                            const SizedBox(width: 6),
-                            Icon(sfSymbol('checkmark.seal.fill'), size: 11, color: Colors.green.withValues(alpha: 0.75)),
-                          ],
-                        ],
+                    Text(
+                      l.arenaFloorLabel(floor),
+                      style: TextStyle(
+                        color: _isUnlocked ? Colors.white : Colors.white.withValues(alpha: 0.4),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w800,
                       ),
                     ),
-                    if (_isUnlocked) ...[
-                      const SizedBox(height: 4),
-                      Text(
-                        l.arenaOpponentLine(_opponent.level, _opponent.name),
-                        style: TextStyle(color: Colors.white.withValues(alpha: 0.5), fontSize: 11),
-                      ),
+                    if (_isMilestone && !_isCleared) ...[
+                      const SizedBox(width: 6),
+                      Icon(sfSymbol('sparkles'), size: 11, color: dk_theme.Theme.gold.withValues(alpha: 0.8)),
                     ],
-                    const SizedBox(height: 4),
-                    _rewardPreview(l),
+                    if (_isCleared) ...[
+                      const SizedBox(width: 6),
+                      Icon(sfSymbol('checkmark.seal.fill'), size: 11, color: Colors.white.withValues(alpha: 0.3)),
+                    ],
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Text(
+                        _rewardLine(l),
+                        style: TextStyle(color: Colors.white.withValues(alpha: 0.35), fontSize: 11),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
                   ],
                 ),
               ),
-              SizedBox(
-                width: 84,
-                child: Semantics(
-                  label: l.arenaFloorLabel(floor),
-                  button: true,
-                  excludeSemantics: true,
-                  child: Opacity(
-                    opacity: _isUnlocked ? 1 : 0.35,
-                    child: dk_theme.PrimaryButton(
-                      tint: _isMilestone && !_isCleared ? dk_theme.Theme.gold : dk_theme.Theme.violet,
-                      onPressed: _isUnlocked ? () => onFight(floor) : null,
-                      child: Text(_isCleared ? l.arenaFarm : l.arenaFight, style: const TextStyle(fontSize: 13)),
-                    ),
+            ),
+            const SizedBox(width: 8),
+            SizedBox(
+              width: 64,
+              child: Semantics(
+                label: l.arenaFloorLabel(floor),
+                button: true,
+                excludeSemantics: true,
+                child: Opacity(
+                  opacity: _isUnlocked ? 1 : 0.35,
+                  child: dk_theme.PrimaryButton(
+                    tint: _isMilestone && !_isCleared ? dk_theme.Theme.gold : dk_theme.Theme.violet,
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    onPressed: _isUnlocked ? () => onFight(floor) : null,
+                    child: Text(_isCleared ? l.arenaFarm : l.arenaFight, style: const TextStyle(fontSize: 11)),
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
   }
 
-  Widget _rewardPreview(AppLocalizations l) {
-    if (_isCleared) {
-      return Row(
-        mainAxisSize: MainAxisSize.min,
+  /// Compact stand-in for a locked, non-milestone floor — just a lock icon
+  /// and the floor number, no card chrome, no `BackdropFilter` (100 of
+  /// those in one scroll view was also unnecessary GPU cost for rows the
+  /// player can't act on yet).
+  Widget _lockedFiller(AppLocalizations l) {
+    return Container(
+      height: 38,
+      padding: const EdgeInsets.symmetric(horizontal: 14),
+      decoration: BoxDecoration(
+        color: Colors.white.withValues(alpha: 0.03),
+        borderRadius: BorderRadius.circular(dk_theme.Theme.cornerRadius),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.06)),
+      ),
+      child: Row(
         children: [
-          Icon(sfSymbol('circle.hexagongrid.fill'), size: 11, color: dk_theme.Theme.gold),
-          const SizedBox(width: 3),
-          Text('${ArenaSystem.standardGoldReward(floor)}', style: TextStyle(color: dk_theme.Theme.gold, fontSize: 11, fontWeight: FontWeight.w600)),
+          Icon(sfSymbol('lock.fill'), size: 12, color: Colors.white.withValues(alpha: 0.3)),
           const SizedBox(width: 10),
-          Icon(sfSymbol('shippingbox.fill'), size: 11, color: Colors.white.withValues(alpha: 0.5)),
-          const SizedBox(width: 3),
-          Text(l.arenaGearChance, style: TextStyle(color: Colors.white.withValues(alpha: 0.5), fontSize: 11, fontWeight: FontWeight.w600)),
+          Text(
+            l.arenaFloorLabel(floor),
+            style: TextStyle(color: Colors.white.withValues(alpha: 0.35), fontSize: 13, fontWeight: FontWeight.w600),
+          ),
         ],
-      );
-    }
-    final rarity = ArenaSystem.firstClearRarity(floor);
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(sfSymbol('circle.hexagongrid.fill'), size: 11, color: dk_theme.Theme.gold),
-        const SizedBox(width: 3),
-        Text(
-          '${ArenaSystem.firstClearGoldReward(floor)}',
-          style: TextStyle(color: dk_theme.Theme.gold, fontSize: 11, fontWeight: FontWeight.w600),
-        ),
-        const SizedBox(width: 10),
-        Icon(sfSymbol('shippingbox.fill'), size: 11, color: rarity.primaryColor),
-        const SizedBox(width: 3),
-        Text(rarity.displayName, style: TextStyle(color: rarity.primaryColor, fontSize: 11, fontWeight: FontWeight.w600)),
-      ],
+      ),
     );
+  }
+
+  /// A single muted line combining the opponent and the reward — kept
+  /// deliberately plain (no gold/rarity coloring) so it recedes behind the
+  /// bold floor number rather than competing with it for attention.
+  String _rewardLine(AppLocalizations l) {
+    final gold = _isCleared ? ArenaSystem.standardGoldReward(floor) : ArenaSystem.firstClearGoldReward(floor);
+    final rewardLabel = _isCleared ? l.arenaGearChance : ArenaSystem.firstClearRarity(floor).displayName;
+    final reward = '$gold · $rewardLabel';
+    // A locked milestone floor is a teaser — it shows the reward it's
+    // guarding but not the opponent, same as the original full card.
+    if (!_isUnlocked) return reward;
+    return '${l.arenaOpponentLine(_opponent.level, _opponent.name)} · $reward';
   }
 }

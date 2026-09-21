@@ -34,6 +34,9 @@ class _FusionPickerViewState extends State<FusionPickerView> {
   bool _lastFuseGrantedStar = false;
   _StarUpShowcaseData? _showcase;
   Timer? _fuseResetTimer;
+  bool _showBurst = false;
+  int _burstKey = 0;
+  Timer? _burstResetTimer;
 
   DreamkeeperInstance? get _target {
     final matches = widget.gameState.roster.where((i) => i.id == widget.targetID);
@@ -65,6 +68,7 @@ class _FusionPickerViewState extends State<FusionPickerView> {
   @override
   void dispose() {
     _fuseResetTimer?.cancel();
+    _burstResetTimer?.cancel();
     super.dispose();
   }
 
@@ -92,6 +96,12 @@ class _FusionPickerViewState extends State<FusionPickerView> {
       _lastFuseGrantedStar = grantsStar;
       _justFused = true;
       _selectedIDs.clear();
+      _showBurst = true;
+      _burstKey++;
+    });
+    _burstResetTimer?.cancel();
+    _burstResetTimer = Timer(const Duration(milliseconds: 650), () {
+      if (mounted) setState(() => _showBurst = false);
     });
 
     if (grantsStar) {
@@ -135,13 +145,10 @@ class _FusionPickerViewState extends State<FusionPickerView> {
           elevation: 0,
           centerTitle: true,
           title: Text(AppLocalizations.of(context).fusionTitle, style: const TextStyle(color: Colors.white)),
-          // Default `leadingWidth` is `kToolbarHeight` (56) — too narrow for
-          // the "Close" label + `TextButton` padding, which wrapped it to
-          // "Clos\ne" on the landscape layout.
-          leadingWidth: 80,
-          leading: TextButton(
+          leading: IconButton(
+            icon: Icon(sfSymbol('xmark'), color: Colors.white, size: 18),
+            tooltip: AppLocalizations.of(context).commonClose,
             onPressed: () => Navigator.of(context).pop(),
-            child: Text(AppLocalizations.of(context).commonClose, style: const TextStyle(color: Colors.white)),
           ),
         ),
         body: Stack(
@@ -227,21 +234,24 @@ class _FusionPickerViewState extends State<FusionPickerView> {
     return dk_theme.GlassCard(
       child: Column(
         children: [
-          Text(AppLocalizations.of(context).fusionProgressTowardStar(_bankedTotal, cost), style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600)),
-          const SizedBox(height: 8),
-          LayoutBuilder(
-            builder: (context, constraints) {
-              final fraction = cost == 0 ? 1.0 : (_bankedTotal / cost).clamp(0, 1).toDouble();
-              return ClipRRect(
-                borderRadius: BorderRadius.circular(999),
-                child: Stack(
-                  children: [
-                    Container(height: 8, color: Colors.white.withValues(alpha: 0.08)),
-                    Container(height: 8, width: constraints.maxWidth * fraction, color: _willStarUp ? dk_theme.Theme.gold : dk_theme.Theme.violet),
-                  ],
+          Row(
+            children: [
+              Icon(sfSymbol('hammer.fill'), size: 14, color: _willStarUp ? dk_theme.Theme.gold : Colors.white.withValues(alpha: 0.5)),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  AppLocalizations.of(context).fusionProgressTowardStar(_bankedTotal, cost),
+                  style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
                 ),
-              );
-            },
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          dk_theme.FusionProgressBar(
+            current: _bankedTotal,
+            total: cost,
+            color: _willStarUp ? dk_theme.Theme.gold : dk_theme.Theme.violet,
+            height: 8,
           ),
         ],
       ),
@@ -304,10 +314,17 @@ class _FusionPickerViewState extends State<FusionPickerView> {
         children: [
           Text(l.invSelectedCount(_selectedIDs.length), style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 11, fontWeight: FontWeight.w600)),
           const SizedBox(height: 8),
-          dk_theme.PrimaryButton(
-            tint: dk_theme.Theme.gold,
-            onPressed: (_selectedIDs.isEmpty || _justFused) ? null : () => _fuse(target),
-            child: Text(label),
+          Stack(
+            alignment: Alignment.center,
+            clipBehavior: Clip.none,
+            children: [
+              dk_theme.PrimaryButton(
+                tint: dk_theme.Theme.gold,
+                onPressed: (_selectedIDs.isEmpty || _justFused) ? null : () => _fuse(target),
+                child: Text(label),
+              ),
+              if (_showBurst) dk_theme.BurstParticles(key: ValueKey(_burstKey), color: dk_theme.Theme.gold),
+            ],
           ),
         ],
       ),
@@ -373,70 +390,140 @@ class _StarUpShowcaseState extends State<_StarUpShowcase> with SingleTickerProvi
   Widget build(BuildContext context) {
     final data = widget.data;
     final definition = data.definition;
-    const portraitSize = 170.0;
+    const portraitSize = 128.0;
+    const haloSize = 200.0;
     final hasArt = dk_theme.DreamkeeperArt.hasArt(definition.artName);
 
-    return GestureDetector(
-      onTap: widget.onDismiss,
-      child: Positioned.fill(
+    // `Positioned` must be a direct child of the outer `Stack` in `build()` —
+    // wrapping it in `GestureDetector` first (as this used to) inserts a
+    // RenderObject between them, which crashes with "Incorrect use of
+    // ParentDataWidget" the moment this widget actually mounts (i.e. on a
+    // real star-up, not just when banking progress).
+    return Positioned.fill(
+      child: GestureDetector(
+        onTap: widget.onDismiss,
         child: Stack(
-          alignment: Alignment.center,
           children: [
             Container(color: Colors.black.withValues(alpha: 0.65)),
-            Container(
-              width: 280,
-              height: 280,
-              decoration: BoxDecoration(shape: BoxShape.circle, color: definition.element.color.withValues(alpha: 0.45)),
-            ),
-            AnimatedBuilder(
-              animation: _ringController,
-              builder: (context, child) => Transform.rotate(angle: _ringController.value * 6.28318, child: child),
-              child: Container(
-                width: portraitSize + 30,
-                height: portraitSize + 30,
-                decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(color: dk_theme.Theme.gold.withValues(alpha: 0.85), width: 3)),
-              ),
-            ),
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  width: portraitSize,
-                  height: portraitSize,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    gradient: hasArt ? null : definition.rarity.gradient,
-                    border: Border.all(color: dk_theme.Theme.gold, width: 5),
-                    boxShadow: [BoxShadow(color: dk_theme.Theme.gold.withValues(alpha: 0.85), blurRadius: 30)],
-                  ),
-                  alignment: Alignment.center,
-                  child: hasArt
-                      ? ClipOval(child: Image.asset(dk_theme.DreamkeeperArt.assetName(definition.artName), width: portraitSize, height: portraitSize, fit: BoxFit.cover))
-                      : Icon(sfSymbol(definition.symbol), size: portraitSize * 0.4, color: Colors.white),
-                ),
-                const SizedBox(height: 14),
-                Text(AppLocalizations.of(context).fusionStarUpShowcase, style: TextStyle(color: dk_theme.Theme.gold, fontSize: 28, fontWeight: FontWeight.w900)),
-                const SizedBox(height: 6),
-                Text(definition.name, style: const TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.w600)),
-                const SizedBox(height: 6),
-                StarRow(stars: data.newStars, size: 20),
-                const SizedBox(height: 18),
-                Row(
+            // The device this runs on is landscape-locked, which leaves very
+            // little vertical room — stacking portrait, text, and the stat
+            // list all in one column pushed the stat card below the visible
+            // area (a `Stack` clips overflow by default). Laying the stat
+            // list out to the right of the portrait instead, wrapped in a
+            // scroll view as a safety net, keeps it on screen either way.
+            Center(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+                child: Row(
                   mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    _StatDeltaColumn(label: 'HP', before: data.statsBefore.hp, after: data.statsAfter.hp),
-                    const SizedBox(width: 18),
-                    _StatDeltaColumn(label: 'ATK', before: data.statsBefore.attack, after: data.statsAfter.attack),
-                    const SizedBox(width: 18),
-                    _StatDeltaColumn(label: 'DEF', before: data.statsBefore.defense, after: data.statsAfter.defense),
-                    const SizedBox(width: 18),
-                    _StatDeltaColumn(label: 'SPD', before: data.statsBefore.speed, after: data.statsAfter.speed),
+                    // Halo, ring, and portrait are centered on this inner
+                    // `Stack` alone — not on the surrounding `Row`/`Column` —
+                    // so all three stay perfectly concentric.
+                    SizedBox(
+                      width: haloSize,
+                      height: haloSize,
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Container(
+                            width: haloSize,
+                            height: haloSize,
+                            decoration: BoxDecoration(shape: BoxShape.circle, color: definition.element.color.withValues(alpha: 0.45)),
+                          ),
+                          AnimatedBuilder(
+                            animation: _ringController,
+                            builder: (context, child) => Transform.rotate(angle: _ringController.value * 6.28318, child: child),
+                            child: Container(
+                              width: portraitSize + 26,
+                              height: portraitSize + 26,
+                              decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(color: dk_theme.Theme.gold.withValues(alpha: 0.85), width: 3)),
+                            ),
+                          ),
+                          Container(
+                            width: portraitSize,
+                            height: portraitSize,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              gradient: hasArt ? null : definition.rarity.gradient,
+                              border: Border.all(color: dk_theme.Theme.gold, width: 5),
+                              boxShadow: [BoxShadow(color: dk_theme.Theme.gold.withValues(alpha: 0.85), blurRadius: 30)],
+                            ),
+                            alignment: Alignment.center,
+                            child: hasArt
+                                ? ClipOval(child: Image.asset(dk_theme.DreamkeeperArt.assetName(definition.artName), width: portraitSize, height: portraitSize, fit: BoxFit.cover))
+                                : Icon(sfSymbol(definition.symbol), size: portraitSize * 0.4, color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 28),
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(AppLocalizations.of(context).fusionStarUpShowcase, style: TextStyle(color: dk_theme.Theme.gold, fontSize: 26, fontWeight: FontWeight.w900)),
+                        const SizedBox(height: 6),
+                        Text(definition.name, style: const TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.w600)),
+                        const SizedBox(height: 6),
+                        StarRow(stars: data.newStars, size: 18),
+                        const SizedBox(height: 16),
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+                          decoration: BoxDecoration(
+                            color: Colors.black.withValues(alpha: 0.4),
+                            borderRadius: BorderRadius.circular(16),
+                            border: Border.all(color: dk_theme.Theme.gold.withValues(alpha: 0.4)),
+                          ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              _StatDeltaRow(label: 'HP', before: data.statsBefore.hp, after: data.statsAfter.hp),
+                              _StatDeltaRow(label: 'ATK', before: data.statsBefore.attack, after: data.statsAfter.attack),
+                              _StatDeltaRow(label: 'DEF', before: data.statsBefore.defense, after: data.statsAfter.defense),
+                              _StatDeltaRow(label: 'SPD', before: data.statsBefore.speed, after: data.statsAfter.speed),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
-              ],
+              ),
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _StatDeltaRow extends StatelessWidget {
+  final String label;
+  final double before;
+  final double after;
+
+  const _StatDeltaRow({required this.label, required this.before, required this.after});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(
+            width: 36,
+            child: Text(label, style: TextStyle(color: Colors.white.withValues(alpha: 0.75), fontSize: 12, fontWeight: FontWeight.w700)),
+          ),
+          Text('${before.toInt()}', style: TextStyle(color: Colors.white.withValues(alpha: 0.55), fontSize: 12)),
+          const SizedBox(width: 6),
+          Icon(Icons.arrow_forward, size: 12, color: Colors.white.withValues(alpha: 0.4)),
+          const SizedBox(width: 6),
+          Text('+${(after - before).toInt()}', style: TextStyle(color: dk_theme.Theme.gold, fontSize: 16, fontWeight: FontWeight.bold)),
+        ],
       ),
     );
   }
@@ -477,12 +564,17 @@ class _DuplicatePickerCard extends StatelessWidget {
       onTap: onTap,
       child: Semantics(
         selected: isSelected,
-        child: Container(
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 180),
+          curve: Curves.easeOut,
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
             color: isSelected ? dk_theme.Theme.gold.withValues(alpha: 0.18) : Colors.white.withValues(alpha: 0.05),
             borderRadius: BorderRadius.circular(14),
             border: Border.all(color: isSelected ? dk_theme.Theme.gold : dk_theme.Theme.cardStroke, width: isSelected ? 2 : 1),
+            boxShadow: isSelected
+                ? [BoxShadow(color: dk_theme.Theme.gold.withValues(alpha: 0.35), blurRadius: 12, spreadRadius: 1)]
+                : null,
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,

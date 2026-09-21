@@ -125,14 +125,17 @@ class _DreamHavenViewState extends State<DreamHavenView> {
             children: [
               Text(l.navDreamHaven, style: const TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold)),
               const SizedBox(height: 2),
-              GestureDetector(
-                key: const Key('dream-haven-header-profile'),
-                onTap: () => widget.onNavigate(const ProfileRoute()),
-                child: Text(l.havenPlayerLevel(state.save.playerLevel), style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 12)),
-              ),
+              Text(l.havenPlayerLevel(state.save.playerLevel), style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 12)),
             ],
           ),
           const Spacer(),
+          _iconButton(
+            key: const Key('dream-haven-header-profile'),
+            icon: 'person.crop.circle.fill',
+            label: l.profileTitle,
+            onTap: () => widget.onNavigate(const ProfileRoute()),
+          ),
+          const SizedBox(width: 8),
           _iconButton(
             key: const Key('dream-haven-header-settings'),
             icon: 'gearshape.fill',

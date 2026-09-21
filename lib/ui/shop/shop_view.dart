@@ -15,16 +15,19 @@ import '../root/app_route.dart';
 /// The Shop — Dream Gem packs, the Gold exchange, real-money-only Arena
 /// Ticket packs, the one-time Starter Pack / VIP Pass offers, and the two
 /// one-time Exclusive-character purchases (Igo/Ames — see `TwinBond`).
-/// Mirrors `ShopView` (UI/Shop/ShopView.swift) exactly: every catalog
-/// section, price, and one-time-claim rule comes straight from
+/// Every catalog section, price, and one-time-claim rule comes straight from
 /// `ShopCatalog`/`GameState.canPurchase`/`.purchase`, already fully ported —
 /// this screen is purely the display/interaction layer around them.
 ///
-/// Swift lays the left-hand cards and the gem-pack grid out side by side in
-/// an `HStack` (the app is landscape-locked, so there's always room); this
-/// keeps that same two-column shape rather than stacking everything in one
-/// long column, since it reads far more like the original on the wide
-/// screens this app actually runs on.
+/// Swift lays every section out in one tall two-column `ScrollView`. That
+/// reads fine on paper but in practice piles Special Offers, both Exclusive
+/// characters, Arena Tickets and the Gold Exchange into a single column that
+/// runs far taller than the Gem Packs column beside it, so the page scrolls
+/// much further than any one purchase actually needs. This splits the same
+/// catalog into three segmented tabs (Offers / Gems / Tickets & Gold)
+/// instead — each tab's content fits with little or no scrolling of its
+/// own, and the tab bar itself groups the catalog the way a player already
+/// thinks about it (one-time deals vs. currency vs. consumables).
 class ShopView extends StatefulWidget {
   final GameState gameState;
   final ValueChanged<AppRoute> onNavigate;
@@ -35,16 +38,28 @@ class ShopView extends StatefulWidget {
   State<ShopView> createState() => _ShopViewState();
 }
 
+enum _ShopTab { offers, gems, extras }
+
 class _ShopViewState extends State<ShopView> {
   bool _appeared = false;
   String? _justPurchasedID;
   Timer? _justPurchasedTimer;
+  late _ShopTab _tab;
 
   GameState get _gameState => widget.gameState;
+
+  bool get _hasSpecialOffers =>
+      !_gameState.isPurchased(ShopCatalog.starterPack) ||
+      !_gameState.isVIP ||
+      ShopCatalog.exclusiveCharacters.any(_gameState.canPurchase);
 
   @override
   void initState() {
     super.initState();
+    // Opens on whichever tab actually has something new for a returning
+    // player to look at — a player with every one-time offer already
+    // claimed has nothing left in Offers, so Gems is the more useful start.
+    _tab = _hasSpecialOffers ? _ShopTab.offers : _ShopTab.gems;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) setState(() => _appeared = true);
     });
@@ -95,22 +110,10 @@ class _ShopViewState extends State<ShopView> {
               child: Column(
                 children: [
                   _header(l),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      padding: const EdgeInsets.all(20),
-                      child: ConstrainedBox(
-                        constraints: const BoxConstraints(minHeight: 340),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(width: 300, child: _leftColumn(l)),
-                            const SizedBox(width: 16),
-                            Expanded(child: _gemPacksSection(l)),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
+                  const SizedBox(height: 10),
+                  _tabBar(l),
+                  const SizedBox(height: 6),
+                  Expanded(child: _tabBody(l)),
                 ],
               ),
             ),
@@ -118,6 +121,61 @@ class _ShopViewState extends State<ShopView> {
         ),
       ],
     );
+  }
+
+  /// Three-way segmented control, same visual pattern as `InventoryView`'s
+  /// Dreamkeepers/Items picker — a small tinted dot marks Offers while it
+  /// still has an unclaimed deal, so switching away from it doesn't hide
+  /// that something's waiting there.
+  Widget _tabBar(AppLocalizations l) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Container(
+        padding: const EdgeInsets.all(3),
+        decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.08), borderRadius: BorderRadius.circular(10)),
+        child: Row(
+          children: [
+            Expanded(child: _tabButton(_ShopTab.offers, l.shopTabOffers, showDot: _hasSpecialOffers)),
+            Expanded(child: _tabButton(_ShopTab.gems, l.shopTabGems)),
+            Expanded(child: _tabButton(_ShopTab.extras, l.shopTabTicketsGold)),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _tabButton(_ShopTab tab, String label, {bool showDot = false}) {
+    final selected = _tab == tab;
+    return GestureDetector(
+      onTap: () => setState(() => _tab = tab),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 150),
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        decoration: BoxDecoration(color: selected ? Colors.white.withValues(alpha: 0.16) : Colors.transparent, borderRadius: BorderRadius.circular(8)),
+        alignment: Alignment.center,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(label, style: TextStyle(color: Colors.white.withValues(alpha: selected ? 1 : 0.6), fontSize: 13, fontWeight: FontWeight.w600)),
+            if (showDot) ...[
+              const SizedBox(width: 5),
+              Container(width: 6, height: 6, decoration: const BoxDecoration(color: dk_theme.Theme.gold, shape: BoxShape.circle)),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _tabBody(AppLocalizations l) {
+    switch (_tab) {
+      case _ShopTab.offers:
+        return _offersTab(l);
+      case _ShopTab.gems:
+        return _gemsTab(l);
+      case _ShopTab.extras:
+        return _extrasTab(l);
+    }
   }
 
   Widget _header(AppLocalizations l) {
@@ -163,22 +221,128 @@ class _ShopViewState extends State<ShopView> {
     );
   }
 
-  Widget _leftColumn(AppLocalizations l) {
-    return Column(
-      children: [
-        if (!_gameState.isPurchased(ShopCatalog.starterPack)) ...[
-          _highlighted(dk_theme.Theme.gold, _offerCard(item: ShopCatalog.starterPack, tint: dk_theme.Theme.gold, l: l)),
-          const SizedBox(height: 14),
+  /// Starter Pack / VIP Pass / Igo & Ames — every one-time deal, laid out as
+  /// a centered wrap of fixed-width cards so two (or three) sit side by side
+  /// on the wide landscape screen instead of stacking one per row.
+  Widget _offersTab(AppLocalizations l) {
+    final cards = <Widget>[
+      if (!_gameState.isPurchased(ShopCatalog.starterPack))
+        _highlighted(dk_theme.Theme.gold, _offerCard(item: ShopCatalog.starterPack, tint: dk_theme.Theme.gold, l: l)),
+      if (!_gameState.isVIP)
+        _highlighted(dk_theme.Theme.violet, _offerCard(item: ShopCatalog.vipPass, tint: dk_theme.Theme.violet, l: l)),
+      for (final item in ShopCatalog.exclusiveCharacters)
+        if (_gameState.canPurchase(item)) _highlighted(Rarity.exclusive.primaryColor, _exclusiveCharacterCard(item, l)),
+    ];
+    if (cards.isEmpty) return _emptyState(l.shopNoOffers);
+    return SingleChildScrollView(
+      padding: const EdgeInsets.fromLTRB(20, 4, 20, 20),
+      child: Wrap(
+        alignment: WrapAlignment.center,
+        spacing: 14,
+        runSpacing: 14,
+        children: [for (final card in cards) SizedBox(width: 260, child: card)],
+      ),
+    );
+  }
+
+  /// Dream Gem packs, centered and free to use the full width now that
+  /// there's no fixed-width sidebar squeezing it into `Expanded`.
+  Widget _gemsTab(AppLocalizations l) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.fromLTRB(20, 4, 20, 20),
+      child: Wrap(
+        alignment: WrapAlignment.center,
+        spacing: 14,
+        runSpacing: 14,
+        children: [
+          for (final item in ShopCatalog.gemPacks)
+            SizedBox(
+              width: 160,
+              child: _GemPackCard(
+                item: item,
+                badge: _badge(item, l),
+                justPurchased: _justPurchasedID == item.id,
+                onBuy: () => _buy(item),
+              ),
+            ),
         ],
-        if (!_gameState.isVIP) ...[
-          _highlighted(dk_theme.Theme.violet, _offerCard(item: ShopCatalog.vipPass, tint: dk_theme.Theme.violet, l: l)),
-          const SizedBox(height: 14),
+      ),
+    );
+  }
+
+  /// Arena Tickets and the Gold Exchange side by side — two short,
+  /// independent lists that used to be stacked into one long column; as
+  /// columns of a wide two-up row they each fit without scrolling.
+  Widget _extrasTab(AppLocalizations l) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.fromLTRB(20, 4, 20, 20),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(child: _arenaTicketSection(l)),
+          const SizedBox(width: 16),
+          _verticalDivider(),
+          const SizedBox(width: 16),
+          Expanded(child: _goldExchangeSection(l)),
         ],
-        ..._exclusiveCharacterCards(l),
-        _arenaTicketSection(l),
-        const SizedBox(height: 14),
-        _goldExchangeSection(l),
-      ],
+      ),
+    );
+  }
+
+  Widget _emptyState(String message) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 40),
+        child: Text(
+          message,
+          textAlign: TextAlign.center,
+          style: TextStyle(color: Colors.white.withValues(alpha: 0.5), fontSize: 13),
+        ),
+      ),
+    );
+  }
+
+  /// A hairline rule that fades at both ends, used between the ticket and
+  /// gold-exchange columns instead of a bare gap.
+  Widget _verticalDivider() {
+    return Container(
+      width: 1,
+      constraints: const BoxConstraints(minHeight: 140),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Colors.white.withValues(alpha: 0),
+            Colors.white.withValues(alpha: 0.18),
+            Colors.white.withValues(alpha: 0),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// A small tinted accent bar ahead of the title breaks the section list
+  /// into readable rhythm instead of one long run of same-weight white
+  /// headings, and ties each section back to the tint its own cards/buttons
+  /// already use.
+  Widget _sectionHeader(String title, {Color? tint}) {
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (tint != null) ...[
+            Container(
+              width: 4,
+              height: 15,
+              decoration: BoxDecoration(color: tint, borderRadius: BorderRadius.circular(2)),
+            ),
+            const SizedBox(width: 8),
+          ],
+          Text(title, style: const TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold)),
+        ],
+      ),
     );
   }
 
@@ -200,7 +364,7 @@ class _ShopViewState extends State<ShopView> {
     return dk_theme.GlassCard(
       child: Column(
         children: [
-          Icon(sfSymbol(item.icon), size: 40, color: tint),
+          _IconBadge(icon: sfSymbol(item.icon), tint: tint),
           const SizedBox(height: 12),
           Text(item.name, style: const TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
@@ -231,24 +395,19 @@ class _ShopViewState extends State<ShopView> {
     );
   }
 
-  /// Igo and Ames' shop cards — one per un-owned exclusive character (a card
-  /// disappears once bought here or pulled from the Summoning Shrine, per
-  /// `GameState.canPurchase`). Mirrors `exclusiveCharactersSection`.
-  List<Widget> _exclusiveCharacterCards(AppLocalizations l) {
-    final widgets = <Widget>[];
-    for (final item in ShopCatalog.exclusiveCharacters) {
-      if (!_gameState.canPurchase(item)) continue;
-      widgets.add(_highlighted(Rarity.exclusive.primaryColor, _exclusiveCharacterCard(item, l)));
-      widgets.add(const SizedBox(height: 14));
-    }
-    return widgets;
-  }
+  /// Locale-invariant art name for the character this item grants — never
+  /// derived from `item.name`, which is localized; mirrors the `artName`
+  /// convention every `DreamkeeperDefinition` art lookup elsewhere uses.
+  static const _exclusiveArtNames = {'igo': 'Igo', 'ames': 'Ames'};
 
   Widget _exclusiveCharacterCard(ShopItem item, AppLocalizations l) {
+    final artName = _exclusiveArtNames[item.grantsDefinitionID];
     return dk_theme.GlassCard(
       child: Column(
         children: [
-          Icon(sfSymbol(item.icon), size: 40, color: dk_theme.Theme.gold),
+          artName != null
+              ? _PortraitBadge(artName: artName, fallbackIcon: sfSymbol(item.icon))
+              : _IconBadge(icon: sfSymbol(item.icon), tint: dk_theme.Theme.gold, diameter: 64, iconSize: 30),
           const SizedBox(height: 10),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
@@ -286,39 +445,13 @@ class _ShopViewState extends State<ShopView> {
     );
   }
 
-  Widget _gemPacksSection(AppLocalizations l) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(l.resDreamGems, style: const TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold)),
-        const SizedBox(height: 10),
-        Wrap(
-          spacing: 12,
-          runSpacing: 12,
-          children: [
-            for (final item in ShopCatalog.gemPacks)
-              SizedBox(
-                width: 150,
-                child: _GemPackCard(
-                  item: item,
-                  badge: _badge(item, l),
-                  justPurchased: _justPurchasedID == item.id,
-                  onBuy: () => _buy(item),
-                ),
-              ),
-          ],
-        ),
-      ],
-    );
-  }
-
   /// Arena Tower tickets, real-money only by design — see
   /// `ShopItemKind.arenaTicketPack`. Mirrors `arenaTicketSection`.
   Widget _arenaTicketSection(AppLocalizations l) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(l.shopTrialTickets, style: const TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold)),
+        _sectionHeader(l.shopTrialTickets, tint: dk_theme.Theme.softBlue),
         const SizedBox(height: 10),
         for (final item in ShopCatalog.arenaTicketPacks) ...[
           _TicketPackRow(item: item, justPurchased: _justPurchasedID == item.id, onBuy: () => _buy(item)),
@@ -332,13 +465,70 @@ class _ShopViewState extends State<ShopView> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(l.shopGoldExchange, style: const TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold)),
+        _sectionHeader(l.shopGoldExchange, tint: dk_theme.Theme.gold),
         const SizedBox(height: 10),
         for (final item in ShopCatalog.goldExchanges) ...[
           _ExchangeRow(item: item, canAfford: _gameState.canPurchase(item), onBuy: () => _gameState.purchase(item)),
           const SizedBox(height: 10),
         ],
       ],
+    );
+  }
+}
+
+/// Icon inside a tinted, glowing circle — the badge treatment already
+/// established by `ProfileView._levelCard` and `RootView._AchievementToast`,
+/// reused here so every Shop card reads as one consistent visual language
+/// instead of bare floating icons.
+class _IconBadge extends StatelessWidget {
+  final IconData icon;
+  final Color tint;
+  final double diameter;
+  final double iconSize;
+
+  const _IconBadge({required this.icon, required this.tint, this.diameter = 56, this.iconSize = 26});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: diameter,
+      height: diameter,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: tint.withValues(alpha: 0.2),
+        boxShadow: [BoxShadow(color: tint.withValues(alpha: 0.35), blurRadius: 12, spreadRadius: 1)],
+      ),
+      child: Icon(icon, size: iconSize, color: tint),
+    );
+  }
+}
+
+/// Circular character portrait for Igo/Ames' exclusive shop cards, falling
+/// back to an `_IconBadge` when the art asset isn't available — mirrors the
+/// `hasArt` gating every other art lookup in the app already uses.
+class _PortraitBadge extends StatelessWidget {
+  static const _diameter = 64.0;
+
+  final String artName;
+  final IconData fallbackIcon;
+
+  const _PortraitBadge({required this.artName, required this.fallbackIcon});
+
+  @override
+  Widget build(BuildContext context) {
+    if (!dk_theme.DreamkeeperArt.hasArt(artName)) {
+      return _IconBadge(icon: fallbackIcon, tint: dk_theme.Theme.gold, diameter: _diameter, iconSize: _diameter * 0.46);
+    }
+    return Container(
+      width: _diameter,
+      height: _diameter,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        border: Border.all(color: dk_theme.Theme.gold.withValues(alpha: 0.7), width: 2),
+        boxShadow: [BoxShadow(color: dk_theme.Theme.gold.withValues(alpha: 0.35), blurRadius: 14, spreadRadius: 1)],
+      ),
+      child: ClipOval(child: Image.asset(dk_theme.DreamkeeperArt.assetName(artName), fit: BoxFit.cover)),
     );
   }
 }
@@ -355,46 +545,49 @@ class _GemPackCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context);
     final badgeTint = badge?.$2;
-    return Stack(
-      clipBehavior: Clip.none,
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(dk_theme.Theme.cornerRadius),
-            border: Border.all(color: badgeTint?.withValues(alpha: 0.5) ?? Colors.transparent, width: 1.5),
-          ),
-          child: dk_theme.GlassCard(
-            child: Column(
-              children: [
-                Icon(sfSymbol(item.icon), size: 22, color: dk_theme.Theme.violet),
-                const SizedBox(height: 6),
-                Text('${item.gemsGranted}', style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
-                const SizedBox(height: 2),
-                Text(
-                  item.name,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 11),
-                ),
-                const SizedBox(height: 8),
-                dk_theme.PrimaryButton(tint: dk_theme.Theme.violet, onPressed: onBuy, child: Text(justPurchased ? l.shopAdded : item.priceLabel)),
-              ],
+    return Padding(
+      padding: EdgeInsets.only(top: badge != null ? 12 : 0),
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(dk_theme.Theme.cornerRadius),
+              border: Border.all(color: badgeTint?.withValues(alpha: 0.5) ?? Colors.transparent, width: 1.5),
             ),
-          ),
-        ),
-        if (badge != null)
-          Positioned(
-            top: -10,
-            left: 0,
-            right: 0,
-            child: Center(
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                decoration: BoxDecoration(color: badgeTint, borderRadius: BorderRadius.circular(999)),
-                child: Text(badge!.$1, style: const TextStyle(color: Colors.black, fontSize: 10, fontWeight: FontWeight.bold)),
+            child: dk_theme.GlassCard(
+              child: Column(
+                children: [
+                  _IconBadge(icon: sfSymbol(item.icon), tint: dk_theme.Theme.violet, diameter: 44, iconSize: 20),
+                  const SizedBox(height: 6),
+                  Text('${item.gemsGranted}', style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
+                  const SizedBox(height: 2),
+                  Text(
+                    item.name,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 11),
+                  ),
+                  const SizedBox(height: 8),
+                  dk_theme.PrimaryButton(tint: dk_theme.Theme.violet, onPressed: onBuy, child: Text(justPurchased ? l.shopAdded : item.priceLabel)),
+                ],
               ),
             ),
           ),
-      ],
+          if (badge != null)
+            Positioned(
+              top: -10,
+              left: 0,
+              right: 0,
+              child: Center(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  decoration: BoxDecoration(color: badgeTint, borderRadius: BorderRadius.circular(999)),
+                  child: Text(badge!.$1, style: const TextStyle(color: Colors.black, fontSize: 10, fontWeight: FontWeight.bold)),
+                ),
+              ),
+            ),
+        ],
+      ),
     );
   }
 }
@@ -412,7 +605,7 @@ class _TicketPackRow extends StatelessWidget {
     return dk_theme.GlassCard(
       child: Row(
         children: [
-          Icon(sfSymbol(item.icon), size: 20, color: dk_theme.Theme.softBlue),
+          _IconBadge(icon: sfSymbol(item.icon), tint: dk_theme.Theme.softBlue, diameter: 40, iconSize: 18),
           const SizedBox(width: 14),
           Expanded(
             child: Column(
@@ -447,7 +640,7 @@ class _ExchangeRow extends StatelessWidget {
     return dk_theme.GlassCard(
       child: Row(
         children: [
-          Icon(sfSymbol(item.icon), size: 20, color: dk_theme.Theme.gold),
+          _IconBadge(icon: sfSymbol(item.icon), tint: dk_theme.Theme.gold, diameter: 40, iconSize: 18),
           const SizedBox(width: 14),
           Expanded(
             child: Column(

@@ -1,15 +1,17 @@
-// The live battle screen. Mirrors `BattleView` (UI/Battle/BattleView.swift)
-// with its decorative layer simplified the same way Campaign/Summon
-// simplified theirs: the cross-screen attack-projectile bolt (tracked via a
-// `GeometryReader`/`PreferenceKey` frame system) and the elaborate
-// multi-layer particle bursts are replaced with simpler, cheaper Flutter
-// equivalents (a portrait ring flash, a floating damage number, a plain
-// screen shake) — every actual combat mechanic (tick loop, targeting,
-// damage, energy, Ultimate/Active Skill dispatch, boss mechanics, outcome)
-// is untouched, all already ported in `BattleEngine`/`Combatant`.
+// The live battle screen. Mirrors `BattleView` (UI/Battle/BattleView.swift).
+// The decorative layer is a lighter Flutter equivalent of native's
+// elaborate multi-layer particle system, not a pixel-for-pixel port: a
+// cross-screen attack-projectile bolt (tracked via `GlobalKey`/`RenderBox`
+// instead of native's `GeometryReader`/`PreferenceKey`) plus an impact burst
+// at the target, a portrait ring flash, a floating damage number, a
+// boss-hit whole-screen color flash, and a weight-scaled screen shake.
+// Every actual combat mechanic (tick loop, targeting, damage, energy,
+// Ultimate/Active Skill dispatch, boss mechanics, outcome) is untouched,
+// all already ported in `BattleEngine`/`Combatant`.
 
 import 'dart:async';
 import 'dart:math';
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 
@@ -239,6 +241,22 @@ class _BattleViewState extends State<BattleView> with SingleTickerProviderStateM
   SkillEvent? _lastHandledSkill;
 
   late final AnimationController _shakeController;
+  double _shakeMagnitude = 8;
+
+  /// The bolt's own coordinate space, and each combatant portrait's key
+  /// within it — lets `_fireProjectile` find real screen positions to fly
+  /// a bolt between, the same job native's `GeometryReader`/
+  /// `CombatantFramePreferenceKey` does, just measured on demand via
+  /// `RenderBox` instead of tracked every frame.
+  final GlobalKey _battlefieldKey = GlobalKey();
+  final Map<String, GlobalKey> _portraitKeys = {};
+  GlobalKey _portraitKeyFor(String id) => _portraitKeys.putIfAbsent(id, () => GlobalKey());
+
+  _AttackProjectile? _attackProjectile;
+  _ImpactBurst? _impactBurst;
+  Timer? _projectileTimer;
+  Timer? _impactTimer;
+  Color _bossFlashColor = Colors.transparent;
 
   BattleEngine get _engine => widget.engine;
   GameState get _gameState => widget.gameState;
@@ -258,6 +276,8 @@ class _BattleViewState extends State<BattleView> with SingleTickerProviderStateM
   void dispose() {
     _timer?.cancel();
     _ultimateTimer?.cancel();
+    _projectileTimer?.cancel();
+    _impactTimer?.cancel();
     _shakeController.dispose();
     _engine.removeListener(_onEngineChanged);
     super.dispose();
@@ -295,7 +315,25 @@ class _BattleViewState extends State<BattleView> with SingleTickerProviderStateM
     if (hit != null && hit != _lastHandledHit) {
       _lastHandledHit = hit;
       _gameState.playSound(SoundEffect.attack);
+
+      Combatant? attacker;
+      for (final c in _engine.combatants) {
+        if (c.id == hit.attackerID) {
+          attacker = c;
+          break;
+        }
+      }
+      final isBossHit = attacker?.isBoss ?? false;
+      final isBig = hit.isElementAdvantage || isBossHit;
+
+      // A boss's own hit gets a visibly heavier jolt than the same generic
+      // tap every other combatant plays — mirrors native's split between a
+      // regular and a boss-weight shake.
+      _shakeMagnitude = isBossHit ? 16 : (isBig ? 11 : 8);
       _shakeController.forward(from: 0);
+
+      if (isBossHit) _flashBossHit(hit.attackerElement);
+      _fireProjectile(hit: hit, attackerSymbol: attacker?.symbol, isBig: isBig);
     }
     final skill = _engine.lastSkillUse;
     if (skill != null && skill != _lastHandledSkill) {
@@ -327,6 +365,65 @@ class _BattleViewState extends State<BattleView> with SingleTickerProviderStateM
     });
   }
 
+  /// A boss landing its own blow gets a brief whole-screen tint in its
+  /// element's color — reads even if the player's eyes are on their own
+  /// party's HP bars, not the boss's corner of the screen. Mirrors native's
+  /// `bossFlashColor`/`bossFlashOpacity`.
+  void _flashBossHit(GameElement element) {
+    setState(() => _bossFlashColor = element.color.withValues(alpha: 0.22));
+    Timer(const Duration(milliseconds: 260), () {
+      if (mounted) setState(() => _bossFlashColor = Colors.transparent);
+    });
+  }
+
+  /// Center of `id`'s own portrait, in `_battlefieldKey`'s coordinate space
+  /// — `null` until that portrait has actually been laid out once (first
+  /// frame, or the tile isn't currently mounted).
+  Offset? _centerOf(String id) {
+    final box = _portraitKeys[id]?.currentContext?.findRenderObject() as RenderBox?;
+    final battlefieldBox = _battlefieldKey.currentContext?.findRenderObject() as RenderBox?;
+    if (box == null || !box.hasSize || battlefieldBox == null || !battlefieldBox.hasSize) return null;
+    return battlefieldBox.globalToLocal(box.localToGlobal(box.size.center(Offset.zero)));
+  }
+
+  /// A glowing bolt of the attacker's own element flying from the
+  /// attacker's portrait to the target's the instant a hit lands, followed
+  /// by an impact burst where it lands — the clearest possible "who is
+  /// attacking whom" cue, and the one effect native has that no per-portrait
+  /// flash alone can substitute for. Positions are measured post-frame so
+  /// both portraits have already been laid out for this tick.
+  void _fireProjectile({required HitEvent hit, required String? attackerSymbol, required bool isBig}) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      final start = _centerOf(hit.attackerID);
+      final end = _centerOf(hit.targetID);
+      if (start == null || end == null) return;
+      final symbol = attackerSymbol ?? hit.attackerElement.symbol;
+      setState(() {
+        _attackProjectile = _AttackProjectile(
+          id: hit.id,
+          start: start,
+          end: end,
+          color: hit.attackerElement.color,
+          symbol: symbol,
+          big: isBig,
+        );
+      });
+      _projectileTimer?.cancel();
+      _projectileTimer = Timer(const Duration(milliseconds: 180), () {
+        if (!mounted) return;
+        setState(() {
+          _attackProjectile = null;
+          _impactBurst = _ImpactBurst(id: hit.id, point: end, color: hit.attackerElement.color, symbol: symbol, big: isBig);
+        });
+        _impactTimer?.cancel();
+        _impactTimer = Timer(Duration(milliseconds: isBig ? 420 : 300), () {
+          if (mounted) setState(() => _impactBurst = null);
+        });
+      });
+    });
+  }
+
   String _stageLabel() {
     final l = AppLocalizations.of(context);
     if (widget.dungeonName != null) {
@@ -342,24 +439,34 @@ class _BattleViewState extends State<BattleView> with SingleTickerProviderStateM
   @override
   Widget build(BuildContext context) {
     return Stack(
+      key: _battlefieldKey,
       children: [
-        Container(decoration: const BoxDecoration(gradient: dk_theme.Theme.background)),
-        SafeArea(
-          child: AnimatedBuilder(
-            animation: Listenable.merge([_engine, _shakeController]),
-            builder: (context, _) {
-              final dx = sin(_shakeController.value * pi * 3) * 8 * (1 - _shakeController.value);
-              return Transform.translate(
-                offset: Offset(dx, 0),
-                child: Column(
-                  children: [
-                    _battleBanner(),
-                    Expanded(child: _enemyArea()),
-                    _partyRow(),
-                  ],
-                ),
-              );
-            },
+        _battleBackdrop(),
+        AnimatedBuilder(
+          animation: Listenable.merge([_engine, _shakeController]),
+          builder: (context, _) {
+            final dx = sin(_shakeController.value * pi * 3) * _shakeMagnitude * (1 - _shakeController.value);
+            return Transform.translate(
+              offset: Offset(dx, 0),
+              child: Column(
+                children: [
+                  _battleBanner(),
+                  Expanded(child: SafeArea(top: false, child: _enemyArea())),
+                  SafeArea(top: false, child: _partyRow()),
+                ],
+              ),
+            );
+          },
+        ),
+        if (_attackProjectile != null)
+          Positioned.fill(
+            child: _AttackProjectileView(key: ValueKey('proj-${_attackProjectile!.id}'), projectile: _attackProjectile!),
+          ),
+        if (_impactBurst != null)
+          Positioned.fill(child: _ImpactBurstView(key: ValueKey('impact-${_impactBurst!.id}'), burst: _impactBurst!)),
+        Positioned.fill(
+          child: IgnorePointer(
+            child: AnimatedContainer(duration: const Duration(milliseconds: 80), color: _bossFlashColor),
           ),
         ),
         if (_ultimateShowcase != null) _UltimateShowcaseOverlay(combatant: _ultimateShowcase!),
@@ -369,54 +476,97 @@ class _BattleViewState extends State<BattleView> with SingleTickerProviderStateM
     );
   }
 
+  /// The key art bled across the whole screen — blurred and darkened behind
+  /// the gameplay UI — instead of a flat gradient with only a thin sliver of
+  /// art up in the banner. Falls back to the same flat gradient underneath
+  /// so nothing is ever fully unpainted while the image decodes.
+  ///
+  /// Previously opacity 0.5 + a 0.4→0.85 dark overlay on top of a 28px blur
+  /// combined to nearly erase the art — the battlefield read as a flat dark
+  /// gradient with no visible scene, matching in-game reports of a "missing"
+  /// background. Brighter art and a lighter overlay keep the same
+  /// "abstract backdrop, not a photo" read while the scene stays recognizable
+  /// behind the UI. Mirrors `BattleView.swift`'s `battleBackdrop`.
+  Widget _battleBackdrop() {
+    final isBoss = _engine.isBossStage;
+    return Positioned.fill(
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          const DecoratedBox(decoration: BoxDecoration(gradient: dk_theme.Theme.background)),
+          Opacity(
+            opacity: 0.85,
+            child: ImageFiltered(
+              imageFilter: ui.ImageFilter.blur(sigmaX: 20, sigmaY: 20, tileMode: TileMode.decal),
+              child: Image.asset(
+                isBoss ? dk_theme.SingletonArt.bossBattleBanner : dk_theme.SingletonArt.battleBanner,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          DecoratedBox(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  dk_theme.Theme.deepNavy.withValues(alpha: 0.15),
+                  dk_theme.Theme.deepNavy.withValues(alpha: 0.6),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   /// Landscape has almost no vertical room to spare, so this is a thin
-  /// accent strip with the stage title overlaid on top of `BattleBanner`/
-  /// `BossBattleBanner` key art (mirrors Swift's
-  /// `Image(engine.isBossStage ? "BossBattleBanner" : "BattleBanner")`),
-  /// darkened underneath the same tinted gradient as before so the strip
-  /// reads as one unit rather than a bare cropped photo.
+  /// title/controls row rather than a full banner.
+  ///
+  /// Previously this painted its own crisp, unblurred copy of the key art
+  /// plus a near-opaque gradient in a hard-edged 44px box — sitting right on
+  /// top of `_battleBackdrop()`'s much softer blurred version, the seam and
+  /// sharp/blurred mismatch read as an ugly pasted-on bar. Dropping the
+  /// duplicate image and using a gradient that fades to fully transparent by
+  /// the bottom of the strip lets the shared backdrop show through
+  /// continuously — the title/controls just float on the one scene instead
+  /// of sitting in their own box.
   Widget _battleBanner() {
     final isBoss = _engine.isBossStage;
     return Container(
       height: 44,
       width: double.infinity,
-      clipBehavior: Clip.hardEdge,
-      decoration: const BoxDecoration(),
-      child: Stack(
-        fit: StackFit.expand,
-        children: [
-          Image.asset(
-            isBoss ? dk_theme.SingletonArt.bossBattleBanner : dk_theme.SingletonArt.battleBanner,
-            fit: BoxFit.cover,
-          ),
-          DecoratedBox(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: isBoss
-                    ? [Colors.red.withValues(alpha: 0.35), dk_theme.Theme.deepNavy.withValues(alpha: 0.9)]
-                    : [dk_theme.Theme.violet.withValues(alpha: 0.22), dk_theme.Theme.deepNavy.withValues(alpha: 0.9)],
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    _stageLabel(),
-                    style: TextStyle(
-                      color: isBoss ? Colors.red : Colors.white.withValues(alpha: 0.7),
-                      fontWeight: FontWeight.w600,
-                      fontSize: 13,
-                    ),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            (isBoss ? Colors.red : dk_theme.Theme.deepNavy).withValues(alpha: isBoss ? 0.28 : 0.5),
+            dk_theme.Theme.deepNavy.withValues(alpha: 0),
+          ],
+        ),
+      ),
+      child: SafeArea(
+        bottom: false,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Row(
+            children: [
+              Expanded(
+                child: Text(
+                  _stageLabel(),
+                  style: TextStyle(
+                    color: isBoss ? Colors.red : Colors.white.withValues(alpha: 0.8),
+                    fontWeight: FontWeight.w600,
+                    fontSize: 13,
                   ),
                 ),
-                _battleControls(),
-              ],
-            ),
+              ),
+              _battleControls(),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
@@ -496,7 +646,12 @@ class _BattleViewState extends State<BattleView> with SingleTickerProviderStateM
         alignment: Alignment.topCenter,
         child: SizedBox(
           width: 340,
-          child: _CombatantBanner(combatant: enemy, lastHit: _engine.lastHit, lastMechanicTrigger: _engine.lastMechanicTrigger),
+          child: _CombatantBanner(
+            combatant: enemy,
+            lastHit: _engine.lastHit,
+            lastMechanicTrigger: _engine.lastMechanicTrigger,
+            portraitKey: _portraitKeyFor(enemy.id),
+          ),
         ),
       ),
     );
@@ -518,6 +673,7 @@ class _BattleViewState extends State<BattleView> with SingleTickerProviderStateM
                 lastSkillUse: _engine.lastSkillUse,
                 lastUltimate: _engine.lastUltimate,
                 enemyElement: enemyElement,
+                portraitKey: _portraitKeyFor(units[i].id),
                 onUltimate: () {
                   if (_engine.activateUltimate(units[i].id)) {
                     _gameState.playHaptic(HapticStyle.success);
@@ -537,6 +693,179 @@ class _BattleViewState extends State<BattleView> with SingleTickerProviderStateM
   }
 }
 
+class _AttackProjectile {
+  final String id;
+  final Offset start;
+  final Offset end;
+  final Color color;
+  final String symbol;
+  final bool big;
+  _AttackProjectile({required this.id, required this.start, required this.end, required this.color, required this.symbol, required this.big});
+}
+
+class _ImpactBurst {
+  final String id;
+  final Offset point;
+  final Color color;
+  final String symbol;
+  final bool big;
+  _ImpactBurst({required this.id, required this.point, required this.color, required this.symbol, required this.big});
+}
+
+/// A glowing bolt of the attacker's own element flying straight from the
+/// attacker's measured portrait position to the target's — the one effect
+/// that spans both combatants, so it reads as "who is attacking whom" at a
+/// glance, mirroring native's `AttackProjectileView` in spirit (a plain
+/// straight flight rather than native's role-shaped arcs, to stay cheap).
+class _AttackProjectileView extends StatefulWidget {
+  final _AttackProjectile projectile;
+  const _AttackProjectileView({super.key, required this.projectile});
+
+  @override
+  State<_AttackProjectileView> createState() => _AttackProjectileViewState();
+}
+
+class _AttackProjectileViewState extends State<_AttackProjectileView> with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 170))..forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final p = widget.projectile;
+    return AnimatedBuilder(
+      animation: _controller,
+      builder: (context, _) {
+        final t = _controller.value;
+        final pos = Offset.lerp(p.start, p.end, t)!;
+        final fade = t < 0.85 ? 1.0 : (1 - t) / 0.15;
+        return Stack(
+          children: [
+            Positioned.fill(
+              child: CustomPaint(painter: _TrailPainter(start: p.start, end: pos, color: p.color, big: p.big)),
+            ),
+            Positioned(
+              left: pos.dx - (p.big ? 15 : 11),
+              top: pos.dy - (p.big ? 15 : 11),
+              child: Opacity(
+                opacity: fade.clamp(0, 1),
+                child: Icon(sfSymbol(p.symbol), size: p.big ? 30 : 22, color: p.color, shadows: [Shadow(color: p.color, blurRadius: 10)]),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+}
+
+class _TrailPainter extends CustomPainter {
+  final Offset start;
+  final Offset end;
+  final Color color;
+  final bool big;
+  _TrailPainter({required this.start, required this.end, required this.color, required this.big});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..shader = ui.Gradient.linear(start, end, [color.withValues(alpha: 0), color.withValues(alpha: 0.9)])
+      ..strokeWidth = big ? 5 : 3.5
+      ..strokeCap = StrokeCap.round;
+    canvas.drawLine(start, end, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant _TrailPainter oldDelegate) => oldDelegate.start != start || oldDelegate.end != end;
+}
+
+/// Where a bolt actually lands: an expanding ring (doubled for a big hit)
+/// plus the element's own icon flashing white-hot at the center — impact
+/// reads at the target too, not only as motion along the way there.
+/// Mirrors native's `ImpactBurstView`.
+class _ImpactBurstView extends StatelessWidget {
+  final _ImpactBurst burst;
+  const _ImpactBurstView({super.key, required this.burst});
+
+  @override
+  Widget build(BuildContext context) {
+    final size = burst.big ? 92.0 : 58.0;
+    return Stack(
+      children: [
+        Positioned(
+          left: burst.point.dx - size,
+          top: burst.point.dy - size,
+          width: size * 2,
+          height: size * 2,
+          child: _ImpactBurstRing(burst: burst, size: size),
+        ),
+      ],
+    );
+  }
+}
+
+class _ImpactBurstRing extends StatelessWidget {
+  final _ImpactBurst burst;
+  final double size;
+  const _ImpactBurstRing({required this.burst, required this.size});
+
+  @override
+  Widget build(BuildContext context) {
+    return TweenAnimationBuilder<double>(
+        tween: Tween(begin: 0, end: 1),
+        duration: Duration(milliseconds: burst.big ? 440 : 300),
+        curve: Curves.easeOut,
+        builder: (context, t, _) {
+          return Stack(
+            alignment: Alignment.center,
+            children: [
+              Opacity(
+                opacity: 1 - t,
+                child: Transform.scale(
+                  scale: 0.4 + 0.6 * t,
+                  child: Container(
+                    width: size,
+                    height: size,
+                    decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(color: burst.color.withValues(alpha: 0.85), width: burst.big ? 5 : 3)),
+                  ),
+                ),
+              ),
+              if (burst.big)
+                Opacity(
+                  opacity: (1 - t) * 0.7,
+                  child: Transform.scale(
+                    scale: 0.4 + 0.6 * t,
+                    child: Container(
+                      width: 138,
+                      height: 138,
+                      decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(color: burst.color.withValues(alpha: 0.45), width: 3)),
+                    ),
+                  ),
+                ),
+              Opacity(
+                opacity: t < 0.7 ? 1 : (1 - t) / 0.3,
+                child: Transform.scale(
+                  scale: (0.3 + 0.7 * (t / 0.14).clamp(0, 1)).toDouble(),
+                  child: Icon(sfSymbol(burst.symbol), size: burst.big ? 26 : 18, color: Colors.white, shadows: [Shadow(color: burst.color, blurRadius: 8)]),
+                ),
+              ),
+            ],
+          );
+        },
+      );
+  }
+}
+
 /// Enemy portrait + HP. Reacts to `lastHit` (attacker glow / hit flash /
 /// floating damage number) and `lastMechanicTrigger` (a colored ring pulse)
 /// — a simplified stand-in for Swift's much more elaborate multi-layer
@@ -547,7 +876,16 @@ class _CombatantBanner extends StatelessWidget {
   final HitEvent? lastHit;
   final MechanicEvent? lastMechanicTrigger;
 
-  const _CombatantBanner({required this.combatant, required this.lastHit, required this.lastMechanicTrigger});
+  /// Lets `_BattleViewState` measure this portrait's real screen position to
+  /// fly an attack bolt to/from it — see `_BattleViewState._centerOf`.
+  final GlobalKey portraitKey;
+
+  const _CombatantBanner({
+    required this.combatant,
+    required this.lastHit,
+    required this.lastMechanicTrigger,
+    required this.portraitKey,
+  });
 
   static const double _portraitSize = 120;
 
@@ -563,6 +901,7 @@ class _CombatantBanner extends StatelessWidget {
       child: Row(
         children: [
           SizedBox(
+            key: portraitKey,
             width: _portraitSize,
             height: _portraitSize,
             child: Stack(
@@ -743,6 +1082,9 @@ class _PartyMemberTile extends StatelessWidget {
   final VoidCallback onUltimate;
   final VoidCallback onSkill;
 
+  /// See `_CombatantBanner.portraitKey`.
+  final GlobalKey portraitKey;
+
   const _PartyMemberTile({
     required this.combatant,
     required this.lastHit,
@@ -751,6 +1093,7 @@ class _PartyMemberTile extends StatelessWidget {
     required this.enemyElement,
     required this.onUltimate,
     required this.onSkill,
+    required this.portraitKey,
   });
 
   static const double _portraitSize = 64;
@@ -788,6 +1131,7 @@ class _PartyMemberTile extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(
+              key: portraitKey,
               width: _portraitSize + 12,
               height: _portraitSize,
               child: Stack(
@@ -1001,51 +1345,178 @@ class _HPBar extends StatelessWidget {
   }
 }
 
-/// Shown once per Ultimate cast: a centered, scaled-in glowing portrait —
-/// the primary "something big just happened, and it was them" cue. A
-/// simplified stand-in for Swift's spinning dashed ring + two-layer
-/// outward icon burst.
-class _UltimateShowcaseOverlay extends StatelessWidget {
+/// Shown once per Ultimate cast: a centered, scaled-in glowing portrait
+/// ringed by a spinning dashed circle plus two layers of icons punching
+/// outward — mirrors native's `UltimateShowcaseView` (glow blob, rotating
+/// `RevealRing`, inner fast + outer slow icon bursts) instead of the flat
+/// glowing-circle stand-in this used to be.
+class _UltimateShowcaseOverlay extends StatefulWidget {
   final Combatant combatant;
 
   const _UltimateShowcaseOverlay({required this.combatant});
 
   @override
+  State<_UltimateShowcaseOverlay> createState() => _UltimateShowcaseOverlayState();
+}
+
+class _UltimateShowcaseOverlayState extends State<_UltimateShowcaseOverlay> with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 900))..forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final combatant = widget.combatant;
+    final color = combatant.element.color;
+    const portraitSize = 160.0;
     return Positioned.fill(
       child: IgnorePointer(
-        child: TweenAnimationBuilder<double>(
-          key: ValueKey('showcase-${combatant.id}'),
-          tween: Tween(begin: 0.0, end: 1.0),
-          duration: const Duration(milliseconds: 220),
-          curve: Curves.easeOut,
-          builder: (context, t, child) => Container(
-            color: Colors.black.withValues(alpha: 0.45 * t),
-            alignment: Alignment.center,
-            child: Opacity(
-              opacity: t,
-              child: Transform.scale(scale: 0.3 + 0.7 * t, child: child),
-            ),
-          ),
-          child: Container(
-            width: 160,
-            height: 160,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: combatant.element.color.withValues(alpha: 0.45),
-              border: Border.all(color: combatant.element.color, width: 4),
-              boxShadow: [BoxShadow(color: combatant.element.color.withValues(alpha: 0.7), blurRadius: 30)],
-            ),
-            alignment: Alignment.center,
-            clipBehavior: Clip.antiAlias,
-            child: dk_theme.DreamkeeperArt.hasArt(combatant.portraitOverrideName ?? combatant.name)
-                ? Image.asset(dk_theme.DreamkeeperArt.assetName(combatant.portraitOverrideName ?? combatant.name), fit: BoxFit.cover)
-                : Icon(sfSymbol(combatant.role.symbol), size: 60, color: Colors.white),
-          ),
+        child: AnimatedBuilder(
+          animation: _controller,
+          builder: (context, child) {
+            final elapsedMs = _controller.value * 900;
+            // Entry: 0-220ms ease-out scale/opacity-in, matching the old timing.
+            final entryT = Curves.easeOut.transform((elapsedMs / 220).clamp(0, 1).toDouble());
+            // Ring spins continuously for the whole showcase.
+            final ringRotation = (elapsedMs / 1400) * 2 * pi;
+            // Inner burst: quick 0-300ms.
+            final innerT = Curves.easeOut.transform(((elapsedMs) / 300).clamp(0, 1).toDouble());
+            final innerOpacity = elapsedMs < 300 ? 1.0 : (1 - ((elapsedMs - 300) / 250)).clamp(0, 1).toDouble();
+            // Outer burst: slightly delayed, slower 160-620ms.
+            final outerRaw = ((elapsedMs - 160) / 460).clamp(0, 1).toDouble();
+            final outerT = Curves.easeOut.transform(outerRaw);
+            final outerOpacity = elapsedMs < 160 ? 0.0 : (elapsedMs < 560 ? 1.0 : (1 - (elapsedMs - 560) / 300).clamp(0, 1).toDouble());
+
+            return Container(
+              color: Colors.black.withValues(alpha: 0.5 * entryT),
+              alignment: Alignment.center,
+              child: SizedBox(
+                width: 340,
+                height: 340,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    // Soft glow blob behind everything.
+                    Opacity(
+                      opacity: entryT,
+                      child: Container(
+                        width: 300,
+                        height: 300,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          gradient: RadialGradient(colors: [color.withValues(alpha: 0.55), color.withValues(alpha: 0)]),
+                        ),
+                      ),
+                    ),
+                    // Outer slow icon burst (10 icons).
+                    ...List.generate(10, (index) {
+                      final angle = (index / 10) * 2 * pi;
+                      final radius = 150 * outerT;
+                      return Opacity(
+                        opacity: outerOpacity,
+                        child: Transform.translate(
+                          offset: Offset(cos(angle) * radius, sin(angle) * radius),
+                          child: Icon(sfSymbol(combatant.element.symbol), size: 24, color: color, shadows: [Shadow(color: color, blurRadius: 10)]),
+                        ),
+                      );
+                    }),
+                    // Inner fast icon burst (8 icons).
+                    ...List.generate(8, (index) {
+                      final angle = (index / 8) * 2 * pi + 0.4;
+                      final radius = 90 * innerT;
+                      return Opacity(
+                        opacity: innerOpacity,
+                        child: Transform.translate(
+                          offset: Offset(cos(angle) * radius, sin(angle) * radius),
+                          child: Icon(sfSymbol(combatant.element.symbol), size: 14, color: color),
+                        ),
+                      );
+                    }),
+                    // Spinning dashed reveal ring.
+                    Opacity(
+                      opacity: entryT,
+                      child: Transform.rotate(
+                        angle: ringRotation,
+                        child: CustomPaint(size: const Size(portraitSize + 34, portraitSize + 34), painter: _DashedRingPainter(color: color)),
+                      ),
+                    ),
+                    // Portrait.
+                    Opacity(
+                      opacity: entryT,
+                      child: Transform.scale(
+                        scale: 0.3 + 0.7 * entryT,
+                        child: Container(
+                          width: portraitSize,
+                          height: portraitSize,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: color.withValues(alpha: 0.45),
+                            border: Border.all(color: color, width: 5),
+                            boxShadow: [BoxShadow(color: color.withValues(alpha: 0.85), blurRadius: 34)],
+                          ),
+                          // No `alignment` here (unlike a plain centering
+                          // Container) — Container inserts an `Align` for its
+                          // child whenever `alignment` is set, and `Align`
+                          // hands its child loose constraints instead of the
+                          // Container's own tight portraitSize box. Without a
+                          // forced box size, `Image`'s `BoxFit.cover` has
+                          // nothing to fill and the image lays out at its own
+                          // natural aspect-fit size — a thin cropped strip
+                          // instead of filling the circle.
+                          clipBehavior: Clip.antiAlias,
+                          child: dk_theme.DreamkeeperArt.hasArt(combatant.portraitOverrideName ?? combatant.name)
+                              ? Image.asset(dk_theme.DreamkeeperArt.assetName(combatant.portraitOverrideName ?? combatant.name), fit: BoxFit.cover)
+                              : Center(child: Icon(sfSymbol(combatant.role.symbol), size: 60, color: Colors.white)),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
         ),
       ),
     );
   }
+}
+
+/// A dashed circle that spins around the Ultimate portrait — mirrors
+/// native's `RevealRing`.
+class _DashedRingPainter extends CustomPainter {
+  final Color color;
+  static const dashCount = 30;
+  _DashedRingPainter({required this.color});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final center = size.center(Offset.zero);
+    final radius = size.width / 2;
+    final paint = Paint()
+      ..color = color
+      ..strokeWidth = 3
+      ..style = PaintingStyle.stroke
+      ..strokeCap = StrokeCap.round;
+    for (var i = 0; i < dashCount; i++) {
+      if (i.isOdd) continue;
+      final startAngle = (i / dashCount) * 2 * pi;
+      final sweep = (2 * pi / dashCount) * 0.6;
+      canvas.drawArc(Rect.fromCircle(center: center, radius: radius), startAngle, sweep, false, paint);
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant _DashedRingPainter oldDelegate) => oldDelegate.color != color;
 }
 
 class _OutcomeOverlay extends StatelessWidget {

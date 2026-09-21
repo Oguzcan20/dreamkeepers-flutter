@@ -76,8 +76,16 @@
   "onboardingCampaignTitle": "Campaign",
   "onboardingCampaignBody": "Send your team into the Campaign to clear stages, earn gold and EXP, and defeat bosses. Boss victories recruit your next Dreamkeeper automatically.",
 
-  "starterElementTitle": "Choose Olf's Element",
-  "starterElementSubtitle": "This sticks with him for good — pick whatever feels right.",
+  "starterElementTitle": "PICK HIS ELEMENT",
+  "starterElementSubtitle": "Every Dreamkeeper bonds with a dreamwalker sooner or later — but Olf came to you unclaimed, before Dream Haven even opened its gates. The element you choose now will shape him for as long as he walks beside you.",
+  "starterElementEyebrow": "THE FIRST BOND",
+  "starterElementHeroTitle": "Olf Has Chosen You",
+  "starterElementPermanentNote": "This choice is permanent.",
+  "starterRevealSecretUnlocked": "SECRET UNLOCKED",
+  "starterRevealBondSealed": "BOND SEALED",
+  "starterRevealUltimateTitle": "A Different Kind of Olf...",
+  "starterRevealNormalTitle": "Olf Has Joined You!",
+  "starterRevealTapToContinue": "Tap anywhere to continue",
 
   "navDreamHaven": "Dream Haven",
 
@@ -172,6 +180,7 @@
   "missionsWeeklyLocked": "Unlock Battle Pass Premium to access harder weekly challenges with bigger rewards.",
   "missionsRequiresPremium": "Requires Premium",
 
+  "shopSpecialOffers": "Special Offers",
   "shopBadgePopular": "Popular",
   "shopBadgeBestValue": "Best Value",
   "shopPurchased": "Purchased!",
@@ -180,6 +189,10 @@
   "shopGoldExchange": "Gold Exchange",
   "shopTicketsGranted": "+{count} Tickets",
   "@shopTicketsGranted": { "placeholders": { "count": { "type": "int" } } },
+  "shopTabOffers": "Offers",
+  "shopTabGems": "Gems",
+  "shopTabTicketsGold": "Tickets & Gold",
+  "shopNoOffers": "No special offers right now — check back soon.",
 
   "campaignStageLabel": "Stage {stage}",
   "@campaignStageLabel": { "placeholders": { "stage": { "type": "int" } } },
@@ -282,6 +295,8 @@
   "summonTapToOpen": "Tap to open",
   "summonResultsTitle": "Summon Results",
   "summonTapToRevealAll": "Tap to reveal all",
+  "summonTapToContinue": "Tap to continue",
+  "summonTapPortraitForInfo": "Tap for details",
 
   "bestiaryNotEncountered": "Not yet encountered.",
 
@@ -1268,5 +1283,13 @@
   "dungeonFarmReward": "FARM REWARD",
   "dungeonBackToHub": "Back to Dungeons",
   "havenDungeonKeys": "{remaining}/{max} keys",
-  "@havenDungeonKeys": {"placeholders": {"remaining": {"type": "int"}, "max": {"type": "int"}}}
+  "@havenDungeonKeys": {"placeholders": {"remaining": {"type": "int"}, "max": {"type": "int"}}},
+  "settingsPromoCode": "Promo Code",
+  "settingsPromoCodeBlurb": "Have a gift code? Redeem it here for a one-time reward.",
+  "settingsPromoCodeHint": "Enter code",
+  "settingsPromoCodeRedeem": "Redeem",
+  "settingsPromoCodeSuccess": "Redeemed! +{gold} Gold, +{gems} Dream Gems.",
+  "@settingsPromoCodeSuccess": {"placeholders": {"gold": {"type": "int"}, "gems": {"type": "int"}}},
+  "friendsReferralRewardReceived": "A friend used your code! +{gold} Gold, +{gems} Dream Gems.",
+  "@friendsReferralRewardReceived": {"placeholders": {"gold": {"type": "int"}, "gems": {"type": "int"}}}
 }

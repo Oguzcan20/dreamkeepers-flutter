@@ -30,6 +30,9 @@ class _ItemFusionPickerViewState extends State<ItemFusionPickerView> {
   bool _justFused = false;
   bool _lastFuseGrantedStar = false;
   Timer? _fuseResetTimer;
+  bool _showBurst = false;
+  int _burstKey = 0;
+  Timer? _burstResetTimer;
 
   EquipmentItem? get _target {
     final matches = widget.gameState.inventory.where((i) => i.id == widget.targetID);
@@ -57,6 +60,7 @@ class _ItemFusionPickerViewState extends State<ItemFusionPickerView> {
   @override
   void dispose() {
     _fuseResetTimer?.cancel();
+    _burstResetTimer?.cancel();
     super.dispose();
   }
 
@@ -82,9 +86,15 @@ class _ItemFusionPickerViewState extends State<ItemFusionPickerView> {
       _lastFuseGrantedStar = grantsStar;
       _justFused = true;
       _selectedIDs.clear();
+      _showBurst = true;
+      _burstKey++;
     });
     _fuseResetTimer = Timer(const Duration(milliseconds: 900), () {
       if (mounted) setState(() => _justFused = false);
+    });
+    _burstResetTimer?.cancel();
+    _burstResetTimer = Timer(const Duration(milliseconds: 650), () {
+      if (mounted) setState(() => _showBurst = false);
     });
   }
 
@@ -102,13 +112,10 @@ class _ItemFusionPickerViewState extends State<ItemFusionPickerView> {
           elevation: 0,
           centerTitle: true,
           title: Text(AppLocalizations.of(context).fusionTitle, style: const TextStyle(color: Colors.white)),
-          // Default `leadingWidth` is `kToolbarHeight` (56) — too narrow for
-          // the "Close" label + `TextButton` padding, which wrapped it to
-          // "Clos\ne" on the landscape layout.
-          leadingWidth: 80,
-          leading: TextButton(
+          leading: IconButton(
+            icon: Icon(sfSymbol('xmark'), color: Colors.white, size: 18),
+            tooltip: AppLocalizations.of(context).commonClose,
             onPressed: () => Navigator.of(context).pop(),
-            child: Text(AppLocalizations.of(context).commonClose, style: const TextStyle(color: Colors.white)),
           ),
         ),
         body: Stack(
@@ -183,21 +190,24 @@ class _ItemFusionPickerViewState extends State<ItemFusionPickerView> {
     return dk_theme.GlassCard(
       child: Column(
         children: [
-          Text(AppLocalizations.of(context).fusionProgressTowardStar(_bankedTotal, cost), style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600)),
-          const SizedBox(height: 8),
-          LayoutBuilder(
-            builder: (context, constraints) {
-              final fraction = cost == 0 ? 1.0 : (_bankedTotal / cost).clamp(0, 1).toDouble();
-              return ClipRRect(
-                borderRadius: BorderRadius.circular(999),
-                child: Stack(
-                  children: [
-                    Container(height: 8, color: Colors.white.withValues(alpha: 0.08)),
-                    Container(height: 8, width: constraints.maxWidth * fraction, color: _willStarUp ? dk_theme.Theme.gold : dk_theme.Theme.violet),
-                  ],
+          Row(
+            children: [
+              Icon(sfSymbol('hammer.fill'), size: 14, color: _willStarUp ? dk_theme.Theme.gold : Colors.white.withValues(alpha: 0.5)),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  AppLocalizations.of(context).fusionProgressTowardStar(_bankedTotal, cost),
+                  style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
                 ),
-              );
-            },
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          dk_theme.FusionProgressBar(
+            current: _bankedTotal,
+            total: cost,
+            color: _willStarUp ? dk_theme.Theme.gold : dk_theme.Theme.violet,
+            height: 8,
           ),
         ],
       ),
@@ -263,10 +273,17 @@ class _ItemFusionPickerViewState extends State<ItemFusionPickerView> {
         children: [
           Text(l.invSelectedCount(_selectedIDs.length), style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 11, fontWeight: FontWeight.w600)),
           const SizedBox(height: 8),
-          dk_theme.PrimaryButton(
-            tint: dk_theme.Theme.gold,
-            onPressed: (_selectedIDs.isEmpty || _justFused) ? null : () => _fuse(target),
-            child: Text(label),
+          Stack(
+            alignment: Alignment.center,
+            clipBehavior: Clip.none,
+            children: [
+              dk_theme.PrimaryButton(
+                tint: dk_theme.Theme.gold,
+                onPressed: (_selectedIDs.isEmpty || _justFused) ? null : () => _fuse(target),
+                child: Text(label),
+              ),
+              if (_showBurst) dk_theme.BurstParticles(key: ValueKey(_burstKey), color: dk_theme.Theme.gold),
+            ],
           ),
         ],
       ),
@@ -321,12 +338,17 @@ class _ItemDuplicatePickerCard extends StatelessWidget {
       onTap: onTap,
       child: Semantics(
         selected: isSelected,
-        child: Container(
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 180),
+          curve: Curves.easeOut,
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
             color: isSelected ? dk_theme.Theme.gold.withValues(alpha: 0.18) : Colors.white.withValues(alpha: 0.05),
             borderRadius: BorderRadius.circular(14),
             border: Border.all(color: isSelected ? dk_theme.Theme.gold : dk_theme.Theme.cardStroke, width: isSelected ? 2 : 1),
+            boxShadow: isSelected
+                ? [BoxShadow(color: dk_theme.Theme.gold.withValues(alpha: 0.35), blurRadius: 12, spreadRadius: 1)]
+                : null,
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,

@@ -1,44 +1,41 @@
 import 'package:flutter/material.dart';
 
-/// Uniformly shrinks a fixed (non-scrolling) landscape layout to fit
-/// whatever screen it actually ends up on, instead of letting content clip
-/// or overflow on a smaller phone. Mirrors `AdaptiveScale`
-/// (UI/Shared/AdaptiveScale.swift) exactly — see its doc comment for the
-/// rationale (a few hub-style screens are laid out without a scroll view,
-/// tuned against an iPhone 17 Pro-class landscape reference size).
+/// Scales a fixed (non-scrolling) landscape layout so it always fills the
+/// real device screen exactly, instead of letting content clip, overflow,
+/// or — the previous version's bug — leave black bars on one axis whenever
+/// the device's aspect ratio doesn't exactly match `referenceSize`. Mirrors
+/// `AdaptiveScale` (UI/Shared/AdaptiveScale.swift) — see its doc comment
+/// for the rationale (a few hub-style screens are laid out without a
+/// scroll view, tuned against an iPhone 17 Pro-class landscape reference
+/// size).
+///
+/// Width and height are scaled independently so the reference layout
+/// always covers the full available box on both axes. A single uniform
+/// scale factor (the old approach) can only ever exactly match the
+/// *tighter* axis, leaving a visible letterboxed gap on the other one for
+/// any device whose aspect ratio differs from `referenceSize`'s — which is
+/// every device except the one the reference was tuned against. Landscape
+/// phone aspect ratios are all close enough to the reference (~2.17:1)
+/// that the resulting stretch between axes is imperceptible.
 class AdaptiveScale extends StatelessWidget {
   final Widget child;
   final Size referenceSize;
 
-  /// Upper bound on the scale factor. `1` (default) never scales up —
-  /// bigger phones just get the reference layout's normal spacing. Pass
-  /// something like `1.3` to let it grow on larger screens too; keep it
-  /// modest since scaling up blurs content a bit (it stretches the
-  /// rasterized layout instead of re-laying it out).
-  final double maxScale;
-
-  const AdaptiveScale({
-    super.key,
-    required this.child,
-    this.referenceSize = const Size(874, 402),
-    this.maxScale = 1,
-  });
+  const AdaptiveScale({super.key, required this.child, this.referenceSize = const Size(874, 402)});
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final scale = [
-          maxScale,
-          constraints.maxWidth / referenceSize.width,
-          constraints.maxHeight / referenceSize.height,
-        ].reduce((a, b) => a < b ? a : b);
+        final scaleX = constraints.maxWidth / referenceSize.width;
+        final scaleY = constraints.maxHeight / referenceSize.height;
         return SizedBox(
           width: constraints.maxWidth,
           height: constraints.maxHeight,
-          child: Center(
-            child: Transform.scale(
-              scale: scale,
+          child: Transform(
+            alignment: Alignment.center,
+            transform: Matrix4.diagonal3Values(scaleX, scaleY, 1),
+            child: Center(
               child: SizedBox(
                 width: referenceSize.width,
                 height: referenceSize.height,
@@ -54,10 +51,11 @@ class AdaptiveScale extends StatelessWidget {
 
 extension AdaptiveScaleExtension on Widget {
   /// Applies `AdaptiveScale` — use on fixed, non-scrolling landscape hub
-  /// screens so smaller phones see the whole layout shrunk instead of
-  /// clipped. Leave screens that already scroll alone; they already handle
-  /// smaller screens on their own.
-  Widget adaptiveScale({Size reference = const Size(874, 402), double maxScale = 1}) {
-    return AdaptiveScale(referenceSize: reference, maxScale: maxScale, child: this);
+  /// screens so every phone sees the whole layout stretched to exactly
+  /// fill the real screen instead of clipped or letterboxed. Leave screens
+  /// that already scroll alone; they already handle smaller screens on
+  /// their own.
+  Widget adaptiveScale({Size reference = const Size(874, 402)}) {
+    return AdaptiveScale(referenceSize: reference, child: this);
   }
 }

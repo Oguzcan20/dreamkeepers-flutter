@@ -36,7 +36,12 @@ class ShopRoute extends AppRoute {
 }
 
 class SettingsRoute extends AppRoute {
-  const SettingsRoute();
+  /// Where the back button returns to — Dream Haven by default (opened from
+  /// its hub tile), or the Main Menu when Settings was opened from there,
+  /// so the player lands back on the screen they came from instead of
+  /// always ending up inside a run.
+  final AppRoute returnTo;
+  const SettingsRoute({this.returnTo = const DreamHavenRoute()});
 }
 
 class ProfileRoute extends AppRoute {
@@ -45,6 +50,10 @@ class ProfileRoute extends AppRoute {
 
 class ObservatoryRoute extends AppRoute {
   const ObservatoryRoute();
+}
+
+class FriendsRoute extends AppRoute {
+  const FriendsRoute();
 }
 
 class BattlePassRoute extends AppRoute {

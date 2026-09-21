@@ -199,11 +199,11 @@ class AppLocalizationsDe extends AppLocalizations {
       'Gib Traum-Edelsteine im Beschwörungsschrein aus, um neue Traumhüter zu rekrutieren. Die Chancen werden offen angezeigt — keine versteckten Mechaniken. Eine 10x-Beschwörung enthält immer einen Bonuszug gratis.';
 
   @override
-  String get onboardingFusionTitle => 'Verschmelzung';
+  String get onboardingFusionTitle => 'Fusion';
 
   @override
   String get onboardingFusionBody =>
-      'Einen Traumhüter zu beschwören, den du schon besitzt, ist nicht verschwendet — das Duplikat wandert direkt in dein Inventar. Verschmilz Duplikate dort mit diesem Traumhüter, um seine Sternestufe zu erhöhen und ihn stärker zu machen.';
+      'Einen Traumhüter zu beschwören, den du schon besitzt, ist nicht verschwendet — das Duplikat wandert direkt in dein Inventar. Fusioniere Duplikate dort mit diesem Traumhüter, um seine Sternestufe zu erhöhen und ihn stärker zu machen.';
 
   @override
   String get onboardingTeamTitle => 'Team';
@@ -220,11 +220,35 @@ class AppLocalizationsDe extends AppLocalizations {
       'Schick dein Team in die Kampagne, um Abschnitte zu bestehen, Gold und EP zu verdienen und Bosse zu besiegen. Boss-Siege rekrutieren deinen nächsten Traumhüter automatisch.';
 
   @override
-  String get starterElementTitle => 'Wähle Olfs Element';
+  String get starterElementTitle => 'WÄHLE SEIN ELEMENT';
 
   @override
   String get starterElementSubtitle =>
-      'Das bleibt für immer bei ihm — nimm, was sich richtig anfühlt.';
+      'Jeder Traumhüter bindet sich früher oder später an einen Traumwandler — aber Olf kam unbeansprucht zu dir, noch bevor Dream Haven seine Tore öffnete. Das Element, das du jetzt wählst, prägt ihn, solange er an deiner Seite bleibt.';
+
+  @override
+  String get starterElementEyebrow => 'DIE ERSTE BINDUNG';
+
+  @override
+  String get starterElementHeroTitle => 'Olf hat dich erwählt';
+
+  @override
+  String get starterElementPermanentNote => 'Diese Wahl ist endgültig.';
+
+  @override
+  String get starterRevealSecretUnlocked => 'GEHEIMNIS FREIGESCHALTET';
+
+  @override
+  String get starterRevealBondSealed => 'BINDUNG BESIEGELT';
+
+  @override
+  String get starterRevealUltimateTitle => 'Ein anderer Olf...';
+
+  @override
+  String get starterRevealNormalTitle => 'Olf ist dir beigetreten!';
+
+  @override
+  String get starterRevealTapToContinue => 'Tippe irgendwo, um fortzufahren';
 
   @override
   String get navDreamHaven => 'Traumhafen';
@@ -439,6 +463,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get missionsRequiresPremium => 'Erfordert Premium';
 
   @override
+  String get shopSpecialOffers => 'Sonderangebote';
+
+  @override
   String get shopBadgePopular => 'Beliebt';
 
   @override
@@ -460,6 +487,19 @@ class AppLocalizationsDe extends AppLocalizations {
   String shopTicketsGranted(int count) {
     return '+$count Tickets';
   }
+
+  @override
+  String get shopTabOffers => 'Angebote';
+
+  @override
+  String get shopTabGems => 'Edelsteine';
+
+  @override
+  String get shopTabTicketsGold => 'Tickets & Gold';
+
+  @override
+  String get shopNoOffers =>
+      'Momentan keine Sonderangebote — schau bald wieder vorbei.';
 
   @override
   String campaignStageLabel(int stage) {
@@ -579,7 +619,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get invTapHint =>
-      'Tippe einen Traumhüter an, um Werte und Verschmelzung zu sehen.';
+      'Tippe einen Traumhüter an, um Werte und Fusion zu sehen.';
 
   @override
   String invDeployedCount(int count, int max) {
@@ -739,6 +779,12 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get summonTapToRevealAll => 'Tippen, um alle aufzudecken';
+
+  @override
+  String get summonTapToContinue => 'Tippen, um fortzufahren';
+
+  @override
+  String get summonTapPortraitForInfo => 'Antippen für Details';
 
   @override
   String get bestiaryNotEncountered => 'Noch nicht angetroffen.';
@@ -1042,7 +1088,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String eqFuseToStar(int stars) {
-    return 'Verschmelzen zu ★$stars';
+    return 'Fusionieren zu ★$stars';
   }
 
   @override
@@ -1069,20 +1115,20 @@ class AppLocalizationsDe extends AppLocalizations {
   String get eqUpgrade => 'Verbessern';
 
   @override
-  String get fusionTitle => 'Verschmelzen';
+  String get fusionTitle => 'Fusionieren';
 
   @override
   String fusionNoDuplicatesDreamkeeper(String name) {
-    return 'Noch keine Duplikate von $name. Beschwöre mehr, um Verschmelzungsmaterial zu sammeln.';
+    return 'Noch keine Duplikate von $name. Beschwöre mehr, um Fusionsmaterial zu sammeln.';
   }
 
   @override
   String fusionNoDuplicatesItem(String name) {
-    return 'Noch keine Duplikate von $name. Schließe mehr Abschnitte ab, um Verschmelzungsmaterial zu finden.';
+    return 'Noch keine Duplikate von $name. Schließe mehr Abschnitte ab, um Fusionsmaterial zu finden.';
   }
 
   @override
-  String get fusionSelectDuplicates => 'Duplikate zum Verschmelzen auswählen';
+  String get fusionSelectDuplicates => 'Duplikate zum Fusionieren auswählen';
 
   @override
   String fusionProgressTowardStar(int banked, int cost) {
@@ -1091,17 +1137,17 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String fusionToStarGrants(int stars) {
-    return 'Verschmelzen zu ★$stars bringt';
+    return 'Fusionieren zu ★$stars bringt';
   }
 
   @override
   String get fusionStarUp => 'Sternaufstieg!';
 
   @override
-  String get fusionFused => 'Verschmolzen!';
+  String get fusionFused => 'Fusioniert!';
 
   @override
-  String get fusionAction => 'Verschmelzen';
+  String get fusionAction => 'Fusionieren';
 
   @override
   String fusionAtMaxStars(String name) {
@@ -3884,5 +3930,28 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String havenDungeonKeys(int remaining, int max) {
     return '$remaining/$max Schlüssel';
+  }
+
+  @override
+  String get settingsPromoCode => 'Aktionscode';
+
+  @override
+  String get settingsPromoCodeBlurb =>
+      'Hast du einen Geschenkcode? Hier einlösen für eine einmalige Belohnung.';
+
+  @override
+  String get settingsPromoCodeHint => 'Code eingeben';
+
+  @override
+  String get settingsPromoCodeRedeem => 'Einlösen';
+
+  @override
+  String settingsPromoCodeSuccess(int gold, int gems) {
+    return 'Eingelöst! +$gold Gold, +$gems Traumjuwelen.';
+  }
+
+  @override
+  String friendsReferralRewardReceived(int gold, int gems) {
+    return 'Ein Freund hat deinen Code benutzt! +$gold Gold, +$gems Traumjuwelen.';
   }
 }

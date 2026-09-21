@@ -46,16 +46,24 @@ Future<GameState> _pumpShop(
   return gameState;
 }
 
+/// Switches to one of the Shop's three segmented tabs (Offers/Gems/Tickets &
+/// Gold) — each tab's content is only built while it's the active one, so a
+/// card that lives outside Offers (the default tab) has to be switched to
+/// first before it can be found at all.
+Future<void> _switchTab(WidgetTester tester, String tabLabel) async {
+  await tester.tap(find.text(tabLabel));
+  await _settle(tester);
+}
+
 /// Taps the price button inside the card that shows `cardTitle` — several
 /// items share a price label (e.g. VIP Pass and the medium Gem Pack are
 /// both "$4.99"), so a bare `find.text(priceLabel)` isn't always unique.
 Future<void> _buyCard(WidgetTester tester, String cardTitle, String priceLabel) async {
   final card = find.ancestor(of: find.text(cardTitle), matching: find.byType(dk_theme.GlassCard));
   final button = find.descendant(of: card, matching: find.text(priceLabel));
-  // The left column's lower sections (Arena Tickets, Gold Exchange) can sit
-  // below the test surface's fold inside the outer `SingleChildScrollView`
-  // — scroll them into view first, same as the Summon multi-pull's
-  // "Continue" button.
+  // The Tickets & Gold tab's Gold Exchange rows can sit below the test
+  // surface's fold inside its own `SingleChildScrollView` — scroll them
+  // into view first, same as the Summon multi-pull's "Continue" button.
   await tester.ensureVisible(button);
   await tester.tap(button);
   await _settle(tester);
@@ -68,15 +76,20 @@ void main() {
     expect(find.text('Shop'), findsOneWidget);
     expect(find.text('${gameState.save.gold}'), findsOneWidget);
     expect(find.text('${gameState.save.dreamGems}'), findsOneWidget);
-    expect(find.text('Dream Gems'), findsOneWidget); // Gem pack section title.
-    expect(find.text('Trial Tickets'), findsOneWidget);
-    expect(find.text('Gold Exchange'), findsOneWidget);
+    // A new save has unclaimed offers, so Offers is the default tab.
     // A brand new save hasn't claimed either one-time offer yet.
     expect(find.text('Dreamkeeper Starter Pack'), findsOneWidget);
     expect(find.text('VIP Pass'), findsOneWidget);
     // Neither exclusive character has been obtained yet either.
     expect(find.text('Igo'), findsOneWidget);
     expect(find.text('Ames'), findsOneWidget);
+
+    await _switchTab(tester, 'Gems');
+    expect(find.text('Handful of Gems'), findsOneWidget);
+
+    await _switchTab(tester, 'Tickets & Gold');
+    expect(find.text('Trial Tickets'), findsOneWidget);
+    expect(find.text('Gold Exchange'), findsOneWidget);
   });
 
   testWidgets('the back button navigates to Dream Haven via onNavigate', (tester) async {
@@ -93,6 +106,7 @@ void main() {
     final gameState = await _pumpShop(tester, onNavigate: (_) {});
     final gemsBefore = gameState.save.dreamGems;
 
+    await _switchTab(tester, 'Gems');
     await _buyCard(tester, 'Handful of Gems', r'$0.99');
 
     expect(gameState.save.dreamGems, gemsBefore + 60);
@@ -137,6 +151,7 @@ void main() {
     final gameState = await _pumpShop(tester, onNavigate: (_) {}, seed: (gs) => gs.save.dreamGems = 50);
     final goldBefore = gameState.save.gold;
 
+    await _switchTab(tester, 'Tickets & Gold');
     await _buyCard(tester, 'Gold Pouch', '20 Gems');
 
     expect(gameState.save.dreamGems, 30);
@@ -147,6 +162,7 @@ void main() {
     final gameState = await _pumpShop(tester, onNavigate: (_) {}, seed: (gs) => gs.save.dreamGems = 5);
     final gemsBefore = gameState.save.dreamGems;
 
+    await _switchTab(tester, 'Tickets & Gold');
     await _buyCard(tester, 'Gold Chest', '80 Gems');
 
     expect(gameState.save.dreamGems, gemsBefore);
@@ -156,6 +172,7 @@ void main() {
     final gameState = await _pumpShop(tester, onNavigate: (_) {});
     final before = gameState.arenaBonusTickets;
 
+    await _switchTab(tester, 'Tickets & Gold');
     await _buyCard(tester, 'Trial Ticket Pack', r'$1.99');
 
     expect(gameState.arenaBonusTickets, before + 5);

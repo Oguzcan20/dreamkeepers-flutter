@@ -155,6 +155,16 @@ void main() {
     await _settleReveal(tester);
 
     expect(gameState.save.dreamGems, gemsBefore - 300);
+
+    // A Legendary+ best pull (~15% chance across 11 rolls) pops a full-screen
+    // spotlight on top of the grid that no longer auto-dismisses — tap it
+    // away first, same as a player would, before reaching the grid below.
+    final spotlightHint = find.text('Tap to continue');
+    if (spotlightHint.evaluate().isNotEmpty) {
+      await tester.tap(spotlightHint);
+      await _settle(tester);
+    }
+
     expect(find.text('Summon Results'), findsOneWidget);
     expect(find.text('Continue'), findsOneWidget); // All 11 tiles finished revealing.
 

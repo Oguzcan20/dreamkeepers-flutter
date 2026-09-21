@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 IconData sfSymbol(String name) {
   switch (name) {
     case 'sparkles':
-      return Icons.auto_awesome;
+      return Icons.auto_awesome_rounded;
     case 'star.fill':
       return Icons.star;
     case 'star.circle.fill':
@@ -20,7 +20,7 @@ IconData sfSymbol(String name) {
     case 'person.3.sequence.fill':
       return Icons.groups_2;
     case 'flame.fill':
-      return Icons.local_fire_department;
+      return Icons.local_fire_department_rounded;
     case 'shield.fill':
       return Icons.shield;
     case 'shield.checkered':
@@ -114,9 +114,9 @@ IconData sfSymbol(String name) {
     // Added porting Campaign (CampaignView) — GameElement.symbol values for
     // world/stage badges not already covered above.
     case 'drop.fill':
-      return Icons.water_drop;
+      return Icons.water_drop_rounded;
     case 'moon.stars.fill':
-      return Icons.nightlight;
+      return Icons.nightlight_round;
     // Added porting Shop (ShopView) — Arena Ticket pack icon.
     case 'ticket.fill':
       return Icons.confirmation_number;
@@ -128,7 +128,7 @@ IconData sfSymbol(String name) {
     case 'snowflake':
       return Icons.ac_unit;
     case 'leaf.fill':
-      return Icons.eco;
+      return Icons.eco_rounded;
     case 'arrow.triangle.2.circlepath':
       return Icons.autorenew;
     case 'arrowtriangle.up.fill':
@@ -184,6 +184,15 @@ IconData sfSymbol(String name) {
       return Icons.filter_list;
     case 'arrow.down.circle.fill':
       return Icons.arrow_circle_down;
+    // Added porting Friends (FriendsView) — the profile header's friends
+    // entry point, the "not configured" empty state, and the copy-code
+    // button on the friend-code card.
+    case 'person.2.fill':
+      return Icons.people;
+    case 'person.2.slash.fill':
+      return Icons.person_off;
+    case 'doc.on.doc':
+      return Icons.copy;
     default:
       return Icons.circle;
   }

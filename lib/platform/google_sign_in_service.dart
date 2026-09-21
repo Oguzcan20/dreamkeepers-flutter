@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import '../state/account_state.dart';
@@ -35,9 +36,46 @@ class GoogleSignInService {
       final account = await _googleSignIn.signIn();
       if (account == null) return false;
       await accountState.signIn(userID: account.id, displayName: account.displayName);
+      await _linkFirebaseAuth(account);
       return true;
     } catch (_) {
       return false;
+    }
+  }
+
+  /// Upgrades the anonymous Firebase Auth session that `FriendsService`/
+  /// `PromoCodeService` run on into one permanently tied to this Google
+  /// account, keeping the same `uid` — and therefore the same friend code
+  /// and promo-redemption history — so both survive an app reinstall or a
+  /// "delete my account and start over" so long as the player signs back
+  /// in with this same Google account. If this Google account already has
+  /// a *different* Firebase identity (signed in from another device
+  /// before), that pre-existing identity — and whatever friend code/
+  /// history it carries — takes over instead, which is the correct
+  /// behavior: it's what a returning player expects. Best-effort: any
+  /// failure here still leaves the Google Sign-In itself (and
+  /// `AccountState`) successful, just without this durability guarantee.
+  Future<void> _linkFirebaseAuth(GoogleSignInAccount account) async {
+    try {
+      final googleAuth = await account.authentication;
+      final credential = GoogleAuthProvider.credential(
+        idToken: googleAuth.idToken,
+        accessToken: googleAuth.accessToken,
+      );
+      final current = FirebaseAuth.instance.currentUser;
+      if (current != null && current.isAnonymous) {
+        try {
+          await current.linkWithCredential(credential);
+          return;
+        } on FirebaseAuthException catch (e) {
+          if (e.code != 'credential-already-in-use') rethrow;
+          // Falls through to signInWithCredential below, which swaps to
+          // the pre-existing permanent account for this Google identity.
+        }
+      }
+      await FirebaseAuth.instance.signInWithCredential(credential);
+    } catch (_) {
+      // Non-fatal — see doc comment above.
     }
   }
 
