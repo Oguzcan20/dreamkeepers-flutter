@@ -68,7 +68,8 @@ Future<void> main() async {
   // locale never changes mid-session and `MaterialApp` can take a fixed
   // `locale`. `L` gives non-widget code (notifications, reward toasts,
   // catalogs) the same strings.
-  final locale = resolvePreferredLocale(await LocalSaveStore.readPreferredLanguage());
+  final locale =
+      resolvePreferredLocale(await LocalSaveStore.readPreferredLanguage());
   await loadGlobalLocalizations(locale);
   final gameState = await GameState.create(
     platform: FlutterPlatformService(),
@@ -78,7 +79,8 @@ Future<void> main() async {
   );
   final accountState = AccountState();
   await accountState.load();
-  runApp(DreamkeepersApp(gameState: gameState, accountState: accountState, locale: locale));
+  runApp(DreamkeepersApp(
+      gameState: gameState, accountState: accountState, locale: locale));
 }
 
 class DreamkeepersApp extends StatelessWidget {
@@ -103,15 +105,18 @@ class DreamkeepersApp extends StatelessWidget {
         // `platform/google_sign_in_service.dart`. Constructed here (not in
         // `create()`-style factories like GameState) since neither needs
         // async setup before the widget tree exists.
-        ChangeNotifierProvider<GameServicesService>(create: (_) => GameServicesService()),
-        ChangeNotifierProvider<GameLeaderboardService>(create: (_) => GameLeaderboardService()),
+        ChangeNotifierProvider<GameServicesService>(
+            create: (_) => GameServicesService()),
+        ChangeNotifierProvider<GameLeaderboardService>(
+            create: (_) => GameLeaderboardService()),
         Provider<GoogleSignInService>(create: (_) => GoogleSignInService()),
         // 8-digit-code friends (State/FriendsService.swift's counterpart) —
         // see `lib/state/friends_service.dart`'s doc comment.
         ChangeNotifierProvider<FriendsService>(create: (_) => FriendsService()),
         // Developer-configured gift codes — see
         // `lib/state/promo_code_service.dart`'s doc comment.
-        ChangeNotifierProvider<PromoCodeService>(create: (_) => PromoCodeService()),
+        ChangeNotifierProvider<PromoCodeService>(
+            create: (_) => PromoCodeService()),
       ],
       child: MaterialApp(
         title: 'Dreamkeepers',

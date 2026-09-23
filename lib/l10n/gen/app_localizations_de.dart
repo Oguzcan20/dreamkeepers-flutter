@@ -3954,4 +3954,833 @@ class AppLocalizationsDe extends AppLocalizations {
   String friendsReferralRewardReceived(int gold, int gems) {
     return 'Ein Freund hat deinen Code benutzt! +$gold Gold, +$gems Traumjuwelen.';
   }
+
+  @override
+  String get dk_spark_kit_name => 'Funkenwelpe';
+
+  @override
+  String get dk_spark_kit_flavor =>
+      'Geboren im Rollen der Asche eines Traums, der von der letzten Nacht noch glimmt.';
+
+  @override
+  String get dk_spark_kit_ult => 'Glutsprung';
+
+  @override
+  String get dk_spark_kit_ultDesc =>
+      'Ein tollpatschiger, aber feuriger Sprung, der das Ziel versengt.';
+
+  @override
+  String get dk_spark_kit_skill => 'Warmer Biss';
+
+  @override
+  String get dk_spark_kit_skillDesc =>
+      'Ein schneller Biss, der eine leichte Brandspur hinterlässt.';
+
+  @override
+  String get dk_spark_kit_pass => 'Verspielter Funke';
+
+  @override
+  String get dk_spark_kit_passDesc => 'Zu aufgeregt, um langsamer zu werden.';
+
+  @override
+  String get dk_bubble_newt_name => 'Blasenmolch';
+
+  @override
+  String get dk_bubble_newt_flavor =>
+      'Geschlüpft im Gezeitentümpel, wo vergessene Wünsche anspülen.';
+
+  @override
+  String get dk_bubble_newt_ult => 'Blasenschleier';
+
+  @override
+  String get dk_bubble_newt_ultDesc =>
+      'Hüllt das Team in ein Polster aus schwebendem Wasser.';
+
+  @override
+  String get dk_bubble_newt_skill => 'Beruhigende Blase';
+
+  @override
+  String get dk_bubble_newt_skillDesc =>
+      'Lässt eine beruhigende Blase über dem Verbündeten zerplatzen, der sie am meisten braucht.';
+
+  @override
+  String get dk_bubble_newt_pass => 'Schwebende Natur';
+
+  @override
+  String get dk_bubble_newt_passDesc =>
+      'Findet immer einen Weg, oben zu bleiben.';
+
+  @override
+  String get dk_petal_finch_name => 'Blütenfink';
+
+  @override
+  String get dk_petal_finch_flavor =>
+      'Nistet nur in Gärten, an deren Anpflanzung sich niemand erinnert.';
+
+  @override
+  String get dk_petal_finch_ult => 'Blütenregen';
+
+  @override
+  String get dk_petal_finch_ultDesc =>
+      'Überschüttet das Team mit heilenden Blütenblättern.';
+
+  @override
+  String get dk_petal_finch_skill => 'Sanfter Pick';
+
+  @override
+  String get dk_petal_finch_skillDesc =>
+      'Ein liebevoller Pick, der ein Blütenblatt zurücklässt.';
+
+  @override
+  String get dk_petal_finch_pass => 'Weiches Gefieder';
+
+  @override
+  String get dk_petal_finch_passDesc => 'Eine beruhigende Präsenz in der Nähe.';
+
+  @override
+  String get dk_nightcap_moth_name => 'Nachtkappenmotte';
+
+  @override
+  String get dk_nightcap_moth_flavor =>
+      'Umkreist Straßenlaternen, die es in keiner wachen Stadt gibt.';
+
+  @override
+  String get dk_nightcap_moth_ult => 'Mondlicht-Taumel';
+
+  @override
+  String get dk_nightcap_moth_ultDesc =>
+      'Verstreut leuchtenden Staub, der die Sinne des Feindes verwirrt.';
+
+  @override
+  String get dk_nightcap_moth_skill => 'Staubflattern';
+
+  @override
+  String get dk_nightcap_moth_skillDesc =>
+      'Ein desorientierendes Flattern aus blassem Flügelstaub.';
+
+  @override
+  String get dk_nightcap_moth_pass => 'Nächtliches Treiben';
+
+  @override
+  String get dk_nightcap_moth_passDesc =>
+      'Nie ganz dort, wo man sie zuletzt gesehen hat.';
+
+  @override
+  String get dk_glimmer_vole_name => 'Glimmerwühler';
+
+  @override
+  String get dk_glimmer_vole_flavor =>
+      'Gräbt seine Baue in den Zwischenräumen fallender Sterne.';
+
+  @override
+  String get dk_glimmer_vole_ult => 'Bauwache';
+
+  @override
+  String get dk_glimmer_vole_ultDesc =>
+      'Gräbt sich ein und stemmt sich gegen den kommenden Schlag.';
+
+  @override
+  String get dk_glimmer_vole_skill => 'Sturer Stand';
+
+  @override
+  String get dk_glimmer_vole_skillDesc =>
+      'Stemmt die Pfoten in den Boden und weicht nicht.';
+
+  @override
+  String get dk_glimmer_vole_pass => 'Zähes kleines Ding';
+
+  @override
+  String get dk_glimmer_vole_passDesc => 'Überraschend schwer umzuwerfen.';
+
+  @override
+  String get dk_cinderwing_broodmother_name => 'Glutschwingen-Brutmutter';
+
+  @override
+  String get dk_cinderwing_broodmother_flavor =>
+      'Bewacht ihr Gelege aus Glut so wild wie jeder Drache sein Gold.';
+
+  @override
+  String get dk_cinderwing_broodmother_ult => 'Glutgelege';
+
+  @override
+  String get dk_cinderwing_broodmother_ultDesc =>
+      'Schützt das Team mit einem Aufgebot schützender Funken.';
+
+  @override
+  String get dk_cinderwing_broodmother_skill => 'Wärmender Flügelschlag';
+
+  @override
+  String get dk_cinderwing_broodmother_skillDesc =>
+      'Fächelt eine sanfte Hitzewelle über einen Verbündeten.';
+
+  @override
+  String get dk_cinderwing_broodmother_pass => 'Nährende Wärme';
+
+  @override
+  String get dk_cinderwing_broodmother_passDesc =>
+      'Hält das ganze Nest ein wenig wärmer.';
+
+  @override
+  String get dk_coral_duchess_name => 'Korallenherzogin';
+
+  @override
+  String get dk_coral_duchess_flavor =>
+      'Das Riff weicht für sie, wie Menschenmengen vor Königen weichen.';
+
+  @override
+  String get dk_coral_duchess_ult => 'Gezeitenhof';
+
+  @override
+  String get dk_coral_duchess_ultDesc =>
+      'Ruft den Segen des Riffs über das ganze Team herab.';
+
+  @override
+  String get dk_coral_duchess_skill => 'Perlengrazie';
+
+  @override
+  String get dk_coral_duchess_skillDesc =>
+      'Ein anmutiger Puls heilender Strömung.';
+
+  @override
+  String get dk_coral_duchess_pass => 'Riff-Adel';
+
+  @override
+  String get dk_coral_duchess_passDesc =>
+      'Befiehlt stillen Respekt selbst unter Wasser.';
+
+  @override
+  String get dk_moss_tortoise_name => 'Moosschildkröte';
+
+  @override
+  String get dk_moss_tortoise_flavor =>
+      'Manche sagen, der Wald sei um sie herumgewachsen, nicht umgekehrt.';
+
+  @override
+  String get dk_moss_tortoise_ult => 'Uralter Panzerschlag';
+
+  @override
+  String get dk_moss_tortoise_ultDesc =>
+      'Ein langsames, aber unaufhaltsames Gewicht kracht herab.';
+
+  @override
+  String get dk_moss_tortoise_skill => 'Panzerwand';
+
+  @override
+  String get dk_moss_tortoise_skillDesc =>
+      'Zieht sich hinter einen unnachgiebigen, moosbewachsenen Panzer zurück.';
+
+  @override
+  String get dk_moss_tortoise_pass => 'Lebende Rüstung';
+
+  @override
+  String get dk_moss_tortoise_passDesc =>
+      'Das Moos wächst hier schon sehr lange.';
+
+  @override
+  String get dk_moonweb_weaver_name => 'Mondnetz-Weberin';
+
+  @override
+  String get dk_moonweb_weaver_flavor =>
+      'Webt ihre Netze aus Fäden, gesponnen aus geliehenem Mondlicht.';
+
+  @override
+  String get dk_moonweb_weaver_ult => 'Seidene Finsternis';
+
+  @override
+  String get dk_moonweb_weaver_ultDesc =>
+      'Hüllt den Feind in ein Netz aus blassem Mondlicht.';
+
+  @override
+  String get dk_moonweb_weaver_skill => 'Fadenschlinge';
+
+  @override
+  String get dk_moonweb_weaver_skillDesc =>
+      'Ein klebriger Mondlichtfaden, der den Feind verlangsamt.';
+
+  @override
+  String get dk_moonweb_weaver_pass => 'Geduldige Weberin';
+
+  @override
+  String get dk_moonweb_weaver_passDesc => 'Hat es nie eilig zuzuschlagen.';
+
+  @override
+  String get dk_comet_hatchling_name => 'Kometenschlüpfling';
+
+  @override
+  String get dk_comet_hatchling_flavor =>
+      'Geschlüpft aus einem Ei, das vom Nachthimmel fiel und nie ganz abkühlte.';
+
+  @override
+  String get dk_comet_hatchling_ult => 'Kometeneinschlag';
+
+  @override
+  String get dk_comet_hatchling_ultDesc =>
+      'Stürzt sich hinab, einen glühenden Sternenschweif hinter sich herziehend.';
+
+  @override
+  String get dk_comet_hatchling_skill => 'Schweifhieb-Funke';
+
+  @override
+  String get dk_comet_hatchling_skillDesc =>
+      'Ein eifriger Hieb, der eine Funkenspur hinterlässt.';
+
+  @override
+  String get dk_comet_hatchling_pass => 'Rastlose Energie';
+
+  @override
+  String get dk_comet_hatchling_passDesc => 'Kann kaum stillsitzen.';
+
+  @override
+  String get dk_cinder_jackal_name => 'Glutschakal';
+
+  @override
+  String get dk_cinder_jackal_flavor =>
+      'Läuft in Rudeln, die versengte Pfotenabdrücke über die Aschefelder hinterlassen.';
+
+  @override
+  String get dk_cinder_jackal_ult => 'Aschenausfall';
+
+  @override
+  String get dk_cinder_jackal_ultDesc =>
+      'Ein schneller, brennender Ausfallschritt, gezielt auf die Kehle.';
+
+  @override
+  String get dk_cinder_jackal_skill => 'Sengender Biss';
+
+  @override
+  String get dk_cinder_jackal_skillDesc =>
+      'Ein schneller Biss, umhüllt von schwacher Flamme.';
+
+  @override
+  String get dk_cinder_jackal_pass => 'Rudelinstinkt';
+
+  @override
+  String get dk_cinder_jackal_passDesc =>
+      'Jagt schärfer, wenn die Chancen gegen ihn stehen.';
+
+  @override
+  String get dk_reef_diver_otter_name => 'Riff-Taucherotter';
+
+  @override
+  String get dk_reef_diver_otter_flavor =>
+      'Trägt einen Beutel voller Perlen, eine für jeden Freund, den sie je geheilt hat.';
+
+  @override
+  String get dk_reef_diver_otter_ult => 'Tiefe Perlenflut';
+
+  @override
+  String get dk_reef_diver_otter_ultDesc =>
+      'Taucht mit einer Perle auf, die jede Wunde in Reichweite heilt.';
+
+  @override
+  String get dk_reef_diver_otter_skill => 'Korallensalbe';
+
+  @override
+  String get dk_reef_diver_otter_skillDesc =>
+      'Drückt eine warme Korallensalbe in die Wunde eines Verbündeten.';
+
+  @override
+  String get dk_reef_diver_otter_pass => 'Sanfte Pfoten';
+
+  @override
+  String get dk_reef_diver_otter_passDesc =>
+      'Behandelt jede Wunde mit Sorgfalt.';
+
+  @override
+  String get dk_thorn_queen_mantis_name => 'Dornenkönigin-Mantis';
+
+  @override
+  String get dk_thorn_queen_mantis_flavor =>
+      'Regiert ihren Dornenhof mit einer Geduld, die nichts zweimal überlebt.';
+
+  @override
+  String get dk_thorn_queen_mantis_ult => 'Dornenhof';
+
+  @override
+  String get dk_thorn_queen_mantis_ultDesc =>
+      'Dornige Ranken schießen um den Feind hervor und fesseln ihn.';
+
+  @override
+  String get dk_thorn_queen_mantis_skill => 'Königlicher Hieb';
+
+  @override
+  String get dk_thorn_queen_mantis_skillDesc =>
+      'Ein präziser, gelassener Hieb aus einer klingenscharfen Klaue.';
+
+  @override
+  String get dk_thorn_queen_mantis_pass => 'Dornige Haltung';
+
+  @override
+  String get dk_thorn_queen_mantis_passDesc => 'Verliert nie die Fassung.';
+
+  @override
+  String get dk_silver_vixen_name => 'Silberfähe';
+
+  @override
+  String get dk_silver_vixen_flavor =>
+      'Handelt mit Gefälligkeiten, geliehen im Mondlicht, nie auf dieselbe Weise zurückgezahlt.';
+
+  @override
+  String get dk_silver_vixen_ult => 'Silberzahn';
+
+  @override
+  String get dk_silver_vixen_ultDesc =>
+      'Ein mondlichter Hieb, gezielt auf den einen wunden Punkt.';
+
+  @override
+  String get dk_silver_vixen_skill => 'Listige Finte';
+
+  @override
+  String get dk_silver_vixen_skillDesc =>
+      'Duckt sich mit einem schnellen, täuschenden Hieb hinein.';
+
+  @override
+  String get dk_silver_vixen_pass => 'Mondlichte List';
+
+  @override
+  String get dk_silver_vixen_passDesc => 'Immer einen Schritt voraus.';
+
+  @override
+  String get dk_comet_duelist_hawk_name => 'Kometenduellant-Falke';
+
+  @override
+  String get dk_comet_duelist_hawk_flavor =>
+      'Fordert das Schnellste heraus, was durch seinen Himmel fliegt.';
+
+  @override
+  String get dk_comet_duelist_hawk_ult => 'Sternenfall-Sturz';
+
+  @override
+  String get dk_comet_duelist_hawk_ultDesc =>
+      'Ein reißender Sturzflug, der Sternschnuppen hinter sich herzieht.';
+
+  @override
+  String get dk_comet_duelist_hawk_skill => 'Klingenklaue';
+
+  @override
+  String get dk_comet_duelist_hawk_skillDesc =>
+      'Klauen, die schneiden wie gezogener Stahl.';
+
+  @override
+  String get dk_comet_duelist_hawk_pass => 'Duellinstinkt';
+
+  @override
+  String get dk_comet_duelist_hawk_passDesc => 'Findet immer die Lücke.';
+
+  @override
+  String get dk_cinderhawk_matriarch_name => 'Glutfalken-Matriarchin';
+
+  @override
+  String get dk_cinderhawk_matriarch_flavor =>
+      'Jeder Glutfalke in diesen Bergen gehorcht ihrem Ruf.';
+
+  @override
+  String get dk_cinderhawk_matriarch_ult => 'Glutschwarm-Ruf';
+
+  @override
+  String get dk_cinderhawk_matriarch_ultDesc =>
+      'Beschwört einen kreisenden Sturm kleinerer Glutfalken, die den Feind bedrängen.';
+
+  @override
+  String get dk_cinderhawk_matriarch_skill => 'Befehlender Schrei';
+
+  @override
+  String get dk_cinderhawk_matriarch_skillDesc =>
+      'Ein scharfer Schrei, der die Nerven des Feindes erschüttert.';
+
+  @override
+  String get dk_cinderhawk_matriarch_pass => 'Wache der Matriarchin';
+
+  @override
+  String get dk_cinderhawk_matriarch_passDesc => 'Nichts entgeht ihr.';
+
+  @override
+  String get dk_riptide_marauder_name => 'Strömungsplünderer';
+
+  @override
+  String get dk_riptide_marauder_flavor =>
+      'Taucht nur auf, wenn der Sturm laut genug ist, das Geräusch zu übertönen.';
+
+  @override
+  String get dk_riptide_marauder_ult => 'Sturmflut-Biss';
+
+  @override
+  String get dk_riptide_marauder_ultDesc =>
+      'Ein krachender Biss, getimt mit dem Höhepunkt des Sturms.';
+
+  @override
+  String get dk_riptide_marauder_skill => 'Strömungsschnapp';
+
+  @override
+  String get dk_riptide_marauder_skillDesc =>
+      'Ein schneller Hieb, der die Strömung mit sich reißt.';
+
+  @override
+  String get dk_riptide_marauder_pass => 'Sturmgeboren';
+
+  @override
+  String get dk_riptide_marauder_passDesc =>
+      'Kämpft am härtesten, wenn die See am rauesten ist.';
+
+  @override
+  String get dk_hollow_marchioness_owl_name => 'Hohle Marquise-Eule';
+
+  @override
+  String get dk_hollow_marchioness_owl_flavor =>
+      'Manche Nächte hält man sie für einen Schatten, den der Mond zu bewegen vergaß.';
+
+  @override
+  String get dk_hollow_marchioness_owl_ult => 'Verschleierte Wache';
+
+  @override
+  String get dk_hollow_marchioness_owl_ultDesc =>
+      'Hüllt das Team in einen schützenden Mondnebel.';
+
+  @override
+  String get dk_hollow_marchioness_owl_skill => 'Geflüsterter Schutz';
+
+  @override
+  String get dk_hollow_marchioness_owl_skillDesc =>
+      'Ein leises Wort des Schutzes für den Verbündeten in größter Gefahr.';
+
+  @override
+  String get dk_hollow_marchioness_owl_pass => 'Stille Trauer';
+
+  @override
+  String get dk_hollow_marchioness_owl_passDesc =>
+      'Wacht über das Team, ohne je darum gebeten zu werden.';
+
+  @override
+  String get dk_magma_matron_name => 'Magma-Matrone';
+
+  @override
+  String get dk_magma_matron_flavor =>
+      'Jeder Vulkan auf dieser Seite des Gebirges gehorcht ihr, früher oder später.';
+
+  @override
+  String get dk_magma_matron_ult => 'Glühendes Bollwerk';
+
+  @override
+  String get dk_magma_matron_ultDesc =>
+      'Richtet sich auf als eine Wand aus rissigem, glühendem Gestein.';
+
+  @override
+  String get dk_magma_matron_skill => 'Erhitzter Schlag';
+
+  @override
+  String get dk_magma_matron_skillDesc =>
+      'Ein gelassener, aber zermalmender Schlag.';
+
+  @override
+  String get dk_magma_matron_pass => 'Rissige Haut';
+
+  @override
+  String get dk_magma_matron_passDesc =>
+      'Die Risse leuchten heller, je länger sie kämpft.';
+
+  @override
+  String get dk_abyss_duchess_jelly_name => 'Abgrund-Herzogin-Qualle';
+
+  @override
+  String get dk_abyss_duchess_jelly_flavor =>
+      'Regiert einen Hof aus Anglerfischen, die nie die Sonne gesehen haben.';
+
+  @override
+  String get dk_abyss_duchess_jelly_ult => 'Abgrundblüte';
+
+  @override
+  String get dk_abyss_duchess_jelly_ultDesc =>
+      'Entfaltet leuchtende Tentakel, die jeden Feind in Reichweite fesseln.';
+
+  @override
+  String get dk_abyss_duchess_jelly_skill => 'Treibender Stich';
+
+  @override
+  String get dk_abyss_duchess_jelly_skillDesc =>
+      'Ein langsamer, gezielter Stich aus der Tiefe.';
+
+  @override
+  String get dk_abyss_duchess_jelly_pass => 'Tiefe Ruhe';
+
+  @override
+  String get dk_abyss_duchess_jelly_passDesc =>
+      'Hier unten hat es niemand eilig.';
+
+  @override
+  String get dk_thornvine_baroness_name => 'Dornranken-Baronin';
+
+  @override
+  String get dk_thornvine_baroness_flavor =>
+      'Der Hain, den sie bewacht, ist älter als der Name Dream Haven selbst.';
+
+  @override
+  String get dk_thornvine_baroness_ult => 'Umarmung des Hains';
+
+  @override
+  String get dk_thornvine_baroness_ultDesc =>
+      'Lebende Ranken erheben sich, um das ganze Team zu schützen.';
+
+  @override
+  String get dk_thornvine_baroness_skill => 'Dornensegen';
+
+  @override
+  String get dk_thornvine_baroness_skillDesc =>
+      'Umhüllt einen Verbündeten mit stärkenden Dornen.';
+
+  @override
+  String get dk_thornvine_baroness_pass => 'Uralter Hain';
+
+  @override
+  String get dk_thornvine_baroness_passDesc =>
+      'Tief genug verwurzelt, um alles zu überdauern.';
+
+  @override
+  String get dk_umbral_countess_raven_name => 'Schatten-Gräfin-Rabe';
+
+  @override
+  String get dk_umbral_countess_raven_flavor =>
+      'Jedes Gerücht in Dream Haven erreicht am Ende zuerst sie.';
+
+  @override
+  String get dk_umbral_countess_raven_ult => 'Finsternis-Herabkunft';
+
+  @override
+  String get dk_umbral_countess_raven_ultDesc =>
+      'Löscht das Licht um den Feind vollständig aus.';
+
+  @override
+  String get dk_umbral_countess_raven_skill => 'Schattenpick';
+
+  @override
+  String get dk_umbral_countess_raven_skillDesc =>
+      'Ein präziser Hieb aus wirbelndem Nebel.';
+
+  @override
+  String get dk_umbral_countess_raven_pass => 'Kalte Fassung';
+
+  @override
+  String get dk_umbral_countess_raven_passDesc => 'Erhebt nie die Stimme.';
+
+  @override
+  String get dk_star_warden_name => 'Sternenwächter';
+
+  @override
+  String get dk_star_warden_flavor =>
+      'Steht jede Nacht auf demselben Grat Wache und wartet auf eine Bedrohung, die noch nicht gekommen ist.';
+
+  @override
+  String get dk_star_warden_ult => 'Himmlische Wache';
+
+  @override
+  String get dk_star_warden_ultDesc =>
+      'Stemmt die Hufe in den Boden und ruft einen Schild aus Sternenlicht herab.';
+
+  @override
+  String get dk_star_warden_skill => 'Wächteransturm';
+
+  @override
+  String get dk_star_warden_skillDesc =>
+      'Ein gewichtiger Ansturm, gemacht, um gespürt, nicht ausgewichen zu werden.';
+
+  @override
+  String get dk_star_warden_pass => 'Wachsamer Wächter';
+
+  @override
+  String get dk_star_warden_passDesc =>
+      'Hat auf diesem Grat gestanden, seit es den Feldzug noch nicht gab.';
+
+  @override
+  String get dk_molten_behemoth_name => 'Geschmolzener Behemoth';
+
+  @override
+  String get dk_molten_behemoth_flavor =>
+      'Jeder Vulkan, unter dem er schläft, bricht irgendwann planmäßig aus.';
+
+  @override
+  String get dk_molten_behemoth_ult => 'Eruptionsstampfer';
+
+  @override
+  String get dk_molten_behemoth_ultDesc =>
+      'Ein erdbebenartiger Stampfer, der den Boden aufreißt.';
+
+  @override
+  String get dk_molten_behemoth_skill => 'Lavazermalmung';
+
+  @override
+  String get dk_molten_behemoth_skillDesc => 'Ein schwerer, gelassener Schlag.';
+
+  @override
+  String get dk_molten_behemoth_pass => 'Magmakern';
+
+  @override
+  String get dk_molten_behemoth_passDesc =>
+      'Wird heißer, je länger der Kampf dauert.';
+
+  @override
+  String get dk_tempest_siren_orca_name => 'Sturmsirenen-Orca';
+
+  @override
+  String get dk_tempest_siren_orca_flavor =>
+      'Seeleute sagen, ein Sturm zieht auf, sobald ihr Gesang die Küste erreicht.';
+
+  @override
+  String get dk_tempest_siren_orca_ult => 'Mahlstrom-Durchbruch';
+
+  @override
+  String get dk_tempest_siren_orca_ultDesc =>
+      'Durchbricht die Oberfläche mit der vollen Kraft des Sturms im Rücken.';
+
+  @override
+  String get dk_tempest_siren_orca_skill => 'Sturmpeitsche';
+
+  @override
+  String get dk_tempest_siren_orca_skillDesc =>
+      'Ein knisternder Hieb, geladen mit Sturmenergie.';
+
+  @override
+  String get dk_tempest_siren_orca_pass => 'Sturmruferin';
+
+  @override
+  String get dk_tempest_siren_orca_passDesc =>
+      'Die See wird rauer, wo immer sie schwimmt.';
+
+  @override
+  String get dk_sylvan_matriarch_elk_name => 'Waldmatriarchin-Elch';
+
+  @override
+  String get dk_sylvan_matriarch_elk_flavor =>
+      'Jeder Baum im heiligen Hain ist, auf die eine oder andere Weise, eines ihrer Kinder.';
+
+  @override
+  String get dk_sylvan_matriarch_elk_ult => 'Blühendes Heiligtum';
+
+  @override
+  String get dk_sylvan_matriarch_elk_ultDesc =>
+      'Der ganze Hain erblüht auf einmal und heilt jeden Verbündeten.';
+
+  @override
+  String get dk_sylvan_matriarch_elk_skill => 'Saftsegen';
+
+  @override
+  String get dk_sylvan_matriarch_elk_skillDesc =>
+      'Ein langsames Rinnsal heilenden Safts für den Verbündeten, der es am meisten braucht.';
+
+  @override
+  String get dk_sylvan_matriarch_elk_pass => 'Uraltes Wachstum';
+
+  @override
+  String get dk_sylvan_matriarch_elk_passDesc =>
+      'Wacht über diesen Hain, seit er ein einzelner Samen war.';
+
+  @override
+  String get dk_leviathan_consort_name => 'Leviathan-Gemahl';
+
+  @override
+  String get dk_leviathan_consort_flavor =>
+      'Wo Leviathan-Königin die Oberflächenstürme regiert, herrscht ihr Gemahl über alles darunter.';
+
+  @override
+  String get dk_leviathan_consort_ult => 'Abgrundwindung';
+
+  @override
+  String get dk_leviathan_consort_ultDesc =>
+      'Windet sich um das ganze Team, eine unzerbrechliche Wand aus Schuppen.';
+
+  @override
+  String get dk_leviathan_consort_skill => 'Zermalmende Welle';
+
+  @override
+  String get dk_leviathan_consort_skillDesc =>
+      'Eine gelassene, unaufhaltsame Welle der Wucht.';
+
+  @override
+  String get dk_leviathan_consort_pass => 'Ungebrochene Tiefen';
+
+  @override
+  String get dk_leviathan_consort_passDesc =>
+      'Hat jeden Sturm überdauert, den der Ozean je entfesselt hat.';
+
+  @override
+  String get dk_starcourt_sovereign_whale_name => 'Sternenhof-Souverän-Wal';
+
+  @override
+  String get dk_starcourt_sovereign_whale_flavor =>
+      'Jedes Sternbild am Himmel von Dream Haven soll ihm irgendwo hinterherziehen.';
+
+  @override
+  String get dk_starcourt_sovereign_whale_ult => 'Nebelflut';
+
+  @override
+  String get dk_starcourt_sovereign_whale_ultDesc =>
+      'Hinterlässt eine Spur aus Sternenlicht, die das ganze Team heilt und stärkt.';
+
+  @override
+  String get dk_starcourt_sovereign_whale_skill => 'Sternbild-Puls';
+
+  @override
+  String get dk_starcourt_sovereign_whale_skillDesc =>
+      'Ein Puls aus Sternenlicht, gezielt auf den Verbündeten, der es am meisten braucht.';
+
+  @override
+  String get dk_starcourt_sovereign_whale_pass => 'Himmlisches Kielwasser';
+
+  @override
+  String get dk_starcourt_sovereign_whale_passDesc =>
+      'Sterne scheinen ihm zu folgen, wohin er auch treibt.';
+
+  @override
+  String get dk_midnight_sovereign_name => 'Mitternachts-Souverän';
+
+  @override
+  String get dk_midnight_sovereign_flavor =>
+      'Jeder Schatten in Dream Haven soll sich verneigen, wenn die Finsternis vorüberzieht.';
+
+  @override
+  String get dk_midnight_sovereign_ult => 'Sichelfinsternis';
+
+  @override
+  String get dk_midnight_sovereign_ultDesc =>
+      'Ein einziger Hieb, der die Welt des Feindes in Dunkelheit taucht.';
+
+  @override
+  String get dk_midnight_sovereign_skill => 'Ruf des Souveräns';
+
+  @override
+  String get dk_midnight_sovereign_skillDesc =>
+      'Ein befehlender Ruf, der den Feind erstarren lässt.';
+
+  @override
+  String get dk_midnight_sovereign_pass => 'Herrscher der Dunkelheit';
+
+  @override
+  String get dk_midnight_sovereign_passDesc =>
+      'Die Nacht selbst scheint zu antworten, wenn er sich bewegt.';
+
+  @override
+  String get dk_emberfall_queen_name => 'Glutfall-Königin';
+
+  @override
+  String get dk_emberfall_queen_flavor =>
+      'Ember Phoenix war einst ihr Herold. Jetzt ist der Herold eine Legende, und sie ist die Flamme, die er versprach.';
+
+  @override
+  String get dk_emberfall_queen_ult => 'Zweite Sonne';
+
+  @override
+  String get dk_emberfall_queen_ultDesc =>
+      'Bricht in einen Feuersturm aus, hell genug, um für einen Sonnenaufgang gehalten zu werden.';
+
+  @override
+  String get dk_emberfall_queen_skill => 'Phönixklaue';
+
+  @override
+  String get dk_emberfall_queen_skillDesc =>
+      'Ein einzelner brennender Hieb, umhüllt von lebendiger Flamme.';
+
+  @override
+  String get dk_emberfall_queen_pass => 'Unsterbliche Glut';
+
+  @override
+  String get dk_emberfall_queen_passDesc =>
+      'Irgendwo in der Asche überlebt immer eine einzelne Glut.';
 }

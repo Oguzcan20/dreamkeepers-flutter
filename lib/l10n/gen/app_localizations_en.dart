@@ -3923,4 +3923,831 @@ class AppLocalizationsEn extends AppLocalizations {
   String friendsReferralRewardReceived(int gold, int gems) {
     return 'A friend used your code! +$gold Gold, +$gems Dream Gems.';
   }
+
+  @override
+  String get dk_spark_kit_name => 'Spark Kit';
+
+  @override
+  String get dk_spark_kit_flavor =>
+      'Born rolling in the ash of a dream still smoldering from the night before.';
+
+  @override
+  String get dk_spark_kit_ult => 'Ember Pounce';
+
+  @override
+  String get dk_spark_kit_ultDesc =>
+      'A clumsy but fiery pounce that singes the target.';
+
+  @override
+  String get dk_spark_kit_skill => 'Warm Nip';
+
+  @override
+  String get dk_spark_kit_skillDesc =>
+      'A quick nip that leaves a faint scorch mark.';
+
+  @override
+  String get dk_spark_kit_pass => 'Playful Spark';
+
+  @override
+  String get dk_spark_kit_passDesc => 'Too excited to slow down.';
+
+  @override
+  String get dk_bubble_newt_name => 'Bubble Newt';
+
+  @override
+  String get dk_bubble_newt_flavor =>
+      'Hatched in the tide pool where forgotten wishes wash ashore.';
+
+  @override
+  String get dk_bubble_newt_ult => 'Bubble Veil';
+
+  @override
+  String get dk_bubble_newt_ultDesc =>
+      'Wraps the team in a cushion of buoyant water.';
+
+  @override
+  String get dk_bubble_newt_skill => 'Soothing Bubble';
+
+  @override
+  String get dk_bubble_newt_skillDesc =>
+      'Pops a calming bubble over the ally who needs it.';
+
+  @override
+  String get dk_bubble_newt_pass => 'Buoyant Nature';
+
+  @override
+  String get dk_bubble_newt_passDesc => 'Always finds a way to stay afloat.';
+
+  @override
+  String get dk_petal_finch_name => 'Petal Finch';
+
+  @override
+  String get dk_petal_finch_flavor =>
+      'Nests only in gardens that no one remembers planting.';
+
+  @override
+  String get dk_petal_finch_ult => 'Blossom Shower';
+
+  @override
+  String get dk_petal_finch_ultDesc =>
+      'Showers the team in restorative petals.';
+
+  @override
+  String get dk_petal_finch_skill => 'Gentle Peck';
+
+  @override
+  String get dk_petal_finch_skillDesc =>
+      'A caring peck that leaves a petal behind.';
+
+  @override
+  String get dk_petal_finch_pass => 'Soft Feathers';
+
+  @override
+  String get dk_petal_finch_passDesc => 'A calming presence nearby.';
+
+  @override
+  String get dk_nightcap_moth_name => 'Nightcap Moth';
+
+  @override
+  String get dk_nightcap_moth_flavor =>
+      'Circles streetlights that exist in no waking city.';
+
+  @override
+  String get dk_nightcap_moth_ult => 'Moonlit Daze';
+
+  @override
+  String get dk_nightcap_moth_ultDesc =>
+      'Scatters glowing dust that muddles the enemy\'s senses.';
+
+  @override
+  String get dk_nightcap_moth_skill => 'Dust Flutter';
+
+  @override
+  String get dk_nightcap_moth_skillDesc =>
+      'A disorienting flutter of pale wingdust.';
+
+  @override
+  String get dk_nightcap_moth_pass => 'Nocturnal Drift';
+
+  @override
+  String get dk_nightcap_moth_passDesc => 'Never quite where you last saw it.';
+
+  @override
+  String get dk_glimmer_vole_name => 'Glimmer Vole';
+
+  @override
+  String get dk_glimmer_vole_flavor =>
+      'Digs its burrows in the spaces between falling stars.';
+
+  @override
+  String get dk_glimmer_vole_ult => 'Burrow Guard';
+
+  @override
+  String get dk_glimmer_vole_ultDesc =>
+      'Digs in and braces against the coming blow.';
+
+  @override
+  String get dk_glimmer_vole_skill => 'Stubborn Stance';
+
+  @override
+  String get dk_glimmer_vole_skillDesc =>
+      'Plants its feet and refuses to budge.';
+
+  @override
+  String get dk_glimmer_vole_pass => 'Sturdy Little Thing';
+
+  @override
+  String get dk_glimmer_vole_passDesc => 'Surprisingly hard to knock over.';
+
+  @override
+  String get dk_cinderwing_broodmother_name => 'Cinderwing Broodmother';
+
+  @override
+  String get dk_cinderwing_broodmother_flavor =>
+      'Guards her clutch of embers as fiercely as any dragon guards gold.';
+
+  @override
+  String get dk_cinderwing_broodmother_ult => 'Ember Clutch';
+
+  @override
+  String get dk_cinderwing_broodmother_ultDesc =>
+      'Shields the team with a rally of protective sparks.';
+
+  @override
+  String get dk_cinderwing_broodmother_skill => 'Warming Wingbeat';
+
+  @override
+  String get dk_cinderwing_broodmother_skillDesc =>
+      'Fans a wave of gentle heat over an ally.';
+
+  @override
+  String get dk_cinderwing_broodmother_pass => 'Nurturing Heat';
+
+  @override
+  String get dk_cinderwing_broodmother_passDesc =>
+      'Keeps the whole nest a little warmer.';
+
+  @override
+  String get dk_coral_duchess_name => 'Coral Duchess';
+
+  @override
+  String get dk_coral_duchess_flavor =>
+      'The reef parts for her the way crowds part for royalty.';
+
+  @override
+  String get dk_coral_duchess_ult => 'Tidal Court';
+
+  @override
+  String get dk_coral_duchess_ultDesc =>
+      'Calls the reef\'s blessing down on the whole team.';
+
+  @override
+  String get dk_coral_duchess_skill => 'Pearl Grace';
+
+  @override
+  String get dk_coral_duchess_skillDesc =>
+      'A graceful pulse of restorative current.';
+
+  @override
+  String get dk_coral_duchess_pass => 'Reef Royalty';
+
+  @override
+  String get dk_coral_duchess_passDesc =>
+      'Commands quiet respect even underwater.';
+
+  @override
+  String get dk_moss_tortoise_name => 'Moss Tortoise';
+
+  @override
+  String get dk_moss_tortoise_flavor =>
+      'Some say the forest grew around it, not the other way around.';
+
+  @override
+  String get dk_moss_tortoise_ult => 'Ancient Shell Slam';
+
+  @override
+  String get dk_moss_tortoise_ultDesc =>
+      'A slow but immovable weight comes crashing down.';
+
+  @override
+  String get dk_moss_tortoise_skill => 'Shell Wall';
+
+  @override
+  String get dk_moss_tortoise_skillDesc =>
+      'Tucks in behind an unyielding mossy shell.';
+
+  @override
+  String get dk_moss_tortoise_pass => 'Living Armor';
+
+  @override
+  String get dk_moss_tortoise_passDesc =>
+      'The moss has been growing for a very long time.';
+
+  @override
+  String get dk_moonweb_weaver_name => 'Moonweb Weaver';
+
+  @override
+  String get dk_moonweb_weaver_flavor =>
+      'Weaves her webs from thread spun out of borrowed moonlight.';
+
+  @override
+  String get dk_moonweb_weaver_ult => 'Silken Eclipse';
+
+  @override
+  String get dk_moonweb_weaver_ultDesc =>
+      'Wraps the enemy in a web of pale moonlight.';
+
+  @override
+  String get dk_moonweb_weaver_skill => 'Thread Snare';
+
+  @override
+  String get dk_moonweb_weaver_skillDesc =>
+      'A sticky strand of moonlight thread that slows the foe.';
+
+  @override
+  String get dk_moonweb_weaver_pass => 'Patient Weaver';
+
+  @override
+  String get dk_moonweb_weaver_passDesc => 'Never in a hurry to strike.';
+
+  @override
+  String get dk_comet_hatchling_name => 'Comet Hatchling';
+
+  @override
+  String get dk_comet_hatchling_flavor =>
+      'Hatched from an egg that fell out of the night sky and never quite cooled.';
+
+  @override
+  String get dk_comet_hatchling_ult => 'Comet Crash';
+
+  @override
+  String get dk_comet_hatchling_ultDesc =>
+      'Dives in trailing a blazing tail of starlight.';
+
+  @override
+  String get dk_comet_hatchling_skill => 'Tailwhip Spark';
+
+  @override
+  String get dk_comet_hatchling_skillDesc =>
+      'An eager swipe that leaves a trail of sparks.';
+
+  @override
+  String get dk_comet_hatchling_pass => 'Restless Energy';
+
+  @override
+  String get dk_comet_hatchling_passDesc => 'Can barely sit still.';
+
+  @override
+  String get dk_cinder_jackal_name => 'Cinder Jackal';
+
+  @override
+  String get dk_cinder_jackal_flavor =>
+      'Runs in packs that leave scorched pawprints across the ash fields.';
+
+  @override
+  String get dk_cinder_jackal_ult => 'Ashen Lunge';
+
+  @override
+  String get dk_cinder_jackal_ultDesc =>
+      'A fast, burning lunge aimed at the throat.';
+
+  @override
+  String get dk_cinder_jackal_skill => 'Scorching Snap';
+
+  @override
+  String get dk_cinder_jackal_skillDesc =>
+      'A quick bite wreathed in low flame.';
+
+  @override
+  String get dk_cinder_jackal_pass => 'Pack Instinct';
+
+  @override
+  String get dk_cinder_jackal_passDesc =>
+      'Hunts sharper when the odds are against it.';
+
+  @override
+  String get dk_reef_diver_otter_name => 'Reef Diver Otter';
+
+  @override
+  String get dk_reef_diver_otter_flavor =>
+      'Keeps a pouch of pearls, one for every friend it\'s ever mended.';
+
+  @override
+  String get dk_reef_diver_otter_ult => 'Deep Pearl Tide';
+
+  @override
+  String get dk_reef_diver_otter_ultDesc =>
+      'Surfaces with a pearl that mends every wound in reach.';
+
+  @override
+  String get dk_reef_diver_otter_skill => 'Coral Salve';
+
+  @override
+  String get dk_reef_diver_otter_skillDesc =>
+      'Presses a warm coral salve into an ally\'s wound.';
+
+  @override
+  String get dk_reef_diver_otter_pass => 'Gentle Paws';
+
+  @override
+  String get dk_reef_diver_otter_passDesc => 'Handles every wound with care.';
+
+  @override
+  String get dk_thorn_queen_mantis_name => 'Thorn Queen Mantis';
+
+  @override
+  String get dk_thorn_queen_mantis_flavor =>
+      'Rules her bramble court with a patience nothing survives testing twice.';
+
+  @override
+  String get dk_thorn_queen_mantis_ult => 'Bramble Court';
+
+  @override
+  String get dk_thorn_queen_mantis_ultDesc =>
+      'Thorned vines erupt around the enemy, binding it fast.';
+
+  @override
+  String get dk_thorn_queen_mantis_skill => 'Regal Strike';
+
+  @override
+  String get dk_thorn_queen_mantis_skillDesc =>
+      'A precise, unhurried strike from a blade-sharp limb.';
+
+  @override
+  String get dk_thorn_queen_mantis_pass => 'Thorned Poise';
+
+  @override
+  String get dk_thorn_queen_mantis_passDesc =>
+      'Never once loses her composure.';
+
+  @override
+  String get dk_silver_vixen_name => 'Silver Vixen';
+
+  @override
+  String get dk_silver_vixen_flavor =>
+      'Trades in favors owed by moonlight, never repaid the same way twice.';
+
+  @override
+  String get dk_silver_vixen_ult => 'Silver Fang';
+
+  @override
+  String get dk_silver_vixen_ultDesc =>
+      'A moonlit strike aimed at the single weak point.';
+
+  @override
+  String get dk_silver_vixen_skill => 'Sly Feint';
+
+  @override
+  String get dk_silver_vixen_skillDesc =>
+      'Ducks in with a quick, misleading strike.';
+
+  @override
+  String get dk_silver_vixen_pass => 'Moonlit Cunning';
+
+  @override
+  String get dk_silver_vixen_passDesc => 'Always one step ahead.';
+
+  @override
+  String get dk_comet_duelist_hawk_name => 'Comet Duelist Hawk';
+
+  @override
+  String get dk_comet_duelist_hawk_flavor =>
+      'Challenges the fastest thing in any sky it flies through.';
+
+  @override
+  String get dk_comet_duelist_hawk_ult => 'Starfall Dive';
+
+  @override
+  String get dk_comet_duelist_hawk_ultDesc =>
+      'A blistering dive trailing shooting stars.';
+
+  @override
+  String get dk_comet_duelist_hawk_skill => 'Blade Talon';
+
+  @override
+  String get dk_comet_duelist_hawk_skillDesc =>
+      'Talons that cut like drawn steel.';
+
+  @override
+  String get dk_comet_duelist_hawk_pass => 'Dueling Instinct';
+
+  @override
+  String get dk_comet_duelist_hawk_passDesc => 'Always finds the opening.';
+
+  @override
+  String get dk_cinderhawk_matriarch_name => 'Cinderhawk Matriarch';
+
+  @override
+  String get dk_cinderhawk_matriarch_flavor =>
+      'Every ember-hawk in these mountains answers to her call.';
+
+  @override
+  String get dk_cinderhawk_matriarch_ult => 'Ember Flock Call';
+
+  @override
+  String get dk_cinderhawk_matriarch_ultDesc =>
+      'Summons a wheeling storm of smaller flame-hawks to harry the enemy.';
+
+  @override
+  String get dk_cinderhawk_matriarch_skill => 'Commanding Screech';
+
+  @override
+  String get dk_cinderhawk_matriarch_skillDesc =>
+      'A sharp cry that rattles the enemy\'s nerve.';
+
+  @override
+  String get dk_cinderhawk_matriarch_pass => 'Matriarch\'s Watch';
+
+  @override
+  String get dk_cinderhawk_matriarch_passDesc => 'Nothing gets past her.';
+
+  @override
+  String get dk_riptide_marauder_name => 'Riptide Marauder';
+
+  @override
+  String get dk_riptide_marauder_flavor =>
+      'Surfaces only when the storm is loud enough to hide the sound.';
+
+  @override
+  String get dk_riptide_marauder_ult => 'Storm Surge Bite';
+
+  @override
+  String get dk_riptide_marauder_ultDesc =>
+      'A crashing bite timed with the worst of the storm.';
+
+  @override
+  String get dk_riptide_marauder_skill => 'Riptide Snap';
+
+  @override
+  String get dk_riptide_marauder_skillDesc =>
+      'A fast strike that drags the current with it.';
+
+  @override
+  String get dk_riptide_marauder_pass => 'Storm-Born';
+
+  @override
+  String get dk_riptide_marauder_passDesc =>
+      'Fights hardest when the sea is roughest.';
+
+  @override
+  String get dk_hollow_marchioness_owl_name => 'Hollow Marchioness Owl';
+
+  @override
+  String get dk_hollow_marchioness_owl_flavor =>
+      'Some nights she is mistaken for a shadow the moon forgot to move.';
+
+  @override
+  String get dk_hollow_marchioness_owl_ult => 'Veiled Vigil';
+
+  @override
+  String get dk_hollow_marchioness_owl_ultDesc =>
+      'Shrouds the team in a protective moonlit haze.';
+
+  @override
+  String get dk_hollow_marchioness_owl_skill => 'Whispered Ward';
+
+  @override
+  String get dk_hollow_marchioness_owl_skillDesc =>
+      'A hushed word of protection for the ally in most danger.';
+
+  @override
+  String get dk_hollow_marchioness_owl_pass => 'Quiet Sorrow';
+
+  @override
+  String get dk_hollow_marchioness_owl_passDesc =>
+      'Watches over the team without ever being asked.';
+
+  @override
+  String get dk_magma_matron_name => 'Magma Matron';
+
+  @override
+  String get dk_magma_matron_flavor =>
+      'Every volcano on this side of the range answers to her, eventually.';
+
+  @override
+  String get dk_magma_matron_ult => 'Molten Bulwark';
+
+  @override
+  String get dk_magma_matron_ultDesc =>
+      'Rears up as a wall of cracked, glowing stone.';
+
+  @override
+  String get dk_magma_matron_skill => 'Heated Slam';
+
+  @override
+  String get dk_magma_matron_skillDesc => 'An unhurried but crushing blow.';
+
+  @override
+  String get dk_magma_matron_pass => 'Cracked Hide';
+
+  @override
+  String get dk_magma_matron_passDesc =>
+      'The cracks glow brighter the longer she fights.';
+
+  @override
+  String get dk_abyss_duchess_jelly_name => 'Abyss Duchess Jelly';
+
+  @override
+  String get dk_abyss_duchess_jelly_flavor =>
+      'Rules a court of anglerfish that have never once seen the sun.';
+
+  @override
+  String get dk_abyss_duchess_jelly_ult => 'Abyssal Bloom';
+
+  @override
+  String get dk_abyss_duchess_jelly_ultDesc =>
+      'Unfurls glowing tendrils that entangle every foe in reach.';
+
+  @override
+  String get dk_abyss_duchess_jelly_skill => 'Drifting Sting';
+
+  @override
+  String get dk_abyss_duchess_jelly_skillDesc =>
+      'A slow, deliberate sting from the deep.';
+
+  @override
+  String get dk_abyss_duchess_jelly_pass => 'Deep Calm';
+
+  @override
+  String get dk_abyss_duchess_jelly_passDesc =>
+      'Nothing down here is in a hurry.';
+
+  @override
+  String get dk_thornvine_baroness_name => 'Thornvine Baroness';
+
+  @override
+  String get dk_thornvine_baroness_flavor =>
+      'The grove she guards is older than the name Dream Haven itself.';
+
+  @override
+  String get dk_thornvine_baroness_ult => 'Grove\'s Embrace';
+
+  @override
+  String get dk_thornvine_baroness_ultDesc =>
+      'Living vines rise to shield the whole team.';
+
+  @override
+  String get dk_thornvine_baroness_skill => 'Bramble Blessing';
+
+  @override
+  String get dk_thornvine_baroness_skillDesc =>
+      'Wraps an ally in fortifying thorns.';
+
+  @override
+  String get dk_thornvine_baroness_pass => 'Ancient Grove';
+
+  @override
+  String get dk_thornvine_baroness_passDesc =>
+      'Rooted deep enough to weather anything.';
+
+  @override
+  String get dk_umbral_countess_raven_name => 'Umbral Countess Raven';
+
+  @override
+  String get dk_umbral_countess_raven_flavor =>
+      'Every rumor in Dream Haven eventually reaches her first.';
+
+  @override
+  String get dk_umbral_countess_raven_ult => 'Eclipse Descent';
+
+  @override
+  String get dk_umbral_countess_raven_ultDesc =>
+      'Blots out the light around the enemy entirely.';
+
+  @override
+  String get dk_umbral_countess_raven_skill => 'Shadow Peck';
+
+  @override
+  String get dk_umbral_countess_raven_skillDesc =>
+      'A precise strike out of swirling mist.';
+
+  @override
+  String get dk_umbral_countess_raven_pass => 'Cold Composure';
+
+  @override
+  String get dk_umbral_countess_raven_passDesc =>
+      'Never once raises her voice.';
+
+  @override
+  String get dk_star_warden_name => 'Star Warden';
+
+  @override
+  String get dk_star_warden_flavor =>
+      'Stands watch on the same ridge every night, waiting for a threat that hasn\'t come yet.';
+
+  @override
+  String get dk_star_warden_ult => 'Celestial Vigil';
+
+  @override
+  String get dk_star_warden_ultDesc =>
+      'Plants its hooves and calls down a shield of starlight.';
+
+  @override
+  String get dk_star_warden_skill => 'Guardian Charge';
+
+  @override
+  String get dk_star_warden_skillDesc =>
+      'A weighty charge meant to be felt, not dodged.';
+
+  @override
+  String get dk_star_warden_pass => 'Watchful Guardian';
+
+  @override
+  String get dk_star_warden_passDesc =>
+      'Has stood this ridge since before the campaign began.';
+
+  @override
+  String get dk_molten_behemoth_name => 'Molten Behemoth';
+
+  @override
+  String get dk_molten_behemoth_flavor =>
+      'Every volcano it sleeps beneath eventually erupts on schedule.';
+
+  @override
+  String get dk_molten_behemoth_ult => 'Eruption Stomp';
+
+  @override
+  String get dk_molten_behemoth_ultDesc =>
+      'A ground-shaking stomp that cracks the earth open.';
+
+  @override
+  String get dk_molten_behemoth_skill => 'Lava Crush';
+
+  @override
+  String get dk_molten_behemoth_skillDesc => 'A heavy, unhurried blow.';
+
+  @override
+  String get dk_molten_behemoth_pass => 'Magma Core';
+
+  @override
+  String get dk_molten_behemoth_passDesc =>
+      'Runs hotter the longer the fight goes on.';
+
+  @override
+  String get dk_tempest_siren_orca_name => 'Tempest Siren Orca';
+
+  @override
+  String get dk_tempest_siren_orca_flavor =>
+      'Sailors say a storm is coming the moment her song reaches shore.';
+
+  @override
+  String get dk_tempest_siren_orca_ult => 'Maelstrom Breach';
+
+  @override
+  String get dk_tempest_siren_orca_ultDesc =>
+      'Breaches the surface with the full force of the storm behind it.';
+
+  @override
+  String get dk_tempest_siren_orca_skill => 'Storm Lash';
+
+  @override
+  String get dk_tempest_siren_orca_skillDesc =>
+      'A crackling strike charged with storm energy.';
+
+  @override
+  String get dk_tempest_siren_orca_pass => 'Storm Caller';
+
+  @override
+  String get dk_tempest_siren_orca_passDesc =>
+      'The sea gets rougher wherever she swims.';
+
+  @override
+  String get dk_sylvan_matriarch_elk_name => 'Sylvan Matriarch Elk';
+
+  @override
+  String get dk_sylvan_matriarch_elk_flavor =>
+      'Every tree in the sacred grove is, in some small way, one of her children.';
+
+  @override
+  String get dk_sylvan_matriarch_elk_ult => 'Blooming Sanctuary';
+
+  @override
+  String get dk_sylvan_matriarch_elk_ultDesc =>
+      'The whole grove blossoms at once, mending every ally.';
+
+  @override
+  String get dk_sylvan_matriarch_elk_skill => 'Sap Blessing';
+
+  @override
+  String get dk_sylvan_matriarch_elk_skillDesc =>
+      'A slow trickle of restorative sap for the ally who needs it most.';
+
+  @override
+  String get dk_sylvan_matriarch_elk_pass => 'Ancient Growth';
+
+  @override
+  String get dk_sylvan_matriarch_elk_passDesc =>
+      'Has watched over this grove since it was a single seed.';
+
+  @override
+  String get dk_leviathan_consort_name => 'Leviathan Consort';
+
+  @override
+  String get dk_leviathan_consort_flavor =>
+      'Where Leviathan Queen rules the surface storms, her consort rules everything beneath.';
+
+  @override
+  String get dk_leviathan_consort_ult => 'Abyssal Coil';
+
+  @override
+  String get dk_leviathan_consort_ultDesc =>
+      'Coils around the whole team, an unbreakable wall of scale.';
+
+  @override
+  String get dk_leviathan_consort_skill => 'Crushing Wave';
+
+  @override
+  String get dk_leviathan_consort_skillDesc =>
+      'An unhurried, unstoppable wave of force.';
+
+  @override
+  String get dk_leviathan_consort_pass => 'Depths Unbroken';
+
+  @override
+  String get dk_leviathan_consort_passDesc =>
+      'Has outlasted every storm the ocean has thrown at it.';
+
+  @override
+  String get dk_starcourt_sovereign_whale_name => 'Starcourt Sovereign Whale';
+
+  @override
+  String get dk_starcourt_sovereign_whale_flavor =>
+      'Every constellation in Dream Haven\'s sky is said to trail somewhere behind it.';
+
+  @override
+  String get dk_starcourt_sovereign_whale_ult => 'Nebula Tide';
+
+  @override
+  String get dk_starcourt_sovereign_whale_ultDesc =>
+      'Trails a wake of starlight that restores and empowers the whole team.';
+
+  @override
+  String get dk_starcourt_sovereign_whale_skill => 'Constellation Pulse';
+
+  @override
+  String get dk_starcourt_sovereign_whale_skillDesc =>
+      'A pulse of starlight aimed at the ally who needs it most.';
+
+  @override
+  String get dk_starcourt_sovereign_whale_pass => 'Celestial Wake';
+
+  @override
+  String get dk_starcourt_sovereign_whale_passDesc =>
+      'Stars seem to follow wherever it drifts.';
+
+  @override
+  String get dk_midnight_sovereign_name => 'Midnight Sovereign';
+
+  @override
+  String get dk_midnight_sovereign_flavor =>
+      'Every shadow in Dream Haven is said to bow when the eclipse passes overhead.';
+
+  @override
+  String get dk_midnight_sovereign_ult => 'Crescent Eclipse';
+
+  @override
+  String get dk_midnight_sovereign_ultDesc =>
+      'A single strike that blots the enemy\'s world into darkness.';
+
+  @override
+  String get dk_midnight_sovereign_skill => 'Sovereign\'s Howl';
+
+  @override
+  String get dk_midnight_sovereign_skillDesc =>
+      'A commanding howl that freezes the enemy in place.';
+
+  @override
+  String get dk_midnight_sovereign_pass => 'Ruler of the Dark';
+
+  @override
+  String get dk_midnight_sovereign_passDesc =>
+      'The night itself seems to answer when it moves.';
+
+  @override
+  String get dk_emberfall_queen_name => 'Emberfall Queen';
+
+  @override
+  String get dk_emberfall_queen_flavor =>
+      'Ember Phoenix was once her herald. Now the herald is a legend, and she is the flame it promised.';
+
+  @override
+  String get dk_emberfall_queen_ult => 'Second Sun';
+
+  @override
+  String get dk_emberfall_queen_ultDesc =>
+      'Erupts into a blaze bright enough to be mistaken for sunrise.';
+
+  @override
+  String get dk_emberfall_queen_skill => 'Phoenix Talon';
+
+  @override
+  String get dk_emberfall_queen_skillDesc =>
+      'A single burning strike wreathed in living flame.';
+
+  @override
+  String get dk_emberfall_queen_pass => 'Undying Ember';
+
+  @override
+  String get dk_emberfall_queen_passDesc =>
+      'Somewhere in the ash, a single ember always survives.';
 }

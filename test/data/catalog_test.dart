@@ -51,11 +51,11 @@ void main() {
   });
 
   group('DreamkeeperCatalog', () {
-    test('has exactly 38 unique definitions including Igo, Ames and the six Olf variants', () {
+    test('has exactly 68 unique definitions including Igo, Ames, the six Olf variants, and the second wave', () {
       final defs = DreamkeeperCatalog.starter.definitions;
-      expect(defs.length, 38);
+      expect(defs.length, 68);
       final ids = defs.map((d) => d.id).toSet();
-      expect(ids.length, 38);
+      expect(ids.length, 68);
       expect(ids.contains(TwinBond.igoID), isTrue);
       expect(ids.contains(TwinBond.amesID), isTrue);
     });
