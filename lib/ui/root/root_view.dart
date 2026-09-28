@@ -13,6 +13,8 @@ import '../../state/account_state.dart';
 import '../../state/friends_service.dart';
 import '../../state/game_state.dart';
 import '../../state/promo_code_service.dart';
+import '../../state/player_name_service.dart';
+import '../../state/world_boss_leaderboard_service.dart';
 import '../../theme/sf_symbol_icons.dart';
 import '../../theme/theme.dart' as dk_theme;
 import '../arena/arena_result_view.dart';
@@ -29,6 +31,7 @@ import '../dungeon/dungeon_view.dart';
 import '../main_menu/loading_view.dart';
 import '../main_menu/main_menu_view.dart';
 import '../onboarding/onboarding_view.dart';
+import '../onboarding/player_name_choice_view.dart';
 import '../onboarding/starter_olf_choice_view.dart';
 import '../profile/friends_view.dart';
 import '../profile/profile_view.dart';
@@ -36,6 +39,8 @@ import '../settings/settings_view.dart';
 import '../shop/shop_view.dart';
 import '../summon/summoning_shrine_view.dart';
 import '../team/inventory_view.dart';
+import '../world_boss/world_boss_result_view.dart';
+import '../world_boss/world_boss_view.dart';
 import 'app_route.dart';
 import 'interstitial_ad_sheet.dart';
 import 'portal_transition.dart';
@@ -92,7 +97,14 @@ class _RootViewState extends State<RootView> {
   bool _hasStartedFriendsService = false;
   int? _lastFriendsProgressLevel;
   int? _lastFriendsProgressStage;
+  bool _hasStartedWorldBossService = false;
   late final ConsentService _consentService;
+  // Owned here (not `.value` in `main.dart`'s `MultiProvider`) so widget
+  // tests that pump a bare `RootView()` still get a working instance —
+  // mirrors `@State private var worldBossService = WorldBossLeaderboardService()`
+  // in `RootView.swift`.
+  final WorldBossLeaderboardService _worldBossService = WorldBossLeaderboardService();
+  final PlayerNameService _playerNameService = PlayerNameService();
 
   @override
   void initState() {
@@ -106,6 +118,13 @@ class _RootViewState extends State<RootView> {
     // ordering relative to each other.
     WidgetsBinding.instance
         .addPostFrameCallback((_) => _requestConsentAndSilentSignInOnce());
+  }
+
+  @override
+  void dispose() {
+    _worldBossService.dispose();
+    _playerNameService.dispose();
+    super.dispose();
   }
 
   /// Mirrors `RootView.swift`'s `.onAppear { friendsService.start(...) }` —
@@ -124,6 +143,18 @@ class _RootViewState extends State<RootView> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       context.read<FriendsService>().start(playerLevel: level, currentStage: stage);
+    });
+  }
+
+  /// Mirrors `RootView.swift`'s `.onAppear { worldBossService.start() }` —
+  /// unconditional, fired once per launch, same deferred-frame reasoning as
+  /// [_maybeStartFriendsService].
+  void _maybeStartWorldBossService() {
+    if (_hasStartedWorldBossService) return;
+    _hasStartedWorldBossService = true;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      _worldBossService.start();
     });
   }
 
@@ -207,6 +238,8 @@ class _RootViewState extends State<RootView> {
         ArenaResultRoute() ||
         DungeonBattleRoute() ||
         DungeonResultRoute() ||
+        WorldBossBattleRoute() ||
+        WorldBossResultRoute() ||
         CodexRoute() =>
           false,
         _ => true,
@@ -286,6 +319,7 @@ class _RootViewState extends State<RootView> {
     // fired it — re-runs this check, mirroring the Swift `.onChange`.
     _maybeSubmitLeaderboard(state, context.watch<GameServicesService>());
     _maybeStartFriendsService(state);
+    _maybeStartWorldBossService();
     _maybeUpdateFriendsProgress(state);
     _maybeClaimReferralReward(context.watch<FriendsService>());
 
@@ -337,6 +371,16 @@ class _RootViewState extends State<RootView> {
                 state.hasSeenOnboarding &&
                 state.needsStarterOlfChoice)
               StarterOlfChoiceView(onChoose: state.chooseStarterOlf),
+
+            // Right after the starter Olf choice resolves — locks in a
+            // globally-unique player name via `PlayerNameService`.
+            // `needsPlayerName` is naturally false for saves from before
+            // this feature existed, so it never appears for them.
+            if (_route is DreamHavenRoute && state.needsPlayerName)
+              PlayerNameChoiceView(
+                playerNameService: _playerNameService,
+                onChoose: state.setPlayerName,
+              ),
 
             if (_activeAchievementPopup != null)
               Align(
@@ -479,6 +523,19 @@ class _RootViewState extends State<RootView> {
           gameState: state, dungeon: dungeon, onNavigate: _navigate),
       DungeonResultRoute(:final summary) =>
         DungeonResultView(summary: summary, onNavigate: _navigate),
+      WorldBossRoute() => WorldBossView(
+          gameState: state,
+          leaderboardService: _worldBossService,
+          onNavigate: _navigate,
+          onFight: () => _navigate(const WorldBossBattleRoute()),
+        ),
+      WorldBossBattleRoute() => WorldBossBattleScreen(
+          gameState: state,
+          worldBossLeaderboardService: _worldBossService,
+          onNavigate: _navigate,
+        ),
+      WorldBossResultRoute(:final summary) =>
+        WorldBossResultView(summary: summary, onNavigate: _navigate),
     };
   }
 }

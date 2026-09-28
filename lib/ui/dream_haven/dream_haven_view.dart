@@ -125,7 +125,7 @@ class _DreamHavenViewState extends State<DreamHavenView> {
             children: [
               Text(l.navDreamHaven, style: const TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold)),
               const SizedBox(height: 2),
-              Text(l.havenPlayerLevel(state.save.playerLevel), style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 12)),
+              Text(l.worldBossLevelLabel(state.save.playerLevel), style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 12)),
             ],
           ),
           const Spacer(),
@@ -435,6 +435,19 @@ class _DreamHavenViewState extends State<DreamHavenView> {
         delay: 210,
         accent: dk_theme.Theme.violet,
         onTap: () => widget.onNavigate(const DungeonRoute()),
+      ),
+      _BuildingCard(
+        key: const Key('dream-haven-building-worldboss'),
+        icon: 'eye.trianglebadge.exclamationmark.fill',
+        name: l.navWorldBoss,
+        status: state.isWorldBossActive
+            ? l.worldBossCardAttacksLeft(state.worldBossAttacksRemaining)
+            : (state.hasUnclaimedWorldBossReward ? l.worldBossCardRewardReady : l.worldBossCardSchedule),
+        isActive: true,
+        isReady: (state.isWorldBossActive && state.worldBossAttacksRemaining > 0) || state.hasUnclaimedWorldBossReward,
+        delay: 215,
+        accent: Colors.red,
+        onTap: () => widget.onNavigate(const WorldBossRoute()),
       ),
       if (state.isRewardedAdAvailable)
         _BuildingCard(

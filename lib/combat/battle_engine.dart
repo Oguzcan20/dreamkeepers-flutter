@@ -10,7 +10,14 @@ import '../l10n/l10n.dart';
 
 const _uuid = Uuid();
 
-enum BattleOutcome { victory, defeat }
+enum BattleOutcome {
+  victory,
+  defeat,
+  /// `roundLimit` was reached with the player team still alive — only
+  /// possible in a World Boss fight (the only place `roundLimit` is set).
+  /// Never a loss: damage dealt still counts toward the weekly leaderboard.
+  timeout,
+}
 
 class BattleLogEntry {
   final String id = _uuid.v4();
@@ -90,6 +97,19 @@ class BattleEngine extends ChangeNotifier {
   final int stage;
   final bool isBossStage;
 
+  /// World Boss fights only — the fight ends in `.timeout` once
+  /// `roundsElapsed` reaches this, rather than running forever against a
+  /// boss with far more HP than any solo player can burn through. `null`
+  /// for every ordinary Campaign/Arena/Dungeon battle.
+  final int? roundLimit;
+
+  /// One "round" is one enemy attack landing (see `_performBasicAttack`).
+  int roundsElapsed = 0;
+
+  /// Running total of damage dealt to enemy combatants this battle — the
+  /// number submitted to the World Boss weekly leaderboard.
+  int totalDamageToEnemy = 0;
+
   /// Account-wide multiplier applied to every player unit's outgoing damage
   /// — fed by the Rebirth "Schaden" Soul upgrade (`GameState.soulDamageMult`).
   /// `1.0` for battles built without one (tests, older call sites).
@@ -134,6 +154,7 @@ class BattleEngine extends ChangeNotifier {
     required this.stage,
     required this.isBossStage,
     this.playerDamageMultiplier = 1.0,
+    this.roundLimit,
     List<Combatant> reinforcements = const [],
     double Function()? varianceProvider,
   })  : combatants = [...playerUnits, enemy],
@@ -177,6 +198,12 @@ class BattleEngine extends ChangeNotifier {
 
   void _performBasicAttack(int attackerIndex) {
     final attacker = combatants[attackerIndex];
+    // Only enemies ever reach here as the World Boss's attacker (the player
+    // side has no telegraph/round concept) — the natural "round" unit for a
+    // World Boss fight's `roundLimit`.
+    if (!attacker.isPlayer) {
+      roundsElapsed += 1;
+    }
     final targetIndex = _pickTarget(attacker);
     if (targetIndex == null) return;
 
@@ -251,6 +278,9 @@ class BattleEngine extends ChangeNotifier {
     }
 
     final amount = dmg.round();
+    if (!combatants[index].isPlayer) {
+      totalDamageToEnemy += amount;
+    }
     final newHP = combatants[index].currentHP - dmg;
     final reviveFraction = combatants[index].reviveHPFraction;
     if (newHP <= 0 &&
@@ -558,6 +588,9 @@ class BattleEngine extends ChangeNotifier {
     } else if (playerUnits.every((c) => !c.isAlive)) {
       outcome = BattleOutcome.defeat;
       _appendLog(L.blDefeat);
+    } else if (roundLimit != null && roundsElapsed >= roundLimit!) {
+      outcome = BattleOutcome.timeout;
+      _appendLog(L.blTimesUp);
     }
   }
 

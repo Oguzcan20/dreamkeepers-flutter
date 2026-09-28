@@ -44,6 +44,25 @@ class GameSave {
   DateTime weeklyMissionWeek;
   Map<String, int> weeklyMissionProgress;
   Set<String> claimedWeeklyMissionIDs;
+  /// Friday 19:00 UTC start of the World Boss week this player's
+  /// attacks/damage below belong to (see `WorldBossSystem.weekStart`) —
+  /// once a new week's start no longer matches, `GameState.makeWorldBossBattleEngine`
+  /// resets the two fields below for the new week.
+  DateTime worldBossWeek;
+
+  /// Spent out of `WorldBossSystem.attacksPerWeek` so far this week.
+  int worldBossAttacksUsed;
+
+  /// Sum of `BattleEngine.totalDamageToEnemy` across every attack this
+  /// week — what gets reported to the Firestore leaderboard and what a
+  /// rank/reward is computed from once the week's window closes.
+  int worldBossDamageDealt;
+
+  /// `WorldBossSystem.weekID` values whose reward has already been
+  /// claimed — dedupes `GameState.claimWorldBossReward()` the same way
+  /// `claimedWeeklyMissionIDs` dedupes a weekly mission claim.
+  Set<String> worldBossClaimedWeeks;
+
   Set<String> purchasedOneTimeOfferIDs;
   bool hapticsEnabled;
   bool soundEnabled;
@@ -78,6 +97,19 @@ class GameSave {
   /// existed default to `true` when loaded so it never retroactively
   /// interrupts an existing player.
   bool hasChosenStarterElement;
+
+  /// True once the player has locked in a (globally-unique, Firestore-
+  /// reserved) player name — see `GameState.needsPlayerName`/
+  /// `PlayerNameService`. Separate from `playerName` itself so an old save
+  /// with no name yet (offline, or before this feature existed) isn't
+  /// retroactively interrupted: `newGame()` starts this at `false`; saves
+  /// from before this flag existed default to `true` when loaded.
+  bool hasChosenPlayerName;
+
+  /// The chosen name itself, in the exact casing the player typed — `null`
+  /// until `hasChosenPlayerName` is `true`. Uniqueness is enforced
+  /// server-side (case-insensitively) by `PlayerNameService`, not here.
+  String? playerName;
 
   /// Milestone IDs already unlocked (and already shown to the player) —
   /// see `AchievementSystem`. Persisted so a popup never fires twice.
@@ -209,6 +241,10 @@ class GameSave {
     DateTime? weeklyMissionWeek,
     Map<String, int>? weeklyMissionProgress,
     Set<String>? claimedWeeklyMissionIDs,
+    DateTime? worldBossWeek,
+    this.worldBossAttacksUsed = 0,
+    this.worldBossDamageDealt = 0,
+    Set<String>? worldBossClaimedWeeks,
     required this.purchasedOneTimeOfferIDs,
     this.hapticsEnabled = true,
     this.soundEnabled = true,
@@ -220,6 +256,8 @@ class GameSave {
     this.notificationsEnabled = false,
     this.hasSeenOnboarding = true,
     this.hasChosenStarterElement = true,
+    this.hasChosenPlayerName = true,
+    this.playerName,
     Set<String>? unlockedAchievementIDs,
     this.loginStreakDay = 0,
     DateTime? lastLoginRewardClaimDate,
@@ -248,7 +286,9 @@ class GameSave {
     int? dungeonKeys,
     DateTime? dungeonKeyDay,
     Set<String>? clearedDungeonIDs,
-  })  : soulUpgradeRanks = soulUpgradeRanks ?? {},
+  })  : worldBossWeek = worldBossWeek ?? _distantPast,
+        worldBossClaimedWeeks = worldBossClaimedWeeks ?? {},
+        soulUpgradeRanks = soulUpgradeRanks ?? {},
         dungeonKeys = dungeonKeys ?? DungeonSystem.maxKeysPerDay,
         dungeonKeyDay = dungeonKeyDay ?? _distantPast,
         clearedDungeonIDs = clearedDungeonIDs ?? {},
@@ -291,6 +331,7 @@ class GameSave {
       purchasedOneTimeOfferIDs: {},
       hasSeenOnboarding: false,
       hasChosenStarterElement: false,
+      hasChosenPlayerName: false,
     );
   }
 
@@ -313,6 +354,10 @@ class GameSave {
         'weeklyMissionWeek': _dateToJson(weeklyMissionWeek),
         'weeklyMissionProgress': weeklyMissionProgress,
         'claimedWeeklyMissionIDs': claimedWeeklyMissionIDs.toList(),
+        'worldBossWeek': _dateToJson(worldBossWeek),
+        'worldBossAttacksUsed': worldBossAttacksUsed,
+        'worldBossDamageDealt': worldBossDamageDealt,
+        'worldBossClaimedWeeks': worldBossClaimedWeeks.toList(),
         'purchasedOneTimeOfferIDs': purchasedOneTimeOfferIDs.toList(),
         'hapticsEnabled': hapticsEnabled,
         'soundEnabled': soundEnabled,
@@ -324,6 +369,8 @@ class GameSave {
         'notificationsEnabled': notificationsEnabled,
         'hasSeenOnboarding': hasSeenOnboarding,
         'hasChosenStarterElement': hasChosenStarterElement,
+        'hasChosenPlayerName': hasChosenPlayerName,
+        if (playerName != null) 'playerName': playerName,
         'unlockedAchievementIDs': unlockedAchievementIDs.toList(),
         'loginStreakDay': loginStreakDay,
         'lastLoginRewardClaimDate': _dateToJson(lastLoginRewardClaimDate),
@@ -400,6 +447,13 @@ class GameSave {
       weeklyMissionProgress:
           (json['weeklyMissionProgress'] as Map<String, dynamic>?)?.map((k, v) => MapEntry(k, v as int)) ?? {},
       claimedWeeklyMissionIDs: (json['claimedWeeklyMissionIDs'] as List?)?.cast<String>().toSet() ?? {},
+      // Missing keys mean this save predates the World Boss event — start
+      // with a stale week marker (immediately reset on the first attack)
+      // and no damage/claims recorded, same as a fresh save.
+      worldBossWeek: _dateFromJson(json['worldBossWeek'], _distantPast),
+      worldBossAttacksUsed: json['worldBossAttacksUsed'] as int? ?? 0,
+      worldBossDamageDealt: json['worldBossDamageDealt'] as int? ?? 0,
+      worldBossClaimedWeeks: (json['worldBossClaimedWeeks'] as List?)?.cast<String>().toSet() ?? {},
       purchasedOneTimeOfferIDs: (json['purchasedOneTimeOfferIDs'] as List?)?.cast<String>().toSet() ?? {},
       hapticsEnabled: json['hapticsEnabled'] as bool? ?? true,
       soundEnabled: json['soundEnabled'] as bool? ?? true,
@@ -417,6 +471,11 @@ class GameSave {
       // the feature existed) — treat as already chosen so it never
       // retroactively interrupts an existing player.
       hasChosenStarterElement: json['hasChosenStarterElement'] as bool? ?? true,
+      // Missing key means this save predates the player-name feature —
+      // treat as already chosen so it never retroactively interrupts an
+      // existing player; `playerName` itself simply stays `null`.
+      hasChosenPlayerName: json['hasChosenPlayerName'] as bool? ?? true,
+      playerName: json['playerName'] as String?,
       unlockedAchievementIDs: (json['unlockedAchievementIDs'] as List?)?.cast<String>().toSet() ?? {},
       loginStreakDay: json['loginStreakDay'] as int? ?? 0,
       lastLoginRewardClaimDate: _dateFromJson(json['lastLoginRewardClaimDate'], _distantPast),

@@ -223,6 +223,7 @@ const Set<String> kAvailableArtNames = {
   'Monster_Verdantor,theRootEternal',
   'Monster_Verdantor,theWorldTree\'sHeart',
   'Monster_Vinebeast',
+  'Monster_Voidmaw,theDevouringDream',
   'Monster_Voidpaw',
   'Monster_Voidstar',
   'Monster_Wavepup',

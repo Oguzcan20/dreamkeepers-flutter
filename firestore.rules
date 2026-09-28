@@ -79,5 +79,31 @@ service cloud.firestore {
       allow create: if signedIn() && redemptionId.matches('.*_' + request.auth.uid + '$');
       allow update, delete: if false;
     }
+
+    // playerNames/{name} -> { playerID, displayName, claimedAt } — global,
+    // case-insensitive (doc id is the lowercased name) player-name
+    // reservation. See PlayerNameService. Anyone signed in can read (to
+    // check availability); only the claiming player may create/update
+    // their own reservation (an update is just this same player
+    // idempotently re-affirming a name they already own — the transaction
+    // client-side already refuses to touch anyone else's), and a name is
+    // never released once claimed.
+    match /playerNames/{name} {
+      allow read: if signedIn();
+      allow create: if signedIn() && request.resource.data.playerID == request.auth.uid;
+      allow update: if signedIn()
+        && resource.data.playerID == request.auth.uid
+        && request.resource.data.playerID == request.auth.uid;
+      allow delete: if false;
+    }
+
+    // worldBossLeaderboard/{weekID}/entries/{playerID} — one running-damage
+    // doc per player per weekly event window. See WorldBossLeaderboardService.
+    match /worldBossLeaderboard/{weekID}/entries/{playerID} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && request.auth.uid == playerID &&
+        request.resource.data.damage is int && request.resource.data.damage >= 0;
+      allow delete: if false;
+    }
   }
 }

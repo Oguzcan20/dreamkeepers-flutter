@@ -1907,6 +1907,7 @@
   },
   "blVictory": "Victory!",
   "blDefeat": "Defeat...",
+  "blTimesUp": "Time's up!",
   "mechHealed": "Healed!",
   "mechEnraged": "Enraged!",
   "mechShielded": "Shielded!",
@@ -2364,5 +2365,94 @@
   "dk_emberfall_queen_skill": "Phoenix Talon",
   "dk_emberfall_queen_skillDesc": "A single burning strike wreathed in living flame.",
   "dk_emberfall_queen_pass": "Undying Ember",
-  "dk_emberfall_queen_passDesc": "Somewhere in the ash, a single ember always survives."
+  "dk_emberfall_queen_passDesc": "Somewhere in the ash, a single ember always survives.",
+
+  "navWorldBoss": "World Boss",
+  "worldBossCardAttacksLeft": "{count} Attacks left",
+  "@worldBossCardAttacksLeft": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "worldBossCardRewardReady": "Reward ready!",
+  "worldBossCardSchedule": "Fri 19:00 – Sun 19:00",
+  "battleWorldBossEventLabel": "World Boss",
+  "worldBossName": "Voidmaw, the Devouring Dream",
+  "worldBossAttacksLeftLabel": "Attacks Left",
+  "worldBossDamageThisWeekLabel": "Damage This Week",
+  "worldBossAttackButton": "Attack",
+  "worldBossNoTeamTitle": "No team deployed",
+  "worldBossNoTeamMessage": "Deploy a team before attacking the World Boss.",
+  "worldBossClaimTitle": "Last week's reward is ready",
+  "worldBossClaimRank": "Rank #{rank}",
+  "@worldBossClaimRank": {
+    "placeholders": {
+      "rank": {
+        "type": "int"
+      }
+    }
+  },
+  "worldBossClaimButton": "Claim",
+  "worldBossLeaderboardTitle": "Leaderboard",
+  "worldBossYourRank": "Your Rank: #{rank}",
+  "@worldBossYourRank": {
+    "placeholders": {
+      "rank": {
+        "type": "int"
+      }
+    }
+  },
+  "worldBossLeaderboardUnavailable": "Leaderboard unavailable.",
+  "worldBossLeaderboardEmpty": "No attacks recorded yet this week. Be the first!",
+  "worldBossLevelLabel": "Lv {level}",
+  "@worldBossLevelLabel": {
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "worldBossAppearsIn": "Appears in {time}",
+  "@worldBossAppearsIn": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "worldBossEndsIn": "Ends in {time}",
+  "@worldBossEndsIn": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "worldBossNextBoss": "Next boss: {time}",
+  "@worldBossNextBoss": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "worldBossVictoryTitle": "Boss Defeated!",
+  "worldBossDefeatTitle": "Team Down!",
+  "worldBossVictorySubtitle": "You brought the boss down before time ran out.",
+  "worldBossTimeoutSubtitle": "The boss still stands, but every hit counted.",
+  "worldBossDefeatSubtitle": "Your team fell, but the damage is already banked.",
+  "worldBossDamageThisAttempt": "Damage This Attempt",
+  "worldBossTotalDamageThisWeek": "Total Damage This Week",
+  "worldBossAttacksRemainingLabel": "Attacks Remaining",
+  "worldBossAttackAgain": "Attack Again",
+  "worldBossRewardsTitle": "Rewards",
+  "worldBossRewardsSubtitle": "Paid out at the end of each week, by leaderboard rank",
+  "worldBossRewardsNoneAfterRank200": "No reward past rank 200",
+  "worldBossRewardsRank1": "Rank 1",
+  "worldBossRewardsRank2to10": "Rank 2-10",
+  "worldBossRewardsRank11to50": "Rank 11-50",
+  "worldBossRewardsRank51to100": "Rank 51-100",
+  "worldBossRewardsRank101to200": "Rank 101-200"
 }

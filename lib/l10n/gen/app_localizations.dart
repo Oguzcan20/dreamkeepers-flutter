@@ -6279,6 +6279,12 @@ abstract class AppLocalizations {
   /// **'Defeat...'**
   String get blDefeat;
 
+  /// No description provided for @blTimesUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Time\'s up!'**
+  String get blTimesUp;
+
   /// No description provided for @mechHealed.
   ///
   /// In en, this message translates to:
@@ -8252,6 +8258,240 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Somewhere in the ash, a single ember always survives.'**
   String get dk_emberfall_queen_passDesc;
+
+  /// No description provided for @navWorldBoss.
+  ///
+  /// In en, this message translates to:
+  /// **'World Boss'**
+  String get navWorldBoss;
+
+  /// No description provided for @worldBossCardAttacksLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} Attacks left'**
+  String worldBossCardAttacksLeft(int count);
+
+  /// No description provided for @worldBossCardRewardReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Reward ready!'**
+  String get worldBossCardRewardReady;
+
+  /// No description provided for @worldBossCardSchedule.
+  ///
+  /// In en, this message translates to:
+  /// **'Fri 19:00 – Sun 19:00'**
+  String get worldBossCardSchedule;
+
+  /// No description provided for @battleWorldBossEventLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'World Boss'**
+  String get battleWorldBossEventLabel;
+
+  /// No description provided for @worldBossName.
+  ///
+  /// In en, this message translates to:
+  /// **'Voidmaw, the Devouring Dream'**
+  String get worldBossName;
+
+  /// No description provided for @worldBossAttacksLeftLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Attacks Left'**
+  String get worldBossAttacksLeftLabel;
+
+  /// No description provided for @worldBossDamageThisWeekLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Damage This Week'**
+  String get worldBossDamageThisWeekLabel;
+
+  /// No description provided for @worldBossAttackButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Attack'**
+  String get worldBossAttackButton;
+
+  /// No description provided for @worldBossNoTeamTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No team deployed'**
+  String get worldBossNoTeamTitle;
+
+  /// No description provided for @worldBossNoTeamMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Deploy a team before attacking the World Boss.'**
+  String get worldBossNoTeamMessage;
+
+  /// No description provided for @worldBossClaimTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Last week\'s reward is ready'**
+  String get worldBossClaimTitle;
+
+  /// No description provided for @worldBossClaimRank.
+  ///
+  /// In en, this message translates to:
+  /// **'Rank #{rank}'**
+  String worldBossClaimRank(int rank);
+
+  /// No description provided for @worldBossClaimButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Claim'**
+  String get worldBossClaimButton;
+
+  /// No description provided for @worldBossLeaderboardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Leaderboard'**
+  String get worldBossLeaderboardTitle;
+
+  /// No description provided for @worldBossYourRank.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Rank: #{rank}'**
+  String worldBossYourRank(int rank);
+
+  /// No description provided for @worldBossLeaderboardUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Leaderboard unavailable.'**
+  String get worldBossLeaderboardUnavailable;
+
+  /// No description provided for @worldBossLeaderboardEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No attacks recorded yet this week. Be the first!'**
+  String get worldBossLeaderboardEmpty;
+
+  /// No description provided for @worldBossLevelLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Lv {level}'**
+  String worldBossLevelLabel(int level);
+
+  /// No description provided for @worldBossAppearsIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Appears in {time}'**
+  String worldBossAppearsIn(String time);
+
+  /// No description provided for @worldBossEndsIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Ends in {time}'**
+  String worldBossEndsIn(String time);
+
+  /// No description provided for @worldBossNextBoss.
+  ///
+  /// In en, this message translates to:
+  /// **'Next boss: {time}'**
+  String worldBossNextBoss(String time);
+
+  /// No description provided for @worldBossVictoryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Boss Defeated!'**
+  String get worldBossVictoryTitle;
+
+  /// No description provided for @worldBossDefeatTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Team Down!'**
+  String get worldBossDefeatTitle;
+
+  /// No description provided for @worldBossVictorySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You brought the boss down before time ran out.'**
+  String get worldBossVictorySubtitle;
+
+  /// No description provided for @worldBossTimeoutSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The boss still stands, but every hit counted.'**
+  String get worldBossTimeoutSubtitle;
+
+  /// No description provided for @worldBossDefeatSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your team fell, but the damage is already banked.'**
+  String get worldBossDefeatSubtitle;
+
+  /// No description provided for @worldBossDamageThisAttempt.
+  ///
+  /// In en, this message translates to:
+  /// **'Damage This Attempt'**
+  String get worldBossDamageThisAttempt;
+
+  /// No description provided for @worldBossTotalDamageThisWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Damage This Week'**
+  String get worldBossTotalDamageThisWeek;
+
+  /// No description provided for @worldBossAttacksRemainingLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Attacks Remaining'**
+  String get worldBossAttacksRemainingLabel;
+
+  /// No description provided for @worldBossAttackAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Attack Again'**
+  String get worldBossAttackAgain;
+
+  /// No description provided for @worldBossRewardsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Rewards'**
+  String get worldBossRewardsTitle;
+
+  /// No description provided for @worldBossRewardsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid out at the end of each week, by leaderboard rank'**
+  String get worldBossRewardsSubtitle;
+
+  /// No description provided for @worldBossRewardsNoneAfterRank200.
+  ///
+  /// In en, this message translates to:
+  /// **'No reward past rank 200'**
+  String get worldBossRewardsNoneAfterRank200;
+
+  /// No description provided for @worldBossRewardsRank1.
+  ///
+  /// In en, this message translates to:
+  /// **'Rank 1'**
+  String get worldBossRewardsRank1;
+
+  /// No description provided for @worldBossRewardsRank2to10.
+  ///
+  /// In en, this message translates to:
+  /// **'Rank 2-10'**
+  String get worldBossRewardsRank2to10;
+
+  /// No description provided for @worldBossRewardsRank11to50.
+  ///
+  /// In en, this message translates to:
+  /// **'Rank 11-50'**
+  String get worldBossRewardsRank11to50;
+
+  /// No description provided for @worldBossRewardsRank51to100.
+  ///
+  /// In en, this message translates to:
+  /// **'Rank 51-100'**
+  String get worldBossRewardsRank51to100;
+
+  /// No description provided for @worldBossRewardsRank101to200.
+  ///
+  /// In en, this message translates to:
+  /// **'Rank 101-200'**
+  String get worldBossRewardsRank101to200;
 }
 
 class _AppLocalizationsDelegate

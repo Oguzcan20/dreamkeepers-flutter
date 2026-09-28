@@ -27,12 +27,34 @@ class AdaptiveScale extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
+        // `constraints.maxHeight` shrinks whenever an ancestor `Scaffold`
+        // resizes its body for an open keyboard (the default) — a fixed
+        // layout scaled by this widget should hold its size regardless of
+        // keyboard state, mirroring AdaptiveScale.swift's
+        // `.ignoresSafeArea(.keyboard)` fix. `MediaQuery.of(context)` can't
+        // reveal the keyboard's real height here: the `Scaffold` already
+        // zeroes `viewInsets` out in the `MediaQuery` it hands to its body
+        // once it's accounted for it via the resize. Reading the raw
+        // platform inset instead bypasses that consumption entirely. A
+        // screen that needs its own content to stay clear of the keyboard
+        // handles that itself (see `PlayerNameChoiceView`'s own offset,
+        // which uses the same `rawKeyboardInset`).
+        final height = constraints.maxHeight + rawKeyboardInset(context);
         final scaleX = constraints.maxWidth / referenceSize.width;
-        final scaleY = constraints.maxHeight / referenceSize.height;
+        final scaleY = height / referenceSize.height;
         return SizedBox(
           width: constraints.maxWidth,
           height: constraints.maxHeight,
           child: Transform(
+            // Must stay center-anchored, matching the inner `Center` below:
+            // this widget scales width/height independently (non-uniform),
+            // so the scale anchor and the pre-scale content centering have
+            // to agree or content drifts out of the box on any aspect ratio
+            // that isn't an exact match for `referenceSize` — which is every
+            // real device. With no keyboard (`height == constraints.maxHeight`)
+            // this is a no-op vs. the previous behavior; with a keyboard,
+            // the extra height grows equally above and below center, which
+            // `PlayerNameChoiceView`'s own offset already keeps clear of.
             alignment: Alignment.center,
             transform: Matrix4.diagonal3Values(scaleX, scaleY, 1),
             child: Center(
@@ -47,6 +69,16 @@ class AdaptiveScale extends StatelessWidget {
       },
     );
   }
+}
+
+/// The keyboard's real on-screen height in logical pixels, read straight
+/// from the platform view rather than `MediaQuery.of(context).viewInsets`
+/// (which a `Scaffold` further up the tree zeroes out for its body's
+/// descendants once it's consumed it for its own resize). `0` when no
+/// keyboard is showing.
+double rawKeyboardInset(BuildContext context) {
+  final view = View.of(context);
+  return view.viewInsets.bottom / view.devicePixelRatio;
 }
 
 extension AdaptiveScaleExtension on Widget {

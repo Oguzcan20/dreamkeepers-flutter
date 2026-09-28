@@ -33,6 +33,8 @@ IconData sfSymbol(String name) {
       return Icons.hexagon;
     case 'eye.fill':
       return Icons.visibility;
+    case 'eye.trianglebadge.exclamationmark.fill':
+      return Icons.remove_red_eye_rounded;
     case 'calendar.badge.checkmark':
       return Icons.event_available;
     case 'play.fill':

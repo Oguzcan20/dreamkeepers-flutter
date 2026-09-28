@@ -38,6 +38,7 @@ import '../progression/equipment_factory.dart';
 import '../progression/equipment_summon_system.dart';
 import '../progression/equipment_upgrade.dart';
 import '../progression/level_system.dart';
+import '../progression/world_boss_system.dart';
 import '../progression/login_reward_system.dart';
 import '../progression/offline_rewards.dart';
 import '../progression/rebirth_system.dart';
@@ -152,6 +153,25 @@ class DungeonBattleResultSummary {
     required this.gemsGained,
     this.droppedEquipment,
     required this.isFirstClear,
+  });
+}
+
+/// Result of one World Boss attempt — deliberately not folded into
+/// `BattleResultSummary`: a World Boss fight never grants gold/EXP/loot and
+/// can end in `BattleOutcome.timeout` (round limit reached, team still
+/// alive), which isn't a win or a loss. What matters here is only the
+/// damage dealt.
+class WorldBossBattleResultSummary {
+  final BattleOutcome outcome;
+  final int damageDealtThisAttempt;
+  final int totalDamageThisWeek;
+  final int attacksRemaining;
+
+  const WorldBossBattleResultSummary({
+    required this.outcome,
+    required this.damageDealtThisAttempt,
+    required this.totalDamageThisWeek,
+    required this.attacksRemaining,
   });
 }
 
@@ -1011,6 +1031,113 @@ class GameState extends ChangeNotifier {
       isMilestoneFloor: isFirstClear && isMilestone,
       towerCleared: towerCleared,
     );
+  }
+
+  // MARK: - World Boss
+
+  /// Live Friday 19:00 UTC through Sunday 19:00 UTC — see `WorldBossSystem`
+  /// for why this is UTC-fixed rather than device-locale-based.
+  bool get isWorldBossActive => WorldBossSystem.isActive();
+
+  ({DateTime start, DateTime end}) get worldBossWindow => WorldBossSystem.window(DateTime.now());
+
+  /// `save.worldBossWeek`/`worldBossAttacksUsed`/`worldBossDamageDealt`
+  /// only ever get reset the moment the player actually starts a new
+  /// week's first attack (see `makeWorldBossBattleEngine`), never merely
+  /// by the calendar rolling over — so a still-unclaimed previous week's
+  /// reward is never silently wiped out by opening the app after its
+  /// window closed. These two getters read "as of the current week"
+  /// without mutating anything, falling back to a full allotment / zero
+  /// damage when `save.worldBossWeek` is stale.
+  int get worldBossAttacksRemaining {
+    if (_save.worldBossWeek != WorldBossSystem.weekStart(DateTime.now())) {
+      return WorldBossSystem.attacksPerWeek;
+    }
+    return max(0, WorldBossSystem.attacksPerWeek - _save.worldBossAttacksUsed);
+  }
+
+  int get worldBossDamageDealtThisWeek {
+    if (_save.worldBossWeek != WorldBossSystem.weekStart(DateTime.now())) return 0;
+    return _save.worldBossDamageDealt;
+  }
+
+  /// True once the week `save.worldBossWeek` belongs to has closed
+  /// (Sunday 19:00 UTC), the player dealt at least some damage that week,
+  /// and its reward hasn't been claimed yet — the gold-dot badge condition
+  /// for the Dream Haven entry point.
+  bool get hasUnclaimedWorldBossReward {
+    if (_save.worldBossDamageDealt <= 0) return false;
+    final weekID = WorldBossSystem.weekID(_save.worldBossWeek);
+    if (_save.worldBossClaimedWeeks.contains(weekID)) return false;
+    return !DateTime.now().toUtc().isBefore(WorldBossSystem.window(_save.worldBossWeek).end);
+  }
+
+  bool canAttackWorldBoss() =>
+      isWorldBossActive && worldBossAttacksRemaining > 0 && deployedTeam.isNotEmpty;
+
+  /// Spends one of the week's attacks up front (same pattern as an Arena
+  /// ticket in `makeArenaBattleEngine`) and builds a fresh solo fight
+  /// against this week's boss. Every player fights the exact same boss
+  /// stats — see `WorldBossSystem.bossCombatant` for why that's what makes
+  /// the cross-player leaderboard fair despite each fight running entirely
+  /// client-side with no shared server state.
+  BattleEngine? makeWorldBossBattleEngine() {
+    final currentWeekStart = WorldBossSystem.weekStart(DateTime.now());
+    if (_save.worldBossWeek != currentWeekStart) {
+      _save.worldBossWeek = currentWeekStart;
+      _save.worldBossAttacksUsed = 0;
+      _save.worldBossDamageDealt = 0;
+    }
+    if (!canAttackWorldBoss()) return null;
+    final playerCombatants = _makePlayerCombatants(deployedTeam);
+    if (playerCombatants.isEmpty) return null;
+    _save.worldBossAttacksUsed += 1;
+    persist();
+    return BattleEngine(
+      playerUnits: playerCombatants,
+      enemy: WorldBossSystem.bossCombatant(),
+      stage: _save.currentStage,
+      isBossStage: true,
+      playerDamageMultiplier: soulDamageMult,
+      roundLimit: WorldBossSystem.roundLimit,
+    );
+  }
+
+  /// Only tallies damage — a World Boss fight never grants gold/EXP/loot
+  /// regardless of `engine.outcome` (`victory`, `defeat`, or `timeout` all
+  /// just stop the attempt; what's kept is `totalDamageToEnemy`).
+  WorldBossBattleResultSummary applyWorldBossBattleResult(BattleEngine engine) {
+    final dealt = engine.totalDamageToEnemy;
+    _save.worldBossDamageDealt += dealt;
+    persist();
+    return WorldBossBattleResultSummary(
+      outcome: engine.outcome ?? BattleOutcome.timeout,
+      damageDealtThisAttempt: dealt,
+      totalDamageThisWeek: _save.worldBossDamageDealt,
+      attacksRemaining: worldBossAttacksRemaining,
+    );
+  }
+
+  /// `rank` is supplied by the caller (World Boss UI, via
+  /// `WorldBossLeaderboardService`) rather than looked up here — `GameState`
+  /// stays free of any Firebase dependency, same boundary `FriendsService`
+  /// is kept on the other side of today. A `null`-reward rank (201+) still
+  /// marks the week claimed so the badge clears, it just pays out nothing.
+  bool claimWorldBossReward(int rank) {
+    if (_save.worldBossDamageDealt <= 0 ||
+        DateTime.now().toUtc().isBefore(WorldBossSystem.window(_save.worldBossWeek).end)) {
+      return false;
+    }
+    final weekID = WorldBossSystem.weekID(_save.worldBossWeek);
+    if (_save.worldBossClaimedWeeks.contains(weekID)) return false;
+    final reward = WorldBossSystem.reward(rank);
+    if (reward != null) {
+      _save.gold += reward.gold;
+      _save.dreamGems += reward.gems;
+    }
+    _save.worldBossClaimedWeeks.add(weekID);
+    persist();
+    return true;
   }
 
   // MARK: - Rebirth / Soul upgrades
@@ -2138,6 +2265,32 @@ class GameState extends ChangeNotifier {
     _save.hasChosenStarterElement = true;
     persist();
     return true;
+  }
+
+  /// True while the player hasn't locked in a player name yet — i.e. the
+  /// post-Olf-choice "choose your name" screen still needs to run. Only
+  /// evaluated once onboarding and the starter Olf choice are both done, so
+  /// the three post-account-creation overlays never stack. Naturally false
+  /// for saves from before this feature existed (see
+  /// `GameSave.hasChosenPlayerName`'s doc comment), so it never
+  /// retroactively interrupts an existing player. Mirrors
+  /// `GameState.needsPlayerName` in GameCore/State/GameState.swift.
+  bool get needsPlayerName =>
+      hasSeenOnboarding && !needsStarterOlfChoice && !_save.hasChosenPlayerName;
+
+  String? get playerName => _save.playerName;
+
+  /// Persists a name already successfully claimed via
+  /// `PlayerNameService.claim`/`claimPlayerName` — the actual
+  /// global-uniqueness check happens server-side (a Firestore transaction)
+  /// before this is ever called; this just locks in the local save so
+  /// `needsPlayerName` never resurfaces. A no-op once already chosen.
+  /// Mirrors `GameState.setPlayerName(_:)` in GameCore/State/GameState.swift.
+  void setPlayerName(String name) {
+    if (_save.hasChosenPlayerName) return;
+    _save.playerName = name;
+    _save.hasChosenPlayerName = true;
+    persist();
   }
 
   /// Wipes all progress and starts over from a fresh save. Irreversible —

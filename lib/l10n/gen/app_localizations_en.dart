@@ -3613,6 +3613,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get blDefeat => 'Defeat...';
 
   @override
+  String get blTimesUp => 'Time\'s up!';
+
+  @override
   String get mechHealed => 'Healed!';
 
   @override
@@ -4750,4 +4753,141 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get dk_emberfall_queen_passDesc =>
       'Somewhere in the ash, a single ember always survives.';
+
+  @override
+  String get navWorldBoss => 'World Boss';
+
+  @override
+  String worldBossCardAttacksLeft(int count) {
+    return '$count Attacks left';
+  }
+
+  @override
+  String get worldBossCardRewardReady => 'Reward ready!';
+
+  @override
+  String get worldBossCardSchedule => 'Fri 19:00 – Sun 19:00';
+
+  @override
+  String get battleWorldBossEventLabel => 'World Boss';
+
+  @override
+  String get worldBossName => 'Voidmaw, the Devouring Dream';
+
+  @override
+  String get worldBossAttacksLeftLabel => 'Attacks Left';
+
+  @override
+  String get worldBossDamageThisWeekLabel => 'Damage This Week';
+
+  @override
+  String get worldBossAttackButton => 'Attack';
+
+  @override
+  String get worldBossNoTeamTitle => 'No team deployed';
+
+  @override
+  String get worldBossNoTeamMessage =>
+      'Deploy a team before attacking the World Boss.';
+
+  @override
+  String get worldBossClaimTitle => 'Last week\'s reward is ready';
+
+  @override
+  String worldBossClaimRank(int rank) {
+    return 'Rank #$rank';
+  }
+
+  @override
+  String get worldBossClaimButton => 'Claim';
+
+  @override
+  String get worldBossLeaderboardTitle => 'Leaderboard';
+
+  @override
+  String worldBossYourRank(int rank) {
+    return 'Your Rank: #$rank';
+  }
+
+  @override
+  String get worldBossLeaderboardUnavailable => 'Leaderboard unavailable.';
+
+  @override
+  String get worldBossLeaderboardEmpty =>
+      'No attacks recorded yet this week. Be the first!';
+
+  @override
+  String worldBossLevelLabel(int level) {
+    return 'Lv $level';
+  }
+
+  @override
+  String worldBossAppearsIn(String time) {
+    return 'Appears in $time';
+  }
+
+  @override
+  String worldBossEndsIn(String time) {
+    return 'Ends in $time';
+  }
+
+  @override
+  String worldBossNextBoss(String time) {
+    return 'Next boss: $time';
+  }
+
+  @override
+  String get worldBossVictoryTitle => 'Boss Defeated!';
+
+  @override
+  String get worldBossDefeatTitle => 'Team Down!';
+
+  @override
+  String get worldBossVictorySubtitle =>
+      'You brought the boss down before time ran out.';
+
+  @override
+  String get worldBossTimeoutSubtitle =>
+      'The boss still stands, but every hit counted.';
+
+  @override
+  String get worldBossDefeatSubtitle =>
+      'Your team fell, but the damage is already banked.';
+
+  @override
+  String get worldBossDamageThisAttempt => 'Damage This Attempt';
+
+  @override
+  String get worldBossTotalDamageThisWeek => 'Total Damage This Week';
+
+  @override
+  String get worldBossAttacksRemainingLabel => 'Attacks Remaining';
+
+  @override
+  String get worldBossAttackAgain => 'Attack Again';
+
+  @override
+  String get worldBossRewardsTitle => 'Rewards';
+
+  @override
+  String get worldBossRewardsSubtitle =>
+      'Paid out at the end of each week, by leaderboard rank';
+
+  @override
+  String get worldBossRewardsNoneAfterRank200 => 'No reward past rank 200';
+
+  @override
+  String get worldBossRewardsRank1 => 'Rank 1';
+
+  @override
+  String get worldBossRewardsRank2to10 => 'Rank 2-10';
+
+  @override
+  String get worldBossRewardsRank11to50 => 'Rank 11-50';
+
+  @override
+  String get worldBossRewardsRank51to100 => 'Rank 51-100';
+
+  @override
+  String get worldBossRewardsRank101to200 => 'Rank 101-200';
 }

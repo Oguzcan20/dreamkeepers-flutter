@@ -129,10 +129,21 @@ class _ProfileViewState extends State<ProfileView> {
             ],
           ),
           const SizedBox(height: 14),
-          Text(
-            l.profilePlayerLevel(widget.gameState.save.playerLevel),
-            style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600),
-          ),
+          if (widget.gameState.playerName case final playerName?) ...[
+            Text(
+              playerName,
+              style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              l.profilePlayerLevel(widget.gameState.save.playerLevel),
+              style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 13),
+            ),
+          ] else
+            Text(
+              l.profilePlayerLevel(widget.gameState.save.playerLevel),
+              style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600),
+            ),
           const SizedBox(height: 14),
           if (_isMaxLevel)
             Text(l.profileMaxLevel, style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 12))

@@ -229,4 +229,76 @@ void main() {
       expect(target.attack, greaterThan(10));
     });
   });
+
+  group('World Boss: round limit & timeout', () {
+    test('round limit resolves as timeout when both sides survive', () {
+      final engine = BattleEngine(
+        playerUnits: [_player(maxHP: 100000, attack: 5, defense: 1000, speed: 0)],
+        enemy: _enemy(maxHP: 1000000, attack: 10, defense: 1000, speed: 100),
+        stage: 1,
+        isBossStage: true,
+        roundLimit: 3,
+        varianceProvider: () => 1.0,
+      );
+      var iterations = 0;
+      while (engine.outcome == null && iterations < 10) {
+        engine.tick(1.0);
+        iterations++;
+      }
+      expect(engine.outcome, BattleOutcome.timeout);
+      expect(engine.roundsElapsed, 3);
+    });
+
+    test('victory still wins when achieved before round limit', () {
+      final engine = BattleEngine(
+        playerUnits: [_player(attack: 5000, speed: 1000, maxHP: 100)],
+        enemy: _enemy(maxHP: 30, defense: 0, speed: 0),
+        stage: 1,
+        isBossStage: true,
+        roundLimit: 50,
+        varianceProvider: () => 1.0,
+      );
+      engine.tick(1.0);
+      expect(engine.outcome, BattleOutcome.victory);
+    });
+
+    test('defeat still loses before round limit is reached', () {
+      final engine = BattleEngine(
+        playerUnits: [_player(maxHP: 10, attack: 0, speed: 0)],
+        enemy: _enemy(attack: 500, speed: 1000, maxHP: 100000, defense: 0),
+        stage: 1,
+        isBossStage: true,
+        roundLimit: 50,
+        varianceProvider: () => 1.0,
+      );
+      engine.tick(1.0);
+      expect(engine.outcome, BattleOutcome.defeat);
+    });
+
+    test('totalDamageToEnemy accumulates across multiple hits', () {
+      final engine = BattleEngine(
+        playerUnits: [_player(attack: 20, defense: 5, speed: 100, maxHP: 1000)],
+        enemy: _enemy(maxHP: 100000, defense: 0, speed: 0),
+        stage: 1,
+        isBossStage: false,
+        varianceProvider: () => 1.0,
+      );
+      engine.tick(1.0);
+      final afterFirst = engine.totalDamageToEnemy;
+      expect(afterFirst, greaterThan(0));
+      engine.tick(1.0);
+      expect(engine.totalDamageToEnemy, greaterThan(afterFirst));
+    });
+
+    test('roundLimit is null outside World Boss fights', () {
+      final engine = BattleEngine(
+        playerUnits: [_player()],
+        enemy: _enemy(),
+        stage: 1,
+        isBossStage: false,
+        varianceProvider: () => 1.0,
+      );
+      expect(engine.roundLimit, isNull);
+    });
+  });
 }

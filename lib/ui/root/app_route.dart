@@ -106,3 +106,18 @@ class DungeonResultRoute extends AppRoute {
   final DungeonBattleResultSummary summary;
   const DungeonResultRoute(this.summary);
 }
+
+/// World Boss hub — a Flutter-only route name, no Swift-original counterpart
+/// (mirrors Swift's `.worldBoss` `AppRoute` case).
+class WorldBossRoute extends AppRoute {
+  const WorldBossRoute();
+}
+
+class WorldBossBattleRoute extends AppRoute {
+  const WorldBossBattleRoute();
+}
+
+class WorldBossResultRoute extends AppRoute {
+  final WorldBossBattleResultSummary summary;
+  const WorldBossResultRoute(this.summary);
+}

@@ -56,6 +56,11 @@ Future<GameState> _bootedToDreamHaven(WidgetTester tester) async {
   // `hasChosenStarterElement`, so this correctly resolves regardless of
   // element.
   gameState.chooseStarterOlf(GameElement.ember);
+  // Skip the player-name choice overlay too — not under test here. Without
+  // this, `needsPlayerName` stays true (new saves start with
+  // `hasChosenPlayerName: false`) and `PlayerNameChoiceView`'s full-screen
+  // overlay sits on top of Dream Haven, silently absorbing every tap below.
+  gameState.setPlayerName('TestDreamer');
   final accountState = AccountState();
   await accountState.load();
 

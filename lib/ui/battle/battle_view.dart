@@ -23,7 +23,9 @@ import '../../l10n/l10n.dart';
 import '../../models/element.dart';
 import '../../models/world.dart';
 import '../../platform/platform_service.dart';
+import '../../progression/world_boss_system.dart';
 import '../../state/game_state.dart';
+import '../../state/world_boss_leaderboard_service.dart';
 import '../../theme/sf_symbol_icons.dart';
 import '../../theme/theme.dart' as dk_theme;
 import '../root/app_route.dart';
@@ -199,6 +201,77 @@ class _ArenaBattleScreenState extends State<ArenaBattleScreen> {
   }
 }
 
+/// Owns the `BattleEngine` for one World Boss attack — same deferred,
+/// post-frame-callback pattern as [ArenaBattleScreen] (`makeWorldBossBattleEngine`
+/// spends one of the week's attacks and calls `GameState.persist()`, which
+/// can't happen mid-build). Submits the resulting total to the shared
+/// leaderboard via [worldBossLeaderboardService] once the fight resolves,
+/// mirroring `RootView.swift`'s `.worldBossBattle` case.
+class WorldBossBattleScreen extends StatefulWidget {
+  final GameState gameState;
+  final WorldBossLeaderboardService worldBossLeaderboardService;
+  final ValueChanged<AppRoute> onNavigate;
+
+  const WorldBossBattleScreen({
+    super.key,
+    required this.gameState,
+    required this.worldBossLeaderboardService,
+    required this.onNavigate,
+  });
+
+  @override
+  State<WorldBossBattleScreen> createState() => _WorldBossBattleScreenState();
+}
+
+class _WorldBossBattleScreenState extends State<WorldBossBattleScreen> {
+  BattleEngine? _engine;
+  bool _resolved = false;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final engine = widget.gameState.makeWorldBossBattleEngine();
+      if (mounted) {
+        setState(() {
+          _engine = engine;
+          _resolved = true;
+        });
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (!_resolved) return const SizedBox.shrink();
+    final engine = _engine;
+    if (engine == null) {
+      // No deployed team, no attacks left, or the event window already
+      // closed — shouldn't be reachable (`WorldBossView.attemptFight` gates
+      // all three), but bounce back to the hub rather than showing an
+      // empty battlefield.
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) widget.onNavigate(const WorldBossRoute());
+      });
+      return const SizedBox.shrink();
+    }
+    return BattleView(
+      engine: engine,
+      gameState: widget.gameState,
+      isWorldBoss: true,
+      onFinished: (finishedEngine) {
+        final summary = widget.gameState.applyWorldBossBattleResult(finishedEngine);
+        widget.worldBossLeaderboardService.submitDamage(
+          weekID: WorldBossSystem.weekID(DateTime.now()),
+          totalDamage: summary.totalDamageThisWeek,
+          playerLevel: widget.gameState.save.playerLevel,
+        );
+        widget.onNavigate(WorldBossResultRoute(summary));
+      },
+    );
+  }
+}
+
 /// The stateless-from-the-outside battle view itself — takes an
 /// already-built `engine` so both a Campaign stage fight (`BattleScreen`)
 /// and an Arena Tower fight (`ArenaBattleScreen`) can drive the exact same
@@ -216,6 +289,13 @@ class BattleView extends StatefulWidget {
   /// Non-nil only for a Dungeon run — swaps the banner text for the dungeon
   /// name plus a "Wave X/Y" counter.
   final String? dungeonName;
+
+  /// True only for a weekly World Boss attempt — swaps the banner text for
+  /// the event label instead of falling through to `isBossStage`'s
+  /// per-world boss-stage label (that label names the Campaign world the
+  /// fight belongs to, which doesn't apply here). See Swift's own
+  /// `isWorldBoss` flag on `BattleView`.
+  final bool isWorldBoss;
   final ValueChanged<BattleEngine> onFinished;
 
   const BattleView({
@@ -224,6 +304,7 @@ class BattleView extends StatefulWidget {
     required this.gameState,
     this.arenaFloor,
     this.dungeonName,
+    this.isWorldBoss = false,
     required this.onFinished,
   });
 
@@ -430,6 +511,7 @@ class _BattleViewState extends State<BattleView> with SingleTickerProviderStateM
       return l.dungeonBattleLabel(widget.dungeonName!, _engine.currentWave, _engine.totalWaves);
     }
     if (widget.arenaFloor != null) return l.battleArenaStageLabel(widget.arenaFloor!);
+    if (widget.isWorldBoss) return l.battleWorldBossEventLabel;
     final world = WorldCatalog.world(_engine.stage);
     final stageInWorld = _engine.stage - world.firstStage + 1;
     if (_engine.isBossStage) return l.battleWorldBossLabel(world.name);
